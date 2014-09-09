@@ -1,0 +1,93 @@
+\section{Introduction}
+
+\subsection{Introduction}
+
+\begin{frame}{Introduction}
+  \begin{block}{Mobile devices adoption by society}
+    \begin{itemize}
+      \item Mobile devices are used massively around the world \citep{Qureshi2014}.
+      \item Their high acceptance is due to their Internet-enabled features and increasing storage and computing capabilities.
+      \item Mobile devices are shipped with sensors that enhance the interaction with user.
+      \item Sensors allow mobile devices to become \emph{omni-sensors} of the environment.
+      \item By analyzing data from environment, smart devices become \emph{context aware}.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Introduction}
+  \begin{block}{Contextual information from smartphones}
+    \begin{itemize}
+      \item Context refers to the set of environmental states and settings that either determines an application’s behavior or in which an application event occurs and is interesting to the user \citep{Chen2000}.
+      \item A context aware mobile app detect changes in any context source of information and adapts its behavior accordingly.
+      \item A special subset of context aware mobile apps is conformed by location aware mobile apps.
+      \item Both types of apps can be categorized as \textbf{mobile sensing apps (MSA)} \citep{Lane2010,Campbell2012}.
+      \item MSA core activities are sensing data from environment, analyzing these data and generating high level information that has a special meaning for final user.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Convergence of MSA into the Internet of Things}
+  \begin{block}{The fully connected world idea}
+    \begin{itemize}
+      \item MSA are contributing to the adoption of smart devices by society, creating a fully connected world of people.
+      \item The idea has been also pursued in scenarios like industry, where the items to be connected are real world objects like tools, machines, etc.
+      \item The items are enhanced with identification mechanisms and storage, computing and communication facilities, becoming \emph{smart objects}.
+      \item The interaction of smart objects creates a Machine-to-Machine (M2M) communication system.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Convergence of MSA into the Internet of Things}
+  \begin{block}{The emergence of The Internet of Things}
+    \begin{itemize}
+      \item M2M communication systems aim to be the base mechanism to interconnect any smart objects of the real world.
+      \item MSA and M2M communication systems are pursuing a globally connected world of people and smart objects.
+      \item They can be abstracted as systems that interconnect \emph{things} in an evolved version of Internet called the \emph{Internet of Things (IoT)}.
+      \item IoT aims to produce a fully connected world with application systems that address any real world problem.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Introduction}
+  \begin{block}{Motivation}
+    \begin{itemize}
+      \item However, advances in battery research are not at the same pace than those related to other components of smart devices \citep{Kjaergaard2012}.
+      \item The battery is a limited source of energy that is impacted by sensors and other embedded electronics usage.
+    \end{itemize}
+  \end{block}
+
+  \begin{table}[]
+  \scalebox{0.7}{
+    \begin{tabularx}{0.65\linewidth}{l>{\raggedright}X}
+      \toprule
+      \textbf{Feature} & \textbf{Average power (watts)} \tabularnewline
+      \midrule
+      {Processor (1\%)}  & 0.06 \tabularnewline
+      {Processor (100\%)}  & 0.41 \tabularnewline
+      {Accelerometer} & 0.05 \tabularnewline
+      {Bluetooth} & 0.28 \tabularnewline
+      {Microphone} & 0.26 \tabularnewline
+      {Screen} & 0.23 \tabularnewline
+      {Wi-Fi scan} & 1.37 \tabularnewline
+      {GPS} & 0.32 \tabularnewline
+      {3G radio (idle)} & 0.47 \tabularnewline
+      {3G radio (sending)} & 1.11 \tabularnewline
+      \bottomrule
+    \end{tabularx}
+    %\label{tab:options}
+    
+    %\caption{:P}
+  }
+  \caption{Average energy consumption of a Nokia N95 Smartphone (in \citep{Kjaergaard2012})}
+\end{table}
+\end{frame}
+
+\begin{frame}{Introduction}
+  \begin{block}{Motivation}
+    \begin{itemize}
+      \item Therefore, despite the benefits of MSA the issue of energy reduces the time and diversity of tasks a smart device can be used for.
+      \item This issue becomes critical when performing continuous sensor access.
+      \item It is mandatory for any mobile application development to consider the energy constraint and implement mechanisms to optimize battery duration.
+    \end{itemize}
+  \end{block}
+\end{frame}

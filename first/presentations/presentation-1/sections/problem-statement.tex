@@ -1,0 +1,75 @@
+\section{Problem statement}
+
+\subsection{Preamble}
+
+\begin{frame}{Problem description}
+  \begin{block}{Current state of energy management}
+    \begin{itemize}
+      \item MSA access sensors in a continuous way over long periods of time.
+      \item Sensors usage impacts directly on battery.
+      \item Current smart devices' processors are designed to manage the heavy interaction with the user and the execution of mobile apps.
+      \item A continuous sensor reading is out of their current objectives \citep{Priyantha2011}.
+      \item Current mobile platforms do not include mechanisms to perform periodical readings from sensors.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Problem description}
+  \begin{block}{What do we need?}
+    \begin{itemize}
+      \item API’s\footnote{API refers to Application Programming Interface.} by manufacturers only accomplish generic tasks like turning on – off sensors
+      \item \textbf{High level information about user's context remains ignored}.
+      \item A special framework to generate smart policies for continuous sensor access.
+      \item This framework should consider:
+        \begin{itemize}
+          \item Mobile app requirements (e. g. the precision in the sensor data collection).
+          \item Mobile device constraints (e. g. the current level of battery).
+          \item Threshold values for performing a smart sensor usage (e. g. the lowest battery level for avoiding a permanent sensor usage).
+        \end{itemize}
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+\begin{frame}{Problem description}
+  \begin{block}{A possible solution is}
+    \begin{itemize}
+      \item A policy is a high level concept that defines the usage sensors should observe to keep low energy consumption and fulfill mobile app requirements.
+
+      \item The \emph{smartness} of policies is achieved by leveraging the user’s context obtained from data delivered by sensors.
+      \begin{itemize}
+        \item The user’s context can be recognized by employing a pattern identifier mechanism that is fed by raw data collected by sensors.
+
+        \item The pattern becomes the descriptor of user’s context, and is the input for a policy generator mechanism that produces the policy to adapt the sensor usage, reduce the energy consumption and achieve mobile app objectives.
+      \end{itemize}
+      
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+
+\subsection{Pattern identification}
+
+\begin{frame}{Problem statement}
+  \begin{exampleblock}{Pattern identification}
+    Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read from sensor $S$ in the time interval $T = \left\{t_{1}, t_{2}, \dotsc, t_{n}\right\}$, find the behavior pattern $Pattern_{S}$ that represents the activity of user.
+
+    \begin{equation}
+      PatternIdentifier( V ) \longrightarrow{} Pattern_{S} \in Patterns
+    \end{equation}
+
+    Where $Patterns$ is a set of patterns that represent an interesting state in the user activity.
+  \end{exampleblock}
+\end{frame}
+
+
+\subsection{Policy generation}
+
+\begin{frame}{Problem statement}
+  \begin{exampleblock}{Policy generation}
+    Given the pattern $Pattern_{S}$ detected in data from sensor $S$, parameters for assigning weight to energy $eh$ and precision $ph$, and physical constraints status $pc$ of a mobile device, find a policy to adapt the duty cycle of sensors.
+
+    \begin{equation}
+      PolicyGeneration( Pattern_{S}, eh, ph, pc ) \longrightarrow{} DutyCycle_{S}
+    \end{equation}
+  \end{exampleblock}
+\end{frame}

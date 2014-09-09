@@ -1,1 +1,55 @@
-slides-main.tex
+\documentclass[9pt,compress,xcolor={table}]{beamer}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+
+\usetheme{hsrm}
+\setbeameroption{show notes}
+
+\usepackage{tabularx,ragged2e}
+\usepackage{booktabs}
+\usepackage{dtklogos}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,backgrounds}
+\usepackage{arydshln}
+\usepackage{chngpage}
+\usepackage{natbib}
+\usepackage{multicol}
+\usepackage[caption=false]{subfig}
+%\usepackage[natbib=true, bibstyle=authoryear, citestyle=authoryear-comp, backend=bibtex]{biblatex}
+
+\graphicspath{ {../../../resources/images/vectors/}{../../../resources/images/bits/} }
+
+\title{Smart usage of context information for the analysis, design, and generation of power-aware policies for mobile sensing apps}
+
+\subtitle{Phd research proposal}
+
+\author{Rafael Pérez-Torres}
+
+\institute{Center for Research and Advanced Studies of the National Polytechnic Institute\\LTI {\Medium Cinvestav}}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% Introduce elements
+\input{sections/toc}
+
+\input{sections/introduction}
+
+\input{sections/problem-statement}
+
+\input{sections/objectives}
+
+\input{sections/state-of-art}
+
+\input{sections/methodology}
+
+\input{sections/contributions}
+
+\input{sections/schedule}
+
+\input{sections/references}
+\end{document}
