@@ -9,7 +9,8 @@
       \item Sensors usage impacts directly on battery.
       \item Current smart devices' processors are designed to manage the heavy interaction with the user and the execution of mobile apps.
       \item A continuous sensor reading is out of their current objectives \citep{Priyantha2011}.
-      \item Current mobile platforms do not include mechanisms to perform periodical readings from sensors.
+      % \item Current mobile platforms do not include mechanisms to perform periodical readings from sensors.
+      \item API’s\footnote{API refers to Application Programming Interface.} by manufacturers only accomplish generic tasks like turning on – off sensors
     \end{itemize}
   \end{block}
 \end{frame}
@@ -17,7 +18,7 @@
 \begin{frame}{Problem description}
   \begin{block}{What do we need?}
     \begin{itemize}
-      \item API’s\footnote{API refers to Application Programming Interface.} by manufacturers only accomplish generic tasks like turning on – off sensors
+      % \item API’s\footnote{API refers to Application Programming Interface.} by manufacturers only accomplish generic tasks like turning on – off sensors
       \item \textbf{High level information about user's context remains ignored}.
       \item A special framework to generate smart policies for continuous sensor access.
       \item This framework should consider:
@@ -35,7 +36,7 @@
     \begin{itemize}
       \item A policy is a high level concept that defines the usage sensors should observe to keep low energy consumption and fulfill mobile app requirements.
 
-      \item The \emph{smartness} of policies is achieved by leveraging the user’s context obtained from data delivered by sensors.
+      \item The \emph{smartness} of policies is achieved by leveraging information about the user’s context obtained from sensors data.
       \begin{itemize}
         \item The user’s context can be recognized by employing a pattern identifier mechanism that is fed by raw data collected by sensors.
 
