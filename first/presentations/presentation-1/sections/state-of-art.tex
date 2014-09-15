@@ -94,33 +94,33 @@
 %   \end{block}
 % \end{frame}
 
-\begin{frame}{MSA: Examples}
-  \begin{block}{Examples of MSA}
-    \begin{itemize}
-      \item \emph{NeuroPhone} \citep{Campbell2010}
-      \begin{itemize}
-        \item A brain-controlled address book dialing app that employs neural signals obtained from an EEG\footnote{EEG, electroencephalography} headset.
-        \item The phone shows a sequence of pictures of contacts and a special signal is elicited when a photo matches the person whom the user wishes to call.
-      \end{itemize}
+% \begin{frame}{MSA: Examples}
+%   \begin{block}{Examples of MSA}
+%     \begin{itemize}
+%       \item \emph{NeuroPhone} \citep{Campbell2010}
+%       \begin{itemize}
+%         \item A brain-controlled address book dialing app that employs neural signals obtained from an EEG\footnote{EEG, electroencephalography} headset.
+%         \item The phone shows a sequence of pictures of contacts and a special signal is elicited when a photo matches the person whom the user wishes to call.
+%       \end{itemize}
 
-      \item \emph{BeWell} \citep{Lane2012}
-      \begin{itemize}
-        \item BeWell continuously tracks user behavior along three health dimensions in an opportunistic sensing way.
-        \begin{itemize}
-          \item Sleep duration \rightTextArrow accelerometer.
-          \item Physical activity \rightTextArrow accelerometer.
-          \item Social interaction \rightTextArrow microphone.
-        \end{itemize}
-      \end{itemize}
+%       \item \emph{BeWell} \citep{Lane2012}
+%       \begin{itemize}
+%         \item BeWell continuously tracks user behavior along three health dimensions in an opportunistic sensing way.
+%         \begin{itemize}
+%           \item Sleep duration \rightTextArrow accelerometer.
+%           \item Physical activity \rightTextArrow accelerometer.
+%           \item Social interaction \rightTextArrow microphone.
+%         \end{itemize}
+%       \end{itemize}
   
-      \item \emph{WalkSafe} \citep{Wang2012}
-      \begin{itemize}
-        \item An app that aids people that walk and talk, improving the safety of pedestrian phone users.
-        \item WalkSafe employs the back camera of the mobile phone to detect vehicles approaching the user, alerting a potentially unsafe situation.
-      \end{itemize}
-    \end{itemize}
-  \end{block}
-\end{frame}
+%       \item \emph{WalkSafe} \citep{Wang2012}
+%       \begin{itemize}
+%         \item An app that aids people that walk and talk, improving the safety of pedestrian phone users.
+%         \item WalkSafe employs the back camera of the mobile phone to detect vehicles approaching the user, alerting a potentially unsafe situation.
+%       \end{itemize}
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
 % \begin{frame}{Convergence of MSA into the Internet of Things}
 %   \begin{block}{Convergence of MSA into the Internet of Things}
@@ -149,41 +149,41 @@
 \begin{frame}{Energy issues in MSA}
   \begin{block}{Energy issue in MSA }
     \begin{itemize}
-      \item Actual fact: The usage of components of smart devices implies energy consumption.
-      \item Several efforts have been done in the field to address the issue.
+      % \item Actual fact: The usage of components of smart devices implies energy consumption.
+      % \item Several efforts have been done in the field to address the issue.
       
-      They can be categorized as:
-      \begin{itemize}
+      % They can be categorized as:
+      % \begin{itemize}
         \item General guidelines.
         \item Focused on sensors' usage.
-      \end{itemize}
+      % \end{itemize}
     \end{itemize}
   \end{block}
 \end{frame}
 
-\begin{frame}{Energy issues in MSA: General guidelines}
-  \begin{block}{General guidelines}
-    \begin{itemize}
-      \item Authors in \citep{Mayo2004} introduced the idea of the \emph{requirements-aware energy scale-down} approach.
-      \item It states that energy consumption should be reduced as possible and still achieving mobile app requirements.
-    \end{itemize}
-  \end{block}
+% \begin{frame}{Energy issues in MSA: General guidelines}
+%   \begin{block}{General guidelines}
+%     \begin{itemize}
+%       \item Authors in \citep{Mayo2004} introduced the idea of the \emph{requirements-aware energy scale-down} approach.
+%       \item It states that energy consumption should be reduced as possible and still achieving mobile app requirements.
+%     \end{itemize}
+%   \end{block}
 
-  \begin{figure}
-      \centering
-      \subfloat[Original interface\label{fig:energy-aware-gui-1}]{
-        \includegraphics[width=0.3\textwidth]{energy-aware-gui-1}
-      }%\quad
-      \subfloat[Background half dim\label{fig:energy-aware-gui-2}]{
-        \includegraphics[width=0.3\textwidth]{energy-aware-gui-2}
-      }%\quad
-      \subfloat[Background fully dim\label{fig:energy-aware-gui-3}]{
-        \includegraphics[width=0.3\textwidth]{energy-aware-gui-3}
-      }
-      \caption{An example of energy aware GUI proposed by \protect\citep{Mayo2004}}
-      \label{fig-scaling-down-screen-usage}
-    \end{figure}
-\end{frame}
+%   \begin{figure}
+%       \centering
+%       \subfloat[Original interface\label{fig:energy-aware-gui-1}]{
+%         \includegraphics[width=0.3\textwidth]{energy-aware-gui-1}
+%       }%\quad
+%       \subfloat[Background half dim\label{fig:energy-aware-gui-2}]{
+%         \includegraphics[width=0.3\textwidth]{energy-aware-gui-2}
+%       }%\quad
+%       \subfloat[Background fully dim\label{fig:energy-aware-gui-3}]{
+%         \includegraphics[width=0.3\textwidth]{energy-aware-gui-3}
+%       }
+%       \caption{An example of energy aware GUI proposed by \protect\citep{Mayo2004}}
+%       \label{fig-scaling-down-screen-usage}
+%     \end{figure}
+% \end{frame}
 
 \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
 \footnotesize
@@ -242,107 +242,107 @@
 %   \end{block}
 % \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Pure-hardware approach}
-    \begin{itemize}
-      \item Electronic level techniques like DPM\footnote{Dynamic Power Management.} or DVFS\footnote{Dynamic Voltage and Frequency Scaling.} are not enough to mark the energy issue as solved \citep{Priyantha2011}.
-      \item Current architecture of mobile platforms requires that for the correct operation of the phone other components have to be operational
-      \item This approach aims to redesign the hardware platform of current mobile devices, by isolating sensors inside a unit with a dedicated low power processor.
-      \item While the extra unit is working the rest of the smartphone hardware platform can reach its sleep mode.
-    \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Pure-hardware approach}
+%     \begin{itemize}
+%       \item Electronic level techniques like DPM\footnote{Dynamic Power Management.} or DVFS\footnote{Dynamic Voltage and Frequency Scaling.} are not enough to mark the energy issue as solved \citep{Priyantha2011}.
+%       \item Current architecture of mobile platforms requires that for the correct operation of the phone other components have to be operational
+%       \item This approach aims to redesign the hardware platform of current mobile devices, by isolating sensors inside a unit with a dedicated low power processor.
+%       \item While the extra unit is working the rest of the smartphone hardware platform can reach its sleep mode.
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Examples of works following a pure-hardware approach}
-    \begin{itemize}
-      \item LittleRock \citep{Priyantha2011} designs a special unit in charge of the execution of sensor readings.
-      It includes:
-      \begin{itemize}
-        \item Processor module.
-        \item Digital sensor module.
-        \item Analog sensor module.
-        \item Reset and wake up logic.
-      \end{itemize}
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Examples of works following a pure-hardware approach}
+%     \begin{itemize}
+%       \item LittleRock \citep{Priyantha2011} designs a special unit in charge of the execution of sensor readings.
+%       It includes:
+%       \begin{itemize}
+%         \item Processor module.
+%         \item Digital sensor module.
+%         \item Analog sensor module.
+%         \item Reset and wake up logic.
+%       \end{itemize}
 
-      \item \citep{Choudhury2008} implemented a mobile sensing platform with embedded sensors and a low power processor.
-      Includes also bluetooth communication interface.
-    \end{itemize}
-  \end{block}
-\end{frame}
+%       \item \citep{Choudhury2008} implemented a mobile sensing platform with embedded sensors and a low power processor.
+%       Includes also bluetooth communication interface.
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Hardware-software approach}
-    \begin{itemize}
-      \item This approach aims to contribute with new drivers, tunned versions of mobile OS's or an improved software API for allocating computational and sensing tasks in components others than the predefined by the platform's original design.
-      \item It is possible to instruct an additional low power processor in the smartphone to execute any arbitrary instruction.
-      \item Since the smartphone's processor can be kept idle there is a potential energy saving.
-    \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Hardware-software approach}
+%     \begin{itemize}
+%       \item This approach aims to contribute with new drivers, tunned versions of mobile OS's or an improved software API for allocating computational and sensing tasks in components others than the predefined by the platform's original design.
+%       \item It is possible to instruct an additional low power processor in the smartphone to execute any arbitrary instruction.
+%       \item Since the smartphone's processor can be kept idle there is a potential energy saving.
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Examples of works following a hardware-software approach}
-  \begin{itemize}
-    \item The study presented by \citep{Ra2012} leverages the presence of low power processors (LP) in the latest smartphones, exposing their functionality through a layered API.
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Examples of works following a hardware-software approach}
+%   \begin{itemize}
+%     \item The study presented by \citep{Ra2012} leverages the presence of low power processors (LP) in the latest smartphones, exposing their functionality through a layered API.
 
-    \item It describes two challenges:
-    \begin{enumerate}
-       \item The selection of a suitable LP: any processor with a small wakeup transition delay is suitable as LP.
-       \item Guidelines for deciding where to allocate the execution of a given task:
-       \begin{itemize}
-          \item Execution in main processor.
-          \item Execution in LP.
-          \item Execution in main or in LP.
-      \end{itemize}
-    \end{enumerate}
-  \end{itemize}
-  \end{block}
-\end{frame}
+%     \item It describes two challenges:
+%     \begin{enumerate}
+%        \item The selection of a suitable LP: any processor with a small wakeup transition delay is suitable as LP.
+%        \item Guidelines for deciding where to allocate the execution of a given task:
+%        \begin{itemize}
+%           \item Execution in main processor.
+%           \item Execution in LP.
+%           \item Execution in main or in LP.
+%       \end{itemize}
+%     \end{enumerate}
+%   \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Pure-software approach}
-  \begin{itemize}
-    \item The goal of this approach is to give \emph{smartness} or cognitive behavior to the software platform of mobile devices and derive into a better usage of sensors.
-    \item Two main branches (not mutually exclusive):
-    \begin{itemize}
-      \item Duty cycle manipulation
-      \item Next value inference
-    \end{itemize}
-  \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Pure-software approach}
+%   \begin{itemize}
+%     \item The goal of this approach is to give \emph{smartness} or cognitive behavior to the software platform of mobile devices and derive into a better usage of sensors.
+%     \item Two main branches (not mutually exclusive):
+%     \begin{itemize}
+%       \item Duty cycle manipulation
+%       \item Next value inference
+%     \end{itemize}
+%   \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Examples of works following a pure-software approach}
-  \begin{itemize}
-    \item \emph{G-Sense} \citep{Perez2010}
-    \begin{itemize}
-      \item An architecture that integrates mobile and static WSN for location based services, participatory sensing and human centric sensing applications.
-      \item Include mechanisms to control the amount of generated and transmitted data: \emph{client-sate machine}, \emph{Geo-Sensing}, and \emph{Time-Sensing}.
-      \item It was not implemented, only simulated.
-      \item Its mechanisms are a very broad genre of policies.
-    \end{itemize}
-    \item EnTracked \citep{Kjaergaard2009}
-    \begin{itemize}
-      \item Platform to perform GPS readings in smartphones; employs also accelerometer to detect motion.
-      \item Employs a external server to detect the speed of user; scenarios without Internet connectivity are ignored.
-      \item Involve costs in data transmission.
-    \end{itemize}
-  \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Examples of works following a pure-software approach}
+%   \begin{itemize}
+%     \item \emph{G-Sense} \citep{Perez2010}
+%     \begin{itemize}
+%       \item An architecture that integrates mobile and static WSN for location based services, participatory sensing and human centric sensing applications.
+%       \item Include mechanisms to control the amount of generated and transmitted data: \emph{client-sate machine}, \emph{Geo-Sensing}, and \emph{Time-Sensing}.
+%       \item It was not implemented, only simulated.
+%       \item Its mechanisms are a very broad genre of policies.
+%     \end{itemize}
+%     \item EnTracked \citep{Kjaergaard2009}
+%     \begin{itemize}
+%       \item Platform to perform GPS readings in smartphones; employs also accelerometer to detect motion.
+%       \item Employs a external server to detect the speed of user; scenarios without Internet connectivity are ignored.
+%       \item Involve costs in data transmission.
+%     \end{itemize}
+%   \end{itemize}
+%   \end{block}
+% \end{frame}
 
-\begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
-  \begin{block}{Examples of works following a pure-software approach}
-    Middleware in \citep{Perez-Torres2012}.
-    \begin{itemize}
-      \item A power-aware middleware for context aware mobile apps with cloud computing interaction focused on GPS data.
-      \item Allows to schedule the next sensor reading according to the mobile app specifications and other policies.
-      \item Includes rudimentary notions of policies, classifier and mobile app specific requirements.
-    \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
+%   \begin{block}{Examples of works following a pure-software approach}
+%     Middleware in \citep{Perez-Torres2012}.
+%     \begin{itemize}
+%       \item A power-aware middleware for context aware mobile apps with cloud computing interaction focused on GPS data.
+%       \item Allows to schedule the next sensor reading according to the mobile app specifications and other policies.
+%       \item Includes rudimentary notions of policies, classifier and mobile app specific requirements.
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
 \begin{frame}{Energy issues in MSA: Efforts focused in sensors' usage}
   \begin{block}{Advantages of pure-software approach}
@@ -361,19 +361,19 @@
   \end{block}
 \end{frame}
 
-\subsection{Energy issue in data transmission}
+% \subsection{Energy issue in data transmission}
 
-\begin{frame}{Energy issue in data transmission}
-  \begin{block}{Data transmission effects in energy consumption}
-    \begin{itemize}
-      \item The energy consumption also represents a problem when transmitting data or performing computation offloading.
-      \item This perspective of the problem has also been addressed in literature and several solutions have been provided.
-      \item Computation offloading is advisable only when large amount of computations are needed with relatively small amounts of communication \citep{Kumar2010}.
-      \item The transmission of data can be guided by the presence of changes in the data collected by sensors \citep{Musolesi2010}.
-      \item In relation to MSA, this issue becomes critical when the mobile apps focus in the community sensing scale.
-    \end{itemize}
-  \end{block}
-\end{frame}
+% \begin{frame}{Energy issue in data transmission}
+%   \begin{block}{Data transmission effects in energy consumption}
+%     \begin{itemize}
+%       \item The energy consumption also represents a problem when transmitting data or performing computation offloading.
+%       \item This perspective of the problem has also been addressed in literature and several solutions have been provided.
+%       \item Computation offloading is advisable only when large amount of computations are needed with relatively small amounts of communication \citep{Kumar2010}.
+%       \item The transmission of data can be guided by the presence of changes in the data collected by sensors \citep{Musolesi2010}.
+%       \item In relation to MSA, this issue becomes critical when the mobile apps focus in the community sensing scale.
+%     \end{itemize}
+%   \end{block}
+% \end{frame}
 
 % \begin{frame}{Energy issue in data transmission}
 %   \begin{block}{Computation offloading from ECI perspective}
