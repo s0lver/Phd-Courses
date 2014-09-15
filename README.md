@@ -1,4 +1,4 @@
-seminars
+Phd Courses
 ========
 
-Resources for the seminar courses taken at LTI Cinvestav
+Resources for the courses to be taken as part of the PhD at LTI Cinvestav
