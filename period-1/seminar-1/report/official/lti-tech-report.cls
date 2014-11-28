@@ -1033,9 +1033,9 @@
         \begin{tabular}{cc}
           \begin{minipage}{3cm}
             \ifpdf
-            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../images/cinvestav2.jpg}
+            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../../../../images/cinvestav2.jpg}
             \else
-            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../images/cinvestav2.eps}
+            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../../../../images/cinvestav2.jpg}
             \fi
           \end{minipage}&
           \vspace{-.5cm}
@@ -1089,9 +1089,9 @@
         \begin{tabular}{cc}
           \begin{minipage}{3cm}
             \ifpdf
-            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../images/cinvestav2.jpg}
+            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{cinvestav2.jpg}
             \else
-            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../images/cinvestav2.eps}
+            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{cinvestav2.jpg}
             \fi
           \end{minipage}&
           \vspace{-.5cm}
@@ -1147,9 +1147,9 @@
         \begin{tabular}{cc}
           \begin{minipage}{3cm}
             \ifpdf
-            \vspace{-1cm}\hspace{-1cm}\includegraphics[scale=0.1]{../images/cinvestav2.jpg}
+            \vspace{-1cm}\hspace{-1cm}\includegraphics[scale=0.1]{cinvestav2.jpg}
             \else
-            \vspace{-1cm}\hspace{-1cm}\includegraphics[scale=0.1]{../images/cinvestav2.eps}
+            \vspace{-1cm}\hspace{-1cm}\includegraphics[scale=0.1]{cinvestav2.eps}
             \fi
           \end{minipage}&
             \begin{minipage}{10cm}

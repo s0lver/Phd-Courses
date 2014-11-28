@@ -33,7 +33,7 @@
 
 \newcommand{\V}[1]{\mathbf{#1}}
 
-\graphicspath{ {./images/} }
+\graphicspath{ {../../../resources/images/vectors/}{../../../resources/images/bits/} }
 
 \title{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}
 \shorttitle{Smart Usage of Context Information for the Generation of Power-Aware Policies}
@@ -52,13 +52,16 @@
 \tobecited{Rafael Pérez Torres, César Torres Huitzil, Hiram Galeana Zapién. Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps. CINVESTAV Tamaulipas. 2014 Nov. 80000 pp. Technical Report No. LTI-TR-2014-07}
 \placeanddateofpublication{Ciudad Victoria, Tamaulipas, MEXICO.}
 
-\include{sections/abstract}
+\input{sections/abstract}
 
 \begin{document}
 \makeintropages
-\include{sections/preamble}
+\input{sections/preamble}
 \include{sections/theoretical-framework}
 \include{sections/state-of-art}
+\include{sections/pure-software-approach}
+\include{sections/method}
+\include{sections/conclusions}
 \bibliographystyle{siam}
 \bibliography{../../../resources/references/bibliography}
 \end {document}

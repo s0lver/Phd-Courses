@@ -68,7 +68,7 @@
 % set two lengths for the includegraphics commands used to import the plots:
 \newlength{\fwtwo} \setlength{\fwtwo}{0.45\textwidth}
 % end of personal macros
-\graphicspath{ {./images/} }
+\graphicspath{ {../../../resources/images/vectors/}{../../../resources/images/bits/} }
 
 \begin{document}
 %\DeclareGraphicsExtensions{.jpg}
@@ -76,7 +76,7 @@
 \begin{center}
 \textbf{\Large Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps} \\[16pt]
 
-\includegraphics[scale=0.08]{images/cinvestav2.jpg}
+\includegraphics[scale=0.08]{cinvestav2.jpg}
 
 \textbf{Technical Report}\\[6pt]
 LTI-TR-2014-07 \\[16pt]
@@ -100,6 +100,12 @@ describe your topic, methods, and results.
 \include{sections/theoretical-framework}
 
 \include{sections/state-of-art}
+
+\input{sections/pure-software-approach}
+
+\include{sections/method}
+
+\include{sections/conclusions}
 
 \bibliographystyle{siam}
 \bibliography{../../../resources/references/bibliography}
