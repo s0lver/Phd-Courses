@@ -15,7 +15,10 @@
 \usepackage{epstopdf}
 \usepackage{url}
 \usepackage{pseudocode}
-\usepackage{longtable}
+% \usepackage{longtable}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{rotating}
 
 \RequirePackage{hyperref}
 \RequirePackage{algorithm}
@@ -45,11 +48,11 @@
 \publishedmonth{December} %mes de la publicación
 \publishedday{5th} %día de la publicación
 \publishedyear{2014} %año de la publicación
-\keywords{wii1, wii2, wii3}
+\keywords{mobile sensing apps, energy consumption, context information, policy, smartphone}
 \correspondingauthor{Rafael Pérez Torres $<$rperez@tamps.cinvestav.mx$>$, César Torres Huitzil $<$ctorres@tamps.cinvestav.mx$>$ and Hiram Galeana Zapién $<$hgaleana@tamps.cinvestav.mx$>$}
 \grants{}
 \dateofsubmission{December 5th, 2014}
-\tobecited{Rafael Pérez Torres, César Torres Huitzil, Hiram Galeana Zapién. Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps. CINVESTAV Tamaulipas. 2014 Nov. 80000 pp. Technical Report No. LTI-TR-2014-07}
+\tobecited{Rafael Pérez Torres, César Torres Huitzil, Hiram Galeana Zapién. Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps. CINVESTAV Tamaulipas. 2014 Nov. 34 pp. Technical Report No. LTI-TR-2014-07}
 \placeanddateofpublication{Ciudad Victoria, Tamaulipas, MEXICO.}
 
 \input{sections/abstract}
@@ -61,6 +64,7 @@
 \include{sections/state-of-art}
 \include{sections/pure-software-approach}
 \include{sections/method}
+\include{sections/future-work}
 \include{sections/conclusions}
 \bibliographystyle{siam}
 \bibliography{../../../resources/references/bibliography}

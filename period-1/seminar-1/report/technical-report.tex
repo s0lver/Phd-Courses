@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{latexsym,amssymb,amsmath} % for \Box, \mathbb, split, etc.
 % \usepackage[]{showkeys} % shows label names
-\usepackage{cite} % sorts citation numbers appropriately
+%\usepackage{cite} % sorts citation numbers appropriately
 \usepackage{path}
 \usepackage{url}
 \usepackage{verbatim}
@@ -10,9 +10,13 @@
 \usepackage{epstopdf}
 \usepackage{mathpazo}
 \usepackage{blindtext}
-\usepackage{tabularx,ragged2e}
+%\usepackage{tabularx,ragged2e}
+\usepackage{ltablex}
 \usepackage{booktabs}
 \usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{cite}
 
 % horizontal margins: 1.0 + 6.5 + 1.0 = 8.5
 \setlength{\oddsidemargin}{0.0in}
@@ -92,8 +96,7 @@ CINVESTAV Tamaulipas \\[16pt]
 
 \input{sections/abstract}
 
-\subparagraph{Keywords.} Provide five key words or phrases that
-describe your topic, methods, and results.
+\subparagraph{Keywords.} mobile sensing apps, energy consumption, context information, policy, smartphone.
 
 \include{sections/preamble}
 
@@ -105,9 +108,11 @@ describe your topic, methods, and results.
 
 \include{sections/method}
 
+\include{sections/future-work}
+
 \include{sections/conclusions}
 
-\bibliographystyle{siam}
+\bibliographystyle{apalike}
 \bibliography{../../../resources/references/bibliography}
 
 \end{document}

@@ -1,9 +1,20 @@
 \section{Preamble}
 \label{sec:preamble}
-This sections describes the introduction to the problem, the problem statement itself, objectives and hypothesis of the thesis work.
+This technical report reunites the advanced performed during the first period of the doctoral program regarding to the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}.
+
+Initially, the report reviews the problem of the energy consumption in mobile sensing apps, including the problem statement, hypothesis, objectives and contributions pursued by this work research starting from subsection \ref{sub:introduction}.
+Next a brief description of core elements of the theoretical framework is presented in Section \ref{sec:theoretical_framework}; this description is useful for a better understanding of the elements involved in the problem.
+
+The Section \ref{sec:state_of_art} comprehends most of the advances developed during this initial period. Inside this, the Subsection \ref{sub:approaches_for_addressing_the_energy_issue} proposes a taxonomy for the works addressing the energy issue and briefly reviews the pure hardware and hardware-software approaches of this classification. The Subsection \ref{sub:the_software_approach} is focused in the pure software approach, describing its advantages over the rest of perspectives and mentioning the machine learning techniques employed by some of the works. The state of the art has been updated since the beginning of the program following the suggestions of the committee during the thesis proposal defense.
+
+Next, Section \ref{sec:proposed_method} discusses the method proposed for solving the problem.
+It describes the components involved in the method's workflow and their interaction.
+
+Finally, the Sections \ref{sec:future_work} and \ref{sec:conclusions} describe the work to be performed in immediate periods, and give the conclusions of this report, respectively.
 
 \subsection{Introduction}
 \label{sub:introduction}
+This sections describes the introduction to the problem, the problem statement itself, objectives and hypothesis of the thesis work.
 
 In recent years the smart devices have seen an increasing usage by people in every day activities.
 According to the Ericsson Mobility report \cite{Qureshi2014} there were 1,900 million of smartphone subscriptions and 300 million of mobile PCs, tablets and mobile router subscriptions in the 2013.
@@ -45,29 +56,72 @@ Table \ref{tbl:energy-consumption} shows the average power consumption of the ma
 It can be identified that wireless communication interfaces, GPS and screen are the most energy consuming elements.
 Such situation is typical in most of the mobile platforms.
 
-\begin{table}
-  \centering
-    \scriptsize
-    \begin{tabularx}{0.40\linewidth}{c>{\raggedleft}X}
-      \toprule
-      \textbf{Feature} & \centering{\textbf{Average power\\consumption (watts)}} \tabularnewline
-      \midrule
-      {Processor (1\%)}  & 0.06 \tabularnewline
-      {Processor (100\%)}  & 0.41 \tabularnewline
-      {Accelerometer} & 0.05 \tabularnewline
-      {Bluetooth} & 0.28 \tabularnewline
-      {Microphone} & 0.26 \tabularnewline
-      {Screen} & 0.23 \tabularnewline
-      {Wi-Fi scan} & 1.37 \tabularnewline
-      {GPS} & 0.32 \tabularnewline
-      {3G radio (idle)} & 0.47 \tabularnewline
-      {3G radio (sending)} & 1.11 \tabularnewline
-      \bottomrule
+{
+\scriptsize
+    \begin{tabularx}{0.5\linewidth}{
+    >{\setlength{\hsize}{.5\hsize}\centering\arraybackslash}X
+    >{\setlength{\hsize}{.7\hsize}\centering\arraybackslash}X
+    }
+
+    \toprule
+    \textbf{Feature} & \textbf{Average power consumption (watts)} \tabularnewline
+    \midrule
+    \endfirsthead
+
+    \toprule
+    \textbf{Feature} & \textbf{Average power consumption (watts)} \tabularnewline
+    \midrule
+    \endhead
+
+    \midrule
+    \multicolumn{2}{c}{Continue in next page}\tabularnewline
+    \bottomrule
+    \endfoot
+
+  \bottomrule
+  \tabularnewline
+%  \label{tbl:energy-consumption}
+  \caption{Average energy consumption of a Nokia N95 smartphone, from \cite{Kjaergaard2012}}
+  \endlastfoot
+
+  Processor (1\%)  & 0.06 \tabularnewline
+  Processor (100\%)  & 0.41 \tabularnewline
+  Accelerometer & 0.05 \tabularnewline
+  Bluetooth & 0.28 \tabularnewline
+  Microphone & 0.26 \tabularnewline
+  Screen & 0.23 \tabularnewline
+  Wi-Fi scan & 1.37 \tabularnewline
+  GPS & 0.32 \tabularnewline
+  3G radio (idle) & 0.47 \tabularnewline
+  3G radio (sending) & 1.11 \tabularnewline
     \end{tabularx}
+
+    
+}
+
+% \begin{table}
+%   \centering
+%     \scriptsize
+%     \begin{tabularx}{0.40\linewidth}{c>{\raggedleft}X}
+%       \toprule
+%       \textbf{Feature} & \centering{\textbf{Average power\\consumption (watts)}} \tabularnewline
+%       \midrule
+%       {Processor (1\%)}  & 0.06 \tabularnewline
+%       {Processor (100\%)}  & 0.41 \tabularnewline
+%       {Accelerometer} & 0.05 \tabularnewline
+%       {Bluetooth} & 0.28 \tabularnewline
+%       {Microphone} & 0.26 \tabularnewline
+%       {Screen} & 0.23 \tabularnewline
+%       {Wi-Fi scan} & 1.37 \tabularnewline
+%       {GPS} & 0.32 \tabularnewline
+%       {3G radio (idle)} & 0.47 \tabularnewline
+%       {3G radio (sending)} & 1.11 \tabularnewline
+%       \bottomrule
+%     \end{tabularx}
    
-    \caption{Average energy consumption of a Nokia N95 smartphone, from \cite{Kjaergaard2012}}
-    \label{tbl:energy-consumption}
-\end{table}
+%     \caption{Average energy consumption of a Nokia N95 smartphone, from \cite{Kjaergaard2012}}
+%     \label{tbl:energy-consumption}
+% \end{table}
 
 
 Unfortunately, the current advances in battery technologies are not evolving at the same pace than the rest of electronic components \cite{Yurur2014} of the smartphone. In fact, battery is only growing up to 5\% each year according to \cite{Ma2012}.

@@ -4,6 +4,7 @@ This section introduces a description and classification of works aiming to addr
 A special focus is given to the pure software techniques, which will be pursued during the development of this research.
 
 \subsection{Approaches for addressing the energy issue}
+\label{sub:approaches_for_addressing_the_energy_issue}
 
 As stated, the advances produced in several technological fields have contributed to the acceptance of tke smart devices, like the smartphone, by society \cite{Lane2010,Ra2012}.
 However, although computing and storage capacity issues have been partially addressed and solved with every new generation of mobile devices, the energy consumption is still an open issue because of the slow rhythm of the technological advances related to it and because the inclusion of newer and more sophisticated sensors that impose a higher energy demand.
@@ -85,18 +86,302 @@ In the same figure, it can be seen that the hardware-software approach defines p
 
 Finally, the same figure shows that the pure software approach tries to define an even higher layer for modifying the behavior of the different sensors present in the mobile platform. The duty cycling of different sensors can be manipulated in order to obtain high level information --- meaningful for user --- and at the same time lowering the impact on battery.
 
-The Table \ref{fig:tabla} shows a set of works found in the literature that aim to solve the energy issue in mobile sensing apps.
+The Table \ref{tbl:state-of-art-works} shows a set of works found in the literature that aim to solve the energy issue in mobile sensing apps.
 An important aspect of these works is that because of their differences in approaches and purpose, a direct comparison is not possible to perform \cite{Vallina-Rodriguez2013}.
-\begin{figure}
-\centering
-\includegraphics[scale=1.2]{tabla}
-\caption[Works aiming to solve the energy issue in MSA]{Set of works aiming to solve the energy issue in mobile sensing apps.}
-\label{fig:tabla}
-\end{figure}
 
+% \begin{table}
+%   \centering
+%     \scriptsize
+%     \begin{tabularx}{1.0\linewidth}{>{\centering}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
+%       \toprule
+%       \textbf{Work} & \centering{\textbf{Approach}} & \centering{\textbf{Sensors involved}} & \centering{\textbf{Machine Learning Technique}} & \centering{\textbf{Platform implementation}}
+%       \tabularnewline
+%       \midrule
+      
+%       \cite{Constandache2009} &
+%       PS - Sensor usage based on behavior: NVI, DC &
+%       GPS, Wi-Fi interface, GSM network &
+%       Custom heuristic with Linear prediction &
+%       Data collection using Symbian on Nokia N95 phone. Experiments simulated.
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Kjaergaard2009} &
+%       PS - a) Sensor usage based on behavior: DC. \\b) Sensor replacement: DR. &
+%       GPS, accelerometer &
+%       Dynamic programming &
+%       Symbian on Nokia N95 with Python scripts
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Zhuang2010} &
+%       HS - HAL &
+%       GPS, accelerometer &
+%       Simple decision rule &
+%       Android 1.5 on G1 Android Development Phone
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Perez2010} &
+%       PS - Sensor usage based on behavior: DC &
+%       GPS &
+%       Simple decision rule &
+%       Simulation
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Lin2010} &
+%       PS - a) Sensor usage based on behavior: DC, NVI. \\b) Sensor replacement: DR. &
+%       GPS, Wi-Fi interface, Bluetooth, Cell tower data &
+%       Hidden Markov Models and a Bayesian estimation framework &
+%       Both emulation using datasets obtained from Microsoft and apps running on Android G1 smartphone.
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Lu2010} &
+%       PS - Sensor usage based on behavior: DC &
+%       Accelerometer, GPS, microphone &
+%       Decision Tree, Markov Decision Process and Gaussian Mixture Models &
+%       Nokia N95, Apple iPhone
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Priyantha2011} &
+%       PH - NA &
+%       Accelerometer, compass, gyroscope &
+%       None &
+%       Custom Hardware on unspecified smartphone phone
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Perez-Torres2012} &
+%       PS - Sensor usage based on behavior: DC &
+%       GPS &
+%       Simple decision rule &
+%       Android 2.3.3 on Samsung Galaxy S phone
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Srinivasan2012} &
+%       PS - Sensor usage based on behavior: DC &
+%       Acceleromete &
+%       Decision Tree &
+%       Tizen OS on Samsung Galaxy II phone and Android on Nexus S phone.
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Apple2013} &
+%       PH - A &
+%       Accelerometer, compass, gyroscope &
+%       Not available &
+%       iOS 8 in iPhone 5s or newer
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Zhang2013} &
+%       PS - a) Sensor usage based on behavior: DC.\\b) Sensor replacement: DR &
+%       GPS, accelerometer &
+%       Gaussian Process Regression &
+%       Android 4.0 on Google Nexus S phone
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Chon2014} &
+%       PS - a) Sensor usage based on behavior: DC, NVI, RED.\\b) Sensor replacement: CR &
+%       GPS, WiFi interface, Cell tower data &
+%       Hidden Markov Models &
+%       Android 2.2
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+      
+%       \cite{Yurur2014} &
+%       PS - Sensor usage based on behavior: NVI, DC &
+%       Accelerometer &
+%       Hidden Markov Models &
+%       Simulated in Matlab. Implemented on BlackBerry Storm II 9550 phone.
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Man2014} &
+%       PS - a) Sensor usage based on behavior: DC.\\b) Sensor replacement: CR &
+%       GPS, accelerometer &
+%       Simple decision rule &
+%       Android 4.1.4 on Samsung Galaxy SIII i9300 phone
+%       \tabularnewline
+%       \cmidrule(r){1-5}
+
+%       \cite{Donohoo2014} &
+%       PS - a) Sensor usage based on behavior: DC.\\b) Sensor replacement: DR &
+%       GPS, WiFi network, Cell tower data &
+%       Linear Discriminant Analysis, Linear Logistic Regression, Neural Network and K - Nearest Neighbor Several &
+%       Android 2.3.3 phones
+%       \tabularnewline
+
+%       \bottomrule
+%     \end{tabularx}
+%     \caption{State of art works aiming to address the energy issue in MSA}
+%     \label{tbl:state-of-art-works}
+% \end{table}
+
+{
+\scriptsize
+\label{tbl:state-of-art-works}
+\begin{tabularx}{1.0\linewidth}%
+  {
+  >{\setlength{\hsize}{.6\hsize}\centering\arraybackslash}X
+  >{\setlength{\hsize}{.6\hsize}\centering\arraybackslash}X
+  >{\setlength{\hsize}{.5\hsize}\centering\arraybackslash}X
+  >{\setlength{\hsize}{.8\hsize}\centering\arraybackslash}X
+  >{\setlength{\hsize}{.6\hsize}\centering\arraybackslash}X
+  }
+  \caption{State of art works aiming to address the energy issue in MSA}\tabularnewline
+  \toprule
+  \textbf{Work} & \textbf{Approach} & \textbf{Sensors involved} & \textbf{Machine Learning Technique} & \textbf{Platform implementation}\tabularnewline
+  \midrule
+  \endfirsthead
+
+  \toprule
+  \textbf{Work} & \textbf{Approach} & \textbf{Sensors involved} & \textbf{Machine Learning Technique} & \textbf{Platform implementation}\tabularnewline
+  \midrule
+  \endhead
+
+  \midrule
+  \multicolumn{5}{c}{\emph{Continue in next page}}\tabularnewline
+  \bottomrule
+  \endfoot
+
+  %\midrule
+  %F1 & F2 & F3 & F4 & F5\\
+  %\tabularnewline
+  \bottomrule
+  \tabularnewline
+  \caption{State of art works aiming to address the energy issue in MSA}
+  \endlastfoot
+  
+  \cite{Constandache2009} &
+      PS - Sensor usage based on behavior: NVI, DC &
+      GPS, Wi-Fi interface, GSM network &
+      Custom heuristic with Linear prediction &
+      Data collection using Symbian on Nokia N95 phone. Experiments simulated.
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Kjaergaard2009} &
+      PS - a) Sensor usage based on behavior: DC. \newline b) Sensor replacement: DR. &
+      GPS, accelerometer &
+      Dynamic programming &
+      Symbian on Nokia N95 with Python scripts
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Zhuang2010} &
+      HS - HAL &
+      GPS, accelerometer &
+      Simple decision rule &
+      Android 1.5 on G1 Android Development Phone
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Perez2010} &
+      PS - Sensor usage based on behavior: DC &
+      GPS &
+      Simple decision rule &
+      Simulation
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Lin2010} &
+      PS - a) Sensor usage based on behavior: DC, NVI. \newline b) Sensor replacement: DR. &
+      GPS, Wi-Fi interface, Bluetooth, Cell tower data &
+      Hidden Markov Models and a Bayesian estimation framework &
+      Both emulation using datasets obtained from Microsoft and apps running on Android G1 smartphone.
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Lu2010} &
+      PS - Sensor usage based on behavior: DC &
+      Accelerometer, GPS, microphone &
+      Decision Tree, Markov Decision Process and Gaussian Mixture Models &
+      Nokia N95, Apple iPhone
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Priyantha2011} &
+      PH - NA &
+      Accelerometer, compass, gyroscope &
+      None &
+      Custom Hardware on unspecified smartphone phone
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Perez-Torres2012} &
+      PS - Sensor usage based on behavior: DC &
+      GPS &
+      Simple decision rule &
+      Android 2.3.3 on Samsung Galaxy S phone
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Srinivasan2012} &
+      PS - Sensor usage based on behavior: DC &
+      Acceleromete &
+      Decision Tree &
+      Tizen OS on Samsung Galaxy II phone and Android on Nexus S phone.
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Apple2013} &
+      PH - A &
+      Accelerometer, compass, gyroscope &
+      Not available &
+      iOS 8 in iPhone 5s or newer
+      \tabularnewline
+      %\cmidrule(r){1-5}
+
+      \cite{Zhang2013} &
+      PS - a) Sensor usage based on behavior: DC. \newline b) Sensor replacement: DR &
+      GPS, accelerometer &
+      Gaussian Process Regression &
+      Android 4.0 on Google Nexus S phone
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Chon2014} &
+      PS - a) Sensor usage based on behavior: DC, NVI, RED. \newline b) Sensor replacement: CR &
+      GPS, WiFi interface, Cell tower data &
+      Hidden Markov Models &
+      Android 2.2 phones.
+      \tabularnewline
+      \cmidrule(r){1-5}
+      
+      \cite{Yurur2014} &
+      PS - Sensor usage based on behavior: NVI, DC &
+      Accelerometer &
+      Hidden Markov Models &
+      Simulated in Matlab. Implemented on BlackBerry Storm II 9550 phone.
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Man2014} &
+      PS - a) Sensor usage based on behavior: DC. \newline b) Sensor replacement: CR &
+      GPS, accelerometer &
+      Simple decision rule &
+      Android 4.1.4 on Samsung Galaxy SIII i9300 phone
+      \tabularnewline
+      \cmidrule(r){1-5}
+
+      \cite{Donohoo2014} &
+      PS - a) Sensor usage based on behavior: DC. \newline b) Sensor replacement: DR &
+      GPS, WiFi network, Cell tower data &
+      Linear Discriminant Analysis, Linear Logistic Regression, Neural Network and K - Nearest Neighbor Several &
+      Android 2.3.3 phones
+      \tabularnewline
+
+  \end{tabularx}
+  }
 
 In next sections a brief description of the pure hardware and hardware-software approaches is presented, followed by a detailed review of the pure software approach since the special features and advantages offered by it.
-Inside each description some of the works presented in the Table \ref{fig:tabla} are also reviewed.
+Inside each description some of the works presented in the Table \ref{tbl:state-of-art-works} are also reviewed.
 
 \begin{figure}
 \centering

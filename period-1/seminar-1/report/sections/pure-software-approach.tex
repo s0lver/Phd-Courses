@@ -105,14 +105,88 @@ In order to detect information about user's context, the mobile app has to emplo
 
 Because of the complexity of human activities and the noise existing in sensor data, the classification algorithm are almost always probabilistic, although machine learning techniques have also been used \cite{Choudhury2008}.
 
-In \cite{Donohoo2014} a description of the most used machine learning techniques is presented. The description of these techniques is summarized in Figure \ref{fig:ml-techniques}.
+In \cite{Donohoo2014} a description of the most used machine learning techniques is presented. The description of these techniques is summarized in Table \ref{tbl:machine-learning-techniques}.
 
-\begin{figure}
-\centering
-\includegraphics[scale=1.2]{ml-techniques}
-\caption[Most used machine learning techniques]{Most used machine learning techniques for modeling user behavior patterns.}
-\label{fig:ml-techniques}
-\end{figure}
+{
+\scriptsize
+    %\renewcommand{\arraystretch}{1.2}
+    \begin{tabularx}{0.80\linewidth}{
+    >{\setlength{\hsize}{.5\hsize}\centering\arraybackslash}X
+    >{\setlength{\hsize}{.5\hsize}\centering\arraybackslash}X
+    >{\setlength{\hsize}{.5\hsize}\centering\arraybackslash}X
+    }
+    %\begin{tabularx}{0.80\linewidth}{ccc}
+
+    
+    
+      \toprule
+      \textbf{Algorithm} & \centering{\textbf{Advantages}} & \centering{\textbf{Disadvantages}} \tabularnewline
+      \midrule
+    \endfirsthead
+
+    \toprule
+      \textbf{Algorithm} & \centering{\textbf{Advantages}} & \centering{\textbf{Disadvantages}} \tabularnewline
+      \midrule
+    \endhead
+
+\midrule
+    \multicolumn{3}{c}{Continue in next page}\tabularnewline
+  \bottomrule
+  \endfoot
+
+  \bottomrule
+  \tabularnewline
+  \caption{Machine learning techniques employed in literature, from \cite{Choudhury2008}}
+  \endlastfoot
+
+      
+      LDA (Linear Discriminant Analysis) & Unbiased; very fast; easy implementation & Not good choice for classes with very different underlying covariance matrices \tabularnewline
+      
+      \cmidrule(r){1-3}
+      LLR (Linear Logistic Regression) & Easy to interpret; can model synergistic relationship & Complicated; sensitive to outliers and hard to extrapolate \tabularnewline
+      
+      
+      NN (Neural Networks) & Can derive meaning from complicated or imprecise data; can handle large number of features; fast & Training can be difficult; slow training time; examples must be selected carefully; not probabilistic, hard to implement \tabularnewline
+
+      \cmidrule(r){1-3}
+      KNN (K-Nearest Neighbor) & Simple to understand; data can be scalars or multidimensional vectors; does not make assumptions about underlying data distributions & Slow; non-parametric; all training data is needed during testing phase; all training examples are saved in memory -- storage problem \tabularnewline
+
+      \cmidrule(r){1-3}
+      SVM (Support Vector Machines) & Can deal with very high dimensional data; good generalization performance; potential for feature selection and outlier detection; general high accuracy & Need to select a good kernel function; high memory - cpu time requirements; slow training time for one-versus-one approach; parameter selection is data dependent. \tabularnewline
+
+      
+    \end{tabularx}
+    \label{tbl:machine-learning-techniques}
+   }
+
+
+% \begin{table}
+%   \centering
+%     \scriptsize
+%     \begin{tabularx}{0.80\linewidth}{>{\centering}X>{\centering}X>{\centering}X}
+%       \toprule
+%       \textbf{Algorithm} & \centering{\textbf{Advantages}} & \centering{\textbf{Disadvantages}} \tabularnewline
+%       \midrule
+%       LDA (Linear Discriminant Analysis) & Unbiased; very fast; easy implementation & Not good choice for classes with very different underlying covariance matrices \tabularnewline
+%       \cmidrule(r){1-3}
+      
+%       LLR (Linear Logistic Regression) & Easy to interpret; can model synergistic relationship & Complicated; sensitive to outliers and hard to extrapolate \tabularnewline
+%       \cmidrule(r){1-3}
+      
+%       NN (Neural Networks) & Can derive meaning from complicated or imprecise data; can handle large number of features; fast & Training can be difficult; slow training time; examples must be selected carefully; not probabilistic, hard to implement \tabularnewline
+%       \cmidrule(r){1-3}
+
+%       KNN (K-Nearest Neighbor) & Simple to understand; data can be scalars or multidimensional vectors; does not make assumptions about underlying data distributions & Slow; non-parametric; all training data is needed during testing phase; all training examples are saved in memory -- storage problem \tabularnewline
+%       \cmidrule(r){1-3}
+
+%       SVM (Support Vector Machines) & Can deal with very high dimensional data; good generalization performance; potential for feature selection and outlier detection; general high accuracy & Need to select a good kernel function; high memory - cpu time requirements; slow training time for one-versus-one approach; parameter selection is data dependent. \tabularnewline
+
+%       \bottomrule
+%     \end{tabularx}
+   
+%     \caption{Machine learning techniques employed in literature, from \cite{Choudhury2008}}
+%     \label{tbl:machine-learning-techniques}
+% \end{table}
 
 % \begin{itemize}
 %   \item Machine learning techniques for determining user behavior
