@@ -3,7 +3,7 @@
 
 This section describes basic aspects about terms and elements involved in the problem statement which are also fundamental for a better comprehension of the state of art of this research.
 
-\subsection{Context aware computing}
+\subsection{Context-aware computing}
 \label{sub:context_aware_computing}
 
 Since their introduction to market, mobile devices have evolved from basic cell phones and media players to complex and sophisticated devices like smartphones \cite{Charlesworth2009,Schmidt2011}.
@@ -46,7 +46,6 @@ Given the chance to perceive environment, data coming from sensors can be analyz
 The context then can be used to feedback user with information about his or her activities and adapt smartphone’s behavior accordingly.
 
 As stated, the set of mobile apps that are able to perform tasks related to data collection from sensors and discovering information are called \emph{mobile sensing apps}.
-{Take bullets off}
 
 The improvements in data analysis algorithms and similar techniques employed by mobile sensing apps locally at the smartphone and / or in the cloud are increasing the \emph{smartness} of these devices day by day.
 In this way, smartphones can get involved in high level logical activities, not only in simple sensor readings or abstract data analysis tasks.
@@ -55,7 +54,7 @@ Because of this, the notion of smartphone will be upgraded to \emph{cognitive-ph
 This new class of devices will be able to understand people life patters, reason about their health and well-being and even intervene on their behalf.
 
 
-\subsection{Stages of mobile sensing apps}
+\subsubsection{Stages of mobile sensing apps}
 \label{sub:stages_of_mobile_sensing_apps}
 
 The duty of mapping raw data into meaningful information for user can become quite complex.
@@ -66,32 +65,32 @@ The list of these steps include the stages of sensor reading, an optional filter
 These stages can form a loop, as seen in Figure \ref{fig-mobile-sensing-apps-stages}, that powers up the mobile app.
 
 A basic description of the stages is as follows:
-\begin{description}
-  \item[Sensor reading] It includes the request to sensors for reading data from the environment. 
+\begin{itemize}
+  \item \textbf{Sensor reading:} It includes the request to sensors for reading data from the environment. 
   Common tasks performed in this stage are windowing and framing.
 
-  \item[Filtering (optional)] In this stage is possible to filter out uninterested data, like outliers or noise.
+  \item \textbf{Filtering (optional):} In this stage is possible to filter out uninterested data, like outliers or noise.
   Filling data gaps can also be done.
   The purpose of the stage is to prepare a clean and uniform set of data for its use in further steps.
 
-  \item[Feature extraction] It performs the extraction of features that helps to discriminate between activities in the classification stage.
+  \item \textbf{Feature extraction:} It performs the extraction of features that helps to discriminate between activities in the classification stage.
   The feature extraction to be employed depends on the type of mobile app being developed.
   The features to be computed can be:
-  \begin{description}
-    \item[Deterministic] Simple deterministic transformations of raw sensor data, for example frequency content.
-    \item[Probabilistic] Calculated with probability measures, for example the user likelihood of being in a certain location.
-  \end{description}
+  \begin{itemize}
+    \item \emph{Deterministic:} Simple deterministic transformations of raw sensor data, for example frequency content.
+    \item \emph{Probabilistic:} Calculated with probability measures, for example the user likelihood of being in a certain location.
+  \end{itemize}
 
-  \item[Classification] It involves the execution of the mobile app specific classifier.
+  \item \textbf{Classification:} It involves the execution of the mobile app specific classifier.
   Because of the complexity of human activities and the noise existing in sensor data, the classification algorithm are almost always probabilistic, although machine learning techniques have also been used \cite{Choudhury2008}.
   The classifiers can make use of user’s context to improve their performance.
 
   This stage is the most power consuming one and the execution time may take from seconds up to hours, depending on the data being classified (e. g. in the case of human behavior recognition).
   Because of this, the classifier can be executed locally at the smartphone or in external elements like the cloud.
 
-  \item[Post-processing] The classification of data may trigger another continuous sensing-compute chain or other mobile app specific tasks such as displaying feedback to the user or initiating network communication.
+  \item \textbf{Post-processing:} The classification of data may trigger another loop of continuous sensing-compute chain or other mobile app specific tasks such as displaying feedback to the user or initiating network communication.
 
-\end{description}
+\end{itemize}
 
 \begin{figure}
 \centering
@@ -100,38 +99,38 @@ A basic description of the stages is as follows:
 \label{fig-mobile-sensing-apps-stages}
 \end{figure}
 
-\subsection{Sensing scale of mobile sensing apps}\label{sub:sensing-scale-of-msa}
+\subsubsection{Sensing scale of mobile sensing apps}\label{sub:sensing-scale-of-msa}
 
 Depending on the purpose of the mobile app, it may be required to obtain data from one or more users.
 The target audience size of the mobile app is known as the \emph{sensing scale}.
 There are two sensing scales:
-\begin{description}
-  \item[Individual sensing scale] Involves collecting and analyzing data coming from a single person.
+\begin{itemize}
+  \item \textbf{Individual sensing scale:} Involves collecting and analyzing data coming from a single person.
   Typically, data refer to track user’s exercise routine and the information is not shared.
 
-  \item[Community sensing scale] Involves collecting and analyzing data coming from several users who share a common goal.
+  \item \textbf{Community sensing scale:} Involves collecting and analyzing data coming from several users who share a common goal.
   It needs to respond to user specific needs of privacy and anonymity.
   
   This sensing scale is often referred as mobile crowd-sensing and classic examples include traffic monitoring, detection of available parking slots, etc.
 
   An implicit detail in this sensing scale is the need of a centralized node that acts as a sink of data where analysis processes are executed.
-\end{description}
+\end{itemize}
 
 This research is conducted targeting the individual sensing scale since the policies to be generated consider analysis of data coming from a single person.
 
 
-\subsection{Paradigms of mobile sensing apps}\label{sub:paradigms-of-msa}
+\subsubsection{Paradigms of mobile sensing apps}\label{sub:paradigms-of-msa}
 
 The way how sensors are employed and whether explicit user input is required by a mobile app is known as the \emph{mobile sensing paradigm} \cite{Lane2010}.
 
 There are two sensing paradigms:
-\begin{description}
-  \item[Opportunistic] It aims automatic data collection without human participation at all. A remarkable issue of this paradigm is determining the best moment to perform a sensor reading.
+\begin{itemize}
+  \item \textbf{Opportunistic:} It aims automatic data collection without human participation at all. A remarkable issue of this paradigm is determining the best moment to perform a sensor reading.
 
-  \item[Participatory] It leverages the abilities of people requiring their participation to describe the data and to decide the best moment for their capture.
+  \item \textbf{Participatory:} It leverages the abilities of people requiring their participation to describe the data and to decide the best moment for their capture.
 
   However, this human dependence can also be a source of errors and noisy data since user is able to upload mislabeled data or even to not to have participation at all.
-\end{description}
+\end{itemize}
 
 
 This research is conducted by following the opportunistic paradigm since the smart policies to be generated will decide the duty cycle that sensors must observe, avoiding user participation.

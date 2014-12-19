@@ -8,6 +8,9 @@ In this sense, human activity understanding is based on the discovery of a patte
 
 All works under this category aim to collect data from sensors and / or other sources of context, process them to obtain information about user activity and employ this information to direct a smarter usage of sensors and other hardware elements of the smartphone.
 
+Next sections describe the advantages provided by the pure software approach and its subclassification of techniques.
+Finally, a brief description of several machine learning algorithms employed in previous works for obtaining information about user context is also presented. It is noteworthy that the strength of a pure software approach work is heavily based on the machine learning technique employed.
+
 
 \subsubsection{Advantages of the software approach}
 The pure software approach offers several advantages over the rest of techniques.
@@ -52,7 +55,7 @@ Through this basic notion of policy authors identified a tendency to obtain ener
 This technique also relies in analysis processes over historical data in order to obtain an approximate inference of the next value that sensors may deliver.
 
 As can be inferred, an actual access to sensor is avoided which may help to reduce energy consumption.
-The energy efficiency of this tehcniques depends on the trade-off between the energy consumption of an actual sensor reading against the energy consumed by the computing processes to obtain its inference. Because of this, such technique is useful only when employing high energy consuming sensor or for its use in distributed systems as shown by \cite{Musolesi2010}
+The energy efficiency of these techniques depends on the trade-off between the energy consumption of an actual sensor reading against the energy consumed by the computing processes to obtain its inference. Because of this, such technique is useful only when employing high energy consuming sensor or for its use in distributed systems as shown by \cite{Musolesi2010}
 
 \subparagraph{Recycling existing data}
 \label{subp:recycling_exsisting_data}
@@ -136,7 +139,7 @@ In \cite{Donohoo2014} a description of the most used machine learning techniques
 
   \bottomrule
   \tabularnewline
-  \caption{Machine learning techniques employed in literature, from \cite{Choudhury2008}}
+  \caption{Machine learning techniques employed in literature, from \cite{Choudhury2008} \label{tbl:machine-learning-techniques}}
   \endlastfoot
 
       
@@ -156,7 +159,6 @@ In \cite{Donohoo2014} a description of the most used machine learning techniques
 
       
     \end{tabularx}
-    \label{tbl:machine-learning-techniques}
    }
 
 

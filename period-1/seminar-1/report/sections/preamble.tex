@@ -1,11 +1,19 @@
 \section{Preamble}
 \label{sec:preamble}
-This technical report reunites the advanced performed during the first period of the doctoral program regarding to the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}.
+This technical report describes the advanced performed during the first period of the doctoral program regarding to the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}.
 
-Initially, the report reviews the problem of the energy consumption in mobile sensing apps, including the problem statement, hypothesis, objectives and contributions pursued by this work research starting from subsection \ref{sub:introduction}.
-Next a brief description of core elements of the theoretical framework is presented in Section \ref{sec:theoretical_framework}; this description is useful for a better understanding of the elements involved in the problem.
+Most of the advances obtained in this first period are related to the state of art research, including the generation of a taxonomy of previous related works.
+However, in order to prepare a self-contained document, this report also reviews the scientific context of the research describing elements like motivation, problem statement, hypothesis, objectives and contributions.
 
-The Section \ref{sec:state_of_art} comprehends most of the advances developed during this initial period. Inside this, the Subsection \ref{sub:approaches_for_addressing_the_energy_issue} proposes a taxonomy for the works addressing the energy issue and briefly reviews the pure hardware and hardware-software approaches of this classification. The Subsection \ref{sub:the_software_approach} is focused in the pure software approach, describing its advantages over the rest of perspectives and mentioning the machine learning techniques employed by some of the works. The state of the art has been updated since the beginning of the program following the suggestions of the committee during the thesis proposal defense.
+This technical report is structured as follows.
+Initially, the report reviews the problem of the energy consumption in mobile sensing apps, including the problem statement, hypothesis, objectives and contributions pursued by this research work starting from Subsection \ref{sub:introduction}.
+Next, a brief description of the core elements of the theoretical framework is presented in Section \ref{sec:theoretical_framework}; this description is useful for a better understanding of the elements involved in the problem.
+
+The Section \ref{sec:state_of_art} comprehends most of the advances developed during this initial period. 
+Inside this, the Subsection \ref{sub:approaches_for_addressing_the_energy_issue} proposes a taxonomy for the previous works addressing the energy issue and briefly reviews the pure hardware and hardware-software approaches of this classification. 
+The Subsection \ref{sub:the_software_approach} is focused in the pure software approach, describing its advantages over the rest of perspectives and mentioning the machine learning techniques employed by some of the works.
+The state of the art has been updated since the beginning of the program following the suggestions of the committee during the thesis proposal defense.
+It is important to note that these Sections will be oriented to conform chapters of the final thesis document and that also will be helpful for preparing a survey of works in the area.
 
 Next, Section \ref{sec:proposed_method} discusses the method proposed for solving the problem.
 It describes the components involved in the method's workflow and their interaction.
@@ -25,18 +33,18 @@ For people it is common to employ a smart device, like the smartphone, to perfor
 Here, the important idea is the acceptance and adoption of smartphones by society which transform these devices in a direct channel to obtain information and establish communication with people \cite{Perez-Torres2012a}.
 
 
-Besides its Internet-enabled features, a typical and modern smartphone also includes a set of physical sensors and additional circuitry that allows to improve the interaction with user. In this way, it is possible to detect the orientation of the phone and adapt the screen accordingly or play the next song by shaking the phone.
+Besides its Internet-enabled features, modern smartphones also include a set of physical sensors and additional circuitry that allows to improve the interaction with user. In this way, it is possible to detect the orientation of the phone and adapt the screen accordingly or play the next song by shaking the phone.
 Moreover, the inclusion of sensors in smartphones opened the path for performing computation considering aspects of the user environment. When smartphones use the data delivered by sensors to create a representation of the environment where the user is and employ such representation in their behavior they become \emph{context-aware}.
 
 
 The term \emph{context} refers to the set of environmental states and settings that either determines the application’s behavior or in which an application event occurs and is interesting to the user \cite{Chen2000}.
-A context-aware mobile app is such that adapts its behavior based on changes detected in any source of contextual information.
+A context-aware mobile app is such that adapts its behavior based on changes detected in any source of context information.
 An important subset of context-aware mobile apps is composed by the location aware apps, also known as location based services (LBS) \cite{Zhuang2010,Kjaergaard2012}. 
 This family of mobile apps focus on the detection of changes in the location data of the device and adapting its behavior accordingly.
 
 
-Both location and context aware mobile apps share the behavior of access sensors to become aware and react accordingly.
-From the hardware usage perspective, these apps can be categorized as mobile sensing apps, which represent a current trend of research in the mobile computing area \cite{Lane2010, Campbell2012}.
+Both location and context-aware mobile apps share the behavior of access sensors to become aware and react accordingly.
+From a hardware usage perspective, these apps can be categorized as mobile sensing apps, which represent a current trend of research in the mobile computing area \cite{Lane2010, Campbell2012}.
 A mobile sensing app is such that its behavior relies on analyzing data that is collected from sensors over long periods of time.
 Typically, the analysis processes performed over data consist in classification tasks for detecting specific patterns that describe user activities.
 Thanks to this, the range of applications that mobile sensing apps have is wide and it is even increasing due to the addition of new sensors to mobile devices.
@@ -52,7 +60,7 @@ Among the many reasons that lead to the success and acceptance degree of smartph
 \end{itemize}
 
 Despite all of these benefits, it should be noted that the more computing, storage, communication, and sensing technologies included in smartphone, the more its energy consumption.
-Table \ref{tbl:energy-consumption} shows the average power consumption of the main embedded components of the Nokia N95 smartphone.
+Table \ref{tbl:energy-consumption} shows a typical average power consumption of the main embedded components of the Nokia N95 smartphone.
 It can be identified that wireless communication interfaces, GPS and screen are the most energy consuming elements.
 Such situation is typical in most of the mobile platforms.
 
@@ -80,8 +88,8 @@ Such situation is typical in most of the mobile platforms.
 
   \bottomrule
   \tabularnewline
-%  \label{tbl:energy-consumption}
-  \caption{Average energy consumption of a Nokia N95 smartphone, from \cite{Kjaergaard2012}}
+
+  \caption{Average energy consumption of a Nokia N95 smartphone, from \cite{Kjaergaard2012} \label{tbl:energy-consumption}}
   \endlastfoot
 
   Processor (1\%)  & 0.06 \tabularnewline
@@ -95,7 +103,7 @@ Such situation is typical in most of the mobile platforms.
   3G radio (idle) & 0.47 \tabularnewline
   3G radio (sending) & 1.11 \tabularnewline
     \end{tabularx}
-
+  
     
 }
 
@@ -126,7 +134,7 @@ Such situation is typical in most of the mobile platforms.
 
 Unfortunately, the current advances in battery technologies are not evolving at the same pace than the rest of electronic components \cite{Yurur2014} of the smartphone. In fact, battery is only growing up to 5\% each year according to \cite{Ma2012}.
 In this sense the energy is a scarce, limited, and competed resource for any mobile platform \cite{Perez-Torres2012}.
-As in the case of any other resource, the energy requires efficient techniques for its management considering that, different than other resources, once a unit of energy is employed it can not be reused in future \cite{Vallina-Rodriguez2013}.
+As in the case of any other resource, the energy requires efficient techniques for its management considering that once a unit of energy is employed it can not be reused in future \cite{Vallina-Rodriguez2013}.
 The energy cannot be longer considered an optional issue but a key component for mobile app development \cite{Man2014}.
 
 \subsection{Problem statement} 
@@ -145,6 +153,7 @@ Mobile app requirements (like precision in data being read), smartphone constrai
 
 
 Therefore, there is the need of a specialized framework that considers previous elements and allows the generation of smart policies for performing continuous sensor readings.
+Also, this framework should aid developers when creating mobile sensing apps, abstracting the complex tasks for accessing sensors and making the information easily available for applications.
 A policy is a high level rule that defines the usage that sensors should observe in order to keep low energy consumption and accomplish mobile app requirements.
 
 
@@ -163,16 +172,14 @@ This precision level dictates the granularity in user activity tracking.
 However, the finer the granularity, the higher the energy consumption. 
 Because of this, there is a trade-off between the precision and the energy consumption of mobile sensing apps.
 
+The proposed thesis aims the creation of needed mechanisms for the policies generation, and their implementation using the GPS, inertial sensors and mobility patterns as proof of concept elements.
 
-The proposed tesis aims the creation of needed mechanisms for the policies generation, and their implementation using the the GPS receiver and mobility patterns as proof of concept elements.
-
-
-The problematic detected can be achieved by dividing it into two main problems, the pattern identification and the policy generation.
+A solution for the described problem can be achieved by dividing it into two main problems, the pattern identification and the policy generation.
 The pattern identification problem refers to the detection of a pattern in the data delivered by sensors.
-This pattern helps to obtain information about user's context which is helpful to add smartness to the policy generation process.
+This pattern helps to obtain information about user's context, in particular the mobility patterns described by user in daily activities, which is helpful to add smartness to the policy generation process.
 
 On the other hand, the policy generation problem is related to the definition of a new duty cycle for accessing sensors.
-This new duty cycle should reduce energy consumption and at the same time address the mobile app requirements.
+This new duty cycle should reduce energy consumption generated while accessing to sensors and at the same time address the mobile app requirements.
 \subsubsection{Pattern identification}
 \label{ssub:pattern_identification}
 Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read from sensor $S$ in the time interval $T = [t_{1}, t_{2}]$, find the behavior pattern $Pattern_{S}$ that represents the activity of user.
@@ -181,9 +188,8 @@ Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read
   PatternIdentifier( V ) \longrightarrow{} Pattern_{S} \in Patterns
 \end{equation}
 
-Where $Patterns$ is a set of patterns that represent an interesting state in the user activity.
-For instance, considering mobility data obtained from the GPS receiver, the set $\left\{no\_movement, walking, running, vehicle\_transportation\right\}$ can represent these interesting states.
-The set of patterns is to be defined and conforms a step in the methodology.
+Where $Patterns$ is a set of patterns that represent an interesting state in the user mobility data.
+For instance, considering mobility data obtained from the GPS receiver, the set $\left\{no\_movement, walking, running, vehicle\_transportation\right\}$ can represent these states.
 
 
 \subsubsection{Policy generation}
@@ -200,7 +206,11 @@ The policy will be generated considering the trade-off between energy and precis
 
 \subsection{Hypothesis} 
 \label{sub:hypothesis}
-Smart policies generated through contextual information can be employed to reduce the energy consumption in a mobile device when performing continuous sensor readings.
+Smart policies generated through context information can be employed to reduce the energy consumption in a mobile device when performing continuous sensor readings.
+
+In a deeper description, a smart policy is a special rule that defines how sensors should be accessed in order to reduce the energy consumption and achieve mobile app requirements. The context information from where policies are built, refers to the information obtained by analyzing data coming from sensors.
+
+This research work aims to employ data coming from GPS and inertial sensors in order to obtain context information about user mobility that helps to adapt the sensor usage and reduce energy consumption.
 
 \subsection{Objectives} 
 \label{sub:objectives}
@@ -212,7 +222,7 @@ Reduce the energy consumption when performing continuous sensor readings in mobi
 \subsubsection{Particular objectives} 
 \label{ssub:particular_objectives}
 \begin{itemize}
-  \item {Identify behavior patterns which can provide meaningful context information from raw data collected by sensors}.
+  \item {Identify behavior patterns which can provide meaningful context information from raw data collected by sensors. These behavior patterns are focused in user mobility, so interesting patterns refers, for example, to user describing no movement, walking, running, and moving in vehicle}.
   \item {Generate smart policies for sensor usage from context information, mobile app requirements and mobile device constraints}.
 \end{itemize}
 
