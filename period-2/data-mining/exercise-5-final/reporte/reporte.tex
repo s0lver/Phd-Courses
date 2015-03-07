@@ -1,0 +1,347 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{latexsym,amssymb,amsmath} % for \Box, \mathbb, split, etc.
+% \usepackage[]{showkeys} % shows label names
+%\usepackage{cite} % sorts citation numbers appropriately
+\usepackage{path}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
+\usepackage{mathpazo}
+\usepackage{blindtext}
+%\usepackage{tabularx,ragged2e}
+\usepackage{ltablex}
+\usepackage{booktabs}
+\usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{cite}
+
+% horizontal margins: 1.0 + 6.5 + 1.0 = 8.5
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+% vertical margins: 1.0 + 9.0 + 1.0 = 11.0
+\setlength{\topmargin}{0.0in}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{13pt}
+\setlength{\textheight}{625pt}
+\setlength{\footskip}{24pt}
+
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\floatpagefraction}{0.90}
+\renewcommand{\baselinestretch}{1.2}
+
+\makeatletter
+\setlength{\arraycolsep}{2\p@} % make spaces around "=" in eqnarray smaller
+\makeatother
+
+% change equation, table, figure numbers to be counted inside a section:
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+
+% begin of personal macros
+\newcommand{\half}{{\textstyle \frac{1}{2}}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\myth}{\vartheta}
+\newcommand{\myphi}{\varphi}
+
+\newcommand{\IN}{\mathbb{N}}
+\newcommand{\IZ}{\mathbb{Z}}
+\newcommand{\IQ}{\mathbb{Q}}
+\newcommand{\IR}{\mathbb{R}}
+\newcommand{\IC}{\mathbb{C}}
+\newcommand{\Real}[1]{\mathrm{Re}\left({#1}\right)}
+\newcommand{\Imag}[1]{\mathrm{Im}\left({#1}\right)}
+
+\newcommand{\norm}[2]{\|{#1}\|_{{}_{#2}}}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\ip}[2]{\left\langle {#1}, {#2} \right\rangle}
+\newcommand{\der}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\dder}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+
+\newcommand{\nn}{\mathbf{n}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\uu}{\mathbf{u}}
+
+\newcommand{\junk}[1]{{}}
+
+% set two lengths for the includegraphics commands used to import the plots:
+\newlength{\fwtwo} \setlength{\fwtwo}{0.45\textwidth}
+% end of personal macros
+%\graphicspath{}
+
+\usepackage{listings}
+\usepackage{color}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
+\begin{document}
+\begin{center}
+\textbf{\Large Ejercicio 5: Aplicación de técnicas de agrupación a dataset del mundo real} \\[16pt]
+
+\includegraphics[scale=0.08]{imagenes/cinvestav2}
+
+\textbf{Análisis de datos}\\[10pt]
+
+\textbf{Profesor:} Iván López Arévalo,\\[16pt]
+Rafael Pérez Torres\\[16pt]
+
+LTI CINVESTAV Tamaulipas \\[16pt]
+
+\end{center}
+
+\section{Introducción}
+Las técnicas de aprendizaje no supervisado permiten descubrir información en los datos sin tener información \emph{a priori} de los mismos.
+Dichas técnicas han permitido la obtención de conocimiento a simple vista oculto en enormes datasets de información proveniente de la industria y de los ámbitos empresarial y científico.
+
+Dos de las grandes familias de algoritmos para generar grupos (clústers) a partir de datos son las técnicas jerárquicas y particionales. 
+Las técnicas jerárquicas buscan hacer divisiones incrementales en los datos, creando nuevos niveles con grupos específicos en cada iteración.
+Por otro lado, las técnicas particionales buscan dividir el espacio de objetos en áreas que se encentran representadas por un punto central (prototipo) denominado centroide.
+
+En este documento se muestran los resultados del análisis de un dataset de vuelos comprendidos durante el año 2002 en Estados Unidos, así como las observaciones encontradas al utilizar técnicas de clústering jerárquico (\emph{híbrido}) y particional (\emph{kmeans}) utilizando la suite \emph{\textbf{R}}.
+
+\section{Metodología implementada}
+Esta sección describe los pasos más importantes que fueron realizados para analizar los datos, particularmente las etapas de preprocesamiento y el análisis de datos.
+
+\subsection{Preprocesamiento}
+\subsubsection{Reducción de dimensionalidad}
+A partir de una primera inspección de los datos se eliminaron algunas de las columnas cuyo valor se mantenía constante, se encontraba ausente en todas las instancias, o que no aportaba valor alguno para el descubrimiento de información. 
+A través de instrucciones como las que se muestran en PseudocódigoX, fue posible realizar la remoción de dichas columnas.
+
+\begin{lstlisting}[language=R, caption=Eliminación de columnas con valores constantes]
+dsCrudo$CarrierDelay <- NULL
+dsCrudo$WeatherDelay <- NULL
+dsCrudo$NASDelay <- NULL
+dsCrudo$SecurityDelay <- NULL
+dsCrudo$LateAircraftDelay <- NULL
+dsCrudo$Year <- NULL
+\end{lstlisting}
+
+
+Después de realizar una segunda vista rápida a los datos y a las descripciones de cada uno de los atributos, se determinó realizar la separación de los datos en tres familias: vuelos cancelados, vuelos desviados y vuelos con la información completa.
+
+La determinación de los vuelos cancelados se realizó a través de:
+\begin{lstlisting}[language=R, caption=Detección de vuelos cancelados]
+dsVuelosCancelados <- ( subset(dsCrudo, dsCrudo$Cancelled == 1) )
+\end{lstlisting}
+
+
+La determinación de los vuelos desviados se realizó a través de:
+\begin{lstlisting}[language=R, caption=Detección de vuelos desviados]
+dsVuelosDesviados <- ( subset(dsCrudo, dsCrudo$Diverted == 1) )
+\end{lstlisting}
+
+Finalmente, la determinación de los vuelos con información de horarios completa fue determinada de forma manual, omitiendo aquellos registros que caracieran de algún valor en las columnas:
+\begin{lstlisting}[language=R, caption=Detección de vuelos con información de horarios completa]
+dsTiemposCompletos <- (subset(dsCrudo, !is.na(dsCrudo$DepTime)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$ArrTime)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$CRSArrTime)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$CRSDepTime)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$ActualElapsedTime)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$AirTime)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$DepDelay)))
+dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$ArrDelay)))
+\end{lstlisting}
+
+\subsection{Tratamiento de los registros con información de horarios completa}
+Los registros con la información de horarios completa fueron los únicos considerados para ingresar en la etapa de descubrimiento de información (clústering). Su preparación fue realizada a través de las actividades descritas a continuación.
+
+\subsubsection{Separación por mes}
+Con la intención de realizar un análisis y muestreo estratificado que permitiera reducir la cantidad de instancias a analizar, los datos se separaron en base al mes de la fecha de partida del viaje.
+Instrucciones similares a la mostrada en el Listing X permitieron realizar la separación.
+\begin{lstlisting}[language=R, caption=Separación de registros de vuelos por mes]
+dsEnero <- subset(dsTiemposCompletos, dsTiemposCompletos$Month == 1)
+\end{lstlisting}
+
+Un caso especial fue el de los registros pertenecientes al mes de abril, ya que algunos de los valores de las fechas no podían ser transformados a su representación en milisegundos (más información de esta transformación es encontrada en las secciones posteriores del documento).
+Por ello, se omitieron algunas de estas instancias (44 en total) si fueron registradas con una fecha del domingo 7 de abril y en el rango de las 02:00 horas. Dicha discriminación fue realizada a través del código mostrado en el Listing X.
+\begin{lstlisting}[language=R, caption=Separación de registros del mes de abril]
+dsAbril <- subset(dsTiemposCompletos, dsTiemposCompletos$Month == 4)
+dsAbrilProbablesConflictivos <- subset( dsAbril, dsAbril$DayofMonth == 7)
+dsAbrilConflictivosHraSalida <- 
+  subset( dsAbrilProbablesConflictivos, dsAbrilProbablesConflictivos$DepTime >= 200 & dsAbrilProbablesConflictivos$DepTime < 300)
+dsAbrilConflictivosHraEstimadaSalida <- 
+  subset( dsAbrilProbablesConflictivos, dsAbrilProbablesConflictivos$CRSDepTime >= 200 & dsAbrilProbablesConflictivos$CRSDepTime < 300)
+dsAbrilConflictivosHraLlegada <- 
+  subset( dsAbrilProbablesConflictivos, dsAbrilProbablesConflictivos$ArrTime >= 200 & dsAbrilProbablesConflictivos$ArrTime < 300)
+dsAbrilConflictivosHraEstimadaLlegada <- 
+  subset( dsAbrilProbablesConflictivos, dsAbrilProbablesConflictivos$CRSArrTime >= 200 & dsAbrilProbablesConflictivos$CRSArrTime < 300)
+dsAbrilConflictivos <- rbind(dsAbrilConflictivosHraEstimadaLlegada, dsAbrilConflictivosHraEstimadaSalida, dsAbrilConflictivosHraSalida, dsAbrilConflictivosHraLlegada)
+diferencia <- dsAbril[!duplicated(rbind(dsAbrilConflictivos, dsAbril))[-seq_len(nrow(dsAbrilConflictivos))], ]
+dsAbril <- diferencia
+\end{lstlisting}
+
+\subsubsection{Muestreo aleatorio}
+Se realizó un submuestro aleatorio de las instancias de cada uno de los meses. Para el caso del clústering particional (skmeans) se optó por un submuestro del 10\% del total de los registros.
+Sin embargo, esta cantidad resultaba demasiado alta para el algoritmo jerárquico (el equipo de cómputo utilizado agotaba su memoria) por lo que para este caso se utilizó únicamente el 1\%.
+A través de instrucciones similares a las mostradas en el Listing X se realizó este muestreo.
+
+\begin{lstlisting}[language=R, caption=Muestreo aleatorio de registros por mes]
+dsEnero <- dsEnero[sample(1:nrow(dsEnero), as.integer(length(dsEnero$Month) * tamanyoMuestra), replace=FALSE),]
+\end{lstlisting}
+
+\paragraph{Cálculo de las fechas en formato de milisegundos}
+Debido a que la información de fechas estimadas y reales tanto de llegada como de salida de los vuelos se encontraba dividida, se procedió a realizar su unificación en un solo atributo \emph{sintético} que representa la cantidad de milisegundos transcurridos entre cada una de las fechas en cuestión y el 1 de enero de 1970 (conocido como \emph{\textbf{the epoch}}).
+
+Al final, la intención es reducir la cantidad de columnas y mantener una variable continua que permitiera ser utilizada por los algoritmos. La función mostrada en el Listing X.
+Permite realizar el cálculo de las representaciones de las fechas en milisegundos. 
+
+\begin{lstlisting}[language=R, caption=Transformación de las horas (timestamps) a milisegundos]
+calcularMsHoras <- function (ds){
+  parteFecha <- sprintf("2002-%02d-%02d", as.numeric(ds$Month), as.numeric(ds$DayofMonth))
+  
+  horaSalida <- sprintf("%04d", ds$DepTime)
+  horaLlegada <- sprintf("%04d", ds$ArrTime)
+  horaEstimadaSalida <- sprintf("%04d", ds$CRSDepTime)
+  horaEstimadaLlegada <- sprintf("%04d", ds$CRSArrTime)
+  
+  # Hora real salida
+  fechaSalida <- sprintf("%s %s:%s:00",parteFecha, substr(horaSalida, 1, 2), substr(horaSalida, 3, 4))
+  msHoraSalida <- as.integer( ymd_hms(fechaSalida, tz = "America/Mexico_City"))
+  
+  # Hora real llegada
+  fechaLlegada <- sprintf("%s %s:%s:00",parteFecha, substr(horaLlegada, 1, 2), substr(horaLlegada, 3, 4))
+  msHoraLlegada <- as.integer( ymd_hms(fechaLlegada, tz = "America/Mexico_City"))
+  
+  # Hora estimada salida
+  fechaEstimadaSalida <- sprintf("%s %s:%s:00",parteFecha, substr(horaEstimadaSalida, 1, 2), substr(horaEstimadaSalida, 3, 4))
+  msHoraEstimadaSalida <- as.integer( ymd_hms(fechaEstimadaSalida, tz = "America/Mexico_City"))
+  
+  # Hora estimada llegada
+  fechaEstimadaLlegada <- sprintf("%s %s:%s:00",parteFecha, substr(horaEstimadaLlegada, 1, 2), substr(horaEstimadaLlegada, 3, 4))
+  msHoraEstimadaLlegada <- as.integer( ymd_hms(fechaEstimadaLlegada, tz = "America/Mexico_City"))
+  
+  mss <- list("msHoraEstimadaSalida" = msHoraEstimadaSalida,
+              "msHoraSalida" = msHoraSalida,
+              "msHoraEstimadaLlegada" = msHoraEstimadaLlegada,
+              "msHoraLlegada" = msHoraLlegada)
+  mss
+}
+\end{lstlisting}
+
+\subsubsection{Eliminación de información superflua y/o redundante}
+Debido a los cambios introducidos por el cálculo de milisegundos, algunas de las columnas pierden su razón de ser y se procedió a eliminarlas de los datasets. Por ejemplo, los datos señalando al mes, día del mes y a las fechas en particular son sustituidos por las columnas creadas.
+
+
+Adicionalmente, datos como los que indican si el vuelo ha sido cancelado o desviado fueron también eliminados, ya que los registros de estos datasets cuentan con la información de horarios completa (recordando que los registros de vuelos desviados o cancelados ya fueron separados al inicio del pre-procesamiento).
+
+
+Es importante destacar que otras columnas como el número de vuelo, el identificador del carrier y del avión también fueron eliminadas dado que representan identificadores que, según la perspectiva seguida, no aportan mayor información al proceso.
+
+
+Finalmente, se realizó la detección de información redundante a través del cálculo de correlaciones. 
+La Figura X muestra las correlaciones de uno de los datasets.
+Puede observarse que existe gran correlación entre los datos que indican información temporal, lo cual es una situación esperada ya que, por ejemplo, el crecimiento en la hora de partida de un avión incrementa también la hora de llegada.
+Otro ejemplo evidente es lo que sucede entre las variables de tiempo total de vuelo y distancia recorrida, que tienen una correlación amplia debido a que mientras más tiempo tenga el avión en vuelo, mayor distancia habrá recorrido.
+
+FIGURA DE CORRELACIONES!
+
+\subsubsection{Conversión de valores nominales a numéricos}
+En una de las experimentaciones se consideró que la información referente al origen y al destino podría tener algún grado de importancia, por lo que fueron transformadas de un tipo factor a uno numérico para su inclusión en el proceso de clasificación.
+Esto fue realizado a través de instrucciones similares a las mostradas en el Listing X:
+
+\begin{lstlisting}[language=R, caption=Conversión de valores nominales (factor) a numérico]
+dsEnero$Origin <- as.integer(factor(dsEnero$Origin))
+dsEnero$Dest  <- as.integer(factor(dsEnero$Dest))
+\end{lstlisting}
+
+La conversión a valor numérico de los atributos nominales permitió realizar la ejecución del clústering particional.
+Sin embargo, los resultados arrojados por el clústering contenían alta dimensionalidad y estos atributos al ser identificadores fueron candidatos a ser eliminados par ala ejecución final.
+
+Al final de estas tareas, se obtuvo la lista definitiva de atributos a considerar para el proceso de análisis de componentes principales (\emph{PCA}), indicada en la Tabla \ref{tbl:conjunto-final-columnas}.
+\begin{table}[h]
+\begin{tabular}{@{}ll@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{Columna}} & \multicolumn{1}{c}{\textbf{Significado}} \\ \midrule
+DayOfWeek                            & Día de la semana                         \\
+AirTime                              & Tiempo de vuelo                          \\
+ArrDelay                             & Atraso en llegada                        \\
+DepDelay                             & Atraso en salida                         \\
+TaxiIn                               & Tiempo en hangar entrada                 \\
+TaxiOut                              & Tiempo en hangar salida                  \\ \bottomrule
+\end{tabular}
+\caption{Conjunto final de columnas consideradas}
+\label{tbl:conjunto-final-columnas}
+\end{table}
+
+\subsubsection{Análisis de componentes principales (\emph{PCA})}
+Adicionalmente a los pasos anteriores, se implementó como etapa previa al clústering el análisis de componentes principales (\emph{PCA}, por sus siglas en inglés).
+El proceso de \emph{PCA} fue alimentado con los registros de los meses con sus datos escalados. 
+De los componentes principales generados, originalmente se habían elegido cinco para realizar el proceso de clústering. 
+Sin embargo esta dimensionalidad complicaba el análisis de los resultados por lo que se eligió un valor de 3 componentes para ejecutar el proceso de clústering.
+
+Al final de estas tareas, se obtuvieron doce datasets con un promedio de X registros y Y columnas para el clústering particional y X registros y Y columnas para el clústering jerárquico. Originalmente, estos datasets tenían X registros y Y columnas en el dataset original.
+
+\subsection{Análisis de datos}
+\subsubsection{En base a frecuencias}
+Será redactado
+\subsubsection{Con herramientas de clústering}
+\paragraph{Ejecución del proceso de clústering}
+Las técnicas de clústering fueron implementadas sobre las versiones reducidas de los datasets. El equipo de cómputo donde se ejecutaron los procesos es una iMac de 21.5 pulgadas, con 4GB de memoria RAM y un procesador Intel i5 con 4 núcleos con una velocidad de 2.5 GHz.
+
+\paragraph{Clústering particional}
+El algoritmo indicado para la realización del clustering particional fue el \textbf{\emph{K-Means}}, en particular la función implementada dentro del paquete \emph{skmeans} de \emph{\textbf{R}}, llamada también \emph{skmeans}.
+La ejecución de la función \emph{skmeans} fue realizada con tamaños de clúster desde 2 hasta 8 por cada uno de los datasets de los meses.
+Algunos de los resultados técnicos de este experimento se encuentran descritos en la Tabla \ref{tbl:resultados-particional}.
+
+\begin{table}[h]
+\begin{tabular}{@{}lll@{}}
+\toprule
+\multicolumn{1}{c}{k=} & \multicolumn{1}{c}{Tiempo (seg)} & \multicolumn{1}{c}{Valor (criterion)} \\ \midrule
+2                      & 9.68                            & 877.64                               \\
+3                      & 15.80                            & 5591.99                              \\
+4                      & 16.75                            & 4099.81                              \\
+5                      & 21.48                            & 3147.88                              \\
+6                      & 22.94                            & 2685.38                              \\
+7                      & 53.70                            & 2350.11                              \\
+8                      & 42.13                            & 2113.81                              \\ \bottomrule
+\end{tabular}
+\caption{Resultados técnicos de la ejecución de la técnica \emph{skmeans} (promedios)}
+\label{tbl:resultados-particional}
+\end{table}
+
+
+
+\paragraph{Clústering jerárquico}
+La técnica indicada para la ejecución del clustering jerárquico fue el \emph{hybridHclust} (Hybrid hierarchical clustering using mutual clusters), el cual sigue el enfoque jerárquico top-down. Este algoritmo no requiere parámetros adicionales al dataset a procesar.
+La ejecución de este algoritmo fue realizada en base a los datos escalados de cada uno de los meses.
+Algunos de los resultados técnicos de este experimento se encuentran descritos en la Tabla F2.
+
+\section{Interpretación de los resultados}
+La realización de los procesos de análisis en base a frecuencias y agrupamiento permitió obtener algunos detalles de la información contenida en los datos.
+
+Es importante mencionar los siguientes puntos acerca de la ejecución de este algoritmo.
+Se ejecutaron varias rondas debido a modificaciones en los parámetros, sobre todo las columnas seleccionadas en cada uno de los datasets.
+En este sentido, inicialmente se habían considerado datos que tenían relación con las componentes temporales (timestamp) de los registros, como por ejemplo las fechas reales y estimadas de llegada y partida; sin embargo, éstos dificultaban la generación y la representación de la información, ya que al representar eventos que suceden a lo largo del tiempo, su intersección con otros elementos era mínima.
+
+INDICAR QUE HUBO UNA RETRAOLIMENTACIÓN EN LAS ETAPAS (no exitosa, pero exisitó).
+
+\end{document}

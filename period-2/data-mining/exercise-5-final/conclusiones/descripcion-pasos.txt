@@ -1,0 +1,168 @@
+﻿1. Cargar dataset completo en memoria
+# http://www.r-bloggers.com/pca-and-k-means-clustering-of-delta-aircraft/
+dsCrudo <- read.csv("c:././././cinvestav/mineria-datos//2002.csv/muestraAleatoria.csv")
+# Para el submuestro aleatorio: 
+# muestraAleatoria <- dsLimpio[sample(1:nrow(dsLimpio), 50000, replace=FALSE),] 
+
+a) Se le eliminan las columnas que tienen siempre el mismo valor
+dsCrudo$nombreColumna <- NULL
+
+2. Se conforma el ds con datos de tiempo completos (no cancelados, no retrasados)
+> dsTiemposCompletos <- (subset(dsCrudo, !is.na(dsCrudo$DepTime)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$ArrTime)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$CRSArrTime)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$CRSDepTime)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$ActualElapsedTime)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$AirTime)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$DepDelay)))
+> dsTiemposCompletos <- (subset(dsTiemposCompletos, !is.na(dsTiemposCompletos$ArrDelay)))
+
+3. Se conforma el ds de vuelos cancelados.
+Quienes tengan el atributo Cancelled en 1, formarán parte de un dataset de vuelos cancelados.
+dsCancelados <- subset(dsCrudo, dsCrudo$Cancelled == 1)
+
+4. Se conforma el ds de vuelos desviados
+(Se han hecho correcciones manuales en el TailNum de algunas columnas)
+dsDesviados <- subset(dsCrudo, dsCrudo$Diverted == 1)
+
+5. Se procede a realizar un breve análisis estadístico a los datos:
+(Lo que se tiene en las conclusiones)
+
+
+5. Se separa el dsCompleto por mes:
+dsEnero <- subset(dsCompleto, dsCompleto$Month == 1)
+dsFebrero <- subset(dsCompleto, dsCompleto$Month == 2)
+dsMarzo <- subset(dsCompleto, dsCompleto$Month == 3)
+dsAbril <- subset(dsCompleto, dsCompleto$Month == 4)
+-- Para abril hay que eliminar aquellos ejemplos que sean del domingo 7 cuya hora este en el rango de 200 ya que no se puede convertir a milisegundos (Cuestiones de horario de verano)
+dsAbril <- subset(dsAbril, dsAbril$DayOfMonth == 7)
+dsAbril <- subset(dsAbril, dsAbril$DepTime<200 && dsAbril$DepTime>259)
+dsAbril <- subset(dsAbril, dsAbril$DayOfMonth == 7 && dsAbril$CRSDepTime<200 && dsAbril$CRSDepTime>259)
+dsAbril <- subset(dsAbril, dsAbril$ArrTime<200 && dsAbril$ArrTime>259)
+dsAbril <- subset(dsAbril, dsAbril$DayOfMonth == 7 && dsAbril$CRSArrTime<200 && dsAbril$CRSArrTime>259)
+
+dsMayo <- subset(dsCompleto, dsCompleto$Month == 5)
+dsJunio <- subset(dsCompleto, dsCompleto$Month == 6)
+dsJulio <- subset(dsCompleto, dsCompleto$Month == 7)
+dsAgosto <- subset(dsCompleto, dsCompleto$Month == 8)
+dsSeptiembre <- subset(dsCompleto, dsCompleto$Month == 9)
+dsOctubre <- subset(dsCompleto, dsCompleto$Month == 10)
+dsNoviembre <- subset(dsCompleto, dsCompleto$Month == 11)
+dsDiciembre <- subset(dsCompleto, dsCompleto$Month == 12)
+
+
+
+6. Se calculan los atributos de fecha en formato de milisegundos y se añade a cada dataset
+dsEnero <- read.csv("mineria-de-datos/ds/por-mes/ds-enero.csv")
+dsFebrero <- read.csv("mineria-de-datos/ds/por-mes/ds-febrero.csv")
+dsMarzo <- read.csv("mineria-de-datos/ds/por-mes/ds-marzo.csv")
+dsAbril <- read.csv("mineria-de-datos/ds/por-mes/ds-abril.csv")
+dsMayo <- read.csv("mineria-de-datos/ds/por-mes/ds-mayo.csv")
+dsJunio <- read.csv("mineria-de-datos/ds/por-mes/ds-junio.csv")
+dsJulio <- read.csv("mineria-de-datos/ds/por-mes/ds-julio.csv")
+dsAgosto <- read.csv("mineria-de-datos/ds/por-mes/ds-agosto.csv")
+dsSeptiembre <- read.csv("mineria-de-datos/ds/por-mes/ds-septiembre.csv")
+dsOctubre <- read.csv("mineria-de-datos/ds/por-mes/ds-octubre.csv")
+dsNoviembre <- read.csv("mineria-de-datos/ds/por-mes/ds-noviembre.csv")
+dsDiciembre <- read.csv("mineria-de-datos/ds/por-mes/ds-diciembre.csv")
+
+a) Calcular
+msEnero <- calcularMsHoras(dsEnero)
+msFebrero <- calcularMsHoras(dsFebrero)
+msMarzo <- calcularMsHoras(dsMarzo)
+msAbril <- calcularMsHoras(dsAbril)
+msMayo <- calcularMsHoras(dsMayo)
+msJunio <- calcularMsHoras(dsJunio)
+msJulio <- calcularMsHoras(dsJulio)
+msAgosto <- calcularMsHoras(dsAgosto)
+msSeptiembre <- calcularMsHoras(dsSeptiembre)
+msOctubre <- calcularMsHoras(dsOctubre)
+msNoviembre <- calcularMsHoras(dsNoviembre)
+msDiciembre <- calcularMsHoras(dsDiciembre)
+
+b) Asignar
+dsEnero["msDepTime"] <- msEnero$msHoraSalida
+dsEnero["msCRSDepTime"] <- msEnero$msHoraEstimadaSalida
+dsEnero["msArrTime"] <- msEnero$msHoraLlegada
+dsEnero["msCRSArrTime"] <- msEnero$msHoraEstimadaLlegada
+
+
+dsFebrero["msDepTime"] <- msFebrero$msHoraSalida
+dsFebrero["msCRSDepTime"] <- msFebrero$msHoraEstimadaSalida
+dsFebrero["msArrTime"] <- msFebrero$msHoraLlegada
+dsFebrero["msCRSArrTime"] <- msFebrero$msHoraEstimadaLlegada
+
+
+dsMarzo["msDepTime"] <- msMarzo$msHoraSalida
+dsMarzo["msCRSDepTime"] <- msMarzo$msHoraEstimadaSalida
+dsMarzo["msArrTime"] <- msMarzo$msHoraLlegada
+dsMarzo["msCRSArrTime"] <- msMarzo$msHoraEstimadaLlegada
+
+
+dsAbril["msDepTime"] <- msAbril$msHoraSalida
+dsAbril["msCRSDepTime"] <- msAbril$msHoraEstimadaSalida
+dsAbril["msArrTime"] <- msAbril$msHoraLlegada
+dsAbril["msCRSArrTime"] <- msAbril$msHoraEstimadaLlegada
+
+
+dsMayo["msDepTime"] <- msMayo$msHoraSalida
+dsMayo["msCRSDepTime"] <- msMayo$msHoraEstimadaSalida
+dsMayo["msArrTime"] <- msMayo$msHoraLlegada
+dsMayo["msCRSArrTime"] <- msMayo$msHoraEstimadaLlegada
+
+
+dsJunio["msDepTime"] <- msJunio$msHoraSalida
+dsJunio["msCRSDepTime"] <- msJunio$msHoraEstimadaSalida
+dsJunio["msArrTime"] <- msJunio$msHoraLlegada
+dsJunio["msCRSArrTime"] <- msJunio$msHoraEstimadaLlegada
+
+
+dsJulio["msDepTime"] <- msJulio$msHoraSalida
+dsJulio["msCRSDepTime"] <- msJulio$msHoraEstimadaSalida
+dsJulio["msArrTime"] <- msJulio$msHoraLlegada
+dsJulio["msCRSArrTime"] <- msJulio$msHoraEstimadaLlegada
+
+
+dsAgosto["msDepTime"] <- msAgosto$msHoraSalida
+dsAgosto["msCRSDepTime"] <- msAgosto$msHoraEstimadaSalida
+dsAgosto["msArrTime"] <- msAgosto$msHoraLlegada
+dsAgosto["msCRSArrTime"] <- msAgosto$msHoraEstimadaLlegada
+
+
+dsSeptiembre["msDepTime"] <- msSeptiembre$msHoraSalida
+dsSeptiembre["msCRSDepTime"] <- msSeptiembre$msHoraEstimadaSalida
+dsSeptiembre["msArrTime"] <- msSeptiembre$msHoraLlegada
+dsSeptiembre["msCRSArrTime"] <- msSeptiembre$msHoraEstimadaLlegada
+
+
+dsOctubre["msDepTime"] <- msOctubre$msHoraSalida
+dsOctubre["msCRSDepTime"] <- msOctubre$msHoraEstimadaSalida
+dsOctubre["msArrTime"] <- msOctubre$msHoraLlegada
+dsOctubre["msCRSArrTime"] <- msOctubre$msHoraEstimadaLlegada
+
+
+dsNoviembre["msDepTime"] <- msNoviembre$msHoraSalida
+dsNoviembre["msCRSDepTime"] <- msNoviembre$msHoraEstimadaSalida
+dsNoviembre["msArrTime"] <- msNoviembre$msHoraLlegada
+dsNoviembre["msCRSArrTime"] <- msNoviembre$msHoraEstimadaLlegada
+
+
+dsDiciembre["msDepTime"] <- msDiciembre$msHoraSalida
+dsDiciembre["msCRSDepTime"] <- msDiciembre$msHoraEstimadaSalida
+dsDiciembre["msArrTime"] <- msDiciembre$msHoraLlegada
+dsDiciembre["msCRSArrTime"] <- msDiciembre$msHoraEstimadaLlegada
+
+
+a) Se escribe en archivo
+write.csv(dsEnero, file="mineria-de-datos/ds/por-mes/ds-enero.csv")
+write.csv(dsFebrero, file="mineria-de-datos/ds/por-mes/ds-febrero.csv")
+write.csv(dsMarzo, file="mineria-de-datos/ds/por-mes/ds-marzo.csv")
+write.csv(dsAbril, file="mineria-de-datos/ds/por-mes/ds-abril.csv")
+write.csv(dsMayo, file="mineria-de-datos/ds/por-mes/ds-mayo.csv")
+write.csv(dsJunio, file="mineria-de-datos/ds/por-mes/ds-junio.csv")
+write.csv(dsJulio, file="mineria-de-datos/ds/por-mes/ds-julio.csv")
+write.csv(dsAgosto, file="mineria-de-datos/ds/por-mes/ds-agosto.csv")
+write.csv(dsSeptiembre, file="mineria-de-datos/ds/por-mes/ds-septiembre.csv")
+write.csv(dsOctubre, file="mineria-de-datos/ds/por-mes/ds-octubre.csv")
+write.csv(dsNoviembre, file="mineria-de-datos/ds/por-mes/ds-noviembre.csv")
+write.csv(dsDiciembre, file="mineria-de-datos/ds/por-mes/ds-diciembre.csv")
