@@ -88,7 +88,7 @@
     keywordstyle=\color{magenta},
     numberstyle=\tiny\color{codegray},
     stringstyle=\color{codepurple},
-    basicstyle=\footnotesize,
+    %basicstyle=\footnotesize,
     breakatwhitespace=false,         
     breaklines=true,                 
     captionpos=b,                    
@@ -916,7 +916,7 @@ Algunos de los resultados técnicos de este experimento se encuentran descritos 
 7          & 36.63261             & 2356.24                    \\
 8          & 44.77737             & 2107.43                    \\ \bottomrule
 \end{tabular}
-\caption{Resultados técnicos de la ejecución de la técnica \emph{skmeans} (promedios)}
+\caption{Resultados técnicos de la ejecución de la técnica \emph{skmeans} (promedios de los meses)}
 \label{tbl:resultados-particional}
 \end{table}
 
@@ -924,7 +924,30 @@ Algunos de los resultados técnicos de este experimento se encuentran descritos 
 \paragraph{Clústering jerárquico}
 La técnica indicada para la ejecución del clustering jerárquico fue el \emph{hybridHclust} (Hybrid hierarchical clustering using mutual clusters), el cual sigue el enfoque jerárquico top-down. Este algoritmo no requiere parámetros adicionales al dataset a procesar.
 La ejecución de este algoritmo fue realizada en base a los datos escalados de cada uno de los meses.
-Algunos de los resultados técnicos de este experimento se encuentran descritos en la Tabla F2.
+Algunos de los resultados técnicos de este experimento se encuentran descritos en la Tabla \ref{tbl:resultados-jerarquico}.
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}ccc@{}}
+\toprule
+\textbf{Mes} & \textbf{Tiempo(seg)} & \textbf{Altura} \\ \midrule
+Enero        & 9.979287             & 8778.09                    \\
+Febrero      & 16.98486             & 5639.61                    \\
+Marzo        & 16.06621             & 4101.42                    \\
+Abril        & 19.70341             & 3151.56                    \\
+Mayo         & 28.34242             & 2670.34                    \\
+Junio        & 36.63261             & 2356.24                    \\
+Julio        & 36.63261             & 2356.24                    \\
+Agosto       & 36.63261             & 2356.24                    \\
+Septiembre   & 36.63261             & 2356.24                    \\
+Octubre      & 36.63261             & 2356.24                    \\
+Noviembre    & 36.63261             & 2356.24                    \\
+Julio        & 44.77737             & 2107.43                    \\ \bottomrule
+\end{tabular}
+\caption{Resultados técnicos de la ejecución de la técnica \emph{hybridHclust}}
+\label{tbl:resultados-jerarquico}
+\end{table}
+
 
 \section{Interpretación de los resultados}
 Los procesos de análisis en base a frecuencias y agrupamiento permitieron obtener algunos detalles de la información contenida en los datos.
@@ -936,12 +959,73 @@ En este sentido, inicialmente se habían considerado datos que tenían relación
 
 Debido a dichas modificaciones, hubo constante retroalimentación entre las etapas de preprocesamiento y análisis de los datos hasta alcanzar diseños que pudieran ser ejecutados respetando restricciones de memoria, cómputo y tiempo.
 
-Las Figuras X, Y, Z, ... muestran una representación de los clústers formados a partir de la función \emph{skmeans}.
+La serie de imágenes incluidas en la Figura \ref{fig:ejecucion-skmeans} muestran una representación de los clústers formados a partir de la función \emph{skmeans}.
 Puede notarse que se obtuvo una sola nube de puntos que en cada ejecución del algoritmo fue modificando la pertenencia de los puntos a cada grupo formado, sin embargo esto no permite identificar información relevante en los puntos.
 
-El código mostrado en el Listing X permite mapear los puntos agrupados en uno de los datasets hacia el dataset original. 
+\begin{figure}
+        \centering
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k2}
+                \caption{\emph{k}=2}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k3}
+                \caption{\emph{k}=3}
+        \end{subfigure}
+
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k4}
+                \caption{\emph{k}=4}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k5}
+                \caption{\emph{k}=5}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k6}
+                \caption{\emph{k}=6}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k7}
+                \caption{\emph{k}=7}
+        \end{subfigure}
+        ~
+        \begin{subfigure}[b]{0.33\textwidth}
+                \includegraphics[width=1\textwidth]{imagenes/k8}
+                \caption{\emph{k}=8}
+        \end{subfigure}
+        \caption{Grupos formados por \emph{skmeans} con un valor de \emph{k} en 1-8}
+        \label{fig:ejecucion-skmeans}
+\end{figure}
+
+El código mostrado en el Listing \ref{lst:mapeo-cluster-dataset-original} permite mapear los puntos agrupados en uno de los datasets hacia el dataset original. 
+
+\begin{lstlisting}[language=R, caption=Mapeo de elementos ubicados en un cluster al dataset original, label={lst:mapeo-cluster-dataset-original},]
+instancias_en_cluster_uno <- (dsCrudo[k5_enero$clust==cluster_k5_enero[1],])
+instancias_en_cluster_dos <- (dsCrudo[k5_enero$clust==cluster_k5_enero[2],])
+instancias_en_cluster_tres <- (dsCrudo[k5_enero$clust==cluster_k5_enero[3],])
+instancias_en_cluster_cuatro <- (dsCrudo[k5_enero$clust==cluster_k5_enero[4],])
+instancias_en_cluster_cinco <- (dsCrudo[k5_enero$clust==cluster_k5_enero[5],])
+\end{lstlisting}
+
+
 Tomando como base los resultados ya mapeados de la ejecución de \emph{skmeans} con un parámetro \emph{k} de 5 al dataset original, se procedió a realizar un resumen estadístico de cada clúster con la función \emph{summary}.
-Los resultados de este análisis indican valores de medias y medianas muy cercanos entre cada uno de los clústers, lo cual es respaldado por las Figuras mencionadas anteriormente, en las que una sola nube de datos es formada y dividida.
+Los resultados de este análisis indican valores de medias y medianas muy cercanos entre cada uno de los clústers, lo cual es respaldado por la figura referenciada anteriormente, en las que una sola nube de datos es formada y dividida.
+
+El análisis con el algoritmo jerárquico \emph{hybridHclust} fue ejecutado en cada uno de los meses en los que el dataset fue separado.
+De forma representativa, se muestra el dendrograma del mes de enero en la Figura \ref{fig:ejecucion-hybrid}.
+Puede notarse que en la parte inferior los grupos no pueden mostrarse de forma clara debido a la densidad de grupos existentes (recordando que el final del dendrograma cada elemento conforma su propio clúster).
+\begin{figure}
+\includegraphics[width=1\textwidth]{imagenes/k2}
+\caption{Grupos formados por \emph{skmeans} con un valor de \emph{k} en 1-8}
+\label{fig:ejecucion-hybrid}
+\end{figure}
 
 \section{Conclusiones}
 La minería de datos se auxilia de gran variedad de herramientas que tienen su origen en otras disciplinas, como la teoría de la información, las matemáticas o la estadística. Sin embargo, es un proceso que para ejecutarse de forma satisfactoria requiere de conocimiento por parte del analista, en base a su experiencia, para la selección de los atributos y técnicas de análisis apropiadas según el conjunto de datos a procesar.
@@ -950,6 +1034,7 @@ Este documento ha presentado la labor de análisis de datos sobre un dataset uti
 Se realizó un preprocesamiento para mejorar la calidad de los datos así como la ejecución de \emph{PCA} para elegir las columnas que representaron la mayor varianza de los datos. Adicionalmente, se realizó un submuestreo aleatorio para reducir la cantidad de instancias a introducir en los algoritmos y hacer factible su ejecución en términos de memoria.
 
 El análisis de los resultados para las técnicas de agrupamiento no ha permitido la detección de información de relevancia, sin embargo a través del análisis estadístico (frecuencias) se ha podido rescatar algunos aspectos informativos del dataset.
+Existe la sospecha de que al omitir los atributos que hagan referencia a fechas o a instantes de tiempo, o bien implementar análisis de secuencias temporales, sea más probable encontrar grupos con características bien definidas que aporten información de interés.
 
 Adicionalmente se han mostrado estadísticas técnicas de los tiempos de ejecución de dichos algoritmos, destacando que la magnitud del dataset hizo obligatorio el uso de alguna técnica de muestreo para hacer viable su ejecución en el equipo de cómputo utilizado.
 
