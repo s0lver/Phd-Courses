@@ -1,5 +1,4 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><style>body {
-
   border: 1px solid #ddd;
   outline: 1300px solid #fff;
   margin: 16px auto;
@@ -1014,8 +1013,8 @@ body .markdown-body
     page-break-after: avoid;
   }
 }
-</style><title>anexo-1</title></head><body><article class="markdown-body"><h1 id="resumen-de-los-clusters-obtenidos-para-el-mes-de-enero-a-traves-de-la-funcion-summary"><a name="user-content-resumen-de-los-clusters-obtenidos-para-el-mes-de-enero-a-traves-de-la-funcion-summary" href="#resumen-de-los-clusters-obtenidos-para-el-mes-de-enero-a-traves-de-la-funcion-summary" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Resumen de los clústers obtenidos para el mes de enero (a través de la función <code>summary</code>)</h1>
-<p>Los siguientes datos fueron obtenidos de la función <code>summary</code> para los clústers generados del mes de enero.<br />
+</style><title>anexo-2</title></head><body><article class="markdown-body"><h1 id="resumen-de-los-clusters-obtenidos-para-el-mes-de-enero-a-traves-de-la-funcion-summary"><a name="user-content-resumen-de-los-clusters-obtenidos-para-el-mes-de-enero-a-traves-de-la-funcion-summary" href="#resumen-de-los-clusters-obtenidos-para-el-mes-de-enero-a-traves-de-la-funcion-summary" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Resumen de los clústers obtenidos para el mes de enero (a través de la función <code>summary</code>)</h1>
+<p>Los siguientes datos fueron obtenidos de la función <code>summary</code> para los 4 clusters generados para el mes de abril, con una altura de 4000000.<br />
 Es importante recordad que las columnas consideradas fueron:<br />
 - DayOfWeek<br />
 - AirTime<br />
@@ -1023,7 +1022,8 @@ Es importante recordad que las columnas consideradas fueron:<br />
 - DepDelay <br />
 - TaxiIn <br />
 - TaxiOut    </p>
-<p>Puede notarse que en ellas existe gran cercanía por lo que no se pudo determinar alguna característica distintiva en cada grupo.<br />
+<p>En este caso una muy ligera separación entre los valores de la media existentes para la columna AirTime.<br />
+Sin embargo es una muy pequeña distancia como para juzgar el hallazgo de información relevante.</p>
 <pre><code>&gt; summary(instancias_en_cluster_uno)
      Month          DayofMonth      DayOfWeek        DepTime       CRSDepTime      ArrTime       CRSArrTime   UniqueCarrier      FlightNum            TailNum       ActualElapsedTime CRSElapsedTime     AirTime           ArrDelay       
  Min.   : 1.000   Min.   : 1.00   Min.   :1.000   Min.   :   1   Min.   :   0   Min.   :   1   Min.   :   1   WN     :108769   Min.   :   1               :  3330   Min.   :  13.0    Min.   :-25.0   Min.   :-1407.0   Min.   :-240.000  
@@ -1109,4 +1109,4 @@ Es importante recordad que las columnas consideradas fueron:<br />
  3rd Qu.:   4.000   PHX    :  46810   PHX    :  46894   3rd Qu.:1009.0   3rd Qu.:   7.000   3rd Qu.:  18.00   3rd Qu.:0.00000                    3rd Qu.:0.000000  
  Max.   :1497.000   MSP    :  38272   MSP    :  38416   Max.   :4962.0   Max.   :1440.000   Max.   :1439.00   Max.   :1.00000                    Max.   :1.000000  
  NA's   :17450      (Other):1062074   (Other):1061310  
-</code></pre></p></article></body></html>
+</code></pre></article></body></html>

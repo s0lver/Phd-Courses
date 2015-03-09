@@ -117,6 +117,8 @@ Rafael Pérez Torres\\[16pt]
 
 LTI CINVESTAV Tamaulipas \\[16pt]
 
+Marzo 2015\\[16pt]
+
 \end{center}
 
 \section{Introducción}
@@ -307,7 +309,7 @@ El proceso de \emph{PCA} fue alimentado con los registros de los meses con sus d
 De los componentes principales generados, originalmente se habían elegido cinco para realizar el proceso de clústering. 
 Sin embargo esta dimensionalidad complicaba el análisis de los resultados por lo que se eligió un valor final de 3 componentes.
 
-Al final de estas tareas, se obtuvieron doce datasets con un promedio de 21,656 registros con 6 columnas para el clústering particional, y X registros con 6 columnas para el clústering jerárquico; originalmente, dichos datasets tenían 5,271,359 registros y 23 columnas.
+Al final de estas tareas, se obtuvieron doce datasets con un promedio de 21,656 registros con 6 columnas para el clústering particional, y 4330 registros con 6 columnas para el clústering jerárquico; originalmente, dichos datasets tenían 5,271,359 registros y 23 columnas.
 
 \section{Análisis de datos}
 \subsection{En base a frecuencias}
@@ -926,23 +928,26 @@ La técnica indicada para la ejecución del clustering jerárquico fue el \emph{
 La ejecución de este algoritmo fue realizada en base a los datos escalados de cada uno de los meses.
 Algunos de los resultados técnicos de este experimento se encuentran descritos en la Tabla \ref{tbl:resultados-jerarquico}.
 
+Es importante señalar que solamente tres meses pudieron finalizar la ejecución del algoritmo de forma satisfactoria.
+Se realizó una investigación para encontrar causas probables, sin embargo la documentación existente es muy poca por lo que no se identificó algún problema en específico.
+Los datos con los que se alimentó este algoritmo son en su totalidad numéricos, cumpliendo con los que se especifica en la documentación del paquete \emph{hybridHclust}.
 \begin{table}[h]
 \centering
 \begin{tabular}{@{}ccc@{}}
 \toprule
-\textbf{Mes} & \textbf{Tiempo(seg)} & \textbf{Altura} \\ \midrule
-Enero        & 9.979287             & 8778.09                    \\
-Febrero      & 16.98486             & 5639.61                    \\
-Marzo        & 16.06621             & 4101.42                    \\
-Abril        & 19.70341             & 3151.56                    \\
-Mayo         & 28.34242             & 2670.34                    \\
-Junio        & 36.63261             & 2356.24                    \\
-Julio        & 36.63261             & 2356.24                    \\
-Agosto       & 36.63261             & 2356.24                    \\
-Septiembre   & 36.63261             & 2356.24                    \\
-Octubre      & 36.63261             & 2356.24                    \\
-Noviembre    & 36.63261             & 2356.24                    \\
-Julio        & 44.77737             & 2107.43                    \\ \bottomrule
+\textbf{Mes} & \textbf{Tiempo(seg)} & \textbf{Altura máxima} \\ \midrule
+Enero        & 51.48             & 25,057,614                    \\
+Febrero      & NA             & NA                    \\
+Marzo        & NA             & NA                    \\
+Abril        & 51.41             & 25,539,922                    \\
+Mayo         & 54.42             & 26,810,751                    \\
+Junio        & NA             & NA                    \\
+Julio        & NA             & NA                    \\
+Agosto       & NA             & NA                    \\
+Septiembre   & NA             & NA                    \\
+Octubre      & NA             & NA                    \\
+Noviembre    & NA             & NA                    \\
+Julio        & NA             & NA                    \\ \bottomrule
 \end{tabular}
 \caption{Resultados técnicos de la ejecución de la técnica \emph{hybridHclust}}
 \label{tbl:resultados-jerarquico}
@@ -1018,15 +1023,32 @@ instancias_en_cluster_cinco <- (dsCrudo[k5_enero$clust==cluster_k5_enero[5],])
 Tomando como base los resultados ya mapeados de la ejecución de \emph{skmeans} con un parámetro \emph{k} de 5 al dataset original, se procedió a realizar un resumen estadístico de cada clúster con la función \emph{summary}.
 Los resultados de este análisis indican valores de medias y medianas muy cercanos entre cada uno de los clústers, lo cual es respaldado por la figura referenciada anteriormente, en las que una sola nube de datos es formada y dividida.
 
-El análisis con el algoritmo jerárquico \emph{hybridHclust} fue ejecutado en cada uno de los meses en los que el dataset fue separado.
-De forma representativa, se muestra el dendrograma del mes de enero en la Figura \ref{fig:ejecucion-hybrid}.
+El análisis con el algoritmo jerárquico \emph{hybridHclust} fue ejecutado en cada uno de los meses en los que la ejecución del algoritmo lo permitió.
+De forma representativa, se muestra el dendrograma del mes de abril en la Figura \ref{fig:ejecucion-hybrid}.
 Puede notarse que en la parte inferior los grupos no pueden mostrarse de forma clara debido a la densidad de grupos existentes (recordando que el final del dendrograma cada elemento conforma su propio clúster).
 \begin{figure}
-\includegraphics[width=1\textwidth]{imagenes/k2}
-\caption{Grupos formados por \emph{skmeans} con un valor de \emph{k} en 1-8}
+\centering
+\includegraphics[width=0.7\textwidth]{imagenes/dendrograma-abril}
+\caption{Dendrograma obtenido al ejecutar \emph{hybridHclust} sobre el dataset del mes de abril}
 \label{fig:ejecucion-hybrid}
 \end{figure}
 
+Mediante instrucciones como las mostradas en el Listing \ref{lst:mapeo-cluster-dataset-original-hibrido} se pudo realizar el mapeo de las instancias agrupadas hacia el dataset original.
+En específico se realizó la separación en el resultado obtenido para el mes de abril, a una altura de 4,000,000 generando cuatro grupos.
+\begin{lstlisting}[language=R, caption=Mapeo de elementos ubicados en un cluster al dataset original, label={lst:mapeo-cluster-dataset-original-hibrido},]
+corte <- cutree(hibAbril, h = 4000000)
+clusterUno <- dsEnero[corte=1,]
+clusterDos <- dsEnero[corte=2,]
+clusterTres <- dsEnero[corte=3,]
+clusterCuatro <- dsEnero[corte=4,]
+\end{lstlisting}
+
+En este caso tampoco se aprecian grandes separaciones entre los grupos.
+Existe una muy ligera diferencia en los valores de la mediana del tiempo de vuelo (\emph{AirTime}), sin embargo se juzga como insuficiente para mostrarlo como información relavante.
+
+Las salidas de la ejecución de la función \emph{summary} en algunos de los resultados obtenidos son anexados como archivos html a este reporte para una revisión más detallada.
+
+\pagebreak
 \section{Conclusiones}
 La minería de datos se auxilia de gran variedad de herramientas que tienen su origen en otras disciplinas, como la teoría de la información, las matemáticas o la estadística. Sin embargo, es un proceso que para ejecutarse de forma satisfactoria requiere de conocimiento por parte del analista, en base a su experiencia, para la selección de los atributos y técnicas de análisis apropiadas según el conjunto de datos a procesar.
 
@@ -1036,7 +1058,7 @@ Se realizó un preprocesamiento para mejorar la calidad de los datos así como l
 El análisis de los resultados para las técnicas de agrupamiento no ha permitido la detección de información de relevancia, sin embargo a través del análisis estadístico (frecuencias) se ha podido rescatar algunos aspectos informativos del dataset.
 Existe la sospecha de que al omitir los atributos que hagan referencia a fechas o a instantes de tiempo, o bien implementar análisis de secuencias temporales, sea más probable encontrar grupos con características bien definidas que aporten información de interés.
 
-Adicionalmente se han mostrado estadísticas técnicas de los tiempos de ejecución de dichos algoritmos, destacando que la magnitud del dataset hizo obligatorio el uso de alguna técnica de muestreo para hacer viable su ejecución en el equipo de cómputo utilizado.
+Adicionalmente se han mostrado estadísticas técnicas de los tiempos de ejecución de dichos algoritmos, destacando que la magnitud del dataset hizo obligatorio el uso de alguna solución de muestreo para hacer viable su ejecución en el equipo de cómputo utilizado.
 
 
 \end{document}

@@ -1,6 +1,6 @@
 Resumen de los clústers obtenidos para el mes de enero (a través de la función ```summary```)
 =============================================================================================
-Los siguientes datos fueron obtenidos de la función ```summary``` para los clústers generados del mes de enero.
+Los siguientes datos fueron obtenidos de la función ```summary``` para los 4 clusters generados para el mes de abril, con una altura de 4000000.
 Es importante recordad que las columnas consideradas fueron:
 - DayOfWeek
 - AirTime  
@@ -9,7 +9,9 @@ Es importante recordad que las columnas consideradas fueron:
 - TaxiIn   
 - TaxiOut    
 
-Puede notarse que en ellas existe gran cercanía por lo que no se pudo determinar alguna característica distintiva en cada grupo.
+En este caso una muy ligera separación entre los valores de la media existentes para la columna AirTime.
+Sin embargo es una muy pequeña distancia como para juzgar el hallazgo de información relevante.
+
 ```
 > summary(instancias_en_cluster_uno)
      Month          DayofMonth      DayOfWeek        DepTime       CRSDepTime      ArrTime       CRSArrTime   UniqueCarrier      FlightNum            TailNum       ActualElapsedTime CRSElapsedTime     AirTime           ArrDelay       
