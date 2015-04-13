@@ -1,0 +1,471 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>launcher</title><meta name="generator" content="MATLAB 8.3"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-03-18"><meta name="DC.source" content="launcher.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Launcher!</a></li></ul></div><pre class="codeinput"><span class="comment">%%=========================================================</span>
+</pre><h2>Launcher!<a name="2"></a></h2><p>Materia: Reconocimiento de patrones Nombre: Rafael P&eacute;rez Torres Fecha: 17-marzo-2014 Tarea No.: 02 Clase: 005 Prepara y lanza la ejecuci&oacute;n de cada algoritmo por cada uno de los datasets</p><pre class="codeinput"><span class="comment">%%=========================================================</span>
+
+<span class="comment">% Carga del archivo global</span>
+datasetFile = load(<span class="string">'dataset\handwittern0to9.mat'</span>);
+
+<span class="comment">% Identificaci&oacute;n de caracter&iacute;sticas del archivo</span>
+labels = datasetFile.Y;
+total_datasets = length(datasetFile.X);
+
+<span class="comment">% Par&aacute;metros de la ejecuci&oacute;n</span>
+total_classifiers = 7; <span class="comment">% 5 + 2 variantes knn</span>
+runs = 31;
+
+<span class="comment">% placeholders de los errores y tiempos de ejecuci&oacute;n, hipermatrices</span>
+error_matrix = zeros(runs, total_classifiers, total_datasets);
+time_matrix = zeros(runs, total_classifiers, total_datasets);
+
+<span class="comment">% Por cada dataset</span>
+<span class="keyword">for</span> current_ds=1:total_datasets
+    fprintf(<span class="string">'Evaluating dataset %s\n'</span>, datasetFile.F{current_ds});
+    dataset = datasetFile.X{current_ds};
+
+    <span class="comment">% Por cada algoritmo</span>
+
+    <span class="comment">% Clasificador 1.</span>
+    <span class="comment">% Caso general, clasificador bayesiano</span>
+    disp(<span class="string">'Starting Bayesian classifier'</span>);
+    current_classifier = 1;
+    <span class="keyword">for</span> current_iter= 1:runs
+        error_bayes = 0;
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [mu_wi,S_wi,P_wi] = trainBayes(Xtr, Ytr);
+        [YpredBayesian, err] = classifyBayes(Xtt, Ytt, mu_wi, S_wi, P_wi);
+
+        error_bayes = error_bayes + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_bayes;
+
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    disp(<span class="string">'Bayesian classifier done'</span>);
+
+    <span class="comment">% Clasificador 2</span>
+    <span class="comment">% Caso 1, clasificador de distancia euclideana</span>
+    disp(<span class="string">'Starting Euclidean classifier'</span>);
+    current_classifier = 2;
+    <span class="keyword">for</span> current_iter= 1:runs
+        error_euclidean = 0;
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [mu_wi,S_wi,P_wi] = trainBayes(Xtr, Ytr);
+
+        [YpredEuclidean, err] = classifyEuclidean(Xtt, Ytt, mu_wi);
+
+        error_euclidean = error_euclidean + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_euclidean;
+
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    disp(<span class="string">'Euclidean classifier done'</span>);
+
+    <span class="comment">% Clasificador 3</span>
+    <span class="comment">% Caso 3, clasificador de distancia Mahalanobis</span>
+    disp(<span class="string">'Starting Mahalanobis classifier'</span>);
+    current_classifier = 3;
+    <span class="keyword">for</span> current_iter= 1:runs
+        error_mahalanobis = 0;
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [mu_wi,S_wi,P_wi] = trainBayes(Xtr, Ytr);
+
+        [YpredMahalanobis, err] = classifyMahalanobis(Xtt, Ytt, mu_wi, S_wi);
+
+        error_mahalanobis= error_mahalanobis + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_mahalanobis;
+
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    disp(<span class="string">'Mahalanobis classifier done'</span>);
+
+    <span class="comment">% Clasificador 4</span>
+    <span class="comment">% Clasificador Naive Bayes</span>
+    disp(<span class="string">'Starting Na&iuml;ve Bayes classifier'</span>);
+    current_classifier = 4;
+    <span class="keyword">for</span> current_iter= 1:runs
+        error_nb = 0;
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [nv_mu_wi, nv_var_wi, nv_P_wi] = trainNaiveBayes(Xtr, Ytr);
+        [YpredNaiveBayes, err] = classifyNaiveBayes(Xtt,Ytt, nv_mu_wi, nv_var_wi, nv_P_wi);
+        error_nb = error_nb + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_nb;
+
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    disp(<span class="string">'Na&iuml;ve Bayes classifier done'</span>);
+
+    <span class="comment">% Clasificador 5</span>
+    <span class="comment">% Clasificador 1-NN</span>
+    n_k = 1;
+    fprintf(<span class="string">'Starting K-nn classifier (k=%d)\n'</span>, n_k);
+    current_classifier = 5;
+    <span class="keyword">for</span> current_iter= 1:runs
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [YpredKnn, err] =  knn(n_k, Xtr, Ytr, Xtt, Ytt);
+        error_matrix(current_iter, current_classifier, current_ds) = err;
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    fprintf(<span class="string">'K-nn classifier done (k=%d)\n'</span>, n_k);
+
+    <span class="comment">% Clasificador 6</span>
+    <span class="comment">% Clasificador 5-NN</span>
+    n_k = 5;
+    fprintf(<span class="string">'Starting K-nn classifier (k=%d)\n'</span>, n_k);
+    current_classifier = 6;
+    <span class="keyword">for</span> current_iter= 1:runs
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [YpredKnn, err] =  knn(n_k, Xtr, Ytr, Xtt, Ytt);
+        error_matrix(current_iter, current_classifier, current_ds) = err;
+
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    fprintf(<span class="string">'K-nn classifier done (k=%d)\n'</span>, n_k);
+
+    <span class="comment">% Clasificador 6</span>
+    <span class="comment">% Clasificador 9-NN</span>
+    n_k = 9;
+    fprintf(<span class="string">'Starting K-nn classifier (k=%d)\n'</span>, n_k);
+    current_classifier = 7;
+    <span class="keyword">for</span> current_iter= 1:runs
+        tic;
+
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+
+        [YpredKnn, err] =  knn(n_k, Xtr, Ytr, Xtt, Ytt);
+        error_matrix(current_iter, current_classifier, current_ds) = err;
+
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    <span class="keyword">end</span>
+    fprintf(<span class="string">'K-nn classifier done (k=%d)\n'</span>, n_k);
+
+    disp(<span class="string">'----------------------------------------------------'</span>);
+<span class="keyword">end</span>
+
+disp(<span class="string">'Plotting'</span>);
+
+<span class="comment">% Graficaci&oacute;n</span>
+mean_error = zeros (total_classifiers,total_datasets);
+mean_time = zeros (total_classifiers,total_datasets);
+<span class="keyword">for</span> i_dataset = 1:total_datasets
+    <span class="keyword">for</span> i_algoritmo = 1:total_classifiers
+        mean_error(i_algoritmo,i_dataset) = mean(error_matrix(:,i_algoritmo,i_dataset));
+        mean_time(i_algoritmo,i_dataset) = mean(time_matrix(:,i_algoritmo,i_dataset));
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+
+figure
+bar3(mean_error');
+title(<span class="string">'Comparativa de error'</span>);
+zlabel(<span class="string">'Porcentaje error'</span>);
+set(gca, <span class="string">'XTickLabel'</span>, {<span class="string">'Bayesian'</span>,<span class="string">'Euclidean'</span>,<span class="string">'Mahalanobis'</span>,<span class="string">'NaiveBayes'</span>,<span class="string">'Knn (k=1)'</span>,<span class="string">'Knn (k=5)'</span>,<span class="string">'Knn (k=9)'</span>})
+legend(<span class="string">'Bayesian'</span>,<span class="string">'Euclidean'</span>,<span class="string">'Mahalanobis'</span>,<span class="string">'NaiveBayes'</span>,<span class="string">'Knn (k=1)'</span>,<span class="string">'Knn (k=5)'</span>,<span class="string">'Knn (k=9)'</span>)
+set(gca, <span class="string">'YTickLabel'</span>, datasetFile.F);
+
+figure
+bar3(mean_time');
+title(<span class="string">'Comparativa de tiempos'</span>);
+zlabel(<span class="string">'Segundos'</span>);
+set(gca, <span class="string">'XTickLabel'</span>, {<span class="string">'Bayesian'</span>,<span class="string">'Euclidean'</span>,<span class="string">'Mahalanobis'</span>,<span class="string">'NaiveBayes'</span>,<span class="string">'Knn (k=1)'</span>,<span class="string">'Knn (k=5)'</span>,<span class="string">'Knn (k=9)'</span>})
+legend(<span class="string">'Bayesian'</span>,<span class="string">'Euclidean'</span>,<span class="string">'Mahalanobis'</span>,<span class="string">'NaiveBayes'</span>,<span class="string">'Knn (k=1)'</span>,<span class="string">'Knn (k=5)'</span>,<span class="string">'Knn (k=9)'</span>)
+set(gca, <span class="string">'YTickLabel'</span>, datasetFile.F);
+</pre><pre class="codeoutput error">Error using load
+Unable to read file 'dataset\handwittern0to9.mat': no such file or directory.
+
+Error in launcher (line 13)
+datasetFile = load('dataset\handwittern0to9.mat');
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%=========================================================
+%%  Launcher!
+% Materia: Reconocimiento de patrones
+% Nombre: Rafael Pérez Torres
+% Fecha: 17-marzo-2014
+% Tarea No.: 02
+% Clase: 005
+% Prepara y lanza la ejecución de cada algoritmo por cada uno de los
+% datasets
+%%=========================================================
+
+% Carga del archivo global
+datasetFile = load('dataset\handwittern0to9.mat');
+
+% Identificación de características del archivo
+labels = datasetFile.Y;
+total_datasets = length(datasetFile.X);
+
+% Parámetros de la ejecución
+total_classifiers = 7; % 5 + 2 variantes knn
+runs = 31;
+
+% placeholders de los errores y tiempos de ejecución, hipermatrices
+error_matrix = zeros(runs, total_classifiers, total_datasets);
+time_matrix = zeros(runs, total_classifiers, total_datasets);
+
+% Por cada dataset
+for current_ds=1:total_datasets
+    fprintf('Evaluating dataset %s\n', datasetFile.F{current_ds});
+    dataset = datasetFile.X{current_ds};
+    
+    % Por cada algoritmo
+    
+    % Clasificador 1.
+    % Caso general, clasificador bayesiano
+    disp('Starting Bayesian classifier');
+    current_classifier = 1;
+    for current_iter= 1:runs
+        error_bayes = 0;
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [mu_wi,S_wi,P_wi] = trainBayes(Xtr, Ytr);
+        [YpredBayesian, err] = classifyBayes(Xtt, Ytt, mu_wi, S_wi, P_wi);
+        
+        error_bayes = error_bayes + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_bayes;
+        
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    disp('Bayesian classifier done');
+    
+    % Clasificador 2
+    % Caso 1, clasificador de distancia euclideana
+    disp('Starting Euclidean classifier');
+    current_classifier = 2;
+    for current_iter= 1:runs
+        error_euclidean = 0;
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [mu_wi,S_wi,P_wi] = trainBayes(Xtr, Ytr);
+        
+        [YpredEuclidean, err] = classifyEuclidean(Xtt, Ytt, mu_wi);
+        
+        error_euclidean = error_euclidean + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_euclidean;
+        
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    disp('Euclidean classifier done');
+    
+    % Clasificador 3
+    % Caso 3, clasificador de distancia Mahalanobis
+    disp('Starting Mahalanobis classifier');
+    current_classifier = 3;
+    for current_iter= 1:runs
+        error_mahalanobis = 0;
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [mu_wi,S_wi,P_wi] = trainBayes(Xtr, Ytr);
+        
+        [YpredMahalanobis, err] = classifyMahalanobis(Xtt, Ytt, mu_wi, S_wi);
+        
+        error_mahalanobis= error_mahalanobis + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_mahalanobis;
+        
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    disp('Mahalanobis classifier done');
+    
+    % Clasificador 4
+    % Clasificador Naive Bayes
+    disp('Starting Naïve Bayes classifier');
+    current_classifier = 4;
+    for current_iter= 1:runs
+        error_nb = 0;
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [nv_mu_wi, nv_var_wi, nv_P_wi] = trainNaiveBayes(Xtr, Ytr);
+        [YpredNaiveBayes, err] = classifyNaiveBayes(Xtt,Ytt, nv_mu_wi, nv_var_wi, nv_P_wi);
+        error_nb = error_nb + err;
+        error_matrix(current_iter, current_classifier, current_ds) = error_nb;
+        
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    disp('Naïve Bayes classifier done');
+    
+    % Clasificador 5
+    % Clasificador 1-NN
+    n_k = 1;
+    fprintf('Starting K-nn classifier (k=%d)\n', n_k);
+    current_classifier = 5;
+    for current_iter= 1:runs
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [YpredKnn, err] =  knn(n_k, Xtr, Ytr, Xtt, Ytt);
+        error_matrix(current_iter, current_classifier, current_ds) = err;
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    fprintf('K-nn classifier done (k=%d)\n', n_k);
+    
+    % Clasificador 6
+    % Clasificador 5-NN
+    n_k = 5;
+    fprintf('Starting K-nn classifier (k=%d)\n', n_k);
+    current_classifier = 6;
+    for current_iter= 1:runs
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [YpredKnn, err] =  knn(n_k, Xtr, Ytr, Xtt, Ytt);
+        error_matrix(current_iter, current_classifier, current_ds) = err;
+        
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    fprintf('K-nn classifier done (k=%d)\n', n_k);
+    
+    % Clasificador 6
+    % Clasificador 9-NN
+    n_k = 9;
+    fprintf('Starting K-nn classifier (k=%d)\n', n_k);
+    current_classifier = 7;
+    for current_iter= 1:runs
+        tic;
+        
+        [Xtr, Ytr, Xtt, Ytt] = splitDataset(dataset, labels, 0.3);
+        
+        [YpredKnn, err] =  knn(n_k, Xtr, Ytr, Xtt, Ytt);
+        error_matrix(current_iter, current_classifier, current_ds) = err;
+        
+        elapsed_time = toc;
+        time_matrix(current_iter, current_classifier, current_ds) = elapsed_time;
+    end
+    fprintf('K-nn classifier done (k=%d)\n', n_k);
+    
+    disp('REPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASHREPLACE_WITH_DASH_DASH');
+end
+
+disp('Plotting');
+
+% Graficación
+mean_error = zeros (total_classifiers,total_datasets);
+mean_time = zeros (total_classifiers,total_datasets);
+for i_dataset = 1:total_datasets
+    for i_algoritmo = 1:total_classifiers
+        mean_error(i_algoritmo,i_dataset) = mean(error_matrix(:,i_algoritmo,i_dataset));
+        mean_time(i_algoritmo,i_dataset) = mean(time_matrix(:,i_algoritmo,i_dataset));
+    end
+end
+
+figure
+bar3(mean_error');
+title('Comparativa de error');
+zlabel('Porcentaje error');
+set(gca, 'XTickLabel', {'Bayesian','Euclidean','Mahalanobis','NaiveBayes','Knn (k=1)','Knn (k=5)','Knn (k=9)'})
+legend('Bayesian','Euclidean','Mahalanobis','NaiveBayes','Knn (k=1)','Knn (k=5)','Knn (k=9)')
+set(gca, 'YTickLabel', datasetFile.F);
+
+figure
+bar3(mean_time');
+title('Comparativa de tiempos');
+zlabel('Segundos');
+set(gca, 'XTickLabel', {'Bayesian','Euclidean','Mahalanobis','NaiveBayes','Knn (k=1)','Knn (k=5)','Knn (k=9)'})
+legend('Bayesian','Euclidean','Mahalanobis','NaiveBayes','Knn (k=1)','Knn (k=5)','Knn (k=9)')
+set(gca, 'YTickLabel', datasetFile.F);
+##### SOURCE END #####
+--></body></html>

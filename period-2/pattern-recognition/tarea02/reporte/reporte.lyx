@@ -1,0 +1,1131 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\input{spanishAlgorithmic}
+
+\usepackage{verbatim}
+\usepackage{mathpazo}
+\usepackage{blindtext}
+
+\usepackage{booktabs}
+
+\usepackage{numprint}
+\npdecimalsign{.}
+\nprounddigits{2}
+
+% horizontal margins: 1.0 + 6.5 + 1.0 = 8.5
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+% vertical margins: 1.0 + 9.0 + 1.0 = 11.0
+\setlength{\topmargin}{0.0in}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{13pt}
+\setlength{\textheight}{625pt}
+\setlength{\footskip}{24pt}
+
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\floatpagefraction}{0.90}
+\renewcommand{\baselinestretch}{1.2}
+\date{}
+\end_preamble
+\options 12pt
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish-mexico
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+huge{LTI Cinvestav}
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[scale=0.08]{imagenes/cinvestav2.jpg}
+\backslash
+
+\backslash
+[1pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+large{
+\backslash
+textbf{Comparación de clasificadores probabilísticos}}
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Reconocimiento de patrones}
+\backslash
+
+\backslash
+[6pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+Profesor: Dr.
+ Wilfrido Gómez Flores 
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+Estudiante: Rafael Pérez Torres
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introducción
+\end_layout
+
+\begin_layout Standard
+Los conceptos probabilísticos proveen de elementos suficientes para realizar
+ el reconocimiento y clasificación de entidades.
+ Distintos enfoques y variantes que dependen de las características de los
+ datos pueden ser utilizados para la tarea de clasificación.
+\end_layout
+
+\begin_layout Standard
+El presente documento describe de forma breve la implementación y análisis
+ de resultados obtenidos por distintas técnicas probabilísticas al intentar
+ clasificar un dataset del mundo real.
+\end_layout
+
+\begin_layout Section
+Marco teórico
+\end_layout
+
+\begin_layout Standard
+Los clasificadores basados en la teoría de Bayes funcionan utilizando una
+ estimación de los datos obtenidos del mundo real.
+ Como ha sido analizado, dicha estimación comúnmente es realizada mediante
+ la 
+\emph on
+PDF
+\emph default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+PDF
+\emph default
+, función de densidad de probabilidad, por sus siglas en inglés.
+\end_layout
+
+\end_inset
+
+ gaussiana.
+\end_layout
+
+\begin_layout Standard
+La 
+\emph on
+PDF
+\emph default
+ gaussiana puede ser definida a grandes rasgos si se conoce la media de
+ los datos involucrados en cada una de las clases, así como las matrices
+ de covarianza de los atributos de aquellas instancias pertenecientes a
+ cada una de las clases.
+\end_layout
+
+\begin_layout Standard
+En ocasiones es posible tener, de antemano o a través de algún proceso de
+ análisis, cierto conocimiento acerca de la naturaleza de los datos.
+ Gracias a algunas características de esta información, los valores de los
+ parámetros de la 
+\emph on
+PDF
+\emph default
+ gaussiana pueden ser utilizados para realizar una simplificación o especializac
+ión en los cálculos.
+ En particular, las combinaciones de los valores de las matrices de covarianza
+ de cada una de las clases permite identificar algunos casos específicos
+ en los clasificadores bayesianos.
+\end_layout
+
+\begin_layout Subsection
+Caso 1: 
+\begin_inset Formula $\Sigma_{i}=\sigma^{2}I$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Si las características son estadísticamente independientes y además se observa
+ que la varianza de los atributos es la misma para todas las clases, entonces
+ es posible realizar una simplificación.
+ 
+\end_layout
+
+\begin_layout Standard
+Si además de lo anterior, las clases involucradas son equiprobables y el
+ valor de la varianza es 1 (
+\begin_inset Formula $\sigma^{2}=1$
+\end_inset
+
+) entonces se obtiene el clasificador de distancia Euclidiana: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{i}(x)=-\frac{1}{2}(x-\mu_{i})^{T}(x-\mu_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Caso 2: 
+\begin_inset Formula $\Sigma_{i}=\Sigma$
+\end_inset
+
+ (diagonal)
+\end_layout
+
+\begin_layout Standard
+Para este caso, las clases presentan la misma covarianza aunque sus atributos
+ definen distintas varianzas.
+ Si se asume que las clases son equiprobables, entonces es posible definir
+ el clasificador de distancia Mahalanobis:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{i}(x)=-\frac{1}{2}(x-\mu_{i})^{T}\Sigma_{i}^{-1}(x-\mu_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Caso 3: 
+\begin_inset Formula $\Sigma_{i}=\Sigma$
+\end_inset
+
+ (no diagonal)
+\end_layout
+
+\begin_layout Standard
+Este caso define las mismas características que el anterior, sin embargo
+ la matriz de covarianza no es diagonal.
+ Por esta razón, 
+\begin_inset Formula $\Sigma^{-1}$
+\end_inset
+
+ será un factor de rotación y alargamiento en el espacio de características.
+\end_layout
+
+\begin_layout Subsection
+Caso 4: 
+\begin_inset Formula $\Sigma_{i}=\sigma_{i}^{2}I$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+En este caso, cada una de las clases define una matriz de covarianza diferente,
+ pero que es proporcional a la matriz identidad.
+ El valor del discriminante puede ser calculado a través de:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{i}(x)=-\frac{1}{2}(x-\mu_{i})^{T}\sigma_{i}^{-2}(x-\mu_{i})-\frac{d}{2}ln\mid\sigma_{i}^{2}\mid+lnP(w_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Caso 5: 
+\begin_inset Formula $\Sigma_{i}\neq\Sigma_{j}$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+Para este caso no existe coincidencia alguna entre los valores de las matrices
+ de covarianza.
+ Este representa el caso más general del clasificador bayesiano, cuyo valor
+ de discriminante es definido como:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+g_{i}(x)=-\frac{1}{2}(x-\mu_{i})^{T}\Sigma_{i}^{-1}(x-\mu_{i})-\frac{1}{2}ln\mid\Sigma_{i}\mid+lnP(w_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Clasificador Naïve Bayes
+\end_layout
+
+\begin_layout Standard
+El cálculo de las matrices de covarianza para conjuntos de datos de alta
+ dimensionalidad resulta temporal y computacionalmente costoso.
+ Una consideración un tanto ingenua podría ser el afirmar que los valores
+ de los datos no guardan correlación alguna entre sí, evitando realizar
+ el cálculo de esta matriz.
+\end_layout
+
+\begin_layout Standard
+Así, la pertenencia hacia una clase puede obtenida a través de:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\stackrel[j=1]{l}{\prod}P(x_{j}\mid w_{i})=\stackrel[j=1]{l}{\prod}\frac{1}{\sqrt{2π\sigma_{ij}^{2}}}\exp(-\frac{(x_{j}-\mu_{ij})}{2π\sigma})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finalmente, la regla 
+\emph on
+MAP
+\emph default
+ queda definida como:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula $\hat{\omega}_{ML}(x)=\arg\overset{\max}{w_{i}\epsilon\text{Ω}}P(w_{i})\stackrel[j=1]{l}{\prod}P(x_{j}\mid w_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Clasificador 
+\emph on
+k-nn
+\emph default
+ (k - nearest neighbours)
+\end_layout
+
+\begin_layout Standard
+Existe otra vertiente de clasificadores que también intentan asignar la
+ clase más probable a un patrón pero sin utilizar elementos de la teoría
+ de Bayes.
+\end_layout
+
+\begin_layout Standard
+El clasificador 
+\emph on
+k-nn
+\emph default
+ (k - nearest neighbours, k - vecinos más cercanos) asigna la clase a un
+ patrón, de acuerdo a la clase más común descrita por los 
+\begin_inset Formula $k$
+\end_inset
+
+ elementos más cercanos a éste.
+\end_layout
+
+\begin_layout Standard
+Básicamente, el algoritmo 
+\emph on
+k-nn
+\emph default
+ dado un patrón, realiza las siguientes etapas:
+\end_layout
+
+\begin_layout Enumerate
+Obtener la distancia hacia todos los puntos existentes (dichos puntos ya
+ cuentan con las etiquetas de clase).
+\end_layout
+
+\begin_layout Enumerate
+Elegir los 
+\begin_inset Formula $k$
+\end_inset
+
+ elementos más cercanos.
+\end_layout
+
+\begin_layout Enumerate
+Asignar al patrón la clase que más frecuencia tenga entre los 
+\begin_inset Formula $k$
+\end_inset
+
+ elementos más cercanos.
+\end_layout
+
+\begin_layout Standard
+Naturalmente, un factor importante en este algoritmo es la métrica para
+ estimar la distancia entre los puntos, la cual afectará la calidad de los
+ resultados obtenidos.
+\end_layout
+
+\begin_layout Section
+Metodología
+\end_layout
+
+\begin_layout Standard
+Cada uno de los algoritmos fue implementado de forma individual en Matlab
+ con la intención de clasificar los elementos de un conjunto de 7 datasets,
+ pertenecientes a características de números escritos de forma manual.
+\end_layout
+
+\begin_layout Standard
+Se realizó la división de cada dataset en 70% para entrenamiento y 30% para
+ prueba, ejecutando 31 veces cada clasificador por cada uno de los datasets.
+\end_layout
+
+\begin_layout Standard
+Para la familia de algoritmos bayesianos 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+caso general, clasificador Euclidiano y clasificador Mahalanobis
+ (caso 3)
+\lang spanish-mexico
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+--
+\end_layout
+
+\end_inset
+
+ se utilizó el mismo procedimiento de entrenamiento, mientras que para el
+ clasificador Naïve Bayes se optó por realizar un entrenamiento distinto
+ a nivel de código, ya que no requiere calcular las matrices de covarianza
+ por cada una de las clases.
+ Para el algoritmo 
+\emph on
+k-nn
+\emph default
+ que no requiere entrenamiento, se decidió que el 70% de datos de entrenamiento
+ utilizado por los otros algoritmos fuera empleado para definir los 
+\emph on
+vecinos
+\emph default
+ que existen inicialmente, tomando el 30% restante para realizar su clasificació
+n.
+\end_layout
+
+\begin_layout Standard
+Los clasificadores Euclidiano y Mahalanobis fueron implementados generalizando
+ los cálculos a través de las fórmulas equivalentes a las distancias Euclidiana
+ 
+\begin_inset Formula $\left(\sqrt{\stackrel[i=1]{n}{\sum}(p_{i}-q_{i})^{2}}\right)$
+\end_inset
+
+ y Mahalanobis 
+\begin_inset Formula $\left(\sqrt{\stackrel[i=1]{n}{\sum}(p_{i}-q_{i})^{T}\varSigma^{-1}(p_{i}-q_{i})}\right)$
+\end_inset
+
+ , auxiliándose de los datos obtenidos durante la etapa de entrenamiento.
+\end_layout
+
+\begin_layout Standard
+Adicionalmente, es importante señalar que se realizó una corrección especial
+ (denominada corrección de Laplace) para el entrenamiento del clasificador
+ Naïve Bayes, la cual consiste básicamente en sumar una cantidad pequeña
+ a las varianzas y medias para evitar valores de 
+\begin_inset Formula $0$
+\end_inset
+
+ que nulifiquen a las probabilidades calculadas durante la etapa de clasificació
+n.
+\end_layout
+
+\begin_layout Section
+Resultados 
+\end_layout
+
+\begin_layout Standard
+Como ha sido descrito, se realizó la ejecución de cada algoritmo sobre cada
+ uno de los datasets 31 veces.
+ Se midió el tiempo de procesamiento así como el porcentaje de errores obtenido
+ durante cada ejecución.
+ El equipo de cómputo utilizado fue una laptop con procesador Intel Core
+ i7 a 2.0 GHz, con 6 GB de memoria 
+\emph on
+RAM.
+\end_layout
+
+\begin_layout Standard
+La Tabla 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:tiempos"
+
+\end_inset
+
+ muestra las mediciones de tiempo obtenidas durante la ejecución de los
+ algoritmos, mientras que la Tabla 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:errores"
+
+\end_inset
+
+ muestra lo propio para el porcentaje de errores.
+\end_layout
+
+\begin_layout Standard
+Para la métrica de tiempo de ejecución, mostrada gráficamente en la Figura
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:grafica-tiempos"
+
+\end_inset
+
+, es evidente que los clasificadores que realizan operaciones complejas
+ con la matriz de covarianza, como el clasificador Bayesiano y el clasificador
+ Mahalanobis (caso 3) obtienen valores muy altos, lo que hasta cierto punto
+ es una situación predecible.
+ Por otro lado, las ejecuciones del algoritmo 
+\emph on
+k-nn
+\emph default
+ con valores de 
+\begin_inset Formula $k=\text{\{1,5,9\}}$
+\end_inset
+
+ también observan altos valores, debido al cálculo que se realiza para obtener
+ la distancia entre cada punto de prueba y todos los puntos de entrenamiento.
+ Resulta evidente observar que el clasificador Euclideano y el clasificador
+ Naïve Bayes obtienen los menores tiempos de procesamiento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{@{}clllllll@{}} 
+\backslash
+toprule 
+\backslash
+textbf{}                          & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Bayesiano}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Euclidiano}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Mahalanobis}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Naïve Bayes}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{k-nn (k=1)}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{k-nn (k=5)}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{k-nn (k=9)}} 
+\backslash
+
+\backslash
+ 
+\backslash
+midrule 
+\backslash
+textbf{morphological features}     & 0.093                              
+    & 0.174                                   & 0.209                    
+                & 0.249                                    & 0.867       
+                            & 1.350                                   & 11.683
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{Zernike moments}            & 0.019                              
+    & 0.037                                   & 0.040                    
+                & 0.039                                    & 0.084       
+                            & 0.097                                   & 0.268
+                                   
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{Karhunen-Love coefficients} & 0.036                              
+    & 0.108                                   & 0.138                    
+                & 0.173                                    & 0.788       
+                            & 1.225                                   & 11.059
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{Fourier coefficients}       & 0.039                              
+    & 0.098                                   & 0.123                    
+                & 0.134                                    & 0.347       
+                            & 0.380                                   & 0.974
+                                   
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{profile correlations}       & 0.129                              
+    & 0.327                                   & 0.411                    
+                & 0.481                                    & 3.608       
+                            & 4.206                                   & 12.720
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{pixel averages}             & 0.132                              
+    & 0.332                                   & 0.417                    
+                & 0.488                                    & 3.757       
+                            & 4.297                                   & 13.123
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{todas}                      & 0.132                              
+    & 0.332                                   & 0.416                    
+                & 0.489                                    & 3.910       
+                            & 4.302                                   & 13.262
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resumen de los tiempos de ejecución obtenidos
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:tiempos"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+scriptsize
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{@{}clllllll@{}} 
+\backslash
+toprule                                     & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Bayesiano}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Euclidiano}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Mahalanobis}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{Naïve Bayes}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{k-nn (k=1)}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{k-nn (k=5)}} & 
+\backslash
+multicolumn{1}{c}{
+\backslash
+textbf{k-nn (k=9)}} 
+\backslash
+
+\backslash
+ 
+\backslash
+midrule 
+\backslash
+textbf{morphological features}     & 86.613                             
+    & 19.661                                  & 4.027                    
+                & 19.833                                   & 15.242      
+                            & 78.962                                  & 15.306
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{Zernike moments}            & 54.253                             
+    & 28.468                                  & 8.538                    
+                & 22.204                                   & 17.651      
+                            & 8.231                                   & 26.887
+                                  
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{Karhunen-Love coefficients} & 27.371                             
+    & 19.935                                  & 4.253                    
+                & 22.349                                   & 5.258       
+                            & 9.387                                   & 2.672
+                                   
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{Fourier coefficients}       & 30.048                             
+    & 25.688                                  & 6.608                    
+                & 23.968                                   & 90         
+                             & 7.677                                   &
+ 90                                      
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{profile correlations}       & 23.756                             
+    & 8.449                                   & 1.247                    
+                & 7.412                                    & 2.505       
+                            & 1.118                                   & 2.230
+                                   
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{pixel averages}             & 23.074                             
+    & 7.585                                   & 1.212                    
+                & 6.885                                    & 2.357       
+                            & 1.060                                   & 2.468
+                                   
+\backslash
+
+\backslash
+ 
+\backslash
+textbf{todas}                      & 22.684                             
+    & 7.399                                   & 1.336                    
+                & 6.922                                    & 2.691       
+                            & 1.138                                   & 3
+                                       
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resumen de los porcentajes de error obtenidos
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:errores"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/tiempos.eps
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gráfica de los tiempos de ejecución promedio, por dataset y clasificador
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:grafica-tiempos"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Por otro lado, la métrica de porcentaje de errores mostrada gráficamente
+ en la Figura 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:grafica-errores"
+
+\end_inset
+
+, revela que para la mayoría de los casos los clasificadores bayesianos
+ obtienen promedios de error superiores a los de la familia 
+\emph on
+k-nn
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Esto puede ser atribuible a las características del dataset y al hecho de
+ que, por naturaleza, la clasificación de un dígito manuscrito obedece más
+ a la idea de asignarle la clase a la que se parezca más y no a razones
+ probabilísticas.
+\end_layout
+
+\begin_layout Standard
+Para un dataset con características como el analizado, y en la ausencia
+ de restricciones temporales, los clasificadores de la familia 
+\emph on
+k-nn
+\emph default
+ se posicionan como la mejor opción.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/errores.eps
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gráfica de los porcentajes de error obtenidos, por dataset y clasificador
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:grafica-errores"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusiones
+\end_layout
+
+\begin_layout Standard
+Se ha presentado un análisis de los resultados de tiempo de ejecución y
+ de porcentaje de errores obtenidos por los clasificadores Bayesiano, Euclidiano
+, Mahalanobis, Naïve Bayes y 
+\emph on
+k-nn
+\emph default
+ al procesar un dataset referente a características de dígitos manuscritos.
+\end_layout
+
+\begin_layout Standard
+La familia de los clasificadores 
+\emph on
+k-nn
+\emph default
+ obtienen los mejores resultados a costa de un tiempo de ejecución alto,
+ aunque posiblemente mejorable tras refactorización u optimización del código
+ Matlab creado.
+\end_layout
+
+\begin_layout Standard
+Adicionalmente, esta actividad ha permitido conocer las diferencias en los
+ resultados obtenidos por las distintas variantes de los clasificadores
+ bayesianos, retornando a la premisa inicial de que la determinación de
+ un 
+\emph on
+buen
+\emph default
+ clasificador depende de la naturaleza en las características de los datos
+ así como de la información que se desea obtener.
+\end_layout
+
+\end_body
+\end_document

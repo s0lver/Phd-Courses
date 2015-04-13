@@ -1,0 +1,2063 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\begin_preamble
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\input{spanishAlgorithmic}
+
+\usepackage{verbatim}
+\usepackage{mathpazo}
+\usepackage{blindtext}
+
+\usepackage{booktabs}
+
+% horizontal margins: 1.0 + 6.5 + 1.0 = 8.5
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+% vertical margins: 1.0 + 9.0 + 1.0 = 11.0
+\setlength{\topmargin}{0.0in}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{13pt}
+\setlength{\textheight}{625pt}
+\setlength{\footskip}{24pt}
+
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\floatpagefraction}{0.90}
+\renewcommand{\baselinestretch}{1.2}
+\date{}
+\end_preamble
+\options 12pt
+\use_default_options true
+\maintain_unincluded_children false
+\language spanish-mexico
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language french
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+huge{LTI Cinvestav}
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+includegraphics[scale=0.08]{imagenes/cinvestav2.jpg}
+\backslash
+
+\backslash
+[1pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+large{
+\backslash
+textbf{Clasificador bayesiano}}
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Reconocimiento de patrones}
+\backslash
+
+\backslash
+[6pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+Profesor: Dr.
+ Wilfrido Gómez Flores 
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\begin_layout Plain Layout
+
+Estudiante: Rafael Pérez Torres
+\backslash
+
+\backslash
+[16pt]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introducción
+\end_layout
+
+\begin_layout Standard
+El problema de la clasificación supervisada consiste en asignar una clase
+ a un patrón anónimo, basándose en información obtenida previamente a través
+ del estudio de características presentes en patrones que se sabe pertenecen
+ a alguna clase en particular.
+ Existen diferentes familias de clasificadores basándose en el tipo de enfoque
+ que siguen para estudiar a los datos y realizar la clasificación.
+\end_layout
+
+\begin_layout Standard
+La familia de clasificadores que se basan en aspectos probabilísticos tienen
+ su origen en el teorema de Bayes, enunciado por el matemático Thomas Bayes
+ en 1763, el cual vincula la probabilidad de que suceda un evento 
+\emph on
+A
+\emph default
+ dado otro evento 
+\emph on
+B
+\emph default
+.
+ A partir de este sencillo concepto, se construye una serie de elementos
+ que permiten obtener la probabilidad de que un nuevo objeto pertenezca
+ a alguna de las clases existentes en nuestro modelo.
+\end_layout
+
+\begin_layout Standard
+El presente documento muestra de forma breve la descripción de la implementación
+ y prueba del clasificador Bayes, empleando la 
+\emph on
+PDF
+\emph default
+ gaussiana y utilizando como criterio de decisión la regla 
+\emph on
+MAP
+\emph default
+.
+\end_layout
+
+\begin_layout Section
+Marco teórico
+\end_layout
+
+\begin_layout Standard
+En 1763 Thomas Bayes enuncia su
+\emph on
+ teorema de Bayes
+\emph default
+ que vincula la probabilidad de que suceda un evento 
+\begin_inset Formula $A$
+\end_inset
+
+ dado 
+\begin_inset Formula $B$
+\end_inset
+
+ con la probabilidad de 
+\begin_inset Formula $B$
+\end_inset
+
+ dado 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ Si se sabe que los elementos de un conjunto de sucesos
+\begin_inset Formula $\Omega=\left\{ A_{1},A_{2},\cdots,A_{n}\right\} $
+\end_inset
+
+tienen una probabilidad mayor a cero y son mutuamente excluyentes, y además
+ se conoce de un suceso 
+\begin_inset Formula $B$
+\end_inset
+
+ todas las probabilidades condicionales 
+\begin_inset Formula $P\left(B\mid A_{i}\right)$
+\end_inset
+
+, entonces la probabilidad de que alguno de los eventos 
+\begin_inset Formula $A_{i}$
+\end_inset
+
+suceda dado 
+\begin_inset Formula $B$
+\end_inset
+
+ puede ser determinada utilizando la regla de Bayes:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+P\left(A_{i}\mid B\right)=\frac{P\left(B\mid A_{i}\right)P(A_{i})}{P(B)}\label{eq:prob-condicionales}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+donde 
+\begin_inset Formula $P(A_{i})$
+\end_inset
+
+ son todas las probabilidades 
+\emph on
+a priori
+\emph default
+, 
+\begin_inset Formula $P\left(B\mid A_{i}\right)$
+\end_inset
+
+es la probabilidad de 
+\begin_inset Formula $B$
+\end_inset
+
+ en la hipótesis 
+\begin_inset Formula $A_{i}$
+\end_inset
+
+ y 
+\begin_inset Formula $P\left(A_{i}\mid B\right)$
+\end_inset
+
+ son las probabilidades 
+\emph on
+a posteriori
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Este enfoque puede ser trasladado al contexto de la clasificación.
+ Suponiendo que se puede clasificar en 
+\begin_inset Formula $c$
+\end_inset
+
+ posibles clases 
+\begin_inset Formula $\omega_{1},\omega_{2},\ldots,\omega_{c}$
+\end_inset
+
+a un patrón desconocido que es representado por un vector de características
+ 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+, entonces se pueden construir las probabilidades condicionales de que el
+ patrón (
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+) pertenezca a algunas de las clases (
+\begin_inset Formula $\omega_{1},\omega_{2},\ldots,\omega_{c}$
+\end_inset
+
+) mediante:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P\left(\omega_{i}\mid x\right),\:\forall i=1,2,\ldots,c
+\]
+
+\end_inset
+
+y calcularse tal como se indica en la Ecuación 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:prob-condicionales"
+
+\end_inset
+
+.
+ Dado que se está migrando la regla de Bayes al contexto de la clasificación,
+ el valor de las probabilidades condicionales será representado por el valor
+ obtenido por alguna función que represente la probabilidad de las clases.
+\end_layout
+
+\begin_layout Standard
+Con el fin de encontrar aproximaciones a las probabilidades descritas por
+ los datos del mundo real y alcanzar la 
+\emph on
+máxima verosimilitud
+\emph default
+, se utiliza una 
+\emph on
+PDF
+\emph default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\emph on
+PDF
+\emph default
+, función de densidad de probabilidad, por sus siglas en inglés.
+\end_layout
+
+\end_inset
+
+ que permita modelarlos y representarlos.
+ En la práctica, la 
+\emph on
+PDF
+\emph default
+ gaussiana (o función de densidad normal) es la más utilizada por su similitud
+ y debido a que sigue al 
+\emph on
+TLC
+\emph default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+TLC
+\emph default
+, teorema del límite central
+\end_layout
+
+\end_inset
+
+.
+ Este teorema permite describir las características de la población de medias
+ creadas a partir de una cantidad infinita de muestras aleatorias de tamaño
+ 
+\begin_inset Formula $N$
+\end_inset
+
+ tomadas de una población padre.
+\end_layout
+
+\begin_layout Standard
+La 
+\emph on
+PDF 
+\emph default
+gaussiana para 
+\emph on
+l
+\emph default
+-dimensiones puede ser calculada mediante:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+P\left(\mathbf{x}\mid\omega_{i}\right)=\frac{1}{(2\pi)^{l/2}\left|\Sigma_{i}\right|^{1/2}}\exp\left(-\frac{1}{2}(\mathbf{x}-\mu_{i})^{T}\varSigma_{i}^{-1}\left(\mathbf{x}-\mu_{i}\right)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+donde 
+\begin_inset Formula $\mu_{i}=E[x]$
+\end_inset
+
+ es el valor medio de la clase 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+, 
+\begin_inset Formula $\Sigma_{i}$
+\end_inset
+
+ es la matriz de covarianza de tamaño 
+\begin_inset Formula $lxl$
+\end_inset
+
+, y 
+\begin_inset Formula $\left|\Sigma_{i}\right|$
+\end_inset
+
+y 
+\begin_inset Formula $\varSigma_{i}^{-1}$
+\end_inset
+
+ denotan el determinante e inversa de 
+\begin_inset Formula $\Sigma_{i}$
+\end_inset
+
+, respectivamente.
+\end_layout
+
+\begin_layout Standard
+A partir del teorema de Bayes y de la caracterización de las probabilidades
+ a través de la PDF gaussiana, es posible aplicar dos reglas de decisión
+ al clasificar patrones:
+\end_layout
+
+\begin_layout Itemize
+Máxima verosimilitud (
+\emph on
+ML
+\emph default
+): en la que se asume que todas las hipótesis (clases) son 
+\emph on
+equiprobables
+\emph default
+, por lo que solamente se requiere conocer 
+\begin_inset Formula $P\left(\mathbf{x}\mid\omega_{i}\right)$
+\end_inset
+
+, es decir la probabilidad de que aparezca el dato 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ cuando se cumple la clase 
+\begin_inset Formula $\omega_{i}$
+\end_inset
+
+.
+ Dadas todas las probabilidades, se elige la mayor como la clase a la que
+ el patrón pertenece:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{\omega}_{ML}(x)=\arg\stackrel[\omega_{i}\epsilon\varOmega]{}{\max}P\left(\mathbf{x}\mid\omega_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Máximo a posteriori (
+\emph on
+MAP
+\emph default
+): en la probabilidad 
+\begin_inset Formula $P\left(\mathbf{x}\mid\omega_{i}\right)$
+\end_inset
+
+es ponderada con la probabilidad 
+\emph on
+a priori
+\emph default
+ de cada clase, 
+\begin_inset Formula $P\left(\omega_{i}\right)$
+\end_inset
+
+, dando mayor peso a las clases más probables:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{\omega}_{ML}(x)=\arg\stackrel[\omega_{i}\epsilon\varOmega]{}{\max}P\left(\mathbf{x}\mid\omega_{i}\right)P\left(\omega_{i}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+La siguiente sección describe la metodología seguida para la implementación
+ del clasificador Bayes en 
+\emph on
+Matlab
+\emph default
+, utilizando la 
+\emph on
+PDF
+\emph default
+ gaussiana y la regla 
+\emph on
+MAP
+\emph default
+.
+\end_layout
+
+\begin_layout Section
+Metodología 
+\end_layout
+
+\begin_layout Standard
+La actividad fue dividida en tres módulos, dos de ellos principales, enfocados
+ en las tareas de entrenamiento y clasificación, y uno complementario dedicado
+ a la visualización de los resultados de la clasificación.
+\end_layout
+
+\begin_layout Standard
+El flujo de tareas (indicado en la Figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flujo-de-actividades"
+
+\end_inset
+
+) consistió en las siguientes etapas:
+\end_layout
+
+\begin_layout Enumerate
+Selección del dataset con los datos a procesar.
+ El dataset incluye las clases 
+\emph on
+reales
+\emph default
+ de cada instancia.
+\end_layout
+
+\begin_layout Enumerate
+División de los datos en dos grupos, uno de entrenamiento (70%) y uno de
+ prueba (30%).
+\end_layout
+
+\begin_layout Enumerate
+Ejecución del proceso de entrenamiento, otorgando como entrada la porción
+ del dataset destinada para ello.
+\end_layout
+
+\begin_layout Enumerate
+Ejecución del proceso de prueba, empleando la porción del dataset destinada
+ para ello.
+ Dentro de este proceso se puede identificar la tasa de errores generada
+ en la clasificación, gracias a la etiqueta 
+\emph on
+real
+\emph default
+ que existe en el dataset.
+\end_layout
+
+\begin_layout Enumerate
+Visualización de los resultados y la evaluación del clasificador utilizando
+ la tasa de errores.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/flujo-actividades.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Flujo de actividades
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flujo-de-actividades"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las siguientes subsecciones describen los procesos implementados para el
+ entrenamiento, clasificación y visualización de datos.
+\end_layout
+
+\begin_layout Subsection
+Entrenamiento
+\end_layout
+
+\begin_layout Standard
+La etapa de entrenamiento analiza el conjunto de datos y obtiene un modelo
+ o representación de los mismos para descubrir la probabilidad que tendrá
+ un nuevo patrón de pertenecer a las clases del dataset.
+ Recordando que el tipo de clasificación que se realiza es supervisada,
+ los datos de entrada para la etapa de entrenamiento deben incluir la etiqueta,
+ o 
+\emph on
+clase
+\emph default
+, a la que pertenece cada instancia o patrón.
+\end_layout
+
+\begin_layout Standard
+El Algoritmo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg:algoritmo-entrenamiento}
+\end_layout
+
+\end_inset
+
+ describe los pasos seguidos para la generación de los parámetros que describen
+ al modelo (dataset) y que son requeridos en la etapa de clasificación.
+ Los valores de estos parámetros describen a:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mu_{\omega_{i}}$
+\end_inset
+
+: Matriz de las medias de los atributos (dimensiones) para cada clase.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Sigma_{\omega_{i}}$
+\end_inset
+
+: Vector de matrices (
+\emph on
+hipermatriz
+\emph default
+) de covarianza para los atributos (dimensiones) de cada clase.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $P\left(\omega_{i}\right)$
+\end_inset
+
+: Vector con las probabilidades de cada clase.
+\end_layout
+
+\begin_layout Standard
+Este módulo únicamente recibe como argumento un conjunto de datos de entrenamien
+to con sus respectivas etiquetas
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+REQUIRE  $Xtr$, $Ytr$
+\end_layout
+
+\begin_layout Plain Layout
+
+%
+\backslash
+ENSURE $mu
+\backslash
+_wi$, $S
+\backslash
+_wi$, $P
+\backslash
+_wi$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE  Crear matriz Hessiana $H = Ytr_i,Ytr_j,K(Xtr_i,Xtr_j)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Encontrar 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Algoritmo de entrenamiento} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{alg:algoritmo-entrenamiento}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Clasificación
+\end_layout
+
+\begin_layout Standard
+Una vez que el modelo que describe a los datos ha sido generado, la etapa
+ de clasificación permite asignar una clase a un patrón anónimo que se desee
+ identificar.
+ Como se ha mencionado, los parámetros requeridos por la etapa de clasificación
+ son aquellos generados por la etapa de entrenamiento, en conjunto con los
+ datos de prueba que se desea clasificar.
+\end_layout
+
+\begin_layout Standard
+El Algoritmo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg:algoritmo-clasificacion}
+\end_layout
+
+\end_inset
+
+ describe los pasos seguidos para clasificar cada patrón y asignarle la
+ etiqueta de clase correspondiente.
+ Puede identificarse que en este proceso se evalúa la 
+\emph on
+PDF
+\emph default
+ gaussiana generada durante el entrenamiento y cómo se determina la asignación
+ de la clase a través de la regla 
+\emph on
+MAP
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+El proceso finaliza obteniendo un vector con las etiquetas que el clasificador
+ ha asignado, así como con un valor escalar que indica el porcentaje de
+ error generado.
+ Este porcentaje puede ser calculado gracias a que se cuenta con la etiqueta
+ (clase) 
+\emph on
+real
+\emph default
+ que cada patrón debería observar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+REQUIRE  $Xtt$, $Ytt$, $mu
+\backslash
+_wi$, $S
+\backslash
+_wi$, $P
+\backslash
+_wi$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ENSURE $Ypred$,$err$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+FOR{cada instancia $x
+\backslash
+_i$ en $Xtt$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Calcular la probabilidad de que pertenezca a cada clase:
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+FOR{cada clase $c
+\backslash
+_i$ en $P
+\backslash
+_wi$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Calcular el valor de la pdf gaussiana para esta clase, mediante:
+\backslash
+
+\backslash
+  $pdf = 
+\backslash
+frac{1}{(2
+\backslash
+pi)^{l/2}
+\backslash
+left|
+\backslash
+Sigma_{i}
+\backslash
+right|^{1/2}}
+\backslash
+exp
+\backslash
+left(-
+\backslash
+frac{1}{2}(
+\backslash
+mathbf{x}-
+\backslash
+mu_{i})^{T}
+\backslash
+varSigma_{i}^{-1}
+\backslash
+left(
+\backslash
+mathbf{x}-
+\backslash
+mu_{i}
+\backslash
+right)
+\backslash
+right)$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE $Probabilidad(c
+\backslash
+_i)$ = pdf $* P
+\backslash
+_wi$(c
+\backslash
+_i)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ENDFOR
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Elegir la clase con probabilidad más alta en el vector $Probabilidad$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Colocar la clase elegida en $Ypred$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ENDFOR
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Actualizar  $err$ con la discrepancia entre $Ypred$ y $Ytr$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Algoritmo de clasificación} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{alg:algoritmo-clasificacion}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Visualización de resultados
+\end_layout
+
+\begin_layout Standard
+Aunque las etapas principales y necesarias para el clasificador son el entrenami
+ento y la clasificación, resulta de gran utilidad el contar con una estrategia
+ para representar visualmente los datos y observar tendencias, outliers
+ e información adicional que los datos numéricos no pueden entregar de forma
+ directa.
+\end_layout
+
+\begin_layout Standard
+Se han utilizado las facilidades aportadas por Matlab para representar el
+ espacio de datos particionado en áreas según su clase, graficar los datos
+ originales y para ubicar los puntos ubicados de forma errónea por el clasificad
+or.
+ El Algoritmo
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg:algoritmo-visualizacion}
+\end_layout
+
+\end_inset
+
+ muestra de forma breve los pasos seguidos para realizar la visualización
+ de los datos.
+ La idea general consiste en recoger el resultado de una ejecución del clasifica
+dor y generar un set de puntos sintéticos dentro del rango de valores de
+ los datos clasificados.
+ Estos puntos sintéticos son también clasificados para recoger las etiquetas
+ asignadas por Bayes y con ellas 
+\emph on
+pintar 
+\emph default
+el fondo de la gráfica.
+ Finalmente, se realiza la graficación de los puntos y los errores.
+\end_layout
+
+\begin_layout Standard
+Adicionalmente, se ha generado también una gráfica con el porcentaje de
+ errores obtenido en cada iteración independiente, que por su simplicidad
+ no es descrita en este documento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithmic}[1] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+REQUIRE  $Xtt$,$Ytt$,$Ypred$,$mu_wi$,$S_wi$,$P_wi$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ENSURE Una gráfica con el espacio particionado
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE $rango_x$ = crear 100 puntos entre los valores min y max en X ($Xtt(1,:)$)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE $rango_y$ = crear 100 puntos entre los valores min y max en Y ($Xtt(2,:)$)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Crear una matriz $xy$ con los puntos sintéticos
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Cambiar la forma de $xy$ a vectores para ser clasificados por Bayes,
+ utilizando
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$labels$ = classifyBayes($xy$,$mu_wi$,$S_wi$,$P_wi$)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Cambiar la forma del vector de etiquetas $labels$ a matriz (reshape)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Escalar y mostrar la matriz como el fondo (regiones particionadas)
+ de la gráfica (imagesc)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Graficar puntos clasificados
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+STATE Graficar los errores (puntos mal clasificados) según la diferencia
+ entre $Ytt$ y $Ypred$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithmic} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Algoritmo de visualización} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{alg:algoritmo-visualizacion}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Resultados 
+\end_layout
+
+\begin_layout Standard
+Se ha ejecutado 31 veces el clasificador bayesiano para cada uno de los
+ datasets, obteniendo porcentajes de error menores al 12% a excepción del
+ dataset de 
+\family typewriter
+twospirals
+\family default
+.
+ En dicho dataset, al parecer el hecho de que los 
+\emph on
+envoltorios
+\emph default
+ de cada espiral se solapen hace que los valores en las matrices de medias
+ y covarianzas sean también solapados, provocando una separación lineal
+ del espacio de objetos.
+ Esto puede ser notado en la Figura
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resultados-twospirals"
+
+\end_inset
+
+ en la que la línea que separa a las clases parte de los valores mínimos
+ del atributo 1 y 2 de los objetos de la clase 1 hacia los valores máximos
+ del atributo 1 y 2 de los objetos de la clase 2.
+\end_layout
+
+\begin_layout Standard
+La Tabla
+\begin_inset space ~
+\end_inset
+
+
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:errores"
+
+\end_inset
+
+ muestra el resumen de los datos de errores obtenidos durante la ejecución
+ del clasificador para cada uno de los datasets.
+ El tiempo reportado considera la carga del dataset y las etapas de clasificació
+n y entrenamiento.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tabular}{@{}ccccc@{}} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+toprule 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Dataset} & 
+\backslash
+textbf{Runtime} & 
+\backslash
+textbf{
+\backslash
+% Error min} & 
+\backslash
+textbf{
+\backslash
+% Error max} & 
+\backslash
+textbf{
+\backslash
+% Error media} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+midrule
+\end_layout
+
+\begin_layout Plain Layout
+
+clouds01         & 16.70 s                      & 1.72                  &
+ 2.72                  & 2.22                    
+\backslash
+
+\backslash
+ clouds02         & 11.72 s                      & 0.00                  &
+ 0.53                  & 0.24                    
+\backslash
+
+\backslash
+ halfkernel       & 1.91 s                       & 1.33                  &
+ 11.33                 & 4.82                    
+\backslash
+
+\backslash
+ overlapped       & 7.30 s                       & 3.38                  &
+ 10.53                 & 7.03                    
+\backslash
+
+\backslash
+ twospirals       & 1.94 s                       & 39.67                 &
+ 29.33                 & 35.78                   
+\backslash
+
+\backslash
+ 
+\backslash
+bottomrule 
+\backslash
+end{tabular}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resumen de los datos de errores obtenidos.
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:errores"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Las Figuras 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resultados-clouds01"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resultados-clouds02"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resultados-halfkernel"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resultados-overlapped"
+
+\end_inset
+
+ y 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:resultados-twospirals"
+
+\end_inset
+
+ muestran las parejas de gráficas tanto de error como del espacio particionado,
+ para cada uno de los datasets.
+ La gráfica del espacio particionado corresponde a la última ejecución,
+ donde pueden observarse también los puntos correctamente clasificados así
+ como aquellos erróneamente etiquetados.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/clouds01-errores.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Porcentajes de error obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/clouds01-espacio.eps
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Espacio de datos obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resultados de la clasificación para el dataset 
+\family typewriter
+clouds01
+\family default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:resultados-clouds01"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/clouds02-errores.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Porcentajes de error obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/clouds02-espacio.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Espacio de datos obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resultados de la clasificación para el dataset 
+\family typewriter
+clouds02
+\family default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:resultados-clouds02"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/halfkernel-errores.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Porcentajes de error obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/halfkernes-espacio.eps
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Espacio de datos obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resultados de la clasificación para el dataset 
+\family typewriter
+halfkernel
+\family default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:resultados-halfkernel"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/overlapped-errores.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Porcentajes de error obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/overlapped-espacio.eps
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Espacio de datos obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resultados de la clasificación para el dataset 
+\family typewriter
+overlapped
+\family default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:resultados-overlapped"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/twospirals-errores.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Porcentajes de error obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace*{\fill}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename imagenes/twospirals-espacio.eps
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Espacio de datos obtenido
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Resultados de la clasificación para el dataset 
+\family typewriter
+overlapped
+\family default
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:resultados-twospirals"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagebreak
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Conclusiones
+\end_layout
+
+\begin_layout Standard
+Los clasificadores con enfoque probabilístico intentan predecir la pertenencia
+ de un patrón a una determinada clase basándose en probabilidades que son
+ obtenidas a partir de eventos anteriores.
+ Utilizando la idea básica de Thomas Bayes de la probabilidad condicional,
+ el clasificador bayesiano intenta describir las características de los
+ datos de un conjunto de entrenamiento a través de una función de densidad
+ de probabilidad.
+ Gracias a esta función, el clasificador puede obtener una 
+\emph on
+idea 
+\emph default
+sobre la distribución de los datos y hacer uso de ella para realizar la
+ clasificación de patrones desconocidos.
+\end_layout
+
+\begin_layout Standard
+El presente documento ha mostrado la implementación y prueba de un clasificador
+ bayesiano que utiliza la 
+\emph on
+PDF
+\emph default
+ gaussiana para describir a los datos (mediante la media y covarianza) y
+ la regla 
+\emph on
+MAP
+\emph default
+ para realizar la clasificación.
+ Se ha encontrado que el clasificador bayesiano ofrece resultados con porcentaje
+s de error menores al 10% en datasets que no tengan regiones complejas,
+ tal como ocurre con el dataset de 
+\emph on
+twospirals
+\emph default
+.
+ Dicho dataset contiene dos clases que definen áreas con demasiado traslape,
+ lo cual se sospecha que ocasiona que los valores de medias y covarianzas
+ de las clases sean también traslapados.
+\end_layout
+
+\end_body
+\end_document
