@@ -4,12 +4,8 @@ datasets = {'complex','linear','ring','xor'};
 
 % Creación de la combinación de parámetros
 H = [3 5 10 20];
-%H = [3 5];
 nu = [0.005 0.01, 0.05, 0.1];
-%nu = [0.005 0.01];
-%alpha = [1e-7, 5e-7, 1e-6, 5e-6];
 alpha = [1e-7, 5e-7, 1e-6];
-%alpha = [5e-7, 1e-6];
 Tmax = 20000;
 Emin = 1e-9;
 opt = 0;
