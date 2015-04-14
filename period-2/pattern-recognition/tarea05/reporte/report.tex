@@ -9,6 +9,7 @@
 \usepackage{cleveref}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish, mexico]{babel}
+
 \usepackage{amsmath}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -60,8 +61,8 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 Las redes neuronales multicapa surgen como respuesta a las incapacidades presentadas por el perceptrón monocapa al intentar resolver problemas linealmente no separables.
 Sin embargo, durante mucho tiempo éstas no fueron utilizadas debido a la carencia de un algoritmo para realizar el entrenamiento de las mismas.
 
-A mediados de la década de los 90 se propone un algoritmo llamado retropropagación del error que, basado en el método general de descenso del gradiente, permite entrenar la red minimizando el error obtenido.
-Este algoritmo goza de propularidad para el entrenamiento supervisado de las RNA.
+A mediados de la década de los 90 se propone un algoritmo llamado retro-propagación del error que, basado en el método general de descenso del gradiente, permite entrenar la red minimizando el error obtenido.
+Este algoritmo goza de popularidad para el entrenamiento supervisado de las RNA.
 
 En este documento se presenta la implementación del entrenamiento y clasificación utilizando una red neuronal MLP, específicamente con 3 capas: entrada, oculta y salida, con la posibilidad de manipular los parámetros de $H$ (cantidad de neuronas), $\eta$ (tasa de aprendizaje), $\alpha$ (constante de momento), $Epoc_{max}$ (cantidad máxima de épocas o iteraciones), y $E_{min}$ (error mínimo).
 Además se muestran las regiones particionadas generadas por los mejores pesos obtenidos durante el entrenamiento.
@@ -74,7 +75,7 @@ Reconocimiento de patrones, Redes neuronales multicapa, MLP
 \section{Introducción}
 \label{sec:introduccion}
 
-Las redes neuronales artificales (RNA) son un ejemplo de cómo la emulación del comportamiento reflejado en la actividad cerebral puede ser formalizado y aplicado para la resolución de problemas en dispositivos de cómputo.
+Las redes neuronales artificiales (RNA) son un ejemplo de cómo la emulación del comportamiento reflejado en la actividad cerebral puede ser formalizado y aplicado para la resolución de problemas en dispositivos de cómputo.
 
 EL concepto de RNA se encuentra entonces fuertemente relacionado con la inteligencia artificial, entendiéndose ésta última como \emph{el estudio de cómo hacer que las computadoras hagan cosas que los humanos hacen mejor hasta ahora}.
 
@@ -116,12 +117,12 @@ Ambos modelos, el de McCulloch-Pitts y el de Hebb fueron utilizados para la crea
 El modelo perceptrón se muestra en la Figura \ref{fig:perceptron-rna}.
 En éste, una neurona recibe señales de entrada $x_1,\cdots,x_n$ excitatorias (+1) o inhibitorias (-1), realiza la sumatoria ponderada con los pesos y produce una salida excitatoria a través de la función de transferencia $\Theta$ si se sobrepasa un umbral, o inhibitoria en caso contrario.
 
-\begin{figure}[tb]
+\begin{figure*}[tb]
 	\centering
-	\includegraphics[]{imagenes/rna}
+	\includegraphics[width=0.65\textwidth]{imagenes/rna}
 	\caption{Modelo perceptrón}
 	\label{fig:perceptron-rna}
-\end{figure}
+\end{figure*}
 
 El proceso de entrenamiento de una neurona o una RBA consiste en encontrar los pesos $w_0, \cdots, w_n$ a través de un algoritmo de aprendizaje para capturar el conocimiento, tal que:
 \begin{equation}
@@ -134,7 +135,7 @@ A pesar de la formalidad matemática ofrecida por el modelo perceptrón, éste n
 Un paso hacia la solución de los problemas linealmente no separables fue la adición de una capa de pesos oculta al modelo perceptrón.
 Sin embargo, aunque el modelo expandido con capas ocultas en teoría ofrecía solución a los problemas, no existía un algoritmo para realizar el entrenamiento y cálculo de los pesos en cada una de ellas.
 
-Fue hasta 1986 cuando Rumelhart propuso el algoritmo retropropagación del error para realizar el entrenamiento de las redes.
+Fue hasta 1986 cuando Rumelhart propuso el algoritmo retro-propagación del error para realizar el entrenamiento de las redes.
 Este algoritmo se encuentra basado en el método de descenso de gradiente para minimizar el error y es ampliamente utilizado para el entrenamiento supervisado de las RNA.
 
 Una RNA multicapa (o MLP, Multilayer Perceptron) puede ser entendida tal como se muestra en la Figura \ref{fig:rna-mlp}.
@@ -143,7 +144,7 @@ Existen muchas funciones de transferencia, una de las más utilizadas es la func
 Los siguientes párrafos describen los procesos de entrenamiento y clasificación en las RNA MLP.
 \begin{figure}[tb]
 	\centering
-	\includegraphics[]{imagenes/mlp}
+	\includegraphics[scale=0.75]{imagenes/mlp}
 	\caption{RNA multicapa}
 	\label{fig:rna-mlp}
 \end{figure}
@@ -167,7 +168,7 @@ De estos elementos se desprende que el entrenamiento de una RNA multicapa consis
 % subsubsection c_lculo_del_error (end)
 El conocer los \emph{mejores} pesos se encuentra relacionado con los errores o discrepancias entre la salida de la RNA y las etiquetas reales.
 
-El error puede ser calculado a través de :
+El error puede ser calculado a través de:
 $$
 E=\frac{1}{2} \sum_{k\in K}(O_k - t_k)^2
 $$
@@ -189,7 +190,7 @@ $$
 $$
 donde $\delta _j = O_j (1 - O_j) \sum_{k \in K}\delta _k W_{jk}$
 
-Para el caso de las RNA, el valor del bias permite desplazar el hiperplano de decision para obtener un mejor ajuste.
+Para el caso de las RNA, el valor del bias permite desplazar el hiperplano de decisión para obtener un mejor ajuste.
 Su cálculo implica el agregar una entrada ficticia con valor de 1 para cada una de las neuronas, de tal manera que los pesos bias se actualizan igual que los pesos sinápticos en cada iteración.
 
 \subsubsection{Cálculo de los pesos} % (fold)
@@ -256,7 +257,7 @@ Por lo tanto, el proceso de clasificación es meramente calcular la salida $O_k$
 La metodología seguida se sujetó por completo a las etapas de entrenamiento y clasificación mostradas en el marco teórico de la Sección \ref{sec:marco_teorico}.
 
 Se implementaron dos funciones correspondientes al entrenamiento y la clasificación utilizando \emph{Matlab}.
-Con la intención de probar distintas alternativas en la configuración de parámetros se  seleccionó el conjunto de parámetros mostrados en la Table \ref{tbl:parametros}, realizando la ejecución de la combinación de todos ellos a manera de grid.
+Con la intención de probar distintas alternativas en la configuración de parámetros se  seleccionó el conjunto de parámetros mostrados en la Tabla \ref{tbl:parametros}, realizando la ejecución de la combinación de todos ellos a manera de malla.
 La prueba de cada configuración de parámetros fue probada 31 veces, debido al componente aleatorio existente al permutar los índices de los datos en el entrenamiento.
 
 \begin{table}[h]
@@ -284,17 +285,88 @@ Debido a este largo tiempo estimado de espera, se decidió hacer adecuaciones en
 \label{sec:resultados}
 La experimentación fue realizada en un equipo de cómputo con un procesador Intel core i7 de 8 núcleos a 2.00 GHz con 6 GB de memoria en RAM.
 
+La Tabla \ref{tab:best-rna} muestra un resumen de las mejores ejecuciones para cada uno de los datasets.
+La serie de Figuras \cref{fig:espacio-particionado-complex,fig:espacio-particionado-linear,fig:espacio-particionado-ring,fig:espacio-particionado-xor} muestra el espacio particionado obtenido por las mejores configuraciones de parámetros con las que se lanzó la ejecución del entrenamiento y clasificación de las RNA.
+Se entiende por \emph{mejor} configuración a aquella que obtuvo el menor error.
+Es importante mencionar que se muestra la primera configuración que alcanzó el menor error.
 
-%La Tabla \ref{tab:porcentajes-error} muestra los porcentajes de error obtenidos después de una iteración en cada uno de los 8 datasets proporcionados.
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}cllllll@{}}
+\toprule
+\textbf{Dataset} & \multicolumn{1}{c}{\textbf{Avg tiempo}} & \multicolumn{1}{c}{\textbf{min MSE}} & \multicolumn{1}{c}{\textbf{Avg MSE}} & \multicolumn{1}{c}{\textbf{$H$}} & \multicolumn{1}{c}{\textbf{$\alpha$}} & \multicolumn{1}{c}{\textbf{$\eta$}} \\ \midrule
+complex          & 17.1 segs                               & 0.089109                               & 0.3644                                    & 20                             & 5.00E-07                           & 0.01                            \\
+linear           & 12.9 segs                               & 0                                      & 0.1967                                    & 3                              & 1.00E-07                           & 0.005                           \\
+ring             & 12.9 segs                               & 0.008                                  & 0.1261                                    & 3                              & 1.00E-07                           & 0.01                            \\
+xor              & 6.1 segs                                & 0                                      & 0.0459                                    & 5                              & 1.00E-07                           & 0.005                           \\ \bottomrule
+\end{tabular}
+\caption{Mejores RNA obtenidas}
+\label{tab:best-rna}
+\end{table}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=\columnwidth]{imagenes/complex}
+	\caption{Espacio particionado de la mejor RNA para el dataset \emph{complex}}
+	\label{fig:espacio-particionado-complex}
+\end{figure}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=\columnwidth]{imagenes/linear}
+	\caption{Espacio particionado de la mejor RNA para el dataset \emph{linear}}
+	\label{fig:espacio-particionado-linear}
+\end{figure}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=\columnwidth]{imagenes/ring}
+	\caption{Espacio particionado de la mejor RNA para el dataset \emph{ring}}
+	\label{fig:espacio-particionado-ring}
+\end{figure}
+
+\begin{figure}[tb]
+	\centering
+	\includegraphics[width=\columnwidth]{imagenes/xor}
+	\caption{Espacio particionado de la mejor RNA para el dataset \emph{xor}}
+	\label{fig:espacio-particionado-xor}
+\end{figure}
 
 
 \section{Discusión de resultados}
 \label{sec:discusion}
+Para el caso de los datasets de \emph{linear} y \emph{xor}, las RNA creadas lograron alcanzar una separación perfecta.
+Las regiones particionadas de estos datasets (Figura \ref{fig:espacio-particionado-linear} y Figura \ref{fig:espacio-particionado-xor}, respectivamente) demuestran zonas bien definidas, lo cual ayuda a alcanzar porcentajes de error \emph{perfectos} (en $0$).
+Adicionalmente, estas separaciones fueron obtenidas con un pequeño número de neuronas, 3 y 5 respectivamente.
+
+El dataset \emph{ring} muestra un grupo de datos formando un anillo y otro grupo de datos al interior de éste (Figura \ref{fig:espacio-particionado-ring}).
+Sin embargo, la frontera entre ambos datasets no logra estar perfectamente definida, por lo que se observa un ligero error (alrededor de cuatro patrones mal clasificados).
+La mejor RNA para este dataset también requirió apenas 3 neuronas.
+
+
+Finalmente, el dataset \emph{complex} requirió 20 neuronas en la capa oculta para obtener el menor valor de error (MSE de 0.0891).
+El espacio particionado obtenido para este dataset (\ref{fig:espacio-particionado-complex})) muestra una especie de campana con una frontera entre clases que no es linealmente separable a la perfección, por lo que existe una buena cantidad de errores en la clasificación.
+Es importante mencionar que este dataset fue el que mayor tiempo requirió para su procesamiento.
+
+De forma general, es posible indicar que las redes neuronales obtienen buenos resultados a la hora de clasificar ya que, según la experimentación mostrada, alcanzan a definir hiperplanos de separación suaves.
+
+Sin embargo, es preciso indicar que no existen lineamientos para la elección de parámetros para su entrenamiento y clasificación.
+De hecho, se notó que para el caso del dataset \emph{linear} un fenómeno interesante en el que la mitad de las configuraciones obtuvieron un MSE de $0$, mientras que el resto, de forma intercalada entre las configuraciones \emph{perfectas} obtuvieron errores cada vez más grandes conforme se aumentaba la magnitud de los parámetros.
+Para el caso del datase \emph{xor} también se observa una situación peculiar, las últimas configuraciones con 20 neuronas obtienen un 50\% de error, a pesar del hecho de contar con el mayor número de neuronas.
+El punto de esta idea es que la elección de parámetros es difícil para este tipo de técnica.
 
 
 \section{Conclusiones}
 \label{sec:conclusiones}
+Las redes neuronales intentan modelar el comportamiento seguido por el cerebro humano al aprender.
+Basan su funcionamiento en un elemento que es \emph{excitado} por un conjunto de datos de entrada, que al ser evaluados en una función de transferencia, pueden desencadenar una salida excitatoria o inhibitoria dependiendo de si logran sobrepasar un umbral determinado.
 
+La conexión entre varias neuronas permite potenciar los alcances del perceptrón, sin embargo es preciso encontrar los mejores pesos que serán utilizados por la función de transferencia.
+Uno de los métodos para calcular estos pesos en una RNA MLP (una capa de entrada, capas ocultas y capa de salida) es el algoritmo de retro-propagación del error (\emph{back-propagation error}), el cual funciona primero calculando la salida de la red en cada capa considerando los pesos actuales, esto en la etapa de \emph{feed-forward}.
+Posteriormente, en la etapa de \emph{back-propagation} el algoritmo actualiza los pesos sinápticos, considerando la discrepancia entre la salida actual y la salida esperada.
+
+El presente documento ha presentado la implementación de una RNA MLP utilizando el algoritmo de \emph{back-propagation}, las regiones particionadas producidas por cada dataset de prueba, así como una discusión de los resultados obtenidos.
+En general, se observa que las RNA implementadas obtienen resultados con bajos niveles de error, sin embargo, esto se condiciona debido a la dificultad para elegir la configuración de parámetros adecuada, al no existir lineamientos o \emph{best-practices} para su cálculo.
 
 \nocite{*}
 \bibliographystyle{ieeetran}

@@ -1,4 +1,14 @@
-function plotMLP(Xtt, Ytt, Yp, Wij, Wjk, err, selectedDataset, saveEps)
+%%=========================================================
+%%  plotMLP
+% Materia: Reconocimiento de patrones 
+% Nombre: Rafael Pérez Torres 
+% Fecha: 14-abril-2015 
+% Tarea No.: 05
+% Clase: 011 
+% Grafica el espacio particionado generado por la RNA MLP.
+% Recibe argumentos extra con el fin de rotular la gráfica.
+%%=========================================================
+function plotMLP(Xtt, Ytt, Yp, Wij, Wjk, bestH, bestAlpha, bestNu, Tmax, E_min, err, selectedDataset, saveEps)
 % Creación de un grid con 100 puntos sintéticos para la identificación
 % de las regiones de interés
 resolution = 100;
@@ -64,8 +74,8 @@ plot(wrongPoints(1,:),wrongPoints(2,:),'r+', 'MarkerSize', 12);
 legend(legends, 'Location','NorthOutside','Orientation','horizontal');
 xlabel('Attribute 1');
 ylabel('Attribute 2');
-title({sprintf('MLP classifier (%s dataset)', selectedDataset); ...
-    sprintf('%.2f MSE error',err)});
+title({sprintf('MLP classifier (best configuration) (%s dataset)', selectedDataset); ...
+    sprintf('%.4f MSE, using H=%d, alpha=%.7f, nu=%.3f, Tmax=%d, Emin=%.9f',err, bestH, bestAlpha, bestNu, Tmax, E_min)});
 
 if (saveEps == 1)
     saveas(gca, sprintf('%s.eps',selectedDataset),'epsc');

@@ -1,3 +1,16 @@
+%%=========================================================
+%%  trainMLP
+% Materia: Reconocimiento de patrones 
+% Nombre: Rafael Pérez Torres 
+% Fecha: 14-abril-2015 
+% Tarea No.: 05
+% Clase: 011 
+% Realiza el entrenamiento de una RNA utilizando el algoritmo de
+% Back-propagation.
+% La red contiene solamente tres capas, la de entrada, la oculta con la
+% cantidad de neuronas H que se especifique como argumento, y la capa de
+% salida con únicamente una neurona.
+%%=========================================================
 function [Wij,Wjk] = trainMLP(X,Y,H,nu,alpha,Tmax,Emin,opt)
 
 [d,N] = size(X);        % Dimensiones

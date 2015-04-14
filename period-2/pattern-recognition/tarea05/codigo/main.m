@@ -1,3 +1,15 @@
+%%=========================================================
+%%  main
+% Materia: Reconocimiento de patrones 
+% Nombre: Rafael Pérez Torres 
+% Fecha: 14-abril-2015 
+% Tarea No.: 05
+% Clase: 011 
+% Lanza la ejecución del entrenamiento y clasificación a través de una RNA
+% multicapa utilizando el algoritmo de back-propagation. Se lanza la
+% ejecución en paralelo por cada uno de los datasets y se recaban los
+% resultados en superS.
+%%=========================================================
 clc; clear;
 
 datasets = {'complex','linear','ring','xor'};
@@ -10,7 +22,7 @@ Tmax = 20000;
 Emin = 1e-9;
 opt = 0;
 runs = 31;
-saveEps = 0;
+saveEps = 1;
 
 superS = struct('results',{});    
 parfor ds_idx = 1:length(datasets)
@@ -19,11 +31,16 @@ parfor ds_idx = 1:length(datasets)
     fprintf('Evaluating dataset %s.mat\n', char(selectedDataset));
     dataset = load(sprintf('datasets/%s.mat', char(selectedDataset))); % Dataset a utilizar
     
-    Xtr = dataset.Xtr;  % Datos prueba
-    Ytr = dataset.Ytr;  % Etiquetas prueba
-    Xtt = dataset.Xtt;  % Datos entrenamiento
-    Ytt = dataset.Ytt;  % Etiquetas entrenamiento
+    Xtr = dataset.Xtr;  % Datos entrenamiento
+    Ytr = dataset.Ytr;  % Etiquetas entrenamiento
+    Xtt = dataset.Xtt;  % Datos prueba
+    Ytt = dataset.Ytt;  % Etiquetas prueba
+    
+    % Estructura para guardar los resultados de la configuración de
+    % parámetros actual
     s = struct('dataset','aa','H',0,'nu',0,'alpha',0,'bestWij',{},'bestWjk',{},'bestError',999,'avgError',999, 'avgTime',999);
+    
+    % Ejecución de la RNA con cada una de las configuraciones
     for H_idx=1:length(H)
         for nu_idx=1:length(nu)
             for alpha_idx=1:length(alpha)
@@ -58,7 +75,6 @@ parfor ds_idx = 1:length(datasets)
                         s(current_iter).bestWjk = Wjk;
                         s(current_iter).bestError = err;
                     end
-                    % plotMLP(Xtt, Ytt, Yp, Wij, Wjk, err, selectedDataset, saveEps);
                 end
                 s(current_iter).avgError = sigma_error / runs;
                 s(current_iter).avgTime = sigma_time / runs;
@@ -71,18 +87,32 @@ parfor ds_idx = 1:length(datasets)
     fprintf('End evaluating dataset %s.mat\n', char(selectedDataset));
 end
 
-%save('c:\users\rafael\dropbox\cinvestav\doctorado\cuatrimestre-2\reconocimiento-patrones\tarea05\codigo\workspace_results.mat');
-% Xtr = [-1 -1 1 1;-1 1 -1 1];
-% Ytr = [0 1 1 0];
-% Xtt = [-1 -1 1 1;-1 1 -1 1];
-% Ytt = [0 1 1 0];
-% H = 20;
-% nu = 0.01;
-% alpha = 1e-6;
-% Tmax = 20000;
-% Emin = 1e-9;
-% opt = 0;
-% selectedDataset = 'dsName';
-% saveEps = 0;
-
-% Leer workspace y escribir código para la gráfica aquí.
+% Una vez que se lee el workspace del resultado, se obtienen las mejores
+% configuraciones y se grafican.
+clc; clear;
+%load(sprintf('workspace_results.mat'));
+for i=1:length(datasets)
+    min_error = 999;
+    idx_min_error = 0;
+    for j=1:size(superS(i).results,2)
+        if (superS(i).results(j).bestError < min_error)
+            % Identificación del error menor
+            min_error = superS(i).results(j).bestError;
+            idx_min_error = j;
+        end
+    end
+    
+    % Toma de datos de los resultados y graficación.
+    % Los resultados se toman para rotular la gráfica
+    selectedDataset = datasets(i);
+    dataset = load(sprintf('datasets/%s.mat', char(selectedDataset))); % Dataset a utilizar
+    Xtt = dataset.Xtt;  
+    Ytt = dataset.Ytt;
+    bestWij = superS(i).results(idx_min_error).bestWij;
+    bestWjk = superS(i).results(idx_min_error).bestWjk;
+    bestH = superS(i).results(idx_min_error).H;
+    bestAlpha = superS(i).results(idx_min_error).alpha;
+    bestNu = superS(i).results(idx_min_error).nu;
+    [Yp,err] = classifyMLP(Xtt,Ytt,bestWij,bestWjk); % retomar Yp (olvidé guardarlo en el workspace en el parfor xD)
+    plotMLP(Xtt, Ytt, Yp, bestWij, bestWjk, bestH, bestAlpha, bestNu, Tmax, Emin, err, char(selectedDataset), 1);
+end
