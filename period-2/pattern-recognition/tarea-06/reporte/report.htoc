@@ -1,0 +1,12 @@
+\begin{tocenv}
+\tocitem \@locref{sec1}{\begin{@norefs}\@print{1}\quad{}Introducción{}\end{@norefs}}
+\tocitem \@locref{sec2}{\begin{@norefs}\@print{2}\quad{}Marco teórico{}\end{@norefs}}
+\begin{tocenv}
+\tocitem \@locref{sec3}{\begin{@norefs}\@print{2.1}\quad{}Entrenamiento de una RBFN{}\end{@norefs}}
+\tocitem \@locref{sec4}{\begin{@norefs}\@print{2.2}\quad{}Clasificación en una RBFN{}\end{@norefs}}
+\end{tocenv}
+\tocitem \@locref{sec5}{\begin{@norefs}\@print{3}\quad{}Metodología{}\end{@norefs}}
+\tocitem \@locref{sec6}{\begin{@norefs}\@print{4}\quad{}Resultados{}\end{@norefs}}
+\tocitem \@locref{sec7}{\begin{@norefs}\@print{5}\quad{}Discusión de resultados{}\end{@norefs}}
+\tocitem \@locref{sec8}{\begin{@norefs}\@print{6}\quad{}Conclusiones{}\end{@norefs}}
+\end{tocenv}
