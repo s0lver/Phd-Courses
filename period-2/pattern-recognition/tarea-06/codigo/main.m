@@ -1,3 +1,13 @@
+%%=========================================================
+%%  main
+% Materia: Reconocimiento de patrones 
+% Nombre: Rafael Pérez Torres 
+% Fecha: 20-abril-2015 
+% Tarea No.: 06
+% Clase: 012 
+% Punto de partida de la implementación de RBFN
+% Permite seleccionar el dataset a utilizar
+%%=========================================================
 clc; close all; clear all;
 datasets = {'complex','linear','ring','xor'};
 exitOption = length(datasets)+1;
@@ -18,7 +28,7 @@ while (1)
         disp('Bye');
         return;
     else
-        saveEps = 1;
+        saveEps = 0;
         dataset = load(sprintf('datasets/%s.mat',char(datasets(variable))));
         dsName = char(datasets(variable));
         Xtr = dataset.Xtr;

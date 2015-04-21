@@ -6,11 +6,11 @@
 % Tarea No.: 06
 % Clase: 012 
 % Grafica el espacio particionado generado por la RNA MLP.
-% Recibe argumentos extra con el fin de rotular la gr�fica.
+% Recibe argumentos extra con el fin de rotular la gráfica.
 %%=========================================================
 function plotRBFN(Xtt, Ytt, H, Yp, Ci, Si, Wi, err, selectedDataset, saveEps)
-% Creaci�n de un grid con 100 puntos sint�ticos para la identificaci�n
-% de las regiones de inter�s
+% Creación de un grid con 100 puntos sintéticos para la identificación
+% de las regiones de interés
 resolution = 100;
 xRange = linspace(min(Xtt(1,:)), max(Xtt(1,:)), resolution);
 yRange = linspace(min(Xtt(2,:)), max(Xtt(2,:)), resolution);
@@ -18,10 +18,11 @@ yRange = linspace(min(Xtt(2,:)), max(Xtt(2,:)), resolution);
 
 imageSize = size(x);
 
-% Conversi�n de los puntos sint�ticos a matriz para su clasificaci�n por el propio LDA
+% Conversión de los puntos sintéticos a matriz para su clasificación en
+% RBFN
 xy = [x(:) y(:)];
 
-% Se recaban �nicamente las etiquetas asignadas para mostrar los puntos con
+% Se recaban únicamente las etiquetas asignadas para mostrar los puntos con
 % los colores de cada clase asignada.
 [labels,~] =  classifyRBFN( xy,zeros(1,size(xy,1))',Ci,Si,Wi );
 
@@ -30,8 +31,8 @@ xy = [x(:) y(:)];
 regionsMap = reshape(labels, imageSize);
 
 figure;
-% Se escala la matriz de etiquetas al tama�o de los rangos y se muestra
-% como fondo en la gr�fica. De esta forma ya se muestra el espacio
+% Se escala la matriz de etiquetas al tamaño de los rangos y se muestra
+% como fondo en la gráfica. De esta forma ya se muestra el espacio
 % particionado.
 imagesc(xRange,yRange,regionsMap);
 hold on;
@@ -51,7 +52,7 @@ colormap(regionsColor);
 classColors = ['y','m','b','r','k','c','w','g', 'y'];   % Colores para las clases
 
 % Se grafican los puntos (en grupos) de cada clase con las mismas
-% caracter�sticas.
+% características.
 totalClasses = length(unique(Ytt));
 maxClass = max(unique(Ytt));
 legends = cell(totalClasses+1,1);
