@@ -1,9 +1,23 @@
 \documentclass{article}
 \usepackage[spanish]{babel}
-\usepackage[utf8]{inputenc}
+\usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
-\usepackage[outdir=./]{epstopdf}
+\usepackage{epstopdf}
+\epstopdfsetup{outdir=./}
 \usepackage{subfigure}
+\usepackage{hyperref}
+\usepackage{fourier}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[inline]{enumitem}
+% colors for hyperlinks
+% colored borders (false) colored text (true)
+\hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+% package for bibliography
+\usepackage[authoryear,round]{natbib}
+\renewcommand{\baselinestretch}{1.2} 
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{algorithm}
@@ -34,11 +48,53 @@
 \renewcommand{\algorithmicfalse}{\textbf{falso }} 
 
 
-\title{\includegraphics[width=\columnwidth]{resources/images/cinvestav-header}\\PCA\\Principal Component Analysis}
-\author{Rafael Pérez Torres\\Tópicos selectos en reconocimiento de patrones\\Profesor: Dr. Wilfrido Gómez}
-\date{3 julio 2015}
+% \title{\includegraphics[width=\columnwidth]{resources/images/cinvestav-header}\\PCA\\Principal Component Analysis}
+% \author{Rafael Pérez Torres\\Tópicos selectos en reconocimiento de patrones\\Profesor: Dr. Wilfrido Gómez}
+% \date{3 julio 2015}
+% \begin{document}
+% \maketitle
+
+
 \begin{document}
-\maketitle
+	\title{
+	\begin{figure}[!ht]
+		\flushleft
+			\includegraphics[width=\textwidth]{resources/images/cinvestav-header}
+	\end{figure}
+	\vspace{1cm}
+	\Huge PCA, Principal Components Analysis
+	\vspace{1cm}
+	}
+	
+	
+	
+	% if you are the only author, you might use the following
+	\author{Rafael Pérez Torres}	
+	
+	% Insert here your name and correct mail address
+	%\author{\Large \href{mailto:first.student@smail.fh-koeln.de}{First Student} \and \Large \href{mailto:second.student@smail.fh-koeln.de}{Second Student}
+	%\vspace{1cm}}
+	
+	% name of the course and module
+	\date{
+	\large Tópicos Selectos en Reconocimiento de Patrones \\ 
+	\vspace{0.8cm}
+	\large Profesor Dr. Wilfrido Gómez Flores \\
+	\vspace{1cm}
+	\today
+	}
+
+	\maketitle
+	\setlength{\parindent}{0pt}
+
+
+% \documentclass{article}
+% \usepackage[spanish]{babel}
+% \usepackage[utf8]{inputenc}
+
+
+
+
 
 \begin{abstract}
 El presente documento presenta una introducción a las técnicas de reducción de dimensionalidad, describiendo tópicos como la maldición de la dimensionalidad así como una clasificación general de las técnicas de reducción.
@@ -130,7 +186,7 @@ Existen dos mecanismos principales para reducir la cantidad de variables en un s
 	\label{fig:reduccion-dimensionalidad}
 \end{figure}
 
-\section{Principal Component Analysis PCA} 
+\section{PCA, Principal Component Analysis} 
 \label{sec:principal_component_analysis_pca}
 El Análisis de Componentes Principales es una herramienta estándar en el análisis de datos moderno debido a que es no paramétrico, es simple, y existen algoritmos relativamente eficientes para su cálculo.
 
@@ -261,7 +317,7 @@ x_1 \\
 x_m
 \end{bmatrix}
 $$
-entonces la matriz de covarianza $mathbf{C_X}$ puede ser expresada como:
+entonces la matriz de covarianza $\mathbf{C_X}$ puede ser expresada como:
 $$
 C_X \equiv \frac{1}{n}\mathbf{XX}^T
 $$
@@ -393,6 +449,11 @@ $$
 \label{sec:conclusiones}
 Se ha presentado una introducción a la reducción de dimensionalidad y una clasificación de las técnicas relacionadas.
 Asimismo, se ha presentado una descripción del fundamento matemático y comportamiento del PCA como herramienta no supervisada para la generación de las características más representativas de un conjunto de datos.
+
+\newpage 
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references} 
 
 \end{document}
 
