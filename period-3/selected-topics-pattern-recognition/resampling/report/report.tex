@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\epstopdfsetup{outdir=./}
+\usepackage{subfigure}
+\usepackage{hyperref}
+% \usepackage{mathpazo}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage[inline]{enumitem}
+\hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
+
+% package for bibliography
+% \usepackage[authoryear,round]{natbib}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\listalgorithmname}{Lista de algoritmos}
+\renewcommand{\algorithmicrequire}{\textbf{Entrada:}}
+\renewcommand{\algorithmicensure}{\textbf{Salida:}}
+\renewcommand{\algorithmicend}{\textbf{fin}}
+\renewcommand{\algorithmicif}{\textbf{si}}
+\renewcommand{\algorithmicthen}{\textbf{entonces}}
+\renewcommand{\algorithmicelse}{\textbf{si no}}
+\renewcommand{\algorithmicelsif}{\algorithmicelse,\ \algorithmicif}
+\renewcommand{\algorithmicendif}{\algorithmicend\ \algorithmicif}
+\renewcommand{\algorithmicfor}{\textbf{para}}
+\renewcommand{\algorithmicforall}{\textbf{para todo}}
+\renewcommand{\algorithmicdo}{\textbf{hacer}}
+\renewcommand{\algorithmicendfor}{\algorithmicend\ \algorithmicfor}
+\renewcommand{\algorithmicwhile}{\textbf{mientras}}
+\renewcommand{\algorithmicendwhile}{\algorithmicend\ \algorithmicwhile}
+\renewcommand{\algorithmicloop}{\textbf{repetir}}
+\renewcommand{\algorithmicendloop}{\algorithmicend\ \algorithmicloop}
+\renewcommand{\algorithmicrepeat}{\textbf{repetir}}
+\renewcommand{\algorithmicuntil}{\textbf{hasta que}}
+\renewcommand{\algorithmicprint}{\textbf{imprimir}} 
+\renewcommand{\algorithmicreturn}{\textbf{devolver}} 
+\renewcommand{\algorithmictrue}{\textbf{cierto }} 
+\renewcommand{\algorithmicfalse}{\textbf{falso }} 
+
+
+\begin{document}
+\title{
+	\begin{figure}[!ht]
+	\centering
+		% \flushleft
+		\includegraphics[scale=0.8]{resources/images/cinvestav-logo}
+		\\[0.5cm]LTI Cinvestav Tamaulipas
+	\end{figure}
+	\vspace{1cm}
+	Métodos de remuestreo
+	\vspace{1cm}
+}
+	
+\author{Rafael Pérez Torres}	
+		
+\date{
+	Tópicos Selectos en Reconocimiento de Patrones \\ 
+	\vspace{0.8cm}
+	Profesor Dr. Wilfrido Gómez Flores \\
+	\vspace{1cm}
+	%\today
+}
+
+\maketitle
+% \setlength{\parindent}{0pt}
+
+\begin{abstract}
+Resumen
+\end{abstract}
+
+Esto se denomina sobreajuste y acostumbra a pasar cuando el tamaño de los datos de entrenamiento es pequeño o cuando el número de parámetros del modelo es grande
+Wikipeida
+\section{Hold out validation}
+The holdout method makes an inefficient use of the data: a third of dataset is not used for training the inducer (classifier).
+
+\section{Leave-­one-­out cross validation}
+Al parecer éste es un subtipo o caso especial de k--fold
+\section{K-­fold cross validation}
+In cross validation we randomly split the set of labeled training samples D into two
+parts: one is used as the traditional training set for adjusting model parameters in the
+classifier. The other set — the validation set — is used to estimate the generalization validation
+set error. Since our ultimate goal is low generalization error, we train the classifier until
+we reach a minimum of this validation error, as sketched in Fig. 9.9. It is essential that
+the validation (or the test) set not include points used for training the parameters in
+the classifier — a methodological error known as “testing on the training set.” 
+
+Cross validation can be applied to virtually every classification method, where the
+specific form of learning or parameter adjustment depends upon the general training method. For example, in neural networks of a fixed topology (Chap. ??), the amount
+of training is the number of epochs or presentations of the training set. Alternatively,
+the number of hidden units can be set via cross validation. Likewise, the width of the
+Gaussian window in Parzen windows (Chap. ??), and an optimal value of k in the
+k-nearest neighbor classifier (Chap. ??) can be set by cross validation.
+
+Cross validation is heuristic and need not (indeed cannot) give improved classifiers
+in every case. Nevertheless, it is extremely simple and for many real-world problems
+is found to improve generalization accuracy. There are several heuristics for choosing
+the portion γ of D to be used as a validation set (0 < γ < 1). Nearly always, a
+smaller portion of the data should be used as validation set (γ < 0.5) because the
+validation set is used merely to set a single global property of the classifier (i.e., when
+to stop adjusting parameters) rather than the large number of classifier parameters
+learned using the training set. If a classifier has a large number of free parameters
+or degrees of freedom, then a larger portion of D should be used as a training set,
+i.e., γ should be reduced. A traditional default is to split the data with γ = 0.1,
+which has proven effective in many applications. Finally, when the number of degrees
+of freedom in the classifier is small compared to the number of training points, the
+predicted generalization error is relatively insensitive to the choice of γ.
+
+A simple generalization of the above method is m-fold cross validation. Here the m-fold
+cross
+validation
+training set is randomly divided into m disjoint sets of equal size n/m, where n is
+again the total number of patterns in D. The classifier is trained m times, each
+time with a different set held out as a validation set. The estimated performance is
+the mean of these m errors. In the limit where m = n, the method is in effect the
+leave-one-out approach to be discussed in Sect. 9.6.3.
+
+La validación cruzada sólo produce resultados significativos si el conjunto de validación y prueba de conjunto se han extraído de la misma población
+\section{Bootstrap, Bootstrap .632 y Bootstrap .632+}
+
+\newpage 
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{references} 
+
+\end{document}
+
+% http://www.faqs.org/faqs/ai-faq/neural-nets/part3/section-12.html
+% https://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29
+% http://linus.nci.nih.gov/techreport/prederr_rev_0407.pdf
+% http://www.stat.rutgers.edu/home/mxie/rcpapers/bootstrap.pdf
+% http://ai.stanford.edu/~ronnyk/accEst.pdf
+% http://stats.stackexchange.com/questions/96739/what-is-the-632-rule-in-bootstrapping
+% http://www.stat.cmu.edu/~brian/724/week11/lec27-bootstrap.pdf
+% https://es.wikipedia.org/wiki/Validaci%C3%B3n_cruzada
+% http://genome.tugraz.at/proclassify/help/pages/XV.html
+% http://courses.cs.tamu.edu/rgutier/ceg499_s02/l13.pdf
+
+% Libros:
+% The elements of statistical learning, pág 271
+% Pattern recognition, theodoris, 581
+% Pattern classification, duda, 562
