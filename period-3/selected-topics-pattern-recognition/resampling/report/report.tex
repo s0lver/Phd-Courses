@@ -1,24 +1,18 @@
+% El codigo lo obtienes del sitio de matlab
 \documentclass{article}
 \usepackage[spanish]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
-% \usepackage{epstopdf}
-% \epstopdfsetup{outdir=./}
 \usepackage{subfigure}
 \usepackage{hyperref}
-% \usepackage{mathpazo}
-\usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage{ textcomp }
+\usepackage{textcomp}
 \usepackage{booktabs}
 \usepackage[inline]{enumitem}
 \hypersetup{colorlinks=true,citecolor=black,filecolor=black,linkcolor=black,urlcolor=black}
-
-% package for bibliography
-% \usepackage[authoryear,round]{natbib}
-
 \usepackage{amsmath}
 \usepackage{amsfonts}
+
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \floatname{algorithm}{Algoritmo}
@@ -73,7 +67,9 @@
 % \setlength{\parindent}{0pt}
 
 \begin{abstract}
-Resumen
+El presente documento presenta una descripción de distintas familias de técnicas de validación cruzada y remuestreo, en particular bootstrap.
+Gracias a este tipo de mecanismos, es posible realizar una mejor definición del modelo a utilizar en la clasificación, intentado obtener los mejores resultados y asegurar la independencia de los mismos respecto a los conjuntos de entrenamiento y clasificación.
+Asimismo, se presenta una breve metodología para realizar el diseño de una estrategia de clasificación utilizando tres subconjuntos: entrenamiento, validación y clasificación.
 \end{abstract}
 
 \section{Introducción}
@@ -102,44 +98,20 @@ El sobreentrenamiento o sobre-ajuste ocurre cuando el tamaño de los datos de en
 
 En base a las particularidades de la división del conjunto de datos, es posible estimar la magnitud del error a obtener por el clasificador.
 Habitualmente, la selección de los conjuntos y el entrenamiento y clasificación asociados, se realiza en varias intervenciones, obteniendo la media de los resultados como el valor final del error.
-% Un aspecto interesante de las distintas técnicas de validación cruzada y remuestreo es la posibilidad de evaluar la precisión de los resultados que los clasificadores obtendrían al utilizarlas.
 
-% Un inductor (\textbf{inducer}) o algoritmo de inducción crea un clasificador a partir de un dataset.
-% Sea $\mathcal{V}$ el espacio de instancias no etiquetadas y $\mathcal{Y}$ el conjunto de etiquetas disponibles.
-% Sea $\mathcal{X} = \mathcal{V} \times \mathcal{Y}$  el espacio de instancias etiquetadas y $\mathcal{D} = \left \{ x_1,x_2,\ldots,x_n \right \}$ un dataset con $n$ instancias etiquetadas, donde $x_i = \langle v_i \in \mathcal{V}, y_i \in \mathcal{Y} \rangle$.
-% Un clasificador $\mathcal{C}$ mapea una instancia no-etiquetada $v \in \mathcal{V}$ hacia una etiqueta $y \in \mathcal{Y}$ y un inductor $\mathcal{I}$ mapea un dataset $\mathcal{D}$ en un clasificador $\mathcal{C}$.
-% La notación $\mathcal{I}(\mathcal{D},v)$ denota la etiqueta asignada a una instancia $v$ no etiquetada por el clasificador construido por el inductor $\mathcal{I}$ en el dataset $\mathcal{D}$, por ejemplo $\mathcal{I}(\mathcal{D},v) = (\mathcal{I}(\mathcal{D}))(v)$.
-
-% La precisión \textbf{accuracy} de un clasificador $\mathcal{C}$ es la probabilidad de clasificar correctamente una instancia seleccionada aleatoriamente, denotado como $acc = Pr(\mathcal{C}(v) = y)$ para una instancia $\langle v, y \rangle \in \mathcal{X}$.
-
-% La medición de la precisión de un clasificador, normalmente es realizada a partir de la media de $n$ ejecuciones del mismo.
 
 \section{Técnicas de validación cruzada}
-% In cross validation we randomly split the set of labeled training samples D into two
-% parts: one is used as the traditional training set for adjusting model parameters in the
-% classifier. The other set — the validation set — is used to estimate the generalization validation
-% set error. Since our ultimate goal is low generalization error, we train the classifier until
-% we reach a minimum of this validation error, as sketched in Fig. 9.9. It is essential that
-% the validation (or the test) set not include points used for training the parameters in
-% the classifier — a methodological error known as “testing on the training set.” 
-
-% Cross validation can be applied to virtually every classification method, where the
-% specific form of learning or parameter adjustment depends upon the general training method. For example, in neural networks of a fixed topology (Chap. ??), the amount
-% of training is the number of epochs or presentations of the training set. Alternatively,
-% the number of hidden units can be set via cross validation. Likewise, the width of the
-% Gaussian window in Parzen windows (Chap. ??), and an optimal value of k in the
-
 Las técnicas de validación cruzada básicamente dividen al conjunto de datos, de tal manera que cada una de las particiones contienen elementos únicos y cada elemento puede aparecer únicamente en una sola partición.
 La división es aleatoria obteniendo dos conjuntos, uno que se utiliza como el clásico conjunto de entrenamiento, y el otro -- de validación -- es utilizado para estimar el error de generalización del conjunto de validación.
 Dado que el objetivo final en el diseño de un clasificador es alcanzar un error bajo de generalización, se entrena al clasificador hasta que se obtiene un valor mínimo de este error.
 La validación cruzada puede ser aplicada a virtualmente cada método de clasificación, con la salvedad de adaptar el método de validación a las particularidades de cada técnica.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=\textwidth]{resources/images/validacion-cruzada-general}
-	\caption{División básica de los métodos de validación cruzada}
-	\label{fig:validacion-cruzada-general}
-\end{figure}
+% \begin{figure}
+% 	\centering
+% 	\includegraphics[width=\textwidth]{resources/images/validacion-cruzada-general}
+% 	\caption{División básica de los métodos de validación cruzada}
+% 	\label{fig:validacion-cruzada-general}
+% \end{figure}
 
 En general, la validación cruzada sólo produce resultados significativos si el conjunto de validación y prueba de conjunto se han extraído de la misma población.
 Las siguientes son las técnicas de validación cruzada más utilizadas.
@@ -158,14 +130,7 @@ Comúnmente, se designa $2/3$ del conjunto de datos para el entrenamiento y el $
 
 Las principales desventajas del método holdout son referentes a que no en todos los problemas se cuenta con una cantidad suficiente de instancias para poder aislar un subconjunto especial para la prueba.
 Además, dado que su naturaleza es de un sólo experimento de entrenamiento y prueba, la estimación del error tiende a ser no representativa.
-% El conjunto de prueba es proporcionado al inductor, mientras que el clasificador obtenido es probado con el conjunto de prueba.
-% Formalmente, sea $\mathcal{D}_h$, el conjunto holdout, un subconjunto de $\mathcal{D}$ de tamaño $h$, y sea $\mathcal{D}_t$ como $\mathcal{D} \setminus \mathcal{D}_h$. 
-% La estimación de la precisión del método holdout se define como:
-% $$
-% \text{acc}_h = \frac{1}{h} \sum_{\langle v_i,y_i \rangle \in \mathcal{D}_h} \delta \left \{ \mathcal{I}(\mathcal{D}_t,v_i), y_i \right \}
-% $$ % 
-% donde $\delta(i,j) = 1$ si $i = j$ y $0$ de otra forma.
-En última instancia, la técnica holdout hace un uso ineficiente de los datos, ya que casi un tercio del dataset no es utilizado para entrenar el clasificador~\cite{RonKohavi}.
+En última instancia, la técnica holdout hace un uso ineficiente de los datos, ya que casi un tercio del dataset no es utilizado para entrenar el clasificador.
 La mayor cantidad de instancias destinadas al conjunto de prueba incrementan el bias de la estimación.
 
 
@@ -175,7 +140,7 @@ La ejecución del clasificador es realizada $k$ veces en los tiempos $t \in \lef
 Por cada experimento realizado en el tiempo $t$, se utilizan $k-1$ particiones para el entrenamiento y la restante se destina para la prueba, como se muestra en la Figura~\ref{fig:k-fold}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5]{resources/images/k-fold}
+	\includegraphics[width=0.75\textwidth]{resources/images/k-fold}
 	\caption{K-fold cross validation}
 	\label{fig:k-fold}
 \end{figure}
@@ -205,13 +170,7 @@ En la práctica, la elección del número de particiones depende del tamaño del
 Para datasets grandes, incluso 3-fold cross validation sería preciso.
 Para datasets dispersos, es aconsejable utilizar leave-one-out para entrenar con la mayor cantidad de ejemplos posibles. Una elección comúm para k-fold cross validation es $k=10$.
 
-% En la validación cruzada K--fold, también llamada estimación de rotación, el conjunto de datos $\mathcal{D}$ es dividido de forma aleatoria en $k$ subconjuntos mutuamente excluyentes, los \emph{folds}, $\mathcal{D}_1, \mathcal{D}_2, \ldots \mathcal{D}_k$ de un mismo tamaño (o aproximado).
-% El inductor es entrenado $k$ veces; cada tiempo $t \in \left \{ 1,2,\ldots,k \right \} $, éste se entrena en $\mathcal{D} \setminus \mathcal{D}_t$ y se prueba sobre $\mathcal{D}_t$.
-% La estimación de precisión de la validación cruzada es la cantidad total de clasificaciones correctas, dividida por el número de instancias del data set.
-% Formalmente, sea $\mathcal{D}_{(i)}$ el conjunto de prueba que incluye instancias $x_i \langle v_i, y_i \rangle$, entonces la precisión es
-% $$
-% \text{acc}_{cv} = \frac{1}{n} \sum_{\langle v_i, y_i \rangle \in \mathcal{D} } \delta \left \{ \mathcal{I}(\mathcal{D} \setminus \mathcal{D}_{(i)}, v_i), y_i \right \}
-% $$ 
+
 \subsection{Leave-­one-out cross validation (LOOCV)}
 Es un caso especial de k-fold cross validation, cuando se indica que K sea el número total de ejemplos.
 Para un dataset de $n$ muestras, se desarrollan $n$ experimentos.
@@ -219,7 +178,7 @@ En cada experimento, se utilizan entonces $n-1$ instancias para entrenamiento y 
 Esta validación cruzada indica separar los datos de tal forma que se tenga una sola muestra para el subconjunto de de prueba y el resto de datos para el subconjunto de entrenamiento, tal como se muestra en la Figura~\ref{fig:leave-one-out-validation}.
 \begin{figure}
 	\centering
-	\includegraphics[width=0.5]{resources/images/leave-one-out}
+	\includegraphics[width=0.75\textwidth]{resources/images/leave-one-out}
 	\caption{Leave-one-out cross validation}
 	\label{fig:leave-one-out-validation}
 \end{figure}
@@ -230,7 +189,64 @@ $$
 $$
 
 
-\section{Bootstrap, Bootstrap .632 y Bootstrap .632+}
+\section{Bootstrap, bootstrap .632 y bootstrap .632+}
+De forma general, la familia de métodos \emph{bootstrap} son técnicas de remuestreo en las que de un dataset conformado por $n$ muestras se eligen $n$, con la característica distintiva de que la selección es con reemplazo, permitiendo que cada instancia aparezca múltiples veces en el conjunto originado.
+Esta familia de técnicas es sumamente útil cuando el conjunto de datos es pequeño, permitiendo generar conjuntos sintéticos a partir del dataset original para las tareas de entrenamiento y clasificación.
+
+Nuevamente, de forma general, para realizar la estimación del error se procede a realizar la selección de N subconjuntos bootstrap y calcular la media de los resultados de la clasificación.
+En la práctica, la repetición de estas operaciones funciona dado que, si las muestras son elegidas de forma aleatoria, mantendrán las mismas características de la población en la que fueron originadas.
+
+\subsection{Cálculo de la estimación del error en la familia de bootstrap} 
+Si el dataset de entrenamiento es $\mathbf{X} = (x_1,\ldots,x_N)$ entonces es posible tomas $\mathcal{B}$ muestras bootstrap con reemplazo denominadas $\mathbf{Z_1}, \ldots, \mathbf{Z_B}$ donde cada $\mathbf{Z_i}$ contiene $n$ instancias.
+Entonces es posible utilizar al conjunto de muestras $\mathbf{Z}$ para estimar el error real en la predicción del clasificador como:
+$$
+\text{Err}_{\text{boot}} = \frac{1}{B} \sum_{b=1}^{B} \frac{1}{N} \sum_{i=1}^{N} \mathcal{L}(y_i, f^b(x_i))
+$$
+donde $f^b(x_i)$ es el valor predecido para $x_i$ según el modelo generado para el $i$-ésimo dataset bootstrap y $\mathcal{L}$ es una función para medir el error del clasificador.
+
+Sin embargo, este no es un buen estimador del error porque las muestras utilizadas para el entrenamiento del clasificador pudieron haber contenido a $x_i$.
+El estimador leave-one-out bootstrap ofrece una mejora que intenta imitar al enfoque the cross-validation y se define como:
+$$
+\text{Err}_{\text{boot(1)}} = \frac{1}{N} \sum_{i=1}^N \frac{1}{|C^{-1}|} \sum_{b \in C^{-i}} \mathcal{L}(y_i, f^b(x_i))
+$$
+donde $C^{-i}$ es el conjunto de índices para los que las conjuntos bootstrap no incluyen la observación $i$ y $|C^{-i}|$ es la cantidad de dichos conjuntos.
+
+$\text{Err}_{\text{boot(1)}}$ soluciona el problema de sobreajuste, pero continua manteniendo un bias originado por las observaciones no distintas originadas por el muestreo con reemplazamiento.
+Se ha calculado, que el promedio de instancias distintas en cada conjunto bootstrap es aproximadamente de $0.632N$.
+Efron y Tibshirani propusieron el estimador $0.632$ definido como:
+\begin{equation}
+	\text{Err}_{.632} = 0.368 \overline{\text{err}} + 0.632 \text{Err}_{\text{boot}(1)}
+	\label{eq:bootstrap}
+\end{equation}
+donde
+$$
+\overline{\text{err}} = \frac{1}{N} \sum_{i=1}^{N} \mathcal{L}(y_i,f^b(x_i))
+$$
+La formulación de la ecuación \ref{eq:bootstrap} puede ser generalizada como:
+\begin{equation}
+	\text{Err}_{.632} = w \overline{\text{err}} + (1 - w) \text{Err}_{\text{boot}(1)}
+\end{equation}
+donde $w=0.632$.
+
+
+Bajo algunos escenarios, el método bootstrap .632 puede seguir describiendo un sobreajuste grande, que puede ser medido por $\text{Err}_{\text{boot}(1)} - \overline{\text{err}}$.
+Típicamente, esto sucede cuando el error de resustitución ($\text{Err}_{\text{boot}(1)}$) es $0$.
+Para solucionar esto, el estimador \emph{bootstrap .632+} pone un peso $w$ mayor en $\text{Err}_{\text{boot}(1)}$, calculado a partir de \emph{la tasa de traslape relativo} $\hat{R}$ mediante
+$$
+\hat{R} = \frac{\overline{\text{err}} - \text{Err}_{\text{boot}(1)}}{\hat{\gamma} - \text{Err}_{\text{boot}(1)}}
+$$
+donde $\hat{\gamma}$ es la tasa de error de no-información, estimada mediante la permutación de las respuestas $y_i$ y los predictores (patrones) $t_j$.
+Para un problema de clasificación dicotómico dicha tasa puede ser calculada de la siguiente manera.
+Sea $\hat{p}_1$ la proporción de respuestas $y_i = 1$  y $\hat{q}_1$ la proporción de predicciones observadas $r_x(t_j) = 1$, entonces:
+\begin{equation}
+	\hat{\gamma} = \hat{p}_1(1-\hat{q}_1) + (1-\hat{p}_1) \hat{q}_1
+\end{equation}
+
+Finalmente, la estimación del error bootstrap .632+ es definida como:
+\begin{equation}
+	\text{Err}_{.632+} = w \overline{\text{err}} + (1 - w) \text{Err}_{\text{boot}(1)}, \text{ } w = \frac{.632}{1-.368\hat{R}}
+\end{equation}
+El estimador bootstrap .632+ es sumamente confiable cuando $n>p$ (la cantidad de instancias es mayor a la cantidad de atributos o dimensiones).
 
 \section{División de datos en tres conjuntos}
 Normalmente, si la selección del modelo y las estimaciones del error real van a ser calculadas simultáneamente, los datos necesitan ser divididos en tres conjuntos disjuntos.
@@ -249,7 +265,7 @@ Dicho algoritmo asume un métdo holdout, en caso de utilizar validación cruzada
 \STATE Seleccionar una arquitectura de clasificador y parámetros de entrenamiento. \label{paso-2}
 \STATE Entrenar el modelo a través del conjunto de entrenamiento. 
 \STATE Evaluar el modelo utilizando el conjunto de validación. \label{paso-4}
-\STATE Repetir los pasos \ref{paso-2} al \label{paso-4} utilizando distintas arquitecturas y parámetros de entrenamiento.
+\STATE Repetir los pasos \ref{paso-2} al \ref{paso-4} utilizando distintas arquitecturas y parámetros de entrenamiento.
 \STATE Seleccionar el mejor modelo y entrenarlo utilizando los datos de los conjuntos de entrenamiento y validación.
 \STATE Evaluar el desempeño de este modelo final utilizando el conjunto de prueba.
 \end{algorithmic} 
@@ -263,6 +279,7 @@ Dicho algoritmo asume un métdo holdout, en caso de utilizar validación cruzada
 
 \end{document}
 
+% http://stats.stackexchange.com/questions/26088/explaining-to-laypeople-why-bootstrapping-works?rq=1
 % http://www.faqs.org/faqs/ai-faq/neural-nets/part3/section-12.html
 % https://en.wikipedia.org/wiki/Bootstrapping_%28statistics%29
 % http://linus.nci.nih.gov/techreport/prederr_rev_0407.pdf
