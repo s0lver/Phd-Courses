@@ -91,7 +91,7 @@ Dentro de la inteligencia computacional se encuentran los siguientes paradigmas,
 
 \begin{figure}[tb]
 	\centering
-	\includegraphics[scale=0.25]{../resources/paradigmas-inteligencia-computacional}
+	\includegraphics[scale=0.35]{../resources/paradigmas-inteligencia-computacional}
 	\caption{Los algoritmos inteligentes o paradigmas de la inteligencia computacional}
 	\label{fig:paradigmas-inteligencia-computacional}
 \end{figure}
@@ -122,13 +122,11 @@ Las interacciones entre agentes resultan en estrategias colectivas de solución 
 La inteligencia de enjambre se refiere al comportamiento que permite solucionar problemas y que emerge de la interacción entre dichos agentes, y la inteligencia computacional de enjambre se refiere a modelar algorítmicamente este comportamiento.
 Formalmente, la inteligencia de enjambre \emph{es la propiedad de un sistema que permite que a partir del comportamiento colectivo de agentes simples que interactúan localmente con su entorno, emerjan patrones globales de funcionamiento coherente}.
 La inteligencia de enjambre ha sido también denominada como \emph{inteligencia colectiva}.
-Swarm intelligence has also been referred to as collective intelligence.
-
 
 
 \section{Optimización por cúmulo de partículas}
 
-La inteligéncia de enjambre se originó del estudio de colonias o enjambres de organismos sociales.
+La inteligencia de enjambre se originó del estudio de colonias o enjambres de organismos sociales.
 Los estudios del comportamiento social de organismos o individuos en cúmulos propició el diseño de algoritmos de clustering y optimización muy eficientes.
 Por ejemplo, estudios de la simulación de la impredecible coreografía del vuelo de aves permitió el diseño del algoritmo de optimización por cúmulo de partículas (PSO), mientras que el estudio del comportamiento de las hormigas resultó en los algoritmos de optimización de colonia de hormigas.
 
@@ -137,7 +135,7 @@ PSO es un enfoque de optimización estocástico basado en el comportamiento soci
 PSO es un procedimiento de búsqueda basado en poblaciones en el que los individuos, llamados \textbf{partículas}, son agrupados en un cúmulo - nube - enjambre.
 Cada partícula en el enjambre representa una solución candidata al problema de optimización.
 En un sistema PSO, cada partícula \emph{vuela} a través del espacio de búsqueda multidimencional, ajustando su posición en el espacio de acuerdo a su propia experiencia y a la de las partículas vecinas.
-Por lo tanto, una partícla hace uso de la mejor psición encontrada por ella misma y de la mejor posición encontrada por sus vecinos para dirigirse hacia una solución óptima.
+Por lo tanto, una partícula hace uso de la mejor posición encontrada por ella misma y de la mejor posición encontrada por sus vecinos para dirigirse hacia una solución óptima.
 El efecto es que las partículas vuelan hacia un óptimo, al mismo tiempo que se mantienen en búsqueda dentro de una área amplia alrededor de la mejor solución actual.
 El desempeño de cada partícula (su cercanía hacia el mínimo global) es medido de acuerdo a una función de aptitud predefinida que está relacionada al problema que se intenta solucionar.
 Las aplicaciones del PSO incluyen funciones de aproximación, clústering, optimización de estructuras mecánicas, así como solución de sistemas de ecuaciones.
@@ -151,10 +149,10 @@ Estudios de la estrucutura de los nidos de abejas y hormigas ha permitido el des
 
 
 \subsection{Algoritmo PSO básico}
-Los individuos en un enjambre de partículas siguen un comportamiento muy simple: emular el eéxito de los individuos veicinos.
+Los individuos en un enjambre de partículas siguen un comportamiento muy simple: emular el éxito de los individuos veicinos.
 El comportamiento colectivo que emerge de este comportamiento individual es el de descubrir regiones óptimas en un espacio de búsqueda de alta dimensionalidad.
 Un algoritmo PSO mantiene una lista de partículas, donde cada una de ellas representa una solución potencial.
-Haciendo una analogía con el apradigma de computación evolutica, un enjabre es similar a una poblaicón, mientras que una partícula es similar al de un individuo.
+Haciendo una analogía con el paradigma de computación evolutica, un enjabre es similar a una población, mientras que una partícula es similar a un individuo.
 En términos simples, las partículas vuelan hacia un espacio de búsqueda multidimensional, donde la posición de cada partícula es ajustada de acuerdo a su propia experiencia y a la de sus vecinos.
 
 
@@ -170,7 +168,7 @@ Cada partícula recuerda las coordenadas de la mejor solución (fitness) encontr
 Este valor es conocido como \emph{pbest} (personal best) y representa el componente cognitivo que la partícula ha obtenido de forme empírica.
 Otro \emph{mejor} valor que se almacena es el \emph{gbest} (global) que se refiere a la mejor solución, y su ubicación, obtenida por cualquier partícula del enjambre.
 Originalmente, dos algoritmos PSO han sido desarrollados \emph{gbest} (global) y \emph{lbest} (local), siendo su única diferencia el tamaño de sus vecindarios.
-En otras palabras, los algoritmos difieren en la forma en que calculan la velocidad de la partícula, que a su ves es utilizada para calcular la posición de la partícula según la Ecuación~\ref{eq:velocidad-particula-generica}.
+En otras palabras, los algoritmos difieren en la forma en que calculan la velocidad de la partícula, que a su vez es utilizada para calcular la posición de la partícula según la Ecuación~\ref{eq:velocidad-particula-generica}.
 El concepto básico del PSO consite en, a cada instante de tiempo, cambiar la velocidad (acelerar) cada partícula hacia su \emph{pbest} y \emph{gbest} (en la versión global).
 Estas aceleraciones son ponderadas por un elemento aleatorio.
 
@@ -185,11 +183,11 @@ En el PSO \emph{gbest}, la velocidad de la partícula $i$ es calculada como:
 	\label{eq:velocidad-gbest}
 \end{equation}
 	
-donde  $v_{ij}(t)$ es la velocidad de la partícula $i$ en la dimensión $j$ en el tiempo $t$, $c_1$ y $c_2$ son constantes de aceleración positiva utilizadas para escalar la contribución de los componentes cognitivos y sociales, respectivamente.
+donde $v_{ij}(t)$ es la velocidad de la partícula $i$ en la dimensión $j$ en el tiempo $t$, $x_{ij}(t)$ es la posición de la partícula $i$ en la dimensión $j$, en el tiempo $t$, $c_1$ y $c_2$ son constantes de aceleración positiva utilizadas para escalar la contribución de los componentes cognitivos y sociales, respectivamente.
 $r_{1j}(t), r_{2j}(t) \sim U(0,1)$ son valores aleatorios en el rango [0,1] muestrados con una distribución uniforme.
 Estos valores aleatorios introducen un elemento estocástico al algoritmo.
 
-La mejor pocisión personal, $\mathbf{y}_i$ asociada con la partícula $i$ es la mejor posición que la partícula ha visitado desde el tiempo $t(0)$.
+La mejor posición personal, $\mathbf{y}_i$ asociada con la partícula $i$ es la mejor posición que la partícula ha visitado desde el tiempo $t(0)$.
 Considerando problemas de minimización, la mejor posición en el tiempo $t+1$ se calcula como:
 \begin{equation}
 \mathbf{y}_i(t+1) = \begin{cases}
@@ -227,10 +225,17 @@ El algoritmo PSO \emph{gbest} se muestra en el Algoritmo~\ref{alg:algoritmo-pso-
 	\ENDFOR
 \UNTIL {se cumpla la condición de paro}
 \end{algorithmic} 
-\caption{Algoritmo para encontrar el valor de $\mathbf{P}$} 
+\caption{Algoritmo PSO \emph{gbest}} 
 \label{alg:algoritmo-pso-gbest}
 \end{algorithm}
 
+El comportamiento de las partículas con este algoritmo es ejemplificado en la Figura~\ref{fig:gbest-behavior}.
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth]{../resources/gbest-behavior}
+	\caption{Comportamiento de las partículas en algoritmo gbest, $t_0$ y $t_1$}
+	\label{fig:gbest-behavior}
+\end{figure}
 \subsubsection{Algoritmo PSO mejor local (\emph{lbest})} 
 El algoritmo \emph{local best} utiliza una topología de anillo donde se definen vecindarios pequeños para cada partícula, por lo que el conocimiento del entorno es local.
 En referencia a la ecuación de la velocidad, la contribución de este conocimiento local a la velocidad de la particula es proporcional respecto a la distancia que existe entre la partícula y la mejor posición encontrada por las partículas vecinas.
@@ -259,7 +264,7 @@ La selección de los vecindarios normalmente se realiza en base a los índices d
 \end{itemize}
 Es importante notar que los vecindarios se traslapan.
 Dicha interconexión permite la compartición de información entre vecindarios, asegurando que el enjambre converge en un solo punto, llamado la mejor partícula global.
-El algoritmo PSO \emph{best} es un caso especial del \emph{lbest} con $n_{\mathcal{N}_i} = n_s$
+El algoritmo PSO \emph{gbest} es un caso especial del \emph{lbest} con $n_{\mathcal{N}_i} = n_s$
 
 El algoritmo \emph{lbest} se desarrolla en Algoritmo~\ref{alg:algoritmo-pso-lbest}
 \begin{algorithm} 
@@ -282,9 +287,17 @@ El algoritmo \emph{lbest} se desarrolla en Algoritmo~\ref{alg:algoritmo-pso-lbes
 	\ENDFOR
 \UNTIL {se cumpla la condición de paro}
 \end{algorithmic} 
-\caption{Algoritmo para encontrar el valor de $\mathbf{P}$} 
+\caption{Algoritmo PSO \emph{lbest}} 
 \label{alg:algoritmo-pso-lbest}
 \end{algorithm}
+
+El comportamiento de las partículas en este algoritmo es ejemplificado en la Figura~\ref{fig:lbest-behavior}.
+\begin{figure}[]
+	\centering
+	\includegraphics[width=\textwidth]{../resources/lbest-behavior}
+	\caption{Comportamiento del algoritmo lbest, obsérvese al cluster 2}
+	\label{fig:lbest-behavior}
+\end{figure}
 
 Al comparar las versiones \emph{lbest} y \emph{gbest} se observa que:
 \begin{itemize}
@@ -292,7 +305,6 @@ Al comparar las versiones \emph{lbest} y \emph{gbest} se observa que:
 	Sin embargo, esto viene con el costo asociado de menor diversidad que el PSO \emph{lbest}.
 	\item Como consecuencia de la mayor diversidad alcanzada por \emph{lbest} (lo cual resulta en porciones más grandes del espacio de búsqueda cubiertas), el PSO \emph{lbest} es menos suceptible a mínimos locales.
 	En general, las estructuras de vecindarios como la topología anillo utilizada en PSO \emph{lbest} ofrecen el mejor desempeño.
-	\item Terminar cuando la pendiente de la función objetivoes aproximadamente 0.
 \end{itemize}
 
 
@@ -313,6 +325,7 @@ Las siguientes son las condiciones de paro más comunes:
 	\item Una solución aceptable es encontrada: $f(x_i) \leq |f(x^*) - \epsilon |$
 	\item No existe una mejora después de un número de iteraciones.
 	\item El radio del enjambre normalizado es cercano a 0.
+	\item Terminar cuando la pendiente de la función objetivo es aproximadamente 0.
 \end{itemize}
 
 \subsection{Variantes de PSO}
@@ -326,7 +339,7 @@ El compromiso exploración - explotación es un aspecto importante que determina
 Exploración es la habilidad para explorar diferentes regiones del espacio de búsqueda para encontrar un valor óptimo.
 Explotación es la habilidad para concentrar la búsqueda alrededor de un área prometedora.
 Dichos objetivos son tratados por la ecuación de actualización de velocidad.
-La velocidad de sujeción limita la velocidad de las partículas para permanecer dentro de un umbral.
+La sujeción o restricción de velocidad limita la velocidad de las partículas para permanecer dentro de un umbral.
 Si una partícula excede a dicha velocidad, es entonces acotada en este valor $V_{\text{max}}$.
 Usualmente, $V_{\text{max}}$ en la dimensión $j$ se establece como una fracción del dominio de dicha dimensión.
 Este acotamiento se realiza justo después de calcular la nueva velocidad en el algoritmo.
@@ -404,6 +417,6 @@ Las siguients son las topologías más comunes para las redes establecidas en PS
 
 \nocite{*}
 \bibliographystyle{plain}
-\bibliography{references} 
+\bibliography{../resources/references} 
 
 \end{document}
