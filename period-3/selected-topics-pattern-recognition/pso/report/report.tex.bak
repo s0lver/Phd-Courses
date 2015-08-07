@@ -143,16 +143,16 @@ Las aplicaciones del PSO incluyen funciones de aproximación, clustering, optimi
 El estudio de colonias de hormigas ha contribuido en abundancia al conjunto de algoritmos inteligentes.
 El modelado del depósito de feromonas realizado por las hormigas en su búsqueda por la ruta más corta hacia los alimentos resultó en el desarrollo de los algoritmos de optimización de la ruta más corta.
 Otras aplicaciones de la optimización por colonia de hormigas incluyen la optimización del ruteo en redes de telecomunicaciones, coloreado de grafos, calendarización y la solución del problema de asignación cuadrático.
-Estudios de la estructura de los nidos de abejas y hormigas ha permitido el desarrollo de algoritmos de optimización de estructuras y clustering.
+Estudios de la estrucutura de los nidos de abejas y hormigas ha permitido el desarrollo de algoritmos de optimización de estructuras y clustering.
 
 
 
 
 \subsection{Algoritmo PSO básico}
-Los individuos en un enjambre de partículas siguen un comportamiento muy simple: emular el éxito de los individuos vecinos.
+Los individuos en un enjambre de partículas siguen un comportamiento muy simple: emular el éxito de los individuos veicinos.
 El comportamiento colectivo que emerge de este comportamiento individual es el de descubrir regiones óptimas en un espacio de búsqueda de alta dimensionalidad.
 Un algoritmo PSO mantiene una lista de partículas, donde cada una de ellas representa una solución potencial.
-Haciendo una analogía con el paradigma de computación evolutiva, un enjambre es similar a una población, mientras que una partícula es similar a un individuo.
+Haciendo una analogía con el paradigma de computación evolutica, un enjabre es similar a una población, mientras que una partícula es similar a un individuo.
 En términos simples, las partículas vuelan hacia un espacio de búsqueda multidimensional, donde la posición de cada partícula es ajustada de acuerdo a su propia experiencia y a la de sus vecinos.
 
 
@@ -169,7 +169,7 @@ Este valor es conocido como \emph{pbest} (personal best) y representa el compone
 Otro \emph{mejor} valor que se almacena es el \emph{gbest} (global) que se refiere a la mejor solución, y su ubicación, obtenida por cualquier partícula del enjambre.
 Originalmente, dos algoritmos PSO han sido desarrollados \emph{gbest} (global) y \emph{lbest} (local), siendo su única diferencia el tamaño de sus vecindarios.
 En otras palabras, los algoritmos difieren en la forma en que calculan la velocidad de la partícula, que a su vez es utilizada para calcular la posición de la partícula según la Ecuación~\ref{eq:velocidad-particula-generica}.
-El concepto básico del PSO consiste en, a cada instante de tiempo, cambiar la velocidad (acelerar) cada partícula hacia su \emph{pbest} y \emph{gbest} (en la versión global).
+El concepto básico del PSO consite en, a cada instante de tiempo, cambiar la velocidad (acelerar) cada partícula hacia su \emph{pbest} y \emph{gbest} (en la versión global).
 Estas aceleraciones son ponderadas por un elemento aleatorio.
 
 
@@ -184,7 +184,7 @@ En el PSO \emph{gbest}, la velocidad de la partícula $i$ es calculada como:
 \end{equation}
 	
 donde $v_{ij}(t)$ es la velocidad de la partícula $i$ en la dimensión $j$ en el tiempo $t$, $x_{ij}(t)$ es la posición de la partícula $i$ en la dimensión $j$, en el tiempo $t$, $c_1$ y $c_2$ son constantes de aceleración positiva utilizadas para escalar la contribución de los componentes cognitivos y sociales, respectivamente.
-$r_{1j}(t), r_{2j}(t) \sim U(0,1)$ son valores aleatorios en el rango [0,1] muestreados con una distribución uniforme.
+$r_{1j}(t), r_{2j}(t) \sim U(0,1)$ son valores aleatorios en el rango [0,1] muestrados con una distribución uniforme.
 Estos valores aleatorios introducen un elemento estocástico al algoritmo.
 
 La mejor posición personal, $\mathbf{y}_i$ asociada con la partícula $i$ es la mejor posición que la partícula ha visitado desde el tiempo $t(0)$.
@@ -238,7 +238,7 @@ El comportamiento de las partículas con este algoritmo es ejemplificado en la F
 \end{figure}
 \subsubsection{Algoritmo PSO mejor local (\emph{lbest})} 
 El algoritmo \emph{local best} utiliza una topología de anillo donde se definen vecindarios pequeños para cada partícula, por lo que el conocimiento del entorno es local.
-En referencia a la ecuación de la velocidad, la contribución de este conocimiento local a la velocidad de la partícula es proporcional respecto a la distancia que existe entre la partícula y la mejor posición encontrada por las partículas vecinas.
+En referencia a la ecuación de la velocidad, la contribución de este conocimiento local a la velocidad de la particula es proporcional respecto a la distancia que existe entre la partícula y la mejor posición encontrada por las partículas vecinas.
 La velocidad se calcula como:
 \begin{equation}
 	v_{ij}(t+1)=v_{ij}(t) + c_1 r_{1j}[y_{ij}(t) - x_{ij}(t)] + c_2 r_{2j}(t) [\hat{y}_{ij}(t) - x_{ij}(t)]
@@ -255,11 +255,11 @@ $$
 \mathcal{N}_i = \left \{ y_{{i-n}_{\mathcal{N}_i}}(t), y_{i-n_{\mathcal{N}_i}+1 }(t), \ldots, y_{i-1}(t), y_{i+1}(t), \ldots, y_{i+n_{\mathcal{N}_i} }(t) \right \}
 $$
 
-Es importante notar que las partículas dentro de un vecindario no tienen relación entre ellas.
+Es importante noar que las partículas dentro de un vecindario no tienen relación entre ellas.
 La selección de los vecindarios normalmente se realiza en base a los índices de las partículas, siendo esta tipo de selección la preferida por dos razones principales:
 \begin{itemize}
 	\item Es computacionalmente \emph{barato}, dado que ordenar las partículas no es requerido. 
-	Algunos enfoques requieren calcular la distancia entre las partículas, por lo que la distancia euclidiana entre todos los pares de partículas debe ser calculado, lo cual es de complejidad $\mathcal{O}(n_s^2)$
+	Algunos enfoques requieren calcular la distancia entre las partículas, por lo que la distancia euclidianada entre todos los pares de partículas debe ser calculado, lo cual es de complejidad $\mathcal{O}(n_s^2)$
 	\item Ayuda a promover la distribución de la información al relacionar buenas soluciones a todas las partículas, sin importar su distribución en el espacio de búsqueda.
 \end{itemize}
 Es importante notar que los vecindarios se traslapan.
@@ -303,7 +303,7 @@ Al comparar las versiones \emph{lbest} y \emph{gbest} se observa que:
 \begin{itemize}
 	\item Debido a la mayor interconectividad de partículas, el PSO \emph{gbest} converge más rápido.
 	Sin embargo, esto viene con el costo asociado de menor diversidad que el PSO \emph{lbest}.
-	\item Como consecuencia de la mayor diversidad alcanzada por \emph{lbest} (lo cual resulta en porciones más grandes del espacio de búsqueda cubiertas), el PSO \emph{lbest} es menos susceptible a mínimos locales.
+	\item Como consecuencia de la mayor diversidad alcanzada por \emph{lbest} (lo cual resulta en porciones más grandes del espacio de búsqueda cubiertas), el PSO \emph{lbest} es menos suceptible a mínimos locales.
 	En general, las estructuras de vecindarios como la topología anillo utilizada en PSO \emph{lbest} ofrecen el mejor desempeño.
 \end{itemize}
 
@@ -347,7 +347,7 @@ Este acotamiento se realiza justo después de calcular la nueva velocidad en el 
 \paragraph{Peso de inercia}
 El peso de inercia es un mecanismo que intenta suplir al parámetro de sujeción de velocidad.
 El peso de inercia $\omega$ controla el \emph{momentum} de la partícula al ponderar la contribución de la velocidad anterior.
-En otras palabras, controla qué tanta memoria de la dirección del vuelo anterior influirá en la nueva velocidad.
+En otras palabras, controla qué tanta memoria de la dirección del vuelo anterior infuirá en la nueva velocidad.
 Entonces, la ecuación de velocidad cambia a:
 \begin{equation}
 	v_{ij}(t+1) = \omega v_{ij}(t) + c_1r_{1j}(t)[y_{ij}(t) - x_{ij}(t)] + c_2 r_{2j}(t)[\hat{y}_j(t) - x_{ij}(t)]
@@ -397,19 +397,19 @@ Más específicamente, el flujo de información a través de una red social depe
 \end{itemize}
 
 En una red altamente conectada, hay mayor comunicación entre los individuos y se converge más rápido, sin embargo se es más susceptible a los óptimos locales debido a que se cubre un menor espacio de búsqueda.
-Las siguientes son las topologías más comunes para las redes establecidas en PSO:
+Las siguients son las topologías más comunes para las redes establecidas en PSO:
 \begin{itemize}
 	\item \textbf{Estrella}: Cada partícula se interconecta con cada una de las demás.
 	La primera implementación de PSO utilizó esta topología.
 	PSO \emph{gbest} converge más rápido pero es susceptible a óptimos locales.
 	\item \textbf{Anillo}: Cada partícula se comunica con sus $n_\mathcal{N}$ vecinos inmediatos.
 	Es utilizado por \emph{lbest}. Converge en un tiempo mayor pero ofrece una mayor cobertura del espacio de búsqueda.
-	\item \textbf{Rueda}: Las partículas de un vecindario se aíslan de las otras.
+	\item \textbf{Rueda}: Las partículas de un vecindario se aislan de las otras.
 	Una partícula funciona como partícula foco, la cual compara el desempeño de las partículas de su vecindario y ajusta su posición hacia la del mejor; si la posición de la partícula foco es mejor que la de sus vecinas, propaga su posición hacia ellas.
 	\emph{Enlentece} la propagación de las buenas soluciones hacia el enjambre.
 	\item \textbf{Pirámide}: Forma un \emph{wire-frame} tridimensional.
-	\item \textbf{Cuatro clusters}: En esta estructura, cuatro clusters se forman con dos conexiones entre ellos.
-	Las partículas dentro de cada cluster se conectan con cinco vecinos.
+	\item \textbf{Cuatro clústers}: En esta estructura, cuatro clústers se forman con dos conexiones entre ellos.
+	Las partículas dentro de cada clúster se conectan con cinco vecinos.
 	\item \textbf{Von Neumann}: Las partículas se conectan en un grid.
 \end{itemize}
 

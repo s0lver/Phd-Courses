@@ -1,5 +1,5 @@
 \documentclass[aspectratio=169,compress,10pt]{beamer}
-\usepackage[utf8]{inputenc}
+%\usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lipsum, lmodern}
 \usepackage{textcomp}
@@ -9,7 +9,12 @@
 
 \usecolortheme{spruce}
 
-\author{Rafael Pérez-Torres \\ Selected Topics on Pattern Recognition}
+\usepackage{fontspec}
+\setmainfont[]{Droid Sans} % sets the roman font
+\setsansfont[]{Droid Serif} % sets the sans font
+\setmonofont[]{Liberation Mono} % sets the monospace font
+
+\author{Rafael P\'{e}rez-Torres \\ Selected Topics on Pattern Recognition}
 \title{Swarm Intelligence \\ Particle Swarm Optimization}
 \institute{Cinvestav Tamaulipas}
 \date{\today}
@@ -144,23 +149,23 @@ where $n_s$ is the number of particles in the swarm.
 \begin{algorithm}[H]
 \scriptsize
 \begin{algorithmic}[1] 
-\STATE Crear e inicializar un enjambre de $n_x$ dimensiones
+\STATE Create and initialize a swarm of $n_x$ dimensions
 \REPEAT
-	\FOR {cada partícula i = 1, $\ldots$, $n_s$}
-		\STATE // Establecer la mejor posición personal
+	\FOR {each particle i = 1, $\ldots$, $n_s$}
+		\STATE // Set best personal position
 		\IF { $f(x_i) < f(y_i)$ }
 			\STATE $y_i = x_i$
 		\ENDIF
-		\STATE // Establecer la mejor posición global 
+		\STATE // Set global best position
 		\IF {$f(y_i) < f(\hat{y})$}
 			\STATE $\hat{y} = y_i$
 		\ENDIF
 	\ENDFOR
-	\FOR {cada partícula i = 1, $\ldots$, $n_s$}
-		\STATE Actualizar la velocidad utilizando \ref{eq:velocidad-gbest}
-		\STATE Actualizar la posición utilizando la ecuación \ref{eq:velocidad-particula-generica}
+	\FOR {each particle i = 1, $\ldots$, $n_s$}
+		\STATE Update velocity using \ref{eq:velocidad-gbest}
+		\STATE Update position using \ref{eq:velocidad-particula-generica}
 	\ENDFOR
-\UNTIL {se cumpla la condición de paro}
+\UNTIL {stopping condition is met}
 \end{algorithmic} 
 \caption{PSO gbest} 
 \label{alg:algoritmo-pso-gbest}
@@ -206,23 +211,23 @@ $$
 \begin{algorithm}[H]
 \scriptsize
 \begin{algorithmic}[1] 
-\STATE Crear e inicializar un enjambre de $n_x$ dimensiones
+\STATE Create and initialize a swarm of $n_x$ dimensions
 \REPEAT
-	\FOR {cada partícula i = 1, $\ldots$, $n_s$}
-		\STATE // Establecer la mejor posición personal
+	\FOR {each particle i = 1, $\ldots$, $n_s$}
+		\STATE // Set the personal best position
 		\IF { $f(x_i) < f(y_i)$ }
 			\STATE $y_i = x_i$
 		\ENDIF
-		\STATE // Establecer la mejor posición global 
+		\STATE // Set the neighborhood best position
 		\IF {$f(y_i) < f(\hat{y})$}
 			\STATE $\hat{y} = y_i$
 		\ENDIF
 	\ENDFOR
-	\FOR {cada partícula i = 1, $\ldots$, $n_s$}
-		\STATE Actualizar la velocidad utilizando \ref{eq:velocidad-lbest}
-		\STATE Actualizar la posición utilizando la ecuación \ref{eq:velocidad-particula-generica}
+	\FOR {each particle i = 1, $\ldots$, $n_s$}
+		\STATE Update velocity using \ref{eq:velocidad-lbest}
+		\STATE Update position using \ref{eq:velocidad-particula-generica}
 	\ENDFOR
-\UNTIL {se cumpla la condición de paro}
+\UNTIL {stopping condition is met}
 \end{algorithmic} 
 \caption{Algoritmo PSO lbest} 
 \label{alg:algoritmo-pso-lbest}
@@ -237,8 +242,8 @@ $$
 \end{frame}
 
 
-\subsection{Stop criteria}
-\begin{frame}{Stop criteria}
+\subsection{Stopping condition}
+\begin{frame}{Stopping condition}
 \begin{itemize}
 	\item A maximum number of iterations.
 	\item An acceptable solution is found: $f(x_i) \leq |f(x^*) - \epsilon |$.
@@ -254,21 +259,22 @@ $$
 	\item Due to larger particles connectivity, \emph{gbest} PSO converges faster, but it comes with the cost of less diversity than \emph{lbest} PSO.
 	\item In this regard, \emph{lbest} PSO covers larger regions of search space becoming less sensible to local optimum.
 	In general, neighborhood structures like star topology offer the best performance.
-	\item Terminar cuando la pendiente de la función objetivoes aproximadamente 0.
 \end{itemize}
 \end{frame}
 
 
 \subsection{Basic PSO parameters}
+\begin{frame}{Basic PSO parameters}
 \begin{itemize}
 	\item \textbf{Swarm size, $n_s$}: the more amount of particles, the more initial diversity and a larger region of search space can be covered.
 	Also, it may improve convergence but also increase computational complexity.
 	\item \textbf{Neighborhood size}: the smaller the neighborhood the smaller interaction and slower convergence; however it will improve quality of solutions.
 	It is possible to start with small neighborhoods and then increase their size.
-	\item \textbf{Iterations}: depending on scenario; a few iterations may produce premature search stop; many iterations migh cause unnecesary computations.
+	\item \textbf{Iterations}: depending on scenario; a few iterations may produce premature search stop; many iterations might cause unnecessary computations.
 	\item \textbf{Acceleration coefficients}, $c_1$ y $c_2$: control the stochastic influence over cognitive and social components. 
 	$c_1$ expresses how much confidence has the particle on itself, while  $c_2$ expresses the confidence the particle has in its neighbors.
 \end{itemize}
+\end{frame}
 
 \section{PSO variants}
 \subsection{Variants}
@@ -280,14 +286,12 @@ are clamped to stay within boundary constraints.
 If a particle’s velocity in a dimension $d$ exceeds
 a specified maximum velocity, the particle’s velocity is set to the maximum velocity.
 
-This clamping is done jus after calculatin the new speed in the PSO algorithm.
+This clamping is done just after calculating the new speed in the PSO algorithm.
 \end{block}
     
 \begin{block}{Inertia weight}
-Is a mechanism to
-control the exploration and exploitation abilities of the swarm, aimed at eliminating the need for velocity clamping.
-Basically, $\omega$ controlls how much memory of
-the previous flight direction will influence the new velocity.
+Is a mechanism to control the exploration and exploitation abilities of the swarm, aimed at eliminating the need for velocity clamping.
+Basically, $\omega$ controls how much memory of the previous flight direction will influence the new velocity.
 
 In global PSO the velocity equation changes to
 \begin{equation}
@@ -313,7 +317,7 @@ where
 $$
 \mathcal{X} = \frac{2 \kappa}{| 2 - \phi - \sqrt{\phi ( \phi - 4)}  |}
 $$
-y $\phi = \phi_1 + \phi_2$, $\phi_1 = c_1 r_1$ y $\phi_2 = c_2 r_2$.
+and $\phi = \phi_1 + \phi_2$, $\phi_1 = c_1 r_1$ y $\phi_2 = c_2 r_2$.
 According to a formal analysis of eigenvalues of swarm dynamics,  $\phi \geq 4$ and $\kappa \in [0,1]$.
 \end{block}
 \end{frame}
@@ -330,12 +334,11 @@ It is possible to perform the update of best positions after updating each parti
 \begin{block}{Velocity models}
 Alternative velocity models differ in the components included in the velocity equation, and how best positions are determined.
 \begin{itemize}
-	\item \textbf{Cognition-only model}: exluced the social component from velocity equation.
+	\item \textbf{Cognition-only model}: excludes the social component from velocity equation.
 	This resembles nostalgia since particles may return toward their previous best positions.
-	\item \textbf{Social only model}: Excludes the cognitive component from the velocity equation.
+	\item \textbf{Social only model}: excludes the cognitive component from the velocity equation.
 	All particles are then attracted towards the best position of their neighborhood.
-	\item \textbf{Selfless model}:
-	Similar to social model, but the neighborhood best solution is only chosen from a particle's neighborhood.
+	\item \textbf{Selfless model}: similar to social model, but the neighborhood best solution is only chosen from a particle's neighborhood.
 	The particle itself is not allowed to become the neighborhood best.
 \end{itemize}
 \end{block}
@@ -425,7 +428,7 @@ It has been shown in a number of empirical studies to outperform other social ne
     \begin{itemize}
     	\item PSO is a technique for optimization.
     	\item It mimics the social behavior of organisms (birds).
-    	\item Particles fly toward the optimum, guided by its own knowledge (cognitive) and knoledge of the neighbors (social).
+    	\item Particles fly toward the optimum, guided by its own knowledge (cognitive) and knowledge of the neighbors (social).
     	\item The core component is the velocity.
     	\item The topology of neighbors affect the communication flow.
     \end{itemize}
