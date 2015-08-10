@@ -8,11 +8,15 @@
 \usetheme{Szeged} % or Median, or Metro, or PraterStreet, or Milano
 
 \usecolortheme{spruce}
-
+% Vallkorn, Alegreya
 \usepackage{fontspec}
-\setmainfont[]{Droid Sans} % sets the roman font
-\setsansfont[]{Droid Serif} % sets the sans font
-\setmonofont[]{Liberation Mono} % sets the monospace font
+\setmainfont[]{Cardo} % sets the roman font
+\setsansfont[]{Alegreya} % sets the sans font
+\setmonofont[]{Consolas} % sets the monospace font
+\setbeamertemplate{navigation symbols}{}
+    \expandafter\def\expandafter\insertshorttitle\expandafter{%
+      \insertshorttitle\hfill%
+      \insertframenumber\,/\,\inserttotalframenumber}
 
 \author{Rafael P\'{e}rez-Torres \\ Selected Topics on Pattern Recognition}
 \title{Swarm Intelligence \\ Particle Swarm Optimization}
@@ -81,7 +85,7 @@ Each of the CI paradigms has its origins in biological systems.
 	\item Swarm intelligence (SI) refers to the problem-solving behavior that emerges from the interaction of such agents.
 	\item Computational swarm intelligence (CSI) refers to algorithmic models of such behavior.
 	\item More formally, swarm intelligence is the property of a system whereby the collective behaviors of unsophisticated agents interacting locally with their environment cause coherent functional global patterns to emerge.
-	Swarm intelligence has also been referred to as \emph{collective intelligence}.
+	\item Swarm intelligence has also been referred to as \emph{collective intelligence}.
 \end{itemize}
 \end{frame}
 
@@ -271,7 +275,7 @@ $$
 	\item \textbf{Neighborhood size}: the smaller the neighborhood the smaller interaction and slower convergence; however it will improve quality of solutions.
 	It is possible to start with small neighborhoods and then increase their size.
 	\item \textbf{Iterations}: depending on scenario; a few iterations may produce premature search stop; many iterations might cause unnecessary computations.
-	\item \textbf{Acceleration coefficients}, $c_1$ y $c_2$: control the stochastic influence over cognitive and social components. 
+	\item \textbf{Acceleration coefficients}, $c_1$ and $c_2$: control the stochastic influence over cognitive and social components. 
 	$c_1$ expresses how much confidence has the particle on itself, while  $c_2$ expresses the confidence the particle has in its neighbors.
 \end{itemize}
 \end{frame}
@@ -345,6 +349,7 @@ Alternative velocity models differ in the components included in the velocity eq
 \end{frame}
 
 \section{Topologies} 
+\subsection{Topologies}
 \begin{frame}{Topologies}
 \begin{itemize}
 	\item Social interaction guides PSO, and it is determined by the formation of overlapping neighborhoods.
