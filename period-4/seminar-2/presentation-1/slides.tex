@@ -19,6 +19,14 @@
 \usepackage{natbib}
 \usepackage{multicol}
 \usepackage[caption=false]{subfig}
+\hypersetup{%
+  colorlinks = true,
+  linkcolor  = PineGreen!100!black
+}
+
+\setbeamertemplate{itemize item}{\color{PineGreen}$\bullet$}
+\setbeamertemplate{itemize subitem}{\color{PineGreen!25}$\circ$}
+\setbeamercolor{enumerate item}{fg=PineGreen}
 
 \setmainfont[]{Cardo} % sets the roman font
 %\setsansfont[]{Alegreya} % sets the sans font % Vallkorn, Alegreya
@@ -39,7 +47,21 @@
 \date{}
 
 \begin{document}
-\frame{\maketitle}
+\begin{frame}[plain]
+  % {
+  % \begin{center}
+  % \includegraphics[scale=0.12]{../../../resources/images/vectors/cinvestav-logo-no-text}
+  % \end{center}
+  % }
+  \begin{center}
+  \includegraphics[scale=0.12]{../../../resources/images/vectors/cinvestav-logo-no-text}
+  \end{center}
+  \titlepage
+  
+\end{frame}
+
+%\frame{\maketitle}
+
 \begin{frame}{Table of contents}
 	\tableofcontents[hideallsubsections]
 \end{frame}
@@ -89,7 +111,7 @@ Intelligent policies produced through context information built from sensors dat
 \begin{itemize}
 	\item An intelligent policy is a special rule that defines how sensors should be accessed in order to reduce the energy consumption and achieve the requirements of a mobile app.
 	It is intelligent in terms of self-adaptness to changes detected in context information.
-	\item This research work aims to employ data coming from GPS and inertial sensors in order to obtain context information about user mobility that helps to adapt the sensor usage and reduce energy consumption.
+	\item This research work aims to employ data coming from GPS and inertial sensors (accelerometer) in order to obtain context information about user mobility that helps to adapt the usage of sensors and reduce energy consumption.
 \end{itemize}
 }
 \end{frame}
@@ -98,27 +120,26 @@ Intelligent policies produced through context information built from sensors dat
 \begin{frame}\frametitle{Problem statement}
 \begin{tcolorbox}[title=Problem statement: Mobility pattern identification,colframe=PineGreen]
 \small
-Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read from sensor $S$ in the time interval $T  \in [t_{1}, t_{2}]$, identify the current behavior pattern $p_{S}$ that represents the activity of user.
+Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read from sensor $S$ in the time interval $T  \in [t_{1}, t_{2}]$, identify the current mobility pattern $p_{S}$ that represents the activity of user.
 
 \begin{equation}
   \text{PatternIdentifier}( V ) \longrightarrow{} p_{S} \in Patterns
 \end{equation}
 
-Where $Patterns$ is a set of patterns that represent an interesting state in the user activity.
-Especifically, the set $\left\{no\_movement, walking, running, vehicle\_transportation\right\}$ represents these interesting states.
+Where $Patterns$ is a set of patterns that represent an interesting state in user mobility, specifically the set $\left\{no\_movement, walking, running, vehicle\_transportation\right\}$.
 \end{tcolorbox}
 \end{frame}
 
 \begin{frame}\frametitle{Problem statement}
 \begin{tcolorbox}[title=Problem statement: Policy generation,colframe=PineGreen]
 \small
-Given the set of detected patterns $\mathcal{P}_{S} = \{ p_{S_1}, p_{S_2}, \ldots, p_{S_n} \}$ in data from sensors $\mathcal{S} = \{ S_1,S_2,\ldots, S_n \}$, parameters for assigning weight to energy $e$ and accuracy $a$, and physical constraints status $c$ of a mobile device, find a policy that selects and configures the operation of proper sensors while meeting application requirements.
+Given the set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, \ldots, p_{S_n} \}$ in data from sensors $\mathcal{S} = \{ S_1,S_2,\ldots, S_n \}$, parameters for assigning weight to energy $e$ and accuracy $a$, and physical constraints status $c$ of a mobile device, find a policy that select the proper set of sensors $\mathcal{S}_{new}$ and its associated configuration $\mathcal{S}_{new_{conf}}$  while meeting application requirements.
 
 \begin{equation}
-  \text{PolicyGeneration}( \mathcal{P}_{S}, e, a, c ) \longrightarrow{} d_{S}
+  \text{PolicyGeneration}( \mathcal{P}_{\mathcal{S}}, e, a, c ) \longrightarrow{} \mathcal{S}_{new}, \mathcal{S}_{new_{conf}}
 \end{equation}
 
-The policy will be generated considering the trade-off between energy and accuracy parameters that are specified by the mobile application.
+The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle} of associated sensor.
 \end{tcolorbox}
 \end{frame}
 
@@ -145,34 +166,20 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \section{Methodology}
 \subsection{Methodology}
 \begin{frame}\frametitle{Methodology}
-
+\begin{enumerate}
+  \item Research on the characteristics of data delivered by sensors, in this case the GPS receiver.
+  \item Definition and selection of mobility patterns to be identified.
+  \item Research and selection of algorithms to detect mobility patterns of user based on data delivered by GPS.
+  \item Creation of the pattern identifier element (PIE).
+  \item Creation of the policy generator element (PGE).
+  \item Development of a software element (SE) that integrates both PIE and PGE.
+  \item Experimentation.
+\end{enumerate}
 \end{frame}
 
 
 \section{Schedule}
 \subsection{Schedule}
-\begin{frame}\frametitle{Schedule}
-sdasd
-\end{frame}
-
-
-\section{Contributions}
-\subsection{Contributions}
-\begin{frame}\frametitle{Contributions}
-
-\end{frame}
-
-
-\section{Developed work}
-\subsection{Developed work}
-\begin{frame}\frametitle{Brief state of art revision}
-
-\end{frame}
-
-\begin{frame}\frametitle{Proposed solution}
-
-\end{frame}
-
 \begin{frame}{Schedule}
   \definecolor{colorA}{gray}{0.85}
   \definecolor{colorB}{gray}{0.95}
@@ -183,7 +190,8 @@ sdasd
 
   \begin{table}[!h]
   {
-    \scalebox{0.6}{
+    \scalebox{0.63}{
+    %\scalebox{0.6}{
     \small
       \begin{tabular*}{16.5cm}{lp{\longitudCelda}*{12}{c}}
           & & \multicolumn{3}{ c: }{\tiny SEP '14 - AUG '15}  & \multicolumn{3}{ c: }{\tiny SEP '15 - AUG '16} & \multicolumn{3}{ c: }{\tiny SEP '16 - AUG '17} & \multicolumn{3}{ c }{\tiny SEP '17 - AUG '18} \\
@@ -400,9 +408,68 @@ sdasd
       \end{tabular*}
     }
   } % begin table
-  \caption{Schedule of activities (each column represents a four months period)}
-  \label{tbl-schedule}
+  %\caption{Schedule of activities (each column represents a four months period)}
+  %\label{tbl-schedule}
   \end{table}
 \end{frame}
+
+
+\section{Contributions}
+\subsection{Contributions}
+\begin{frame}\frametitle{Contributions}
+\begin{itemize}
+  \item A mechanism for detecting mobility patterns from the data read by sensors of mobile devices (especifically GPS and accelerometer).
+  \item A mechanism for generating policies for accessing sensors.
+  %Besides the identified mobility pattern, such mechanism also considers mobile application's requirements (energy and accuracy hints), and the status of device constraints.
+  The produced policies will allow to perform an intelligent usage of smartphone's sensing infrastructure in continuous sensor readings, reducing the energy consumption.
+  \item A middleware implementing the previous mechanisms, easing the development of mobile sensing applications.
+\end{itemize}
+\end{frame}
+
+
+\section{Developed work}
+\subsection{Developed work}
+\begin{frame}\frametitle{Brief state of art revision}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/approaches-taxonomy}
+  \caption{Taxonomy of solutions}
+  \label{fig:taxonomy}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Brief state of art revision}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[scale=0.72]{../../../resources/images/vectors/approaches-distribution}
+  \caption{Distribution of approaches across mobile platform's layers}
+  \label{fig:distribution}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Basic scenario}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/scenario}
+  \caption{Basic scenario}
+  \label{fig:scenario}
+\end{figure}
+\end{frame}
+
+\begin{frame}\frametitle{Proposed solution}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/policy-manager-incorporation}
+  \caption{Overview of current solution}
+  \label{fig:solution}
+\end{figure}
+\end{frame}
+
+\subsection{References}
+\bibliographystyle{unsrtnat}
+\small
+\bibliography{../../../resources/references/bibliography}
+
+
 
 \end{document}
