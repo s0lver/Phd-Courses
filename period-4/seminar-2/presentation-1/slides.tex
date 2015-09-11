@@ -16,13 +16,15 @@
 \usepackage{dtklogos}
 \usepackage{arydshln}
 \usepackage{chngpage}
-\usepackage{natbib}
+
 \usepackage{multicol}
 \usepackage[caption=false]{subfig}
 \hypersetup{%
   colorlinks = true,
   linkcolor  = PineGreen!100!black
 }
+
+\usepackage{natbib}
 
 \setbeamertemplate{itemize item}{\color{PineGreen}$\bullet$}
 \setbeamertemplate{itemize subitem}{\color{PineGreen!25}$\circ$}
@@ -70,7 +72,7 @@
 \subsection{Introduction}
 \begin{frame}\frametitle{Introduction}
 \begin{itemize}
-	\item There is a massive adoption of mobile devices by society in almost any daily activity.
+	\item There is a massive adoption of mobile devices by society in almost any daily activity~\cite{Islam2014}.
 	\begin{itemize}
 		\item Any-where, any-time connectivity
 		\item Possibility of installing new mobile applications
@@ -84,6 +86,7 @@
 \begin{itemize}
 	\item Hence, mobile devices have achieved a considerable degree of sensitivity that tries to mimic the sense of humans.
 	\item In this way these devices have become \emph{context-aware}, which is translated to an increasing level of understanding about user's activity.
+  \item \emph{Context} refers to a four-dimensional space composed of \emph{computing context}, \emph{physical context}, \emph{time context}, and \emph{user context}~\cite{Chen2000}.
 \end{itemize}
 \end{frame}
 
@@ -93,8 +96,21 @@
 	\item Despite the increasing computing, storage and memory capabilities of smartphones, battery is not evolving at the same pace~\cite{Kjaergaard2012}.
 	\item Each new generation of smartphones keeps improving and including new hardware embedded components, which imposes a higher energy demand.
 	\item This limitation is highlighted when a continuous access to sensors data is needed, which is the core requirement of \textbf{mobile sensing applications}.
-	\item Then it is mandatory for any mobile sensing application development to consider the energy constraint and implement mechanisms or strategies to optimize battery duration.
+  \item Then it is mandatory for any mobile sensing application development to consider the energy constraint and implement mechanisms or strategies to optimize battery duration.
+\end{itemize}
+\end{frame}
 
+\begin{frame}\frametitle{Motivation}
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/msa-stages}
+  \caption{Stages of mobile sensing applications}
+  \label{fig:msa-stages}
+\end{figure}
+
+\begin{itemize}
+  \item There is a tradeoff between the accuracy of context information retrieved and the associated energy consumption~\cite{Sim2014,Rachuri2012}.
 \end{itemize}
 \end{frame}
 
@@ -167,9 +183,9 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \subsection{Methodology}
 \begin{frame}\frametitle{Methodology}
 \begin{enumerate}
-  \item Research on the characteristics of data delivered by sensors, in this case the GPS receiver.
+  \item Research on the characteristics of data delivered by sensors, (GPS and accelerometer).
   \item Definition and selection of mobility patterns to be identified.
-  \item Research and selection of algorithms to detect mobility patterns of user based on data delivered by GPS.
+  \item Research and selection of algorithms to detect mobility patterns of user based on data delivered by GPS and accelerometer.
   \item Creation of the pattern identifier element (PIE).
   \item Creation of the policy generator element (PGE).
   \item Development of a software element (SE) that integrates both PIE and PGE.
@@ -333,7 +349,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
           & & \\
 
           \rowcolor{colorB}
-          16 & \multicolumn{1}{p{\longitudCelda}:}{Research on Android API for specialized} &
+          16 & \multicolumn{1}{p{\longitudCelda}:}{Research on Android API for specialized components} &
           & & &
           & & &
           & \cellcolor[gray]{0.3} & &
@@ -466,10 +482,9 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{frame}
 
 \subsection{References}
-\bibliographystyle{unsrtnat}
-\small
+\bibliographystyle{plain}
+% \bibliographystyle{unsrtnat}
+% \tiny
 \bibliography{../../../resources/references/bibliography}
-
-
 
 \end{document}
