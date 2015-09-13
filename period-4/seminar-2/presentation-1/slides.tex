@@ -93,7 +93,7 @@
 
 \begin{frame}\frametitle{Motivation}
 \begin{itemize}
-	\item Despite the increasing computing, storage and memory capabilities of smartphones, battery is not evolving at the same pace~\cite{Kjaergaard2012}.
+	\item Despite the increasing computing, storage and memory capabilities of smartphones, battery is not evolving at the same pace~\cite{Kjaergaard2012}, growing only 5\% each year~\cite{Ma2012}.
 	\item Each new generation of smartphones keeps improving and including new hardware embedded components, which imposes a higher energy demand.
 	\item This limitation is highlighted when a continuous access to sensors data is needed, which is the core requirement of \textbf{mobile sensing applications}.
   \item Then it is mandatory for any mobile sensing application development to consider the energy constraint and implement mechanisms or strategies to optimize battery duration.
@@ -101,7 +101,6 @@
 \end{frame}
 
 \begin{frame}\frametitle{Motivation}
-
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{../../../resources/images/vectors/msa-stages}
@@ -115,6 +114,25 @@
 \end{frame}
 
 
+\begin{frame}\frametitle{Motivation}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.65\textwidth]{../../../resources/images/vectors/lbs-classification}
+  \caption{Location based services categorization based on running time and power consumption, as proposed by Kj\ae rgaard~\cite{Kjaergaard2012}}.
+  \label{fig:lbs-classification}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}\frametitle{Basic scenario}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/scenario}
+  \caption{Basic scenario}
+  \label{fig:scenario}
+\end{figure}
+\end{frame}
+
 \section{Hypothesis and problem statement}
 \subsection{Hypothesis and problem statement}
 \begin{frame}\frametitle{Hypothesis}
@@ -127,7 +145,7 @@ Intelligent policies produced through context information built from sensors dat
 \begin{itemize}
 	\item An intelligent policy is a special rule that defines how sensors should be accessed in order to reduce the energy consumption and achieve the requirements of a mobile app.
 	It is intelligent in terms of self-adaptness to changes detected in context information.
-	\item This research work aims to employ data coming from GPS and inertial sensors (accelerometer) in order to obtain context information about user mobility that helps to adapt the usage of sensors and reduce energy consumption.
+	\item This research work aims to employ data coming from GPS and inertial sensors (accelerometer) in order to obtain context information in the shape of user mobility that helps to adapt the usage of sensors and reduce energy consumption.
 \end{itemize}
 }
 \end{frame}
@@ -159,11 +177,20 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 \end{tcolorbox}
 \end{frame}
 
+\begin{frame}\frametitle{Interaction between problems}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/problems-incorporation}
+  \caption{Interaction between the thesis work's problems}
+  \label{fig:probems-incorporation}
+\end{figure}
+\end{frame}
+
 \section{Objectives}
 \subsection{Objectives}
 \begin{frame}\frametitle{Objectives}
 \begin{tcolorbox}[title=Main objective,colframe=PineGreen]
-To reduce energy consumption in the mobile sensing apps, which perform continuous sensor readings, through power-aware policies generated from context information obtained from sensors data.
+To reduce energy consumption in the mobile sensing apps, which perform continuous sensor readings, through self-adapting power-aware policies generated from context information obtained from sensors data.
 \end{tcolorbox}
 \end{frame}
 
@@ -172,8 +199,8 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \small
 \begin{itemize}
   \item To identify mobility patterns from context information obtained from an inertial sensor (accelerometer) and location providers (GPS, WPS).
-  \item To generate policies for a smart sensors' usage from identified mobility patterns, accuracy and energy requirements of mobile application, and status of mobile device's constraints. 
-  \item To ease the development of mobile sensing applications that require user location tracking, i.e., LBS, by means of a middleware that isolates the complexity of sensors' access and the associated efficient energy management.
+  \item To generate policies for a self-adapting sensors' usage from identified mobility patterns, accuracy and energy requirements of mobile application, and status of mobile device's constraints. 
+  \item To ease the development of mobile sensing applications that require user location tracking, i.e., LBS, isolating the complexity of sensors' access and the associated efficient energy management.
 \end{itemize}
 \end{tcolorbox}
 \end{frame}
@@ -188,7 +215,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \item Research and selection of algorithms to detect mobility patterns of user based on data delivered by GPS and accelerometer.
   \item Creation of the pattern identifier element (PIE).
   \item Creation of the policy generator element (PGE).
-  \item Development of a software element (SE) that integrates both PIE and PGE.
+  \item Development of a middleware for the Android mobile platform that integrates both PIE and PGE.
   \item Experimentation.
 \end{enumerate}
 \end{frame}
@@ -438,7 +465,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \item A mechanism for generating policies for accessing sensors.
   %Besides the identified mobility pattern, such mechanism also considers mobile application's requirements (energy and accuracy hints), and the status of device constraints.
   The produced policies will allow to perform an intelligent usage of smartphone's sensing infrastructure in continuous sensor readings, reducing the energy consumption.
-  \item A middleware implementing the previous mechanisms, easing the development of mobile sensing applications.
+  \item A middleware implementing the previous power-aware mechanisms for easing the development of location based services.
 \end{itemize}
 \end{frame}
 
@@ -460,15 +487,6 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \includegraphics[scale=0.72]{../../../resources/images/vectors/approaches-distribution}
   \caption{Distribution of approaches across mobile platform's layers}
   \label{fig:distribution}
-\end{figure}
-\end{frame}
-
-\begin{frame}\frametitle{Basic scenario}
-\begin{figure}[tb]
-  \centering
-  \includegraphics[width=\textwidth]{../../../resources/images/vectors/scenario}
-  \caption{Basic scenario}
-  \label{fig:scenario}
 \end{figure}
 \end{frame}
 
