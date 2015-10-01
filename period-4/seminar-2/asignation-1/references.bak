@@ -1,0 +1,37 @@
+% This file was created with JabRef 2.10.
+% Encoding: Cp1252
+
+
+@Electronic{Research2015a,
+  Title                    = {Top Journals for Computer Science and Electronics},
+  Author                   = {Guide 2 Research},
+  Language                 = {English},
+  Url                      = {http://www.guide2research.com/journals/},
+  Year                     = {2015},
+
+  Owner                    = {Rafael},
+  Timestamp                = {2015.10.01}
+}
+
+@Electronic{Research2015,
+  Title                    = {CORE JOURNAL AND CONFERENCES RANKING},
+  Author                   = {The Computing Research and Education Association of Australasia, CORE},
+  Language                 = {English},
+  Url                      = {http://www.core.edu.au/},
+  Year                     = {2015},
+
+  Owner                    = {Rafael},
+  Timestamp                = {2015.10.01}
+}
+
+@Electronic{Reuters2015,
+  Title                    = {Web of Science},
+  Author                   = {Thomsom Reuters},
+  Language                 = {English},
+  Url                      = {http://wokinfo.com/},
+  Year                     = {2015},
+
+  Owner                    = {Rafael},
+  Timestamp                = {2015.10.01}
+}
+
