@@ -1,7 +1,14 @@
+%!TEX program = lualatex
 \documentclass[compress,9pt,xcolor={dvipsnames,table}]{beamer}
-%\documentclass{beamer}
-\usepackage[utf8]{inputenc}
-\usepackage{lmodern}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{english}
+\setmainfont[]{Palatino}
+\setsansfont[]{PT Sans}
+\setmonofont[]{Menlo}
+
+% \usepackage[utf8]{inputenc}
+% \usepackage{lmodern}
 \usepackage{textcomp}
 \usepackage{algorithm}
 \usepackage{algorithmic}
@@ -11,10 +18,6 @@
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
-
-
-% \usepackage{polyglossia}
-% \setmainlanguage{english}
 \usepackage{tabularx,ragged2e}
 \usepackage{booktabs}
 \usepackage{dtklogos}
@@ -34,11 +37,6 @@
 \setbeamercolor{enumerate item}{fg=PineGreen}
 \setbeamercolor{caption name}{fg=PineGreen}
 
-% \setmainfont[]{Book Antiqua} % sets the roman font
-%\setmainfont[]{Cardo}
-%\setsansfont[]{PT Sans}
-% \setsansfont[]{Book Antiqua} % sets the roman font
-% \setmonofont[]{Consolas}
 \setbeamertemplate{navigation symbols}{}
     \expandafter\def\expandafter\insertshorttitle\expandafter{%
       \insertshorttitle\hfill%
@@ -48,9 +46,8 @@
 \usecolortheme{spruce}
 
 \title[H2020 Research and Innovation Programme]{H2020 Research and Innovation Programme}
-%\author[acamacho, mgomez, rperez]{Auraham Camacho García\\Mario Alberto Gómez Rodríguez\\Rafael Pérez Torres}
-\author{autor}
-\institute{Cinvestav Tamaulipas}
+\author[acamacho, mgomez, rperez]{Auraham Camacho García\\Mario Alberto Gómez Rodríguez\\Rafael Pérez Torres}
+\institute[Cinvestav Tamaulipas]{Doctorate seminar\\Cinvestav Tamaulipas}
 %\date{\today}
 \date{October 2015}
 
@@ -84,8 +81,10 @@ Horizon 2020 is the biggest EU Research and Innovation programme ever with nearl
 \section{Objectives}
 \label{sec:objectives}
 \subsection{Objectives}
-
 \begin{frame}\frametitle{Objectives}
+
+
+\begin{multicols}{2}
 Three pillars:
 \begin{itemize}
     \item Excellent Science.
@@ -97,7 +96,17 @@ Two objectives:
     \item \emph{Spreading excellence \& widening participation}.
     \item \emph{Science with and for society}.
 \end{itemize}
+\end{multicols}
+
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.45]{images/pillars-evolution}
+  \caption{Evolution of an idea along the three pillars}
+  \label{fig:pillars-evolution}
+\end{figure}
+
 \end{frame}
+
 
 \section{Requirements}
 \subsection{Requirements}
@@ -111,7 +120,7 @@ Two objectives:
 % \end{frame}
 
 \begin{frame}\frametitle{Requirements}
-The most important requirement is a \emph{full} proposal document.
+The most important requirement is a \emph{full} proposal document\footnote{Proposal template: \url{http://ec.europa.eu/research/participants/data/ref/h2020/call_ptef/pt/2016-2017/h2020-call-pt-ria-ia-2016-17_en.pdf}}.
 
 A proposal consists of 2 main parts:
 \begin{itemize}
@@ -119,59 +128,65 @@ A proposal consists of 2 main parts:
   \item Technical annex, which is the detailed description of the planned research and innovation project outlining work packages, costs, etc.
 \end{itemize}
 
-Proposal can be submitted multiple times, but only the last version will be evaluated.
+% Proposal can be submitted multiple times, but only the last version will be evaluated.
 \end{frame}
 
 \section{Scope}
 \subsection{Scope}
 
-\begin{frame}\frametitle{H2020's scope}
-Regarding  Industrial Leadership, the scope of H2020 is on:
-\begin{table}
-\centering
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lr@{}}
-\toprule
-\multicolumn{1}{c}{\textbf{Industrial Leadership - Total funding for 2014-2020}}                                                                                           & \multicolumn{1}{c}{\textbf{\EUR{Budget}}} \\ \midrule
-\begin{tabular}[c]{@{}l@{}}\textbf{Leadership in enabling and industrial technologies (LEITs)}\\ ICT, nanotechnologies, materials, biotechnology, manufacturing, space\end{tabular} & 13 557                                            \\
-\begin{tabular}[c]{@{}l@{}}\textbf{Access to risk finance}\\ Leveraging private finance and venture capital\end{tabular}                                                            & 2 842                                             \\
-\begin{tabular}[c]{@{}l@{}}\textbf{Innovation in SMEs}\\ Fostering all forms of innovation in all types of SMEs\end{tabular}                                                         & 616                                               \\ \bottomrule
-\end{tabular}
-}
-\caption{Budget for Industrial Leadership pilar.}
-\label{tab:budget}
-\end{table}
+\begin{frame}\frametitle{ICT scope on H2020's pilars}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{images/ict-scope}
+  \caption{Scope of the ICT on H2020 pilars}
+  \label{fig:ict-scope}
+\end{figure}
+% Regarding  Industrial Leadership, the scope of H2020 is on:
+% \begin{table}
+% \centering
+% \resizebox{\textwidth}{!}{%
+% \begin{tabular}{@{}lr@{}}
+% \toprule
+% \multicolumn{1}{c}{\textbf{Industrial Leadership - Total funding for 2014-2020}}                                                                                           & \multicolumn{1}{c}{\textbf{\EUR{Budget}}} \\ \midrule
+% \begin{tabular}[c]{@{}l@{}}\textbf{Leadership in enabling and industrial technologies (LEITs)}\\ ICT, nanotechnologies, materials, biotechnology, manufacturing, space\end{tabular} & 13 557                                            \\
+% \begin{tabular}[c]{@{}l@{}}\textbf{Access to risk finance}\\ Leveraging private finance and venture capital\end{tabular}                                                            & 2 842                                             \\
+% \begin{tabular}[c]{@{}l@{}}\textbf{Innovation in SMEs}\\ Fostering all forms of innovation in all types of SMEs\end{tabular}                                                         & 616                                               \\ \bottomrule
+% \end{tabular}
+% }
+% \caption{Budget for Industrial Leadership pilar.}
+% \label{tab:budget}
+% \end{table}
 \end{frame}
 
-\begin{frame}\frametitle{H2020's scope}
-We are focused on ICT Research and Innovation, however areas of participation for H2020 are:
-\begin{multicols}{2}
-\begin{itemize}
-  \item Agriculture \& Forestry
-  \item Aquatic Resources
-  \item Bio-based Industries
-  \item Biotechnology
-  \item Energy
-  \item Environment \& Climate Action
-  \item Food \& Healthy Diet
-  \item Funding Researchers
-  \item Health
-  \item ICT Research \& Innovation
-  \item Innovation
-  \item International Cooperation
-  \item Key Enabling Technologies
-  \item Partnerships with Industry and Member States
-  \item Raw Materials
-  \item Research Infrastructures
-  \item Security
-  \item SMEs
-  \item Social Sciences \& Humanities
-  \item Society
-  \item Space
-  \item Transport
-\end{itemize}
-\end{multicols}
-\end{frame}
+% \begin{frame}\frametitle{H2020's scope}
+% We are focused on ICT Research and Innovation, however areas of participation for H2020 are:
+% \begin{multicols}{2}
+% \begin{itemize}
+%   \item Agriculture \& Forestry
+%   \item Aquatic Resources
+%   \item Bio-based Industries
+%   \item Biotechnology
+%   \item Energy
+%   \item Environment \& Climate Action
+%   \item Food \& Healthy Diet
+%   \item Funding Researchers
+%   \item Health
+%   \item ICT Research \& Innovation
+%   \item Innovation
+%   \item International Cooperation
+%   \item Key Enabling Technologies
+%   \item Partnerships with Industry and Member States
+%   \item Raw Materials
+%   \item Research Infrastructures
+%   \item Security
+%   \item SMEs
+%   \item Social Sciences \& Humanities
+%   \item Society
+%   \item Space
+%   \item Transport
+% \end{itemize}
+% \end{multicols}
+% \end{frame}
 
 \section{Characteristics}
 \subsection{Characteristics}
@@ -231,7 +246,7 @@ The time limit for signing the grant agreements is generally \textbf{three month
 \end{frame}
 
 \section{Range of funding}
-\subsubsection{Range of funding}
+\subsection{Range of funding}
 \begin{frame}\frametitle{Range of funding}
 \begin{table}
 \centering
@@ -243,7 +258,7 @@ The time limit for signing the grant agreements is generally \textbf{three month
 \midrule
 Research \& Innovation Action & RIA & $\geq$ 3 legal entities from 3 MS/AC & 100\% & 36-48 months & \EUR{2.0 - 5.0 M} & Collaborative research projects \\
 \cmidrule{1-7}
-Innovation Action                           & IA                                & $\geq$ 3 legal entities from 3 MS/AC                & 70\%                                             & 30-36 months                                         & \EUR{2.0 - 5.0 M}                                                                                                 & produce plans \& arrangements or designs for new, altered or improved products, processes or services           \\
+Innovation Action                           & IA                                & $\geq$ 3 legal entities from 3 MS/AC\footnote{MS: EU Member State, AC: Associated Country, SME: Small and Medium-sized Enterprises}                & 70\%                                             & 30-36 months                                         & \EUR{2.0 - 5.0 M}                                                                                                 & Produce plans \& arrangements or designs for new, altered or improved products, processes or services           \\
 
 \cmidrule{1-7}
 Coordination \& Support Action              & CSA                               & 1 legal entity                                  & 100\%                                            & 12-30 months                                         & \EUR{0.5 - 2.0 M}                                                                                                     & Accompanying measures (standardisation, dissemination), no research                                             \\
@@ -278,13 +293,125 @@ Fast Track to innovation                    & FTI                               
 \subsection{Mexican participation}
 \begin{frame}\frametitle{Mexican participation}
 \begin{itemize}
-  \item Horizon 2020 is open to participation from across the world.
-  European researchers can include partners from anywhere in the world when preparing H2020 proposals.
-  \item This means that Mexican researchers, enterprises and institutions can team up with their European partners to participate in projects under H2020.
-  \item However, Mexican partners are not automatically eligible for funding through H2020.
+  \item European researchers can include partners from anywhere in the world when preparing H2020 proposals.
+  \item In this sense, Mexican researchers, enterprises and institutions can team up with their European partners to participate in projects under H2020.
   \item Mexico created in February 2014 a complementary funding mechanism called CONACYT-Horizon 2020 providing a source of financing ``project-by-project participation'' to Mexican partners in successful H2020 projects covering all thematic areas
+  \item Mexican partners do not receive funding directly from H2020, but from the FONCICYT\footnote{Fondo de Cooperación Internacional en Ciencia y Tecnología del CONACYT}.
 \end{itemize}
 \end{frame}
 
+\section{Call for proposals example}
+\subsection{Call for proposals examples}
+\begin{frame}\frametitle{Call for proposals examples}
+\begin{table}[]
+    \centering
+    \resizebox{1.0\textwidth}{!}{%
+    %\begin{tabular}{llclll}
+    \begin{tabular}{C{0.18\linewidth}L{0.67\linewidth}C{0.1\linewidth}C{0.13\linewidth}C{0.13\linewidth}C{0.13\linewidth}}
+    \toprule
+    \textbf{Topic ID} & \textbf{Topic title} & \textbf{Budget (M \EUR)} & \textbf{Opening} & \textbf{Deadline 2016} & \textbf{Deadline 2017} \\ 
+    \midrule
+    
+    \multicolumn{6}{l}{\textbf{Advanced Computing and Cloud computing}} \\ \hline
+    ICT-05-2017 & Customized and low energy computing & 26.0 & 08/12/16 &           & 25/04/17  \\ %\hline
+    ICT-06-2016 & Cloud Computing                     & 45.0 & 20/10/15 & 12/04/16  &           \\ % \hline
+    & \\
+    \multicolumn{6}{l}{\textbf{Future Internet}}                                                                                                                                                                                                                                        \\ \hline
+    ICT-09-2017                           & Networking research beyond 5G                           & 18.0                                         & 10/05/16                             & 08/11/16                                   &                                                \\ %\hline
+    ICT-10-2016                           & Software Technologies                                   & 31.0                                         & 20/10/15                             & 12/04/16                                   &                                                \\
+    ICT-12-2016                           & Net Innovation Initiative                               & 20.2                                         & 20/10/15                             & 12/04/16                                   &                                                \\ %\hline
+    
+    & \\
+    \multicolumn{6}{l}{\textbf{Content}}                                                                                                                                                                                                                                                \\ \hline
+    ICT-19-2017                           & Media and content convergence                           & 39.0                                         & 10/05/16                             & 08/11/16                                   &                                                \\
+    ICT-22-2016                           & Technologies for Learning and Skills                    & 31.0                                         & 20/10/15                             & 12/04/16                                   &                                                \\
+    ICT-23-2017                           & Interfaces for accessibility                            & 12.0                                         & 08/12/16                             &                                            & 25/04/17                                       \\ 
+    ICT-24-2016                           & Gaming and gamification                                 & 12.0                                         & 20/10/15                             & 12/04/16                                   &                                                \\ % \hline
+    
+    & \\
+    \multicolumn{6}{l}{\textbf{Robotics and Autonomous Systems}}                                                                                                                                                                                                                        \\ \hline
+    ICT-25-2016                           & Advanced robot capabilibites research and take-up       & 30.0                                         & 20/10/15                             & 12/04/16                                   &                                                \\
+    ICT-26-2016                           & System abilities, development and pilot installations   & 42.0                                         & 20/10/15                             & 12/04/16                                   &                                                \\
+    ICT-28-2017                           & Robotics Competition, coordination and support          &  5.0                                         & 08/12/16                             &                                            & 25/04/17                                       \\
+    
+    
+    \bottomrule
+    \end{tabular}
+    }
+    \caption{Calls for proposals regarding to the Industrial Leadership pilar.}
+    \label{my-label}
+    \end{table}
+
+\end{frame}
+% \subsection{Call for proposals example}
+% \begin{frame}\frametitle{Cloud computing}
+% \begin{itemize}
+%   \item \textbf{Proposal:} (ICT-06-2016) Cloud Computing~\footnote{Available at \url{http://ec.europa.eu/research/participants/portal/desktop/en/opportunities/h2020/ topics/5091- ict- 06- 2016.html}}.
+%   \item \textbf{Challenge:} Address, from the research and experimentation perspectives, the necessary evolution in cloud architectures, cloud networking, deployment practices and run-time management as well as the associated security and privacy needs. 
+
+%   From the innovation side, the challenge is in fostering the provision and adoption of competitive, innovative, secure and reliable cloud services by Small and Medium- sized Enterprises (SMEs) and public sector organizations across Europe.
+% \end{itemize}    
+% \end{frame}
+
+% \begin{frame}\frametitle{Calls for proposals example}
+% \begin{table}
+% \centering
+% \resizebox{\textwidth}{!}{%
+% \tiny
+% %\begin{tabular}{@{}ll@{}}
+% \begin{tabular}{C{0.15\linewidth}L{0.55\linewidth}}
+% \toprule
+% \multicolumn{1}{c}{\textbf{Action}}                                                    & \multicolumn{1}{c}{\textbf{Scope}}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 \\ \midrule
+% Research \& Innovation [Budget: \EUR{35,000,000}] & 
+% \begin{itemize}
+%   \item Deployment \& management of densely interconnected and decentralized cloud infrastructures, including the fog computing paradigm.
+%   \item Re-allocation of resources across distributed computing \& storage infrastructures.
+%   \item Techniques to deal with trust, security, privacy, data integrity, data localization and data confidentiality. 
+%   \item Improvement of physical resources' management and efficiency of cloud to address challenges on scale, resilience and security posed by data-intensive applications.
+% \end{itemize}
+% \\
+
+% Innovation [Budget: \EUR{10,000,000}]             & 
+% \begin{itemize}
+%   \item Experimentation of cloud-based services and their deployment configurations in large-scale decentralized \& federated environments.
+%   \item Cloud Computing for SMEs and Public Sector Innovation.
+% \end{itemize}
+% \\
+% \bottomrule
+% \end{tabular}
+% }
+% \caption{Actions, Scope, and budget}
+% \label{my-label}
+% \end{table}
+
+% \end{frame}
+
+% \begin{frame}[t]\frametitle{Expected impact}
+% Increase Europe's technological capacity and competitiveness through the development of advanced cloud solutions.
+
+% \begin{itemize}
+%     \item Demonstration of the potential to improve the competitive position of the European cloud sector and to facilitate the emergence of innovative business.
+
+%     \item Increased and predictable performance of cloud offerings, facilitating deployment of critical applications and services.
+    
+%     \item Increased trust in clouds through stronger security and data protection practices, including open and auditable solutions for data security.
+    
+%     \item Experimentation of settings that enhance Quality of Experience and contribute to standardization and interoperability.
+ 
+%     \item Increased readiness for adoption and trustworthy cloud-based solutions for SMEs and public sector organizations.
+% \end{itemize}
+    
+
+
+% \end{frame}
+
+
+\begin{frame}[t]\frametitle{References}
+    All information extracted from official documentation available at:
+
+    \emph{Horizon 2020 The EU Framework Programme for Research and Innovation}, \url{http://ec.europa.eu/programmes/horizon2020/}
+
+
+\end{frame}
 
 \end{document}
