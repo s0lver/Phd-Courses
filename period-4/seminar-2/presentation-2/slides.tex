@@ -17,6 +17,14 @@
 \usepackage{arydshln}
 \usepackage{chngpage}
 
+\usepackage{booktabs}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 \usepackage{multicol}
 \usepackage[caption=false]{subfig}
 \hypersetup{%
@@ -71,6 +79,20 @@
 
 \section{Problem statement}
 \subsection{Problem statement}
+
+\begin{frame}[t]\frametitle{Introduction}
+\begin{itemize}
+  \item The popularity of mobile devices is a result of advances in their computation, sensing, and communication dimensions~\cite{Islam2014}.
+  % \item Possibility of installing new mobile applications.
+  \item Smartphone's sensing facilities improve interaction with user, turning them into \emph{omni-sensors} able to \emph{know} about its surrounding environment.
+  % \item Hence, mobile devices have achieved a considerable degree of sensitivity that tries to mimic the sense of humans.
+  \item Mobile devices have become \emph{context-aware}, gaining understanding about user's activity and environment.
+  \item \emph{Context} refers to a four-dimensional space composed of \emph{computing context}, \emph{physical context}, \emph{time context}, and \emph{user context}~\cite{Chen2000}.
+  \item However, battery is not evolving at the same pace than the advances in other smartphone's characteristics~\cite{Kjaergaard2012}, growing only 5\% each year~\cite{Ma2012}.
+  \item The energy constraint becomes more critical when continuous access to sensors is needed, which is the core requirement of \textbf{mobile sensing applications}.
+\end{itemize}
+\end{frame}
+
 \begin{frame}[t]\frametitle{Problem antecedents}
 \begin{figure}[tb]
   \centering
@@ -78,6 +100,24 @@
   \caption{Stages of mobile sensing applications}
   \label{fig:msa-stages}
 \end{figure}
+There is a tradeoff between the accuracy of context information retrieved and the associated energy consumption~\cite{Sim2014,Rachuri2012}.
+How to face it?
+\end{frame}
+
+\begin{frame}\frametitle{Hypothesis}
+\begin{tcolorbox}[title=Hypothesis,colframe=PineGreen]
+Intelligent policies produced through context information built from sensors data can be employed to reduce the energy consumption in a mobile device when performing continuous sensor readings.
+\end{tcolorbox}
+
+{
+\small
+\begin{itemize}
+  \item An intelligent policy is a special rule that defines how sensors should be accessed in order to reduce the energy consumption and achieve the requirements of a mobile app.
+  It is intelligent in terms of self-adaptness to changes detected in context information.
+  \item This research work is aimed at employing GPS and inertial sensors data (accelerometer) for inferring context information in terms of mobility patterns.
+  This context information will then be exploited to adapt sensors' operation and produce power savings.
+\end{itemize}
+}
 \end{frame}
 
 \begin{frame}\frametitle{Problem statement}
@@ -125,26 +165,29 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 \end{frame}
 
 
-\section{Methodology and current status} % Adapt your notes, this was originally separated
-\subsection{Methodology and current status}
-\begin{frame}[t]\frametitle{Methodology}
-This is our methodology.
-We can use the most updated version of the central figure.
+\section{Methodology}
+\subsection{Methodology}
+\begin{frame}\frametitle{Methodology}
+\begin{enumerate}
+  \item Familiarization with state-of-art power-aware sensing related techniques
+  \item Formal definition and selection of mobility patterns to be identified
+  \item Research on pattern recognition algorithms focused on mobility patterns identification
+  \item Design of the Pattern Identification Element (PIE)
+  \item Research on and proposition of adaptive policies for energy efficient usage of sensors
+  \item Design of the Policy Generation Element (PGE)
+  \item Development of a middleware involving the PIE and PGE for the Android platform
+  \item Experimentation in terms of accuracy and energy efficiency
+\end{enumerate}
 \end{frame}
 
-\section{State of art related techniques}
+
+\section[State-of-art]{State of art related techniques}
 \subsection{State of art}
-\begin{frame}[t]\frametitle{State of art related techniques}
-A small version of the survey can fit here.
-Here we have to describe the taxonomy of the survey, as well as the way the context information is prepared for adapting sensory operations (the granularity of information of the implicit second taxonomy).
-We can describe works using these categories, avoiding a literal, cumbersome and too-long description of individual solutions.
-\end{frame}
-
 \begin{frame}\frametitle{Taxonomy of state of art solutions}
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{../../../resources/images/vectors/approaches-taxonomy}
-  \caption{Taxonomy of solutions}
+  \caption{Taxonomy of solutions, seen from the sensors adaptation's perspective}
   \label{fig:taxonomy}
 \end{figure}
 \end{frame}
@@ -159,11 +202,187 @@ We can describe works using these categories, avoiding a literal, cumbersome and
 \end{frame}
 
 
+\begin{frame}[t]\frametitle{Solutions characteristics}
+\begin{tcolorbox}[title=Distinctive characteristics of works,colframe=PineGreen]
+\small
+\begin{itemize}
+  \item Optimization oriented (OO)
+  \item Online learning (OL)
+  \item User state oriented (US)
+\end{itemize}
+\end{tcolorbox}
+
+En general, podemos describirlos de forma más o menos organizada a través de...
+\begin{tcolorbox}[title=Granularity of context information (input data type + classifier + time window length),colframe=PineGreen]
+\small
+\begin{itemize}
+  \item Basic context information powered policies.
+  \item Medium context information powered policies.
+  \item High level context information policies
+  NO ES CIERTO! NO EXISTE ESTO! ES SIMPLEMENTE UNA EVALUACIÓN INCREMENTAL. EN TODO CASO HAY QUE PONER AQUI LO QUES ESTA ENTRE PARENTESIS (CLASS+TIMEWINDOWS...)
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Decomposition of related solutions}
+De forma general, el framework para evaluar queda como:
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/dual-taxonomy}
+  \caption{Decomposition of solutions}
+  \label{fig:dual-taxonomy}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[t]\frametitle{State-of-art solutions}
+\begin{table}
+    \centering
+    \scriptsize{}
+    \resizebox{\textwidth}{!} { 
+    \begin{tabular}{C{0.11\textwidth}C{0.2\textwidth}C{0.17\textwidth}C{0.15\textwidth}C{0.09\textwidth}C{0.05\textwidth}C{0.05\textwidth}C{0.05\textwidth}}
+    % \begin{tabular}{C{0.15\textwidth}C{0.22\textwidth}C{0.25\textwidth}C{0.27\textwidth}}
+    \toprule
+    \textbf{Name} & \textbf{Variants} & \textbf{Machine learning technique} & \textbf{Sensors involved} & \textbf{Complexity} & \textbf{OL} & \textbf{OO} & \textbf{US} \\
+    \midrule
+
+    
+    % Category Basic context policy (short time window)
+    \emph{G-Sense}      \cite{Perez2010} & User behavior learning (DC) & SDR & GPS & low \\
+
+    \cmidrule(l){1-8}
+    Not given           \cite{Perez-Torres2012} & User behavior learning (DC) & SDR & GPS & low \\
+
+    \cmidrule(l){1-8}
+    \emph{SenseLess}    \cite{Abdesslem2009} & User behavior learning (DC), Sensor replacement (CR, DR) & SDR & WPS, GPS, ACC & low \\
+    
+    \cmidrule(l){1-8}
+    \emph{SensTrack}    \cite{Zhang2013} & User behavior learning (DC), Sensor replacement (CR, DR) & SDR & ACC, orientation sensor, GPS, WPS & low \\
+    % \emph{SensTrack}    \cite{Zhang2013} & User behavior learning (DC), Sensor replacement (CR,DR) & SDR, Gaussian Regression Model (GRM) & ACC, orientation sensor, GPS, WPS & low \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Man2014} & User behavior learning (DC, VI), Sensor replacement (CR) & SDR & ACC, magnetic field sensor, GPS & low \\
+    % Not given           \cite{Man2014} & User behavior learning (DC), Sensor replacement (CR) & SDR (Trigonometrical approach) & ACC, magnetic field sensor, GPS & low \\
+
+    \cmidrule(l){1-8}
+    \emph{EnLoc}        \cite{Constandache2009} & User behavior learning (DC, VI), Sensor replacement (DR) & SDR, Mobility Tree & WPS, GPS, cellular ID & medium & & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    \emph{EnTracked}    \cite{Kjaergaard2009} & User behavior learning (DC), Sensor replacement (CR) & SDR & ACC, GPS & medium & & \checkmark \\
+    \bottomrule
+    \end{tabular}
+    }
+    \protect\caption{Pure software solutions. (OL: Online Learning from user data, OO: Optimization Oriented solution, US: User State context insight)\label{tab:works-software-approach-1}}
+\end{table}
+\end{frame}
+
+\begin{frame}[t]\frametitle{State-of-art solutions}
+\begin{table}
+    \centering
+    \scriptsize{}
+    \resizebox{\textwidth}{!} { 
+    \begin{tabular}{C{0.11\textwidth}C{0.2\textwidth}C{0.17\textwidth}C{0.15\textwidth}C{0.09\textwidth}C{0.05\textwidth}C{0.05\textwidth}C{0.05\textwidth}}
+    % \begin{tabular}{C{0.15\textwidth}C{0.22\textwidth}C{0.25\textwidth}C{0.27\textwidth}}
+    \toprule
+    \textbf{Name} & \textbf{Variants} & \textbf{Machine learning technique} & \textbf{Sensors involved} & \textbf{Complexity} & \textbf{OL} & \textbf{OO} & \textbf{US} \\
+    \midrule
+
+    % Category Medium context-aware policy
+    % Not given           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm, majority vote system & ACC & low \\
+    Not given           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm & ACC & medium \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Mazilu2013} & Sensor replacement (CR) & DT & Temperature, humidity, pressure & medium \\
+    % Not given           \cite{Mazilu2013} & Sensor replacement (CR) & DT (C4.5) & Temperature, humidity, pressure & medium \\
+
+    \cmidrule(l){1-8}
+    Not given           \cite{Srinivasan2012} & User behavior learning (DC) & DT & ACC & medium \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & medium \\
+    % Not given           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & low \\
+    \bottomrule
+    \end{tabular}
+    }
+    \protect\caption{Pure software solutions. (OL: Online Learning from user data, OO: Optimization Oriented solution, US: User State context insight)\label{tab:works-software-approach-2}}
+\end{table}
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{State-of-art solutions}
+\begin{table}
+    \centering
+    \scriptsize{}
+    \resizebox{\textwidth}{!} { 
+    \begin{tabular}{C{0.11\textwidth}C{0.2\textwidth}C{0.17\textwidth}C{0.15\textwidth}C{0.09\textwidth}C{0.05\textwidth}C{0.05\textwidth}C{0.05\textwidth}}
+    % \begin{tabular}{C{0.15\textwidth}C{0.22\textwidth}C{0.25\textwidth}C{0.27\textwidth}}
+    \toprule
+    \textbf{Name} & \textbf{Variants} & \textbf{Machine learning technique} & \textbf{Sensors involved} & \textbf{Complexity} & \textbf{OL} & \textbf{OO} & \textbf{US} \\
+    \midrule
+
+    % Category Long time window
+    \emph{SensLoc}         \cite{Kim2010} & User behavior learning (DC, RD), Sensor replacement (CR) & SDR & Wi-Fi fingerprinting, GPS, ACC & medium & \checkmark & \\
+    % \emph{SensLoc}         \cite{Kim2010} & User behavior learning (DC), Sensor replacement (CR,DR) & SDR (Tanimoto coefficient and ACC variance) & Wi-Fi fingerprinting, GPS, ACC & medium & \checkmark & & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    \emph{CAPS}         \cite{Paek2011} & User behavior learning (DC, RD), Sensor replacement (CR) & SDR & GPS, cellular ID & medium & \checkmark \\
+    % SDR (Smith-Waterman algorithm) CR because location is processed alternatively with this algorithm
+
+    \cmidrule(l){1-8}
+    \emph{RAPS}         \cite{Paek2010} & User behavior learning (DC, RD), Sensor replacement (CR, DR) & SDR & WPS, GPS, ACC, Bluetooth, cellular ID & medium & \checkmark \\
+    
+    % In-between Category Optimization + long time window
+    \cmidrule(l){1-8}
+    \emph{A-Loc}        \cite{Lin2010} & User behavior learning (DC, RD), Sensor replacement (CR, DR) & HMM, Bayesian estimation framework & GPS, WPS, Bluetooth, cellular ID & medium & \checkmark & \checkmark  \\
+    
+    \cmidrule(l){1-8}
+    \emph{SmartDC}      \cite{Chon2011} & User behavior learning (DC, RD), Sensor replacement (CR, DR) & HMM and LZ predictor & GPS, WPS, Wi-Fi and cellular ID fingerprinting & medium & \checkmark & \checkmark \\
+    
+    \bottomrule
+    \end{tabular}
+    }
+    \protect\caption{Pure software solutions. (OL: Online Learning from user data, OO: Optimization Oriented solution, US: User State context insight)\label{tab:works-software-approach-3}}
+\end{table}
+\end{frame}
+
+\begin{frame}[t]\frametitle{State-of-art solutions}
+\begin{table}
+    \centering
+    \scriptsize{}
+    \resizebox{\textwidth}{!} { 
+    \begin{tabular}{C{0.11\textwidth}C{0.2\textwidth}C{0.17\textwidth}C{0.15\textwidth}C{0.09\textwidth}C{0.05\textwidth}C{0.05\textwidth}C{0.05\textwidth}}
+    % \begin{tabular}{C{0.15\textwidth}C{0.22\textwidth}C{0.25\textwidth}C{0.27\textwidth}}
+    \toprule
+    \textbf{Name} & \textbf{Variants} & \textbf{Machine learning technique} & \textbf{Sensors involved} & \textbf{Complexity} & \textbf{OL} & \textbf{OO} & \textbf{US} \\
+    \midrule
+
+    % Category Full context-aware policy
+    \emph{Jigsaw}       \cite{Lu2010} & User behavior learning (DC), Sensor replacement (CR) & Microphone: NB with Gaussian Mixture Model (GMM). ACC: DT. GPS: MDP. & ACC, Microphone, GPS & high & & \checkmark & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Donohoo2014} & User behavior learning (DC) & Several. KNN and NN selected as best. & ACC, GPS, WPS, cellular ID, light, device data, mobile app requirements & high & & & \checkmark \\
+
+    \cmidrule(l){1-8}
+    \emph{EEMSS}        \cite{Wang2009} & User behavior learning (DC), Sensor replacement (CR, DR) & GPS and ACC: SDR. \newline Microphone: SSCH algorithm. & ACC, microphone, GPS & high & & & \checkmark \\
+
+    \cmidrule(l){1-8}
+    \emph{iLoc}         \cite{MaY2009} & User behavior learning (RD), Sensor replacement (CR) & HMM & Wi-Fi \& GSM fingerprinting & high & \checkmark & & \checkmark  \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Yurur2014} & User behavior learning (DC, RD) & HMM & ACC & high & \checkmark & & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    \emph{FreeTrack}    \cite{Chon2014} & User behavior learning (DC, RD), Sensor replacement (CR, DR) & HMM & GPS, Wi-Fi, cellular ID, battery status & high & \checkmark & & \checkmark \\
+    
+    \bottomrule
+    \end{tabular}
+    }
+    \protect\caption{Pure software solutions. (OL: Online Learning from user data, OO: Optimization Oriented solution, US: User State context insight)\label{tab:works-software-approach-4}}
+\end{table}
+\end{frame}
+
 \section{Proposed solution}
 \subsection{Proposed solution}
 \begin{frame}[t]\frametitle{Proposed solution}
-Figure of \emph{dual-taxonomy}.
-
 How are we going to be different?.
 At the end we can describe that:
 \begin{itemize}
@@ -194,19 +413,25 @@ At the end we can describe that:
 \end{itemize}
 \end{frame}
 
+\begin{frame}[t]\frametitle{Proposed solution}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/policy-manager-incorporation}
+  \caption{Overview of current solution}
+  \label{fig:solution}
+\end{figure}
+\end{frame}
+
 
 \section{Important results}
 \subsection{Important results}
 \label{sub:important_results}
 \begin{frame}[t]\frametitle{Results}
-    
-
-
 Here, we can mentioned that we have partially prooved the possibility of performing user location tracking and stay points detection using only the smartphone.
 This empowers us to keep building the blocks that will complement our solution.
 \end{frame}
 
-\section{Scientific publications produced}
+% \section{Scientific publications produced}
 \subsection{Publications}
 \begin{frame}[t]\frametitle{Scientific products}
 I think we can menton the survey.
@@ -224,10 +449,29 @@ Adequate the calendar-schedule explaining the apparent delay produced by the sur
 
 \section{Conclusions}
 \subsection{Conclusions}
-\label{sub:conclusions}
-\begin{frame}[t]\frametitle{Conclusions}
-Conclusions should be focused on the presentation
+\begin{frame}\frametitle{Conclusions}
+In this talk:
+\begin{itemize}
+  \item An introduction to the energy consumption issue in mobile sensing apps and its relevance has been presented.
+  \item A description of the important components of our thesis work has been also given.
+  \item An overview of the proposed methodology for solving the energy consumption issue has been provided.
+\end{itemize}
 \end{frame}
 
+\begin{frame}\frametitle{}
+\begin{center}
+{
+\Huge
+Thank You\\ for your attention!
+}
+\end{center}
+
+\end{frame}
+
+\subsection{References}
+\bibliographystyle{plain}
+% \bibliographystyle{unsrtnat}
+% \tiny
+\bibliography{../../../resources/references/bibliography}
 
 \end{document}
