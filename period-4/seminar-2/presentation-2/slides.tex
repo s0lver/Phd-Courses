@@ -53,7 +53,7 @@
 
 \title[Smart usage of context information for the analysis, design and generation of power-aware polices for mobile sensing apps]{ Smart usage of context information for the analysis, design and generation of power-aware polices for mobile sensing apps}
 \author[Rafael Perez Torres]{Presented by: Rafael Perez Torres\\[0.5cm] Thesis advisors:\\PhD Cesar Torres Huitzil\\PhD Hiram Galeana Zapien}
-\institute{Cinvestav Tamaulipas}
+\institute{LTI Cinvestav Tamaulipas}
 %\date{\today}
 \date{}
 
@@ -93,7 +93,7 @@
 \end{itemize}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Problem antecedents}
+\begin{frame}[t]\frametitle{Problem antecedents: Stages of mobile sensing applications}
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{../../../resources/images/vectors/msa-stages}
@@ -202,8 +202,8 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 \end{frame}
 
 
-\begin{frame}[t]\frametitle{Solutions characteristics}
-\begin{tcolorbox}[title=Distinctive characteristics of works,colframe=PineGreen]
+\begin{frame}[t]\frametitle{Characteristics of pure software approach solutions}
+\begin{tcolorbox}[title=Distinctive characteristics of pure software solutions,colframe=PineGreen]
 \small
 \begin{itemize}
   \item Optimization oriented (OO)
@@ -211,27 +211,6 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
   \item User state oriented (US)
 \end{itemize}
 \end{tcolorbox}
-
-En general, podemos describirlos de forma más o menos organizada a través de...
-\begin{tcolorbox}[title=Granularity of context information (input data type + classifier + time window length),colframe=PineGreen]
-\small
-\begin{itemize}
-  \item Basic context information powered policies.
-  \item Medium context information powered policies.
-  \item High level context information policies
-  NO ES CIERTO! NO EXISTE ESTO! ES SIMPLEMENTE UNA EVALUACIÓN INCREMENTAL. EN TODO CASO HAY QUE PONER AQUI LO QUES ESTA ENTRE PARENTESIS (CLASS+TIMEWINDOWS...)
-\end{itemize}
-\end{tcolorbox}
-\end{frame}
-
-\begin{frame}[t]\frametitle{Decomposition of related solutions}
-De forma general, el framework para evaluar queda como:
-\begin{figure}[tb]
-  \centering
-  \includegraphics[width=\textwidth]{../../../resources/images/vectors/dual-taxonomy}
-  \caption{Decomposition of solutions}
-  \label{fig:dual-taxonomy}
-  \end{figure}
 \end{frame}
 
 \begin{frame}[t]\frametitle{State-of-art solutions}
@@ -250,7 +229,7 @@ De forma general, el framework para evaluar queda como:
     \emph{G-Sense}      \cite{Perez2010} & User behavior learning (DC) & SDR & GPS & low \\
 
     \cmidrule(l){1-8}
-    Not given           \cite{Perez-Torres2012} & User behavior learning (DC) & SDR & GPS & low \\
+    Perez-Torres           \cite{Perez-Torres2012} & User behavior learning (DC) & SDR & GPS & low \\
 
     \cmidrule(l){1-8}
     \emph{SenseLess}    \cite{Abdesslem2009} & User behavior learning (DC), Sensor replacement (CR, DR) & SDR & WPS, GPS, ACC & low \\
@@ -260,7 +239,7 @@ De forma general, el framework para evaluar queda como:
     % \emph{SensTrack}    \cite{Zhang2013} & User behavior learning (DC), Sensor replacement (CR,DR) & SDR, Gaussian Regression Model (GRM) & ACC, orientation sensor, GPS, WPS & low \\
     
     \cmidrule(l){1-8}
-    Not given           \cite{Man2014} & User behavior learning (DC, VI), Sensor replacement (CR) & SDR & ACC, magnetic field sensor, GPS & low \\
+    Man and Ngai           \cite{Man2014} & User behavior learning (DC, VI), Sensor replacement (CR) & SDR & ACC, magnetic field sensor, GPS & low \\
     % Not given           \cite{Man2014} & User behavior learning (DC), Sensor replacement (CR) & SDR (Trigonometrical approach) & ACC, magnetic field sensor, GPS & low \\
 
     \cmidrule(l){1-8}
@@ -288,17 +267,17 @@ De forma general, el framework para evaluar queda como:
 
     % Category Medium context-aware policy
     % Not given           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm, majority vote system & ACC & low \\
-    Not given           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm & ACC & medium \\
+    Alvarez, Morillo           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm & ACC & medium \\
     
     \cmidrule(l){1-8}
-    Not given           \cite{Mazilu2013} & Sensor replacement (CR) & DT & Temperature, humidity, pressure & medium \\
+    Mazilu           \cite{Mazilu2013} & Sensor replacement (CR) & DT & Temperature, humidity, pressure & medium \\
     % Not given           \cite{Mazilu2013} & Sensor replacement (CR) & DT (C4.5) & Temperature, humidity, pressure & medium \\
 
     \cmidrule(l){1-8}
-    Not given           \cite{Srinivasan2012} & User behavior learning (DC) & DT & ACC & medium \\
+    Srinivasan           \cite{Srinivasan2012} & User behavior learning (DC) & DT & ACC & medium \\
     
     \cmidrule(l){1-8}
-    Not given           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & medium \\
+    Khalifa           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & medium \\
     % Not given           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & low \\
     \bottomrule
     \end{tabular}
@@ -359,7 +338,7 @@ De forma general, el framework para evaluar queda como:
     \emph{Jigsaw}       \cite{Lu2010} & User behavior learning (DC), Sensor replacement (CR) & Microphone: NB with Gaussian Mixture Model (GMM). ACC: DT. GPS: MDP. & ACC, Microphone, GPS & high & & \checkmark & \checkmark \\
     
     \cmidrule(l){1-8}
-    Not given           \cite{Donohoo2014} & User behavior learning (DC) & Several. KNN and NN selected as best. & ACC, GPS, WPS, cellular ID, light, device data, mobile app requirements & high & & & \checkmark \\
+    Donohoo           \cite{Donohoo2014} & User behavior learning (DC) & Several. KNN and NN selected as best. & ACC, GPS, WPS, cellular ID, light, device data, mobile app requirements & high & & & \checkmark \\
 
     \cmidrule(l){1-8}
     \emph{EEMSS}        \cite{Wang2009} & User behavior learning (DC), Sensor replacement (CR, DR) & GPS and ACC: SDR. \newline Microphone: SSCH algorithm. & ACC, microphone, GPS & high & & & \checkmark \\
@@ -368,7 +347,7 @@ De forma general, el framework para evaluar queda como:
     \emph{iLoc}         \cite{MaY2009} & User behavior learning (RD), Sensor replacement (CR) & HMM & Wi-Fi \& GSM fingerprinting & high & \checkmark & & \checkmark  \\
     
     \cmidrule(l){1-8}
-    Not given           \cite{Yurur2014} & User behavior learning (DC, RD) & HMM & ACC & high & \checkmark & & \checkmark \\
+    Yurur           \cite{Yurur2014} & User behavior learning (DC, RD) & HMM & ACC & high & \checkmark & & \checkmark \\
     
     \cmidrule(l){1-8}
     \emph{FreeTrack}    \cite{Chon2014} & User behavior learning (DC, RD), Sensor replacement (CR, DR) & HMM & GPS, Wi-Fi, cellular ID, battery status & high & \checkmark & & \checkmark \\
@@ -380,37 +359,63 @@ De forma general, el framework para evaluar queda como:
 \end{table}
 \end{frame}
 
+\begin{frame}[t]\frametitle{Framework for analyzing pure software solutions}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/dual-taxonomy}
+  \caption{Decomposition of solutions}
+  \label{fig:dual-taxonomy}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[t]\frametitle{Characteristics of pure software approach solutions}
+\begin{tcolorbox}[title=Framework for analyzing solutions,colframe=PineGreen]
+\small
+Granularity of context information
+\begin{itemize}
+  \item Input data type
+  \item Classifier or machine learning technique
+  \item Length of time window
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
 \section{Proposed solution}
 \subsection{Proposed solution}
 \begin{frame}[t]\frametitle{Proposed solution}
-How are we going to be different?.
-At the end we can describe that:
-\begin{itemize}
-  \item In the ML block, we are going to produce an enhanced-expanded spatial-time model by:
-  \begin{itemize}
-    \item Classifying accelerometer data in user activity.
-    \item Obtaining context information from other sources:
-    \begin{itemize}
-      \item Fingerprinting, battery status.
-    \end{itemize}
-    \item Obtaining speed from GPS
-    \item Obtaining location from GPS and WPS
-  \end{itemize}
-  \item In the policy block, we will try to adapt the sensing dimension spliting the problem into:
-  \begin{itemize}
-    \item Learning and detection of stay points (Already covered)
-    \item Learning and detection (tracking) of trajectories.
-  \end{itemize}
-  \item In the HW adaptation bloc, we will use several variants of the PS approach.
-  For instance, we will do:
-  \begin{itemize}
-    \item Sensor replacement, Context related (battery) and Direct related (WPS).
-    \item Adapt accordingly to what is learned from user through Duty Cycling (DC) and Recycling existing Data (RD).
-    Maybe we will use Next Value Inference (VI) in the policy, when we adapt under uncertainty.
-    For instance, we are 80\% sure that user is running, we will proceed with caution adapting duty cycle with fine granularity, this is negotiable.
-  \end{itemize}
-  \item At the end, we are trying to maintain sensors within a range that allows to perform the tracking but considering the trade-off.
-\end{itemize}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/dual-taxonomy-ours}
+  \caption{Decomposition of our solution}
+  \label{fig:dual-taxonomy-ours}
+  \end{figure}
+% At the end we can describe that:
+% \begin{itemize}
+  % \item In the ML block, we are going to produce an enhanced-expanded spatial-time model by:
+  % \begin{itemize}
+  %   \item Classifying accelerometer data in user activity.
+  %   \item Obtaining context information from other sources:
+  %   \begin{itemize}
+  %     \item Fingerprinting, battery status.
+  %   \end{itemize}
+  %   \item Obtaining speed from GPS
+  %   \item Obtaining location from GPS and WPS
+  % \end{itemize}
+  % \item In the policy block, we will try to adapt the sensing dimension spliting the problem into:
+  % \begin{itemize}
+  %   \item Learning and detection of stay points (Already covered)
+  %   \item Learning and detection (tracking) of trajectories.
+  % \end{itemize}
+  % \item In the HW adaptation bloc, we will use several variants of the PS approach.
+  % For instance, we will do:
+  % \begin{itemize}
+  %   \item Sensor replacement, Context related (battery) and Direct related (WPS).
+  %   \item Adapt accordingly to what is learned from user through Duty Cycling (DC) and Recycling existing Data (RD).
+  %   Maybe we will use Next Value Inference (VI) in the policy, when we adapt under uncertainty.
+  %   For instance, we are 80\% sure that user is running, we will proceed with caution adapting duty cycle with fine granularity, this is negotiable.
+  % \end{itemize}
+  % \item At the end, we are trying to maintain sensors within a range that allows to perform the tracking but considering the trade-off.
+% \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Proposed solution}
@@ -427,15 +432,74 @@ At the end we can describe that:
 \subsection{Important results}
 \label{sub:important_results}
 \begin{frame}[t]\frametitle{Results}
-Here, we can mentioned that we have partially prooved the possibility of performing user location tracking and stay points detection using only the smartphone.
-This empowers us to keep building the blocks that will complement our solution.
+\begin{itemize}
+  \item The feasibility of on-device detection of stay points has been partially prooved through experimentation.
+  \item These experiments ensure proper calculations of stay points, even under mobile device constraints.
+  \item A slight adaptation of classic algorithms for stay points detection has been implemented.
+  \item Such variant (sigma) obeys an event-oriented paradigm, which is a trend for \textbf{proactive} long-term applications focused on learning patterns from user activity.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[t]\frametitle{On-device stay points detection platform}
+    
+\begin{figure}[tb]
+  \centering
+  \includegraphics[scale=0.5]{../../../resources/images/vectors/policy-creator-methodology}
+  \caption{Logical workflow of the platform for on-device stay points detection}
+  \label{fig:logical-workflow}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Results}
+\begin{itemize}
+  \item The first experiment is aimed at ensuring te calculation of stay points locally at the smartphone (Samsung Galaxy Note II more details here).
+  \item Both versions of the algorithm for stay points detection, original (buffered) and sigma, have been employed.
+  \item Policies implemented:
+  \begin{itemize}
+  \item Periodic GPS sampling: 1, 3, and 5 minutes.
+  \item FSM doubling policy. Starting with 1 minute reading period, doubling if no movement within a threshold of 50 meters was detected (Upper limit 16 minutes).
+  \item FSM linear policy. Possible fixed states at 1, 3, 6, 9, and 12 minutes.
+  \end{itemize}
+  \item The parameters for running the stay point detection algorithms for all tests were set at 10 minutes for $\theta_{tmin}$, 1 hour for $\theta_{tmax}$ and 150 m for $\theta_{d}$.
+\end{itemize}
+\begin{table}[t]
+\scriptsize{}
+\centering
+%\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+\textbf{\begin{tabular}[c]{@{}c@{}}GPS reading\\ period\end{tabular}} & \textbf{Algorithm} & \textbf{\begin{tabular}[c]{@{}c@{}}Stay points\\ detected\end{tabular}} & \textbf{Average fixes} & \textbf{Maximum fixes} & \textbf{GPS accesses} & \textbf{Running time} \\ \midrule
+1 minute & Buffered & 20 & 200 & 456 & 1744 & 36 hrs \\
+1 minute & Zigma    & 21 & 198 & 400 & 1750 & 37 hrs \\
+\bottomrule
+\end{tabular}
+%}
+\caption{Results of the first experiment}
+\label{tbl:experiment-1}
+\end{table}
 \end{frame}
 
 % \section{Scientific publications produced}
 \subsection{Publications}
 \begin{frame}[t]\frametitle{Scientific products}
-I think we can menton the survey.
-We need to find out whether we can describe the article related to the on-device detection of stay points, highlighting its 'event-oriented' perspective, which represent the most natural way on which smartphone-based systems for LBS should work, being proactive.
+\begin{itemize}
+  \item As a product of the study and analysis of related solutions, we have prepared a survey covering:
+  \begin{itemize}
+    \item The characteristics of smartphone-based sensing.
+    \item The power-awareness in smartphone-based sensing and related areas.
+    \item A taxonomy of the different solutions aimed at energy efficiency in smartphone-based sensing.
+    \item A framework for dissecting and studying the characteristics of these solutions.
+    \item The different tendencies and open challenges of the field.
+  \end{itemize}
+  \item The previously mentioned experimentation is also under expansion and improvement for preparing an article focused on:
+  \begin{itemize}
+    \item On-device learning of mobility information following an event-oriented perspective.
+    \item The employment of such information for adapting the sensing dimension of smartphone looking for energy efficiency.
+    \item Setting the base for further modules and strategies for boosting the learning of mobility patterns.
+    \item All of these targetted at building the main blocks of our solution.
+  \end{itemize}
+\end{itemize}
 \end{frame}
 
 
@@ -450,11 +514,24 @@ Adequate the calendar-schedule explaining the apparent delay produced by the sur
 \section{Conclusions}
 \subsection{Conclusions}
 \begin{frame}\frametitle{Conclusions}
-In this talk:
+In this talk the latest advances in our thesis work have been presented.
+Specifically:
 \begin{itemize}
-  \item An introduction to the energy consumption issue in mobile sensing apps and its relevance has been presented.
-  \item A description of the important components of our thesis work has been also given.
-  \item An overview of the proposed methodology for solving the energy consumption issue has been provided.
+  \item We have presented a brief analysis of the problem aimed to be solved by this thesis work.
+  \item We have covered a summary of related state of art solutions.
+  For this particular point, we have presented:
+  \begin{itemize}
+    \item A taxonomy for categorization of the solutions, seen from the perspective of sensors adaptation.
+    \item A new framework for decomposing and studying different internal aspects of solutions. 
+  \end{itemize}
+  \item We have introduced the solution intended for building intelligent sensing policies aimed at \emph{continuous} user location tracking.
+  \item This solution identifies and learns enhanced mobility patterns (OL,US).
+  \item The policies considered by this solution:
+  \begin{itemize}
+    \item Are context-aware oriented.
+    \item Identify and learn mobility patterns.
+    \item Adapt sensory operations with fine granularity through the different variants of the pure software approach.
+  \end{itemize}
 \end{itemize}
 \end{frame}
 
@@ -463,6 +540,51 @@ In this talk:
 {
 \Huge
 Thank You\\ for your attention!
+}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[t]\frametitle{Montoliou's algorithm for stay points detection~\cite{Montoliu2010}}
+\begin{center}
+\scalebox{0.85}{
+\begin{minipage}{\linewidth}
+
+
+\scriptsize{}
+\begin{algorithmic}[1]
+\REQUIRE A GPS trajectory $T=\{p_{1},p_{2},\ldots,p_{N}\}$, a distance threshold $\theta_{d}$, a minimum time threshold $\theta_{tmin}$, and a maximum time threshold $\theta_{tmax}$.
+\ENSURE A set of points of interest $\Pi$
+\STATE $i \leftarrow 1$ 
+\STATE $\Pi \leftarrow \emptyset$
+\WHILE {$i<N$}
+  \STATE $j=i+1$
+  \WHILE {$j<N$}
+    \STATE $t\leftarrow \text{\textbf{timeDifference}}(p_{j},p_{j-1})$
+    \IF{ $t>\theta_{tmax}$}
+      \STATE $i \leftarrow j$
+      \STATE \textbf{break}
+    \ENDIF
+    \STATE $d\leftarrow distance(p_{i},p_{j})$
+    \IF{ $d>\theta_{d}$}
+      \STATE $t\leftarrow \text{\textbf{timeDifference}}(p_{i},p_{j-1})$
+      \IF{ $t>\theta_{tmin}$}
+        \STATE $\pi.\text{lat} = \sum_{k=i}^{j-1} \frac{p_{k}.\text{lat}}{|j-1-i|}$
+        \STATE $\pi.\text{lon} = \sum_{k=i}^{j-1} \frac{p_{k}.\text{lon}}{|j-1-i|}$
+        \STATE $\pi.\text{at}  = p_{i}.\text{ts}$ 
+        \STATE $\pi.\text{dt}  = p_{j-1}.\text{ts}$
+        \STATE $\Pi \leftarrow \Pi \cup \pi$
+      \ENDIF
+      \STATE $i\leftarrow j$
+      \STATE \textbf{break}
+    \ENDIF
+    \STATE $j\leftarrow j+1;$
+  \ENDWHILE
+\ENDWHILE
+\end{algorithmic}
+% \caption{Montoliou's algorithm for stay points detection~\cite{Montoliu2010} \label{alg:montoliou_algorithm}}
+
+\end{minipage}%
 }
 \end{center}
 
