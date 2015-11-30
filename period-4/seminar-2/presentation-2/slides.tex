@@ -87,7 +87,7 @@
   \item Smartphone's sensing facilities improve interaction with user, turning them into \emph{omni-sensors} able to \emph{know} about its surrounding environment.
   % \item Hence, mobile devices have achieved a considerable degree of sensitivity that tries to mimic the sense of humans.
   \item Mobile devices have become \emph{context-aware}, gaining understanding about user's activity and environment.
-  \item \emph{Context} refers to a four-dimensional space composed of \emph{computing context}, \emph{physical context}, \emph{time context}, and \emph{user context}~\cite{Chen2000}.
+  % \item \emph{Context} refers to a four-dimensional space composed of \emph{computing context}, \emph{physical context}, \emph{time context}, and \emph{user context}~\cite{Chen2000}.
   \item However, battery is not evolving at the same pace than the advances in other smartphone's characteristics~\cite{Kjaergaard2012}, growing only 5\% each year~\cite{Ma2012}.
   \item The energy constraint becomes more critical when continuous access to sensors is needed, which is the core requirement of \textbf{mobile sensing applications}.
 \end{itemize}
@@ -130,7 +130,19 @@ Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read
 \end{equation}
 
 Where $Patterns$ is a set of patterns that represent an interesting state in user mobility, specifically the set $\left\{no\_movement, walking, running, vehicle\_transportation\right\}$.
+
+\begin{figure}[tb]
+  \centering
+  \includegraphics[scale=0.5]{../../../resources/images/vectors/mobility-patterns-implications}
+  \caption{Context information related to mobility patterns}
+  \label{fig:mobility-patterns-implications}
+\end{figure}
+
 \end{tcolorbox}
+
+
+
+
 \end{frame}
 
 \begin{frame}\frametitle{Problem statement}
@@ -142,7 +154,7 @@ Given the set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, 
   \text{PolicyGeneration}( \mathcal{P}_{\mathcal{S}}, e, a, c ) \longrightarrow{} \mathcal{S}_{new}, \mathcal{S}_{new_{conf}}
 \end{equation}
 
-The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle} of associated sensor.
+The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{adaptative duty cycle} of associated sensor.
 \end{tcolorbox}
 \end{frame}
 
@@ -169,10 +181,10 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 \subsection{Methodology}
 \begin{frame}\frametitle{Methodology}
 \begin{enumerate}
-  \item Familiarization with state-of-art power-aware sensing related techniques
-  \item Formal definition and selection of mobility patterns to be identified
-  \item Research on pattern recognition algorithms focused on mobility patterns identification
-  \item Design of the Pattern Identification Element (PIE)
+  \item \textbf{Familiarization with state-of-art power-aware sensing related techniques}
+  \item \textbf{Formal definition and selection of mobility patterns to be identified}
+  \item \textbf{Research on pattern recognition algorithms focused on mobility patterns identification}
+  \item \textbf{Design of the Pattern Identification Element (PIE)}
   \item Research on and proposition of adaptive policies for energy efficient usage of sensors
   \item Design of the Policy Generation Element (PGE)
   \item Development of a middleware involving the PIE and PGE for the Android platform
@@ -183,6 +195,17 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 
 \section[State-of-art]{State of art related techniques}
 \subsection{State of art}
+
+\begin{frame}\frametitle{The smartphone as a three-dimensional device}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=0.75\textwidth]{../../../resources/images/vectors/smartphone-dimensions}
+  \caption{The smartphone as a three-dimensional device}
+  \label{fig:smartphone-three-dimensional}
+\end{figure}
+\end{frame}
+
+
 \begin{frame}\frametitle{Taxonomy of state of art solutions}
 \begin{figure}[tb]
   \centering
@@ -206,12 +229,35 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 \begin{tcolorbox}[title=Distinctive characteristics of pure software solutions,colframe=PineGreen]
 \small
 \begin{itemize}
-  \item Optimization oriented (OO)
-  \item Online learning (OL)
-  \item User state oriented (US)
+  \item \textbf{Optimization oriented (OO)}: Works can follow an optimization orientation focused on minimizing energy consumption and/or the error in activity tracking.
+  \item \textbf{Online learning (OL)}: Solutions can incorporate mechanisms for online learning (OL) from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
+  \item \textbf{User state oriented (US)}: Solutions can employ an enriched version of the context information, known as user state (US) for allowing the device to become fully activity-aware and ease its adaptation over the sensing dimension.
 \end{itemize}
 \end{tcolorbox}
 \end{frame}
+
+\begin{frame}[t]\frametitle{Framework for analyzing pure software solutions}
+\begin{tcolorbox}[title=Framework for analyzing pure software solutions,colframe=PineGreen]
+\small
+Granularity of context information
+\begin{itemize}
+  \item Input data type
+  \item Classifier or machine learning technique
+  \item Length of time window
+\end{itemize}
+\end{tcolorbox}
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{Framework for analyzing pure software solutions}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/dual-taxonomy}
+  \caption{Decomposition of solutions}
+  \label{fig:dual-taxonomy}
+  \end{figure}
+\end{frame}
+
 
 \begin{frame}[t]\frametitle{State-of-art solutions}
 \begin{table}
@@ -359,26 +405,8 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{duty cycle
 \end{table}
 \end{frame}
 
-\begin{frame}[t]\frametitle{Framework for analyzing pure software solutions}
-\begin{figure}[tb]
-  \centering
-  \includegraphics[width=\textwidth]{../../../resources/images/vectors/dual-taxonomy}
-  \caption{Decomposition of solutions}
-  \label{fig:dual-taxonomy}
-  \end{figure}
-\end{frame}
 
-\begin{frame}[t]\frametitle{Characteristics of pure software approach solutions}
-\begin{tcolorbox}[title=Framework for analyzing solutions,colframe=PineGreen]
-\small
-Granularity of context information
-\begin{itemize}
-  \item Input data type
-  \item Classifier or machine learning technique
-  \item Length of time window
-\end{itemize}
-\end{tcolorbox}
-\end{frame}
+
 
 \section{Proposed solution}
 \subsection{Proposed solution}
@@ -421,9 +449,27 @@ Granularity of context information
 \begin{frame}[t]\frametitle{Proposed solution}
 \begin{figure}[tb]
   \centering
-  \includegraphics[width=\textwidth]{../../../resources/images/vectors/policy-manager-incorporation}
+  \includegraphics[width=0.9\textwidth]{../../../resources/images/vectors/solution-general-overview}
   \caption{Overview of current solution}
   \label{fig:solution}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]\frametitle{The model of information learned in proposed solution}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[scale=0.6]{../../../resources/images/vectors/mobility-graph}
+  \caption{Basic unit of information learned (User state)}
+  \label{fig:basic-unit-of-information-learned}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]\frametitle{The model of information learned in proposed solution}
+\begin{figure}[tb]
+  \centering
+  \includegraphics[width=\textwidth]{../../../resources/images/vectors/mobility-graph-larger-time-window-two-rows}
+  \caption{Mobility patterns learned over longer time windows}
+  \label{fig:information-learned-longer-time-windows}
 \end{figure}
 \end{frame}
 
@@ -431,7 +477,7 @@ Granularity of context information
 \section{Important results}
 \subsection{Important results}
 \label{sub:important_results}
-\begin{frame}[t]\frametitle{Results}
+\begin{frame}[t]\frametitle{Results of early experimentation}
 \begin{itemize}
   \item The feasibility of on-device detection of stay points has been partially prooved through experimentation.
   \item These experiments ensure proper calculations of stay points, even under mobile device constraints.
@@ -451,34 +497,55 @@ Granularity of context information
 
 \end{frame}
 
-\begin{frame}[t]\frametitle{Results}
+\begin{frame}[t]\frametitle{Results of early experimentation}
 \begin{itemize}
-  \item The first experiment is aimed at ensuring te calculation of stay points locally at the smartphone (Samsung Galaxy Note II more details here).
-  \item Both versions of the algorithm for stay points detection, original (buffered) and sigma, have been employed.
+  \item The first experiment is aimed at ensuring te calculation of stay points locally at the smartphone (Samsung Galaxy Note II, Quadcore 1.6 GHz processor, 16 GB RAM, 3,100 mAh battery).
+  \item Both versions of the algorithm for stay points detection, original (buffered) and sigma, have been employed.  
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[t]\frametitle{Results of early experimentation}
+\begin{itemize}
   \item Policies implemented:
   \begin{itemize}
   \item Periodic GPS sampling: 1, 3, and 5 minutes.
   \item FSM doubling policy. Starting with 1 minute reading period, doubling if no movement within a threshold of 50 meters was detected (Upper limit 16 minutes).
-  \item FSM linear policy. Possible fixed states at 1, 3, 6, 9, and 12 minutes.
+  \item FSM linear policy. Possible fixed states at 1, 3, 6, 9, 12 and 15 minutes.
   \end{itemize}
   \item The parameters for running the stay point detection algorithms for all tests were set at 10 minutes for $\theta_{tmin}$, 1 hour for $\theta_{tmax}$ and 150 m for $\theta_{d}$.
 \end{itemize}
 \begin{table}[t]
-\scriptsize{}
+\small{}
 \centering
-%\resizebox{\textwidth}{!}{%
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}ccccccc@{}}
 \toprule
-\textbf{\begin{tabular}[c]{@{}c@{}}GPS reading\\ period\end{tabular}} & \textbf{Algorithm} & \textbf{\begin{tabular}[c]{@{}c@{}}Stay points\\ detected\end{tabular}} & \textbf{Average fixes} & \textbf{Maximum fixes} & \textbf{GPS accesses} & \textbf{Running time} \\ \midrule
-1 minute & Buffered & 20 & 200 & 456 & 1744 & 36 hrs \\
-1 minute & Zigma    & 21 & 198 & 400 & 1750 & 37 hrs \\
+\textbf{\begin{tabular}[c]{@{}c@{}}GPS reading\\ period\end{tabular}} & \textbf{Algorithm} & \textbf{\begin{tabular}[c]{@{}c@{}}Stay points\\ detected\end{tabular}} & \textbf{Average fixes} & \textbf{Maximum fixes} & \textbf{GPS accesses} & \textbf{Running time (hours)} \\ \midrule
+
+1 minute &  Sigma Montoliou     & 27 & 70 & 652 & 2251 & 43.68 \\
+1 minute &  Buffered Montoliou  & 26 & 79 & 685 & 2334 & 43.92 \\
+\cmidrule{1-7}
+
+3 minutes & Sigma Montoliou     & 47 & 27 & 248 & 1361 & 71.84 \\
+3 minutes & Buffered Montoliou  & 28 & 41 & 248 & 1241 & 64.96 \\
+\cmidrule{1-7}
+
+5 minutes & Sigma Montoliou     & 43 & 25 & 154 & 1119 & 95.88 \\
+5 minutes & Buffered Montoliou  & 45 & 21 & 154 & 1021 & 87.78 \\
+\cmidrule{1-7}
+
+Doubling 1-2-4-8-16 & Sigma Montoliou   & 59 & 17 & 80 & 1223 & 189.69 \\
+Linear 1-3-5-9-12-15 &  Sigma Montoliou & 35 & 21 & 84 & 888 & 144.85 \\
+
 \bottomrule
 \end{tabular}
-%}
+}
 \caption{Results of the first experiment}
 \label{tbl:experiment-1}
 \end{table}
 \end{frame}
+
 
 % \section{Scientific publications produced}
 \subsection{Publications}
@@ -492,7 +559,7 @@ Granularity of context information
     \item A framework for dissecting and studying the characteristics of these solutions.
     \item The different tendencies and open challenges of the field.
   \end{itemize}
-  \item The previously mentioned experimentation is also under expansion and improvement for preparing an article focused on:
+  \item The aforementioned experimentation is also under expansion and improvement for preparing an article focused on:
   \begin{itemize}
     \item On-device learning of mobility information following an event-oriented perspective.
     \item The employment of such information for adapting the sensing dimension of smartphone looking for energy efficiency.
@@ -507,7 +574,328 @@ Granularity of context information
 \subsection{Future work}
 \begin{frame}[t]\frametitle{Future work}
     
-Adequate the calendar-schedule explaining the apparent delay produced by the survey, but remarking its added value as a metric and as a scientific booster for improving the work.
+  \definecolor{colorA}{gray}{0.85}
+  \definecolor{colorB}{gray}{0.95}
+  \definecolor{colorStep}{gray}{1}
+  \definecolor{cyellow1}{RGB}{240,236,43}
+  \definecolor{cgreen1}{RGB}{73,237,55}
+
+  \newlength{\longitudCelda}
+  \setlength{\longitudCelda}{75mm}
+
+  \begin{table}[!h]
+  {
+    \scalebox{0.75}{
+    \small
+      \begin{tabular*}{16.5cm}{lp{\longitudCelda}*{7}{c}}
+          & & \multicolumn{1}{ :c: }{\tiny 2014} & \multicolumn{3}{ c: }{\tiny 2015} & \multicolumn{3}{ c: }{\tiny 2016}  \\
+          \cline{3-9}
+
+          \multicolumn{2}{c:}{}
+          & \multicolumn{1}{c:}{\tiny 3\textsuperscript{rd}} 
+          & \tiny 1\textsuperscript{st} & { \tiny 2\textsuperscript{nd}} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}}
+          & \tiny 1\textsuperscript{st} & \tiny 2\textsuperscript{nd} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}} \\
+          \cline{3-9}
+
+          % Step 1
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step I}}  & & & & & & \\
+          
+          \rowcolor{colorA}
+          1 & \multicolumn{1}{p{\longitudCelda}:}{State-of-art reading} &
+          \cellcolor{cgreen1} & \cellcolor{cgreen1} & &
+          & & & \\
+
+          \rowcolor{colorB}
+          2 & \multicolumn{1}{p{\longitudCelda}:}{State-of-art works categorization} &
+          & \cellcolor{cgreen1} & \cellcolor{cgreen1} &
+          & & & \\
+
+          \rowcolor{colorA}
+          3 & \multicolumn{1}{p{\longitudCelda}:}{Documentation of information found (committee request)} &
+          & & \cellcolor{cgreen1} &
+          & & & \\
+
+          % Step 2
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step II}}  & & & & & & & \\
+
+          \rowcolor{colorB}
+          4 & \multicolumn{1}{p{\longitudCelda}:}{Development of a mobile app for the Android platform that collects accelerometer and location data} &
+          & & \cellcolor{cgreen1} & 
+          \cellcolor{cgreen1} & & & \\
+
+          \rowcolor{colorA}
+          5 & \multicolumn{1}{p{\longitudCelda}:}{Analysis of data delivered by the mobile app} &
+          & & & 
+          \cellcolor{cgreen1} & & & \\
+
+          \rowcolor{colorB}
+          6 & \multicolumn{1}{p{\longitudCelda}:}{Creation of the formal definition of mobility pattern} &
+          & & &
+          \cellcolor{cyellow1} & & & \\
+
+          \rowcolor{colorA}
+          7 & \multicolumn{1}{p{\longitudCelda}:}{Selection of the mobility patterns to be recognizable by the system} &
+          & & & 
+          \cellcolor{cyellow1} & \cellcolor{cyellow1} & & \\
+
+          % Step 3
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step III}}  & & & & & & & \\
+
+          \rowcolor{colorB}
+          8 & \multicolumn{1}{p{\longitudCelda}:}{Research on classification algorithms adequate to work with mobility patterns} &
+          & & & 
+          \cellcolor{cyellow1} & \cellcolor{cyellow1} & & \\
+
+          \rowcolor{colorA}
+          9 & \multicolumn{1}{p{\longitudCelda}:}{Definition of metrics for evaluating algorithms when executing on a mobile platform} &
+          & & & 
+          & \cellcolor[gray]{0.3} & & \\
+
+          \rowcolor{colorB}
+          10 & \multicolumn{1}{p{\longitudCelda}:}{Implementation of algorithms (including proper adaptions towards running on a mobile platform) for evaluation} &
+          & & & 
+          & \cellcolor[gray]{0.3} & \cellcolor[gray]{0.3} & \\
+
+          \rowcolor{colorA}
+          11 & \multicolumn{1}{p{\longitudCelda}:}{Selection of best algorithms according to metrics} &
+          & & & 
+          & & \cellcolor[gray]{0.3} & \\
+
+
+          % Step 4
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step IV}}  & & & & & & & \\
+
+          \rowcolor{colorB}
+          12 & \multicolumn{1}{p{\longitudCelda}:}{Definition and modeling of parameters needed by the PIE} &
+          & & & 
+          \cellcolor{cyellow1} & \cellcolor[gray]{0.3} & \cellcolor[gray]{0.3} &
+          \cellcolor[gray]{0.3}\\
+
+          \rowcolor{colorA}
+          13 & \multicolumn{1}{p{\longitudCelda}:}{Building of the PIE} &
+          & & & 
+          \cellcolor{cyellow1} & \cellcolor[gray]{0.3} & \cellcolor[gray]{0.3} &
+          \cellcolor[gray]{0.3} \\
+
+      \end{tabular*}
+    }
+  } % begin table
+  \caption{Schedule of activities (each column represents a four months period)}
+  \label{tbl-schedule}
+  \end{table}
+\end{frame}
+
+
+\begin{frame}{Schedule}
+  
+  \newlength{\longCelda}
+  \setlength{\longCelda}{75mm}
+  \definecolor{colorA}{gray}{0.85}
+  \definecolor{colorB}{gray}{0.95}
+  \definecolor{colorStep}{gray}{1}
+
+  \begin{table}[!h]
+  {
+    \scalebox{0.8}{
+    \small
+      \begin{tabular*}{16.5cm}{lp{\longCelda}*{6}{c}}
+          & & \multicolumn{3}{ :c: }{\tiny 2016} & \multicolumn{3}{ c: }{\tiny 2017} \\
+          \cline{3-8}
+
+          \multicolumn{2}{ c: }{}
+          & \multicolumn{1}{c}{\tiny 1\textsuperscript{st}} & { \tiny 2\textsuperscript{nd}} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}}
+          & \tiny 1\textsuperscript{st} & \tiny 2\textsuperscript{nd} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}} \\
+          \cline{3-8}
+
+          % Step 5
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step V}}  & & & & & & \\
+          
+          \rowcolor{colorA}
+          14 & \multicolumn{1}{p{\longCelda}:}{Creation of the formal definition of policy} &
+          & & \cellcolor[gray]{0.3} &
+          & & \\
+
+          \rowcolor{colorB}
+          15 & \multicolumn{1}{p{\longCelda}:}{Research and evaluation of techniques for generation and adaption of policies} &
+          & & \cellcolor[gray]{0.3} & 
+          \cellcolor[gray]{0.3} & & \\
+
+          \rowcolor{colorA}
+          16 & \multicolumn{1}{p{\longCelda}:}{Design and execution of experiments with techniques applied to use cases} &
+          & & \cellcolor[gray]{0.3} & 
+          \cellcolor[gray]{0.3} & & \\
+
+          \rowcolor{colorB}
+          17 & \multicolumn{1}{p{\longCelda}:}{Selection of best techniques} &
+          & & &
+          \cellcolor[gray]{0.3} & & \\
+
+
+          % Step 6
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step VI}}  & & & & & & \\
+          
+          \rowcolor{colorA}
+          18 & \multicolumn{1}{p{\longCelda}:}{Definition and modeling of parameters needed by the PGE} &
+          & & &
+          & \cellcolor[gray]{0.3} & \\
+
+          \rowcolor{colorB}
+          19 & \multicolumn{1}{p{\longCelda}:}{Building of the PGE} &
+          & & &
+          & \cellcolor[gray]{0.3} & \\
+
+
+
+      % Step 7
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step VII}}  & & & & & & \\
+          
+          \rowcolor{colorA}
+          20 & \multicolumn{1}{p{\longCelda}:}{Analysis of elements involved into software abstractions} &
+          & & &
+          & \cellcolor[gray]{0.3} & \\
+
+          \rowcolor{colorB}
+          21 & \multicolumn{1}{p{\longCelda}:}{Research on Android API for specialized components} &
+          & & &
+          & \cellcolor[gray]{0.3} & \\
+
+          \rowcolor{colorA}
+          22 & \multicolumn{1}{p{\longCelda}:}{Development of the middleware} &
+          & & &
+          & \cellcolor[gray]{0.3} & \\
+
+
+      \end{tabular*}
+     }
+  } % begin table
+  \caption{Schedule of activities (each column represents a four months period)}
+  \label{tbl-schedule-2}
+  \end{table}
+\end{frame}
+
+\begin{frame}{Schedule}
+  
+  \newlength{\longCell}
+  \setlength{\longCell}{75mm}
+  \definecolor{colorA}{gray}{0.85}
+  \definecolor{colorB}{gray}{0.95}
+  \definecolor{colorStep}{gray}{1}
+
+  \begin{table}[!h]
+  {
+    \scalebox{0.8}{
+    \small
+      \begin{tabular*}{16.5cm}{lp{\longCell}*{5}{c}}
+          & & \multicolumn{3}{ :c: }{\tiny 2017} & \multicolumn{2}{ c: }{\tiny 2018} \\
+          \cline{3-7}
+
+          \multicolumn{2}{ c: }{}
+          & \multicolumn{1}{c}{\tiny 1\textsuperscript{st}} & { \tiny 2\textsuperscript{nd}} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}}
+          & \tiny 1\textsuperscript{st} & \tiny 2\textsuperscript{nd} \\
+          \cline{3-7}
+
+          % Step 8
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Step VIII}}  & & & \\
+          
+          \rowcolor{colorA}
+          23 & \multicolumn{1}{p{\longCell}:}{Definition of experiments targeting accuracy and energy consumption axes} &
+          & & \cellcolor[gray]{0.3} &
+          & \\
+
+          \rowcolor{colorB}
+          24 & \multicolumn{1}{p{\longCell}:}{Development of needed sample mobile apps for running experimentation} &
+          & & \cellcolor[gray]{0.3} &
+          & \\
+
+          \rowcolor{colorA}
+          25 & \multicolumn{1}{p{\longCell}:}{Execution of experimentation} &
+          & & \cellcolor[gray]{0.3} &
+          \cellcolor[gray]{0.3} & \\
+
+          \rowcolor{colorB}
+          26 & \multicolumn{1}{p{\longCell}:}{Results analysis} &
+          & & &
+          \cellcolor[gray]{0.3} & \\
+
+      \end{tabular*}
+     }
+  } % begin table
+  \caption{Schedule of activities (each column represents a four months period)}
+  \label{tbl-schedule-3}
+  \end{table}
+\end{frame}
+
+
+\begin{frame}{Schedule}
+  
+  \newlength{\longCella}
+  \setlength{\longCella}{50mm}
+  \definecolor{colorA}{gray}{0.85}
+  \definecolor{colorB}{gray}{0.95}
+  \definecolor{colorStep}{gray}{1}
+
+  \definecolor{cyellow1}{RGB}{240,236,43}
+  \definecolor{cgreen1}{RGB}{73,237,55}
+
+
+  \begin{table}[!h]
+  {
+    \scalebox{0.75}{
+    %\scalebox{0.6}{
+    \small
+      \begin{tabular*}{16.5cm}{lp{\longCella}*{12}{c}}
+          & & \multicolumn{1}{ :c: }{\tiny 2014} & \multicolumn{3}{ c: }{\tiny 2015} & \multicolumn{3}{ c: }{\tiny 2016}  & \multicolumn{3}{ c: }{\tiny 2017} & \multicolumn{2}{ c }{\tiny 2018} \\
+          \cline{3-14}
+
+          \multicolumn{2}{c:}{}
+          & \multicolumn{1}{c:}{\tiny 3\textsuperscript{rd}} 
+          & \tiny 1\textsuperscript{st} & { \tiny 2\textsuperscript{nd}} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}}
+          & \tiny 1\textsuperscript{st} & \tiny 2\textsuperscript{nd} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}}
+          & \tiny 1\textsuperscript{st} & \tiny 2\textsuperscript{nd} & \multicolumn{1}{c:}{ \tiny 3\textsuperscript{rd}}
+          & \tiny 1\textsuperscript{st} & \tiny 2\textsuperscript{nd} \\
+          \cline{3-14}
+
+          % Step 1
+          \rowcolor{colorStep}
+          & \multicolumn{1}{c}{\scriptsize \textsc{Required tasks}}  & & & & & & & & & & & & \\
+          
+          \rowcolor{colorA}
+          A & \multicolumn{1}{p{\longCella}:}{Related subject courses} &
+          \cellcolor{cgreen1} & \cellcolor{cgreen1} & \cellcolor{cgreen1} &
+          & & &
+          & & &
+          & & \\
+
+          \rowcolor{colorB}
+          B & \multicolumn{1}{p{\longCella}:}{Research articles submission} &
+          & & & \cellcolor{cyellow1} *
+          & & \cellcolor[gray]{0.3} &
+          & & \cellcolor[gray]{0.3} &
+          & & \\
+
+          \rowcolor{colorA}
+          C & \multicolumn{1}{p{\longCella}:}{Thesis writing} &
+          \cellcolor{cgreen1} & & &
+          \cellcolor{cyellow1} & & &
+          \cellcolor[gray]{0.3} & & &
+          \cellcolor[gray]{0.3} & \cellcolor[gray]{0.3} & \cellcolor[gray]{0.3} \\
+
+      \end{tabular*}
+    }
+  } % begin table
+  \caption{Schedule of required activities}
+  \label{tbl-schedule-4}
+  \end{table}
+
+  * Survey was out of original schedule, however, it brings added value to our work and also act as a scientific booster for improving and achieving our solution.
 \end{frame}
 
 
@@ -544,6 +932,14 @@ Thank You\\ for your attention!
 \end{center}
 
 \end{frame}
+
+
+
+\subsection{References}
+\bibliographystyle{plain}
+% \bibliographystyle{unsrtnat}
+% \tiny
+\bibliography{../../../resources/references/bibliography}
 
 \begin{frame}[t]\frametitle{Montoliou's algorithm for stay points detection~\cite{Montoliu2010}}
 \begin{center}
@@ -589,11 +985,5 @@ Thank You\\ for your attention!
 \end{center}
 
 \end{frame}
-
-\subsection{References}
-\bibliographystyle{plain}
-% \bibliographystyle{unsrtnat}
-% \tiny
-\bibliography{../../../resources/references/bibliography}
 
 \end{document}
