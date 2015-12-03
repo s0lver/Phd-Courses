@@ -1,63 +1,106 @@
-\documentclass[ENG,PhD]{cinvestav}
-
-%%%%%%%%% PACKAGES
-\usepackage{color}
-\usepackage{latexsym, amssymb}
-\usepackage{xcolor}
-\usepackage{pstricks}
-\usepackage{epsfig}
-\usepackage{ucs}
-\usepackage{lettrine}
+\documentclass[12pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{epstopdf}
+\usepackage{latexsym,amssymb,amsmath} % for \Box, \mathbb, split, etc.
+% \usepackage[]{showkeys} % shows label names
+%\usepackage{cite} % sorts citation numbers appropriately
+\usepackage{path}
 \usepackage{url}
-\usepackage{pseudocode}
-\usepackage{ltablex}
-\usepackage{booktabs}
-\usepackage{rotating}
-\usepackage{cite}
+\usepackage{verbatim}
+\usepackage[pdftex]{graphicx}
+\usepackage{epstopdf}
 
-\RequirePackage{hyperref}
-\RequirePackage{algorithm}
-\usepackage{algorithmic}
-\usepackage{latexsym, amssymb}
-\usepackage{fancybox}
-\usepackage{rotating}
-\usepackage{pdflscape} 
-\usepackage{multirow}
-\usepackage{textcomp}
+%\usepackage[lf]{venturis}
+
 \usepackage{booktabs}
 \usepackage{array}
 \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
 \usepackage{subcaption}
+\usepackage{pdflscape}
+\usepackage{rotating}
+\usepackage{cite}
 
 \usepackage[inline]{enumitem}
 \newlist{listahorizontal}{enumerate*}{1}
 \setlist[listahorizontal]{label=(\alph*)}
 
-\newcommand{\V}[1]{\mathbf{#1}}
+% horizontal margins: 1.0 + 6.5 + 1.0 = 8.5
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\textwidth}{6.5in}
+% vertical margins: 1.0 + 9.0 + 1.0 = 11.0
+\setlength{\topmargin}{0.0in}
+\setlength{\headheight}{12pt}
+\setlength{\headsep}{13pt}
+\setlength{\textheight}{625pt}
+\setlength{\footskip}{24pt}
 
+\renewcommand{\textfraction}{0.10}
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.85}
+\renewcommand{\floatpagefraction}{0.90}
+\renewcommand{\baselinestretch}{1.2}
+
+\makeatletter
+\setlength{\arraycolsep}{2\p@} % make spaces around "=" in eqnarray smaller
+\makeatother
+
+% change equation, table, figure numbers to be counted inside a section:
+\numberwithin{equation}{section}
+\numberwithin{table}{section}
+\numberwithin{figure}{section}
+
+% begin of personal macros
+\newcommand{\half}{{\textstyle \frac{1}{2}}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\myth}{\vartheta}
+\newcommand{\myphi}{\varphi}
+
+\newcommand{\IN}{\mathbb{N}}
+\newcommand{\IZ}{\mathbb{Z}}
+\newcommand{\IQ}{\mathbb{Q}}
+\newcommand{\IR}{\mathbb{R}}
+\newcommand{\IC}{\mathbb{C}}
+\newcommand{\Real}[1]{\mathrm{Re}\left({#1}\right)}
+\newcommand{\Imag}[1]{\mathrm{Im}\left({#1}\right)}
+
+\newcommand{\norm}[2]{\|{#1}\|_{{}_{#2}}}
+\newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\ip}[2]{\left\langle {#1}, {#2} \right\rangle}
+\newcommand{\der}[2]{\frac{\partial {#1}}{\partial {#2}}}
+\newcommand{\dder}[2]{\frac{\partial^2 {#1}}{\partial {#2}^2}}
+
+\newcommand{\nn}{\mathbf{n}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\uu}{\mathbf{u}}
+
+\newcommand{\junk}[1]{{}}
+
+% set two lengths for the includegraphics commands used to import the plots:
+\newlength{\fwtwo} \setlength{\fwtwo}{0.45\textwidth}
+% end of personal macros
 \graphicspath{ {../../../resources/images/vectors/}{../../../resources/images/bits/} }
 
-\title{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}
-\shorttitle{Smart Usage of Context Information for the Generation of Power-Aware Policies}
-\author{Rafael Pérez Torres, César Torres Huitzil and Hiram Galeana Zapién}
-\adscripcion{Cinvestav Tamaulipas. Parque Científico y Tecnológico TecnoTam -- Km. 5.5 Carretera Cd. Victoria-Soto La Marina. C.P. 87130 Cd. Victoria, Tamps. }
-\city {Cd. Victoria, Tamaulipas, Mexico.}
-%\date{December, 2010}
-\techreportnumber{07}
-\publishedmonth{December} %mes de la publicación
-\publishedday{16th} %día de la publicación
-\publishedyear{2015} %año de la publicación
-\keywords{mobile sensing apps, energy consumption, context information, policy, smartphone}
-\correspondingauthor{Rafael Pérez Torres $<$rperez@tamps.cinvestav.mx$>$, César Torres Huitzil $<$ctorres@tamps.cinvestav.mx$>$ and Hiram Galeana Zapién $<$hgaleana@tamps.cinvestav.mx$>$}
-\grants{}
-\dateofsubmission{December 5th, 2014}
-\tobecited{Rafael Pérez Torres, César Torres Huitzil, Hiram Galeana Zapién. Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps. CINVESTAV Tamaulipas. 2014 Nov. 36 pp. Technical Report No. LTI-TR-2014-07}
-\placeanddateofpublication{Ciudad Victoria, Tamaulipas, MEXICO.}
+\begin{document}
+%\DeclareGraphicsExtensions{.jpg}
+
+\begin{center}
+\textbf{\Large Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps} \\[16pt]
+
+\includegraphics[scale=0.08]{cinvestav2.jpg}
+
+\textbf{Technical Report}\\[6pt]
+LTI-TR-2014-07 \\[16pt]
+
+\textbf{Student} Rafael Pérez-Torres \\[6pt]
+\textbf{Advisors} César Torres Huitzil Phd, Hiram Galeana Zapién Phd.\\[16pt]
+
+Information Technology Laboratory,\\
+CINVESTAV Tamaulipas \\[16pt]
+
+%  gobbert@umbc.edu, \url{www.math.umbc.edu/~gobbert}
+\end{center}
 
 \abstract{
 This technical report describes the progress and advances developed for the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps} during the first year of the doctoral program.
@@ -65,25 +108,23 @@ This technical report describes the progress and advances developed for the thes
 In summary, the different efforts during the first year have been focused on producing a solid state of the art revision, as well as on defining the core elements that will power up the methodology for solving the main problem.
 }
 
-\begin{document}
-\makeintropages
-
-
-% \subparagraph{Keywords.} mobile sensing apps, energy consumption, context information, policy, smartphone.
+\subparagraph{Keywords.} mobile sensing apps, energy consumption, context information, policy, smartphone.
 
 \section{Introduction}
 \label{sec:introduction}
+OK REMEMBER THIS IS TECHNICAL, YOU CAN DESCRIBE AT TECHNICAL DETAIL THE SECTIONS
 This technical report describes the progress and advances developed for the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps} during the first year of the doctoral program.
 
 In summary, the different efforts during the first year have been focused on producing a solid state of the art revision, as well as on defining the core elements that will power up the methodology for solving the main problem.
 
+
 In order to ease the comprehension for the reader, this report has been structured as a self-contained document, briefly addressing the scientific context of the research, describing the hypothesis, problem statement and objectives.
 This technical report is structured as follows.
-Section~\ref{sub:research-context} presents a brief review of the context of the research, recalling the characteristics of smartphone-based sensing applications and the problematic arised by the energy consumption when continuous access to sensors is needed.
-Section~\ref{sec:state-of-art} is prepared as for describing the study performed on state-of-art techniques, covering a taxonomy of existing solutions, as well as a framework for their analysis.
+Section~\ref{sub:research-context} presents a brief review of the context of the research.
+Section~\ref{sec:state-of-art} is prepared as for describing the study performed on state-of-art techniques, covering a taxonomy of previous solutions and a framework for their analysis.
 Section C is aimed at describing the advances produced on our proposed solution, including the insights for achieving learning from user and a general overview of the mechanisms for achieving sensor usage adaptations.
-Section D present the future work and specific activities for achieving the planned solution.
-Section E summarizes the scientific products prepared as a result of the first year of work.
+Section D addresses some FUTURE WORK!
+Section E summarizes the scientific products prepared during this first year of work.
 Finally, Section F present the conclusions of this report.
 
 
@@ -105,12 +146,13 @@ Finally, Section F present the conclusions of this report.
 \emph{This section is aimed at giving an overall description of the context of the research, in order to ease the comprehension of the reader and producing a self-conteined document.}
 
 
+%\subsection{Motivation of this research}
 The popularity of smartphones is a remarkable instance of the adoption of technology by society.
 According to the Ericsson Mobility report~\cite{Ericsson2015} there were 3,400 million of smartphone subscriptions and 250 million of mobile PCs, tablets and mobile router subscriptions in the 2015.
 The presence of smartphones is drastically changing our daily lives by providing an increasingly powerful set of tools as a result of significant advances in the field.
 % It is expected to have 6,400 million and 350 million of subscriptions, respectively, by the end of the 2021.
 The capabilities and platform complexity of smartphones are continuously improving, becoming truly system-on-chip (SoC) devices able to adapt their operation over three distinguishing dimensions, namely communication, sensing, and computation, as conceptually shown in Figure~\ref{fig:smartphone-dimensions}.
-The advances on these dimensions have enabled the \emph{context-awareness}~\footnote{For the sake of clarity, we stick to the definition of \emph{context} proposed by Chen and Kotz~\cite{Chen2000}, as the set of environmental states and settings that either determines the application’s behavior or in which an application event occurs and is interesting to the user.} paradigm in mobile and pervasive computing, opening the path for a myriad of applications and services.
+The advances on these dimensions have enabled the \emph{context-awareness}~\footnote{For the sake of clarity, we stick to the definition of \emph{context} proposed by \cite{Chen2000}, as the set of environmental states and settings that either determines the application’s behavior or in which an application event occurs and is interesting to the user.} paradigm in mobile and pervasive computing, opening the path for a myriad of applications and services.
 Particularly in the sensing dimension, modern smartphones include a set of low cost and powerful embedded sensors such as accelerometer, digital compass, gyroscope, GPS receiver, microphone, and camera, among others, providing them with rich capabilities for creating mobile sensing applications at different spatial and temporal scales~\cite{Lane2010,Campbell2012,Kjaergaard2012} and with different levels of accuracy and energy costs.
 For this class of applications, the core requirements are the background and continuous sensors' data acquisition, as well as the associated on-device computations for extracting useful information for the user~\cite{Lane2010,Ra2012}.
 As user interaction can be required for collecting data, two sensing paradigms can be implemented~\cite{Lane2010}.
@@ -120,7 +162,7 @@ Given its autonomy, the opportunistic paradigm represents the preferable choice 
 
 \begin{figure}[t]
   \centering
-  \includegraphics[scale=0.9]{smartphone-dimensions}
+  \includegraphics[scale=0.75]{smartphone-dimensions}
   \caption{The communication, computation, and sensing features offered by smartphones represent the main dimensions where the functionality of these devices relies on.}
   \label{fig:smartphone-dimensions}
 \end{figure}
@@ -234,11 +276,9 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 % ****** 2. State of art related ******
 % *************************************
 % *************************************
-\section{State-of-art works analysis}
+\section{State of art analysis}
 \label{sec:state-of-art}
-\emph{The content of this section describes the results of the analysis of state-of-art related works. A taxonomy of these solutions is highlighted, as well as a framework for studying their internal structure.}
-
-Research on power consumption of mobile devices started since their conception and introduction to the market, and it has produced several power management strategies that show an evolution on their complexity and flexibility.
+Research on power consumption of mobile devices started since their conception and introduction to the market, and has produced several power management strategies that show an evolution on their complexity and flexibility.
 Early techniques consisted on generic mechanisms for accessing platform components, mostly at hardware level, like adapting their voltage and frequency of operation, as well as modifying their active power mode~\cite{Mayo2003,Lorch1998,Benini2000}.
 Current strategies are focused in specific design issues of particular sensors, tasks, and scenarios where both hardware and software scale their features and energy usage according to changes in the mobile platform workload~\cite{Lane2010,Hoseini-Tabatabaei2013}.
 Intuitively, if there are no hard power consumption constraints, the software stack can use hardware components at maximum performance.
@@ -247,6 +287,9 @@ Leveraging on context information plays a key role to optimize the \emph{sensor 
 On the other hand, ignoring any source of context information at the sensor reading stage will avoid dynamic adaptations, leading to a fixed hardware usage and neglecting power savings.
 As a result, there is an inherent power consumption-accuracy trade-off when accessing and consuming sensor data~\cite{Sim2014,Rachuri2012}.
 
+% In contrast, a context-agnostic scheme (that does not use context information on the sensing stage) would omit such adaptation and discard power optimizations, as shown by the upper line in Figure~\ref{fig:comparison-agnostic-aware-mobile-platform}.
+% As illustrated conceptually by the plot shown in Figure~\ref{fig:comparison-agnostic-aware-mobile-platform}, leveraging on context information plays a key role to optimize the \emph{sensor reading} stage (represented in Figure~\ref{fig:stages-of-power-aware-mobile-sensing}), to reduce the number of sensor invocations, and to produce a smart and dynamic hardware usage adaptation.
+% In contrast, a context-agnostic scheme (that does not use context information on the sensing stage) would omit such adaptation and discard power optimizations, as shown by the upper line in Figure~\ref{fig:comparison-agnostic-aware-mobile-platform}.
 \begin{figure*}[t]
   \centering
   \includegraphics[width=\textwidth]{approaches-taxonomy}
@@ -257,7 +300,7 @@ As a result, there is an inherent power consumption-accuracy trade-off when acce
 Power-aware sensing refers to a set of techniques and methodologies aimed at continuously monitoring sensor data over long periods of time under the computing, storage, and power constraints of typical mobile devices.
 Roughly speaking, the power-aware sensing is mostly enclosed into the sensor reading stage of mobile sensing applications, abstracting the complexity of sensors management, and delivering collected data while considering the power constraints of these devices. 
 It is important to remark that this goal is frequently achieved by executing the rest of the stages internally, in order to identify context information that is useful for feedback purposes and a smarter usage of sensors.
-A revision of relevant works in literature reveals three complementary approaches at different level of abstraction of the smartphone device: pure hardware, hardware-software, and pure software approaches.
+A revision of relevant works in literature reveals three complementary approaches at different level of abstraction of the smartphone device: pure hardware, hardware-software, and pure software approaches, based on the classification of generic power-aware computing techniques described in~\cite{Ranganathan2010}.
 The proposed taxonomy, and definition of each of the categories and their specializations, will be described in next subsections.
 Figure~\ref{fig:taxonomy-approaches} presents a taxonomy of solutions for power-aware smartphone sensing, with the pure hardware, hardware-software and pure software approaches as the main classes, briefly described in the next paragraphs.
 These approaches incorporate policies with embedded algorithms that analyze simple or complex context information for controlling the power consumption, producing \emph{recipes for power-aware sensing} in mobile devices.
@@ -287,11 +330,11 @@ It is important to highlight that although the presented taxonomy allows to clas
 This is a suggestion of the complexity of the problem itself and an evidence of the evolution and adoption of these complementary techniques.
 Furthermore, ideas proved to be working efficiently in software soon or later are implemented directly in hardware to boost efficiency even further. 
 
-% Despite the different approaches for achieving power-aware sensing may be applicable to any set of sensors, in practice they have been mainly employed for optimizing power consumption of location providers, like the GPS and Wi-Fi Positioning System (WPS), in continuous Location-based Services (LBS).
-% The reason behind this trend is twofold.
-% On one hand, the optimization of energy hungry hardware elements like the GPS and other radio interfaces (i.e., GPRS, Bluetooth, etc.), allows the different power-aware sensing techniques to prove their effectiveness under the most strident conditions in terms of energy consumption than those observed in applications that make use of lower power consumption sensors.
-% On the other hand, location information in smartphones is required by a wide variety of applications and therefore, the optimization of energy resources of the GPS sensor reading process (which is the core enabler of LBS) is required.
-% Nonetheless, it is noteworthy that the principles of some of the different proposed solutions can be tailored and implemented in other application niches employing different sensors.
+Despite the different approaches for achieving power-aware sensing may be applicable to any set of sensors, in practice they have been mainly employed for optimizing power consumption of location providers, like the GPS and Wi-Fi Positioning System (WPS), in continuous Location-based Services (LBS).
+The reason behind this trend is twofold.
+On one hand, the optimization of energy hungry hardware elements like the GPS and other radio interfaces (i.e., GPRS, Bluetooth, etc.), allows the different power-aware sensing techniques to prove their effectiveness under the most strident conditions in terms of energy consumption than those observed in applications that make use of lower power consumption sensors.
+On the other hand, location information in smartphones is required by a wide variety of applications and therefore, the optimization of energy resources of the GPS sensor reading process (which is the core enabler of LBS) is required.
+Nonetheless, it is noteworthy that the principles of some of the different proposed solutions can be tailored and implemented in other application niches employing different sensors.
 
 Table~\ref{tab:related-work} summarizes a set of works found in literature aimed at solving the power consumption issue in mobile sensing applications in the context of the presented taxonomy.
 As it can be noted, the most common strategy followed in the literature is the pure software approach, due to its flexibility and fine-tuning features, which will be described in next sections of this paper.
@@ -303,11 +346,11 @@ However, even inside this strategy the implementations are not homogeneous and t
 The second strategy performs the comparison in terms of battery life (e.g., time to drain) because, according to~\cite{Kim2014}, several physical characteristics of batteries impact on their discharging cycle.
 The most notorious aspect is that the actual available energy is reduced when the battery discharges, a behavior that is ignored in the energy consumption models included in most of the reviewed solutions.
 
-% The next sections of the document present a description of relevant aspects about the different approaches of the proposed taxonomy.
-% Important concepts about the pure hardware and hardware-software approaches have been already discussed in existing works~\cite{Priyantha2011,Ranganathan2010,Lorch1998,Benini2000}.
-% Hence, this survey includes a brief description about them, as well as the analysis of associated specializations found in state-of-art works.
-% Subsequently, a detailed analysis of the features offered by the pure software approach is presented.
-% This analysis includes its fundamental aspects, its advantages and possibilities when compared against other approaches, as well as the description of its flexibility for modeling and adapting to dynamic changes in context information, which makes it ideal for fitting the system behavior according to user profile.
+The next sections of the document present a description of relevant aspects about the different approaches of the proposed taxonomy.
+Important concepts about the pure hardware and hardware-software approaches have been already discussed in existing works~\cite{Priyantha2011,Ranganathan2010,Lorch1998,Benini2000}.
+Hence, this survey includes a brief description about them, as well as the analysis of associated specializations found in state-of-art works.
+Subsequently, a detailed analysis of the features offered by the pure software approach is presented.
+This analysis includes its fundamental aspects, its advantages and possibilities when compared against other approaches, as well as the description of its flexibility for modeling and adapting to dynamic changes in context information, which makes it ideal for fitting the system behavior according to user profile.
 
 
 \subsection{Pure hardware approach}
@@ -391,6 +434,9 @@ In this regard, the feedback information allows to build the closed loop describ
   \label{fig:middleware-software-approach}
 \end{figure}
 
-\bibliographystyle{plain}
+
+
+\bibliographystyle{apalike}
 \bibliography{../../../resources/references/bibliography}
-\end {document}
+
+\end{document}

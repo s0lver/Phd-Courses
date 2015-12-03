@@ -1,0 +1,100 @@
+% \checkmark
+% http://bit.ly/1CCoRAP
+\begin{sidewaystable}
+% \begin{table*}
+    \centering
+    \scriptsize{}
+    \begin{tabular}{C{0.11\textwidth}C{0.2\textwidth}C{0.17\textwidth}C{0.15\textwidth}C{0.09\textwidth}C{0.05\textwidth}C{0.05\textwidth}C{0.05\textwidth}}
+    % \begin{tabular}{C{0.15\textwidth}C{0.22\textwidth}C{0.25\textwidth}C{0.27\textwidth}}
+    \toprule
+    \textbf{Name} & \textbf{Variants} & \textbf{Machine learning technique} & \textbf{Sensors involved} & \textbf{Complexity} & \textbf{OL} & \textbf{OO} & \textbf{US} \\
+    \midrule
+
+    
+    % Category Basic context policy (short time window)
+    \emph{G-Sense}      \cite{Perez2010} & Sensor adaptation (DC) & SDR & GPS & low \\
+
+    \cmidrule(l){1-8}
+    Not given           \cite{Perez-Torres2012} & Sensor adaptation (DC) & SDR & GPS & low \\
+
+    \cmidrule(l){1-8}
+    \emph{SenseLess}    \cite{Abdesslem2009} & Sensor adaptation (DC), Sensor replacement (CR, DR) & SDR & WPS, GPS, ACC & low \\
+    
+    \cmidrule(l){1-8}
+    \emph{SensTrack}    \cite{Zhang2013} & Sensor adaptation (DC), Sensor replacement (CR, DR) & SDR & ACC, orientation sensor, GPS, WPS & low \\
+    % \emph{SensTrack}    \cite{Zhang2013} & Sensor adaptation (DC), Sensor replacement (CR,DR) & SDR, Gaussian Regression Model (GRM) & ACC, orientation sensor, GPS, WPS & low \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Man2014} & Sensor adaptation (DC, VI), Sensor replacement (CR) & SDR & ACC, magnetic field sensor, GPS & low \\
+    % Not given           \cite{Man2014} & Sensor adaptation (DC), Sensor replacement (CR) & SDR (Trigonometrical approach) & ACC, magnetic field sensor, GPS & low \\
+
+    \cmidrule(l){1-8}
+    \emph{EnLoc}        \cite{Constandache2009} & Sensor adaptation (DC, VI), Sensor replacement (DR) & SDR, Mobility Tree & WPS, GPS, cellular ID & medium & & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    \emph{EnTracked}    \cite{Kjaergaard2009} & Sensor adaptation (DC), Sensor replacement (CR) & SDR & ACC, GPS & medium & & \checkmark \\
+    \bottomrule
+
+
+    % Category Medium context-aware policy
+    % Not given           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm, majority vote system & ACC & low \\
+    Not given           \cite{AlvarezDeLaConcepcion2014,Morillo2015} & --- & Ameva algorithm & ACC & medium \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Mazilu2013} & Sensor replacement (CR) & DT & Temperature, humidity, pressure & medium \\
+    % Not given           \cite{Mazilu2013} & Sensor replacement (CR) & DT (C4.5) & Temperature, humidity, pressure & medium \\
+
+    \cmidrule(l){1-8}
+    Not given           \cite{Srinivasan2012} & Sensor adaptation (DC) & DT & ACC & medium \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & medium \\
+    % Not given           \cite{Khalifa2015} & Sensor replacement (CR) & KNN & Model of ACC-based harvesting device & low \\
+    \bottomrule
+
+
+    % Category Long time window
+    \emph{SensLoc}         \cite{Kim2010} & Sensor adaptation (DC, RD), Sensor replacement (CR) & SDR & Wi-Fi fingerprinting, GPS, ACC & medium & \checkmark & \\
+    % \emph{SensLoc}         \cite{Kim2010} & Sensor adaptation (DC), Sensor replacement (CR,DR) & SDR (Tanimoto coefficient and ACC variance) & Wi-Fi fingerprinting, GPS, ACC & medium & \checkmark & & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    \emph{CAPS}         \cite{Paek2011} & Sensor adaptation (DC, RD), Sensor replacement (CR) & SDR & GPS, cellular ID & medium & \checkmark \\
+    % SDR (Smith-Waterman algorithm) CR because location is processed alternatively with this algorithm
+
+    \cmidrule(l){1-8}
+    \emph{RAPS}         \cite{Paek2010} & Sensor adaptation (DC, RD), Sensor replacement (CR, DR) & SDR & WPS, GPS, ACC, Bluetooth, cellular ID & medium & \checkmark \\
+    
+    % In-between Category Optimization + long time window
+    \cmidrule(l){1-8}
+    \emph{A-Loc}        \cite{Lin2010} & Sensor adaptation (DC, RD), Sensor replacement (CR, DR) & HMM, Bayesian estimation framework & GPS, WPS, Bluetooth, cellular ID & medium & \checkmark & \checkmark  \\
+    
+    \cmidrule(l){1-8}
+    \emph{SmartDC}      \cite{Chon2011} & Sensor adaptation (DC, RD), Sensor replacement (CR, DR) & HMM and LZ predictor & GPS, WPS, Wi-Fi and cellular ID fingerprinting & medium & \checkmark & \checkmark \\
+
+    
+    \bottomrule
+
+
+    % Category Full context-aware policy
+    \emph{Jigsaw}       \cite{Lu2010} & Sensor adaptation (DC), Sensor replacement (CR) & Microphone: NB with Gaussian Mixture Model (GMM). ACC: DT. GPS: MDP. & ACC, Microphone, GPS & high & & \checkmark & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Donohoo2014} & Sensor adaptation (DC) & Several. KNN and NN selected as best. & ACC, GPS, WPS, cellular ID, light, device data, mobile app requirements & high & & & \checkmark \\
+
+    \cmidrule(l){1-8}
+    \emph{EEMSS}        \cite{Wang2009} & Sensor adaptation (DC), Sensor replacement (CR, DR) & GPS and ACC: SDR. \newline Microphone: SSCH algorithm. & ACC, microphone, GPS & high & & & \checkmark \\
+
+    \cmidrule(l){1-8}
+    \emph{iLoc}         \cite{MaY2009} & Sensor adaptation (RD), Sensor replacement (CR) & HMM & Wi-Fi \& GSM fingerprinting & high & \checkmark & & \checkmark  \\
+    
+    \cmidrule(l){1-8}
+    Not given           \cite{Yurur2014} & Sensor adaptation (DC, RD) & HMM & ACC & high & \checkmark & & \checkmark \\
+    
+    \cmidrule(l){1-8}
+    \emph{FreeTrack}    \cite{Chon2014} & Sensor adaptation (DC, RD), Sensor replacement (CR, DR) & HMM & GPS, Wi-Fi, cellular ID, battery status & high & \checkmark & & \checkmark \\
+    
+    \bottomrule
+    \end{tabular}
+    \protect\caption{Important works proposed following the pure software approach. Many of these works combine different software strategies for boosting their energy performance. (OL: Online Learning from user data, OO: Optimization Oriented solution, US: User State context insight, ACC: Accelerometer).\label{tab:works-software-approach}}
+% \end{table*}
+\end{sidewaystable}

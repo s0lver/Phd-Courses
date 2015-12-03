@@ -51,7 +51,7 @@
 
 
 \DeclareOption{PhD}{\thesis{Doctor en Ciencias}\thesisen{Doctor of Science}}
-			% default -- nothing more to do
+      % default -- nothing more to do
 \DeclareOption{MSc}{
 \thesis{Maestro en Ciencias}
 \thesisen{Master of Science}
@@ -930,9 +930,9 @@
   % \typeout{Spacing not set.}
   \def\@singlespacing{1.0}
   \ifx\@esfinal\@empty
-  \def\@doublespacing{1.544}	  % see above for explanation of value
+  \def\@doublespacing{1.544}    % see above for explanation of value
   \else
-  \def\@doublespacing{2.0}	  % see above for explanation of value
+  \def\@doublespacing{2.0}    % see above for explanation of value
 \fi
   \let\@spacing=\@singlespacing
 \fi
@@ -970,9 +970,9 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			      TITLE PAGE			       %
-%								       %
+%                      %
+%           TITLE PAGE             %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \RequirePackage{graphicx}
 \newcommand\@makesimpletitlepage{
@@ -1034,9 +1034,9 @@
         \begin{tabular}{cc}
           \begin{minipage}{3cm}
             \ifpdf
-            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{cinvestav2.jpg}
+            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../../../../images/cinvestav2.jpg}
             \else
-            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{images/cinvestav2.jpg}
+            \vspace{-1cm}\hspace{-2.2cm}\includegraphics[scale=0.08]{../../../../images/cinvestav2.jpg}
             \fi
           \end{minipage}&
           \vspace{-.5cm}
@@ -1196,9 +1196,9 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			    COPYRIGHT PAGE			       %
-%								       %
+%                      %
+%         COPYRIGHT PAGE             %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newif\if@copyright
@@ -1253,16 +1253,16 @@
    \vfill
    \if@copyrightto
       \begin{center}
-	 \@acknowledgmenttoproject
+   \@acknowledgmenttoproject
       \end{center}
    \fi
    \ColumnRestore
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			    SIGNATURE PAGE			       %
-%								       %
+%                      %
+%         SIGNATURE PAGE             %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % The following definitions for "\chair" and "\member" allow for one or
@@ -1416,9 +1416,9 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			   DEDICATION PAGE			       %
-%								       %
+%                      %
+%        DEDICATION PAGE             %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newif\if@dedication
@@ -1432,10 +1432,10 @@
 
       \par\pagestyle{plain}
       \renewcommand\baselinestretch{\@spacing}\@normalsize\normalfont
-      \vspace*{0pt}		% force spacing at top of page
+      \vspace*{0pt}   % force spacing at top of page
       \vfill
       \begin{center}
-	 \@dedication
+   \@dedication
       \end{center}
       \vfill
       \ColumnRestore
@@ -1443,9 +1443,9 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			 ACKNOWLEDGMENTS PAGE			       %
-%								       %
+%                      %
+%      ACKNOWLEDGMENTS PAGE            %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newif\if@acks
@@ -1484,9 +1484,9 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			 NOMENCLATURE PAGE			       %
-%								       %
+%                      %
+%      NOMENCLATURE PAGE             %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newif\if@nomenc
@@ -1524,9 +1524,9 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			      VITA PAGE				       %
-%								       %
+%                      %
+%           VITA PAGE              %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % This definition for the "\vitaitem" command allows for up to 26 vita
@@ -1665,43 +1665,43 @@
       \fi
       \ifnum\c@publications>0{
          \ifx\@spacing\@doublespacing\parskip 24pt plus 4pt
-	 \else                       \parskip 12pt plus 2pt
-	 \fi
-	 \vskip 36pt
+   \else                       \parskip 12pt plus 2pt
+   \fi
+   \vskip 36pt
             \ifx\@eslang\@empty
-	      \if@pubs
-	         \if@pres \addcontentsline{toc}{chapter}{Publicaciones y Presentaciones}
-	         \else    \addcontentsline{toc}{chapter}{Publicaciones}
-  	         \fi
-	      \else       \addcontentsline{toc}{chapter}{Presentaciones}
+        \if@pubs
+           \if@pres \addcontentsline{toc}{chapter}{Publicaciones y Presentaciones}
+           \else    \addcontentsline{toc}{chapter}{Publicaciones}
+             \fi
+        \else       \addcontentsline{toc}{chapter}{Presentaciones}
               \fi
             \else
-	      \if@pubs
-	         \if@pres \addcontentsline{toc}{chapter}{Publications and Presentations}
-	         \else    \addcontentsline{toc}{chapter}{Publications}
-  	         \fi
-	      \else       \addcontentsline{toc}{chapter}{Presentations}
-	      \fi
+        \if@pubs
+           \if@pres \addcontentsline{toc}{chapter}{Publications and Presentations}
+           \else    \addcontentsline{toc}{chapter}{Publications}
+             \fi
+        \else       \addcontentsline{toc}{chapter}{Presentations}
+        \fi
             \fi
 
          \chapter*{
             \ifx\@eslang\@empty
-	      \if@pubs
-	         \if@pres Publicaciones y Presentaciones
-	         \else    Publicaciones
-  	         \fi
-	      \else       Presentaciones
+        \if@pubs
+           \if@pres Publicaciones y Presentaciones
+           \else    Publicaciones
+             \fi
+        \else       Presentaciones
               \fi
             \else
-	      \if@pubs
-	         \if@pres Publications and Presentations
-	         \else    Publications
-  	         \fi
-	      \else       Presentations
-	      \fi
+        \if@pubs
+           \if@pres Publications and Presentations
+           \else    Publications
+             \fi
+        \else       Presentations
+        \fi
             \fi
           }
-	 \nobreak \vskip 12pt
+   \nobreak \vskip 12pt
          \ifnum\c@publications>0  \@printpubitem{\@pubA} \fi
          \ifnum\c@publications>1  \@printpubitem{\@pubB} \fi
          \ifnum\c@publications>2  \@printpubitem{\@pubC} \fi
@@ -1735,9 +1735,9 @@
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%			    ABSTRACT PAGE			       %
-%								       %
+%                      %
+%         ABSTRACT PAGE            %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newif\if@abstract
@@ -1774,14 +1774,14 @@
       % as well use the whole \textwidth.
       %
       \ifthenelse{\equal{#1}{\@stdsinglespacing}}{
-	\begin{center}
-	\begin{minipage}{4.75in}
-	\setlength{\parindent}{1.5em}
-	\@abstract
+  \begin{center}
+  \begin{minipage}{4.75in}
+  \setlength{\parindent}{1.5em}
+  \@abstract
         \end{minipage}
-	\end{center}
+  \end{center}
       }{
-	\@abstract
+  \@abstract
       }
 
       \renewcommand\baselinestretch{\@spacing}\@normalsize
@@ -1811,7 +1811,7 @@
 
 %          \normalsize \normalfont
 %          % si fuera departamento seria in
-% 	 \@degreenameen\if@department\ from the \@departmenten \fi\\ 
+%    \@degreenameen\if@department\ from the \@departmenten \fi\\ 
 %          Research Center for Advanced Study from the   National Polytechnic Institute, \@degreeyear \\
 %       \end{center}
       \ifx\@spacing\@doublespacing\vskip 12pt\else\vskip 24pt\fi
@@ -1824,14 +1824,14 @@
       % as well use the whole \textwidth.
       %
       \ifthenelse{\equal{#1}{\@stdsinglespacing}}{
-	\begin{center}
-	\begin{minipage}{4.75in}
-	\setlength{\parindent}{1.5em}
-	\@abstracten
+  \begin{center}
+  \begin{minipage}{4.75in}
+  \setlength{\parindent}{1.5em}
+  \@abstracten
         \end{minipage}
-	\end{center}
+  \end{center}
       }{
-	\@abstracten
+  \@abstracten
       }
 
       \renewcommand\baselinestretch{\@spacing}\@normalsize
@@ -1846,9 +1846,9 @@
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%								       %
-%		      PRINT ALL PRELIMINARY PAGES		       %
-%								       %
+%                      %
+%         PRINT ALL PRELIMINARY PAGES          %
+%                      %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\makeintropagesnorm{
 
@@ -2098,8 +2098,8 @@
 
 
 \newcommand\redefinefancy{
-%	\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
-%	\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+% \fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+% \fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
 
 %\fancyfoot[LE]{\bfseries \thepage}
 %\fancyfoot[RO]{{\hspace{\textwidth}\bfseries \thepage}}
@@ -2117,8 +2117,8 @@
 %\fancyhead[RE,LO]{\thepage}
 }
 \newcommand\redefinefancya{
-%	\fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
-%	\fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
+% \fancyhead[RO]{{\footnotesize\rightmark}\hspace{2em}\thepage}
+% \fancyhead[LE]{\thepage\hspace{2em}\footnotesize{\leftmark}}
 
 %\fancyfoot[LE]{\bfseries \thepage}
 %\fancyfoot[RO]{{\hspace{\textwidth}\bfseries \thepage}}
@@ -2149,11 +2149,11 @@
 %% are actually completely blank, cause they're not usually
 \makeatletter
 \def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
-	\hbox{}
-	\vspace*{\fill}
-	\thispagestyle{empty}
-	\newpage
-	\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+  \hbox{}
+  \vspace*{\fill}
+  \thispagestyle{empty}
+  \newpage
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
 \ifx\@esfinal\@empty
 \else
 \AddToShipoutPicture{%
