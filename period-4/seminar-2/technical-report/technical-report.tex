@@ -157,7 +157,7 @@ As a consequence, efficient implementations of power-aware mechanisms that do no
 
 \subsection{Hypothesis} 
 \label{sub:hypothesis}
-As previously described, long-time operation of mobile sensing applications remains as an open challenge, due to the inherent trade-off between the energy consumed when accessing to sensors and the accuracy of the activity being tracked.
+As described in previous section, long-time operation of mobile sensing applications remains as an open challenge, due to the inherent trade-off between the energy consumed when accessing to sensors and the accuracy of the activity being tracked.
 In simpler terms, the more accuracy obtained when accessing sensors with high frequency, the higher energy consumption.
 Nonetheless, this research work considers that the dynamics of context information inferred from sensors data is of remarkable value for adapting sensory operations and producing power savings.
 Thus, the hypothesis pursued in this work states that \emph{intelligent policies produced through context information built from sensors data can be employed to reduce the energy consumption in a mobile device when performing continuous sensor readings}.
@@ -236,16 +236,8 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 % *************************************
 \section{State-of-art works analysis}
 \label{sec:state-of-art}
-\emph{The content of this section describes the results of the analysis of state-of-art related works. A taxonomy of these solutions is highlighted, as well as a framework for studying their internal structure.}
+\emph{The content of this section describes the results of the analysis of state-of-art related works. A taxonomy of these solutions is presented, and the pure hardware and hardware-software approaches are briefly described. Finally, the pure software approach is presented at detail, highlighting its advantages over other approaches, and including a framework for decomposing and studying solutions under this category.}
 
-Research on power consumption of mobile devices started since their conception and introduction to the market, and it has produced several power management strategies that show an evolution on their complexity and flexibility.
-Early techniques consisted on generic mechanisms for accessing platform components, mostly at hardware level, like adapting their voltage and frequency of operation, as well as modifying their active power mode~\cite{Mayo2003,Lorch1998,Benini2000}.
-Current strategies are focused in specific design issues of particular sensors, tasks, and scenarios where both hardware and software scale their features and energy usage according to changes in the mobile platform workload~\cite{Lane2010,Hoseini-Tabatabaei2013}.
-Intuitively, if there are no hard power consumption constraints, the software stack can use hardware components at maximum performance.
-On the other hand, the mobile platform must react accordingly and modify the hardware usage by employing a set of policies that helps to reduce energy consumption and still achieve the accuracy and performance requirements of mobile applications.
-Leveraging on context information plays a key role to optimize the \emph{sensor reading} stage (represented in Figure~\ref{fig:stages-of-power-aware-mobile-sensing}), reducing the number of sensor invocations, and producing such smart and dynamic adaptation in the sensing dimension.
-On the other hand, ignoring any source of context information at the sensor reading stage will avoid dynamic adaptations, leading to a fixed hardware usage and neglecting power savings.
-As a result, there is an inherent power consumption-accuracy trade-off when accessing and consuming sensor data~\cite{Sim2014,Rachuri2012}.
 
 \begin{figure*}[t]
   \centering
@@ -254,44 +246,37 @@ As a result, there is an inherent power consumption-accuracy trade-off when acce
   \label{fig:taxonomy-approaches}
 \end{figure*}
 
-Power-aware sensing refers to a set of techniques and methodologies aimed at continuously monitoring sensor data over long periods of time under the computing, storage, and power constraints of typical mobile devices.
+\emph{Power-aware sensing} refers to a set of techniques and methodologies aimed at continuously monitoring sensor data over long periods of time under the computing, storage, and power constraints of typical mobile devices.
 Roughly speaking, the power-aware sensing is mostly enclosed into the sensor reading stage of mobile sensing applications, abstracting the complexity of sensors management, and delivering collected data while considering the power constraints of these devices. 
 It is important to remark that this goal is frequently achieved by executing the rest of the stages internally, in order to identify context information that is useful for feedback purposes and a smarter usage of sensors.
+
 A revision of relevant works in literature reveals three complementary approaches at different level of abstraction of the smartphone device: pure hardware, hardware-software, and pure software approaches.
-The proposed taxonomy, and definition of each of the categories and their specializations, will be described in next subsections.
 Figure~\ref{fig:taxonomy-approaches} presents a taxonomy of solutions for power-aware smartphone sensing, with the pure hardware, hardware-software and pure software approaches as the main classes, briefly described in the next paragraphs.
-These approaches incorporate policies with embedded algorithms that analyze simple or complex context information for controlling the power consumption, producing \emph{recipes for power-aware sensing} in mobile devices.
 It has been identified that the support for these policies at system level of a mobile platform facilitates the analysis, control, and cross-layer coordination and information sharing for reducing the power consumption, which is the reason why power-aware sensing mechanisms should be supported throughout all layers of the mobile platform~\cite{Ranganathan2010}.
 Figure~\ref{fig:distribution-approaches} illustrates the distribution of the different approaches across the layers of a mobile platform, highlighting the increasing support in the higher layers for reacting accordingly to the dynamics of context information through more complex and robust machine learning mechanisms.
-The distinctive characteristics of the different approaches are as follows:
+% The distinctive characteristics of the different approaches are as follows:
 \begin{figure}[t]
   \centering
   \includegraphics[width=0.5\columnwidth]{approaches-distribution}
   \caption{The approaches distributed across the mobile platform stack are more adaptive to system's dynamics on the higher layers.}
   \label{fig:distribution-approaches}
 \end{figure}
-\begin{itemize}
-  \item The \textbf{pure hardware approach} is the lowest level at which power-aware optimizations could be performed.
-  It involves the selection of power-aware sensors and embedded components to deliver physical data to upper layers of mobile platform, as well as the definition of the different power modes of the hardware components through techniques like Dynamic Voltage and Frequency Scaling (DVFS)~\cite{Priyantha2011,Choi2010}.
-  Such power modes define a static behavior of hardware components, which can be adapted through hardware control points exported to upper layers, as in~\cite{Priyantha2011,Choudhury2008,Apple2015}.
-  \item The \textbf{hardware-software approach} abstracts fine grain details and isolates the usage of hardware components for mobile applications and upper platform layers.
-  This isolation is performed by applying system-wide policies that coordinate the operation and interaction of the whole set of sensors according to dynamic changes in their workload and global status of the mobile platform (like battery level).
-  The hardware-software approach is aware of the hardware components of the mobile platform, and is able to define DPM mechanisms for turning sensors on and off, and adapt their configuration parameters, as proposed in~\cite{Ra2012,Zhuang2010}.
-  \item The \textbf{pure software approach} is aimed at modeling, identifying and even predicting details about context information and its dynamic changes from sensor data, in order to define smart mechanisms for power-aware adaptation of the hardware components usage, like the implementations by~\cite{Chon2014,Yurur2014,MaY2009}.
-  Because of the fully context-awareness that this approach achieves, it is able to obtain high levels of flexibility for adaptive management of sensors, and put the context information detected from sensors data at service of the whole mobile platform.
-\end{itemize}
+% \begin{itemize}
+%   \item The \textbf{pure hardware approach} is the lowest level at which power-aware optimizations could be performed.
+%   It involves the selection of power-aware sensors and embedded components to deliver physical data to upper layers of mobile platform, as well as the definition of the different power modes of the hardware components through techniques like Dynamic Voltage and Frequency Scaling (DVFS)~\cite{Priyantha2011,Choi2010}.
+%   Such power modes define a static behavior of hardware components, which can be adapted through hardware control points exported to upper layers, as in~\cite{Priyantha2011,Choudhury2008,Apple2015}.
+%   \item The \textbf{hardware-software approach} abstracts fine grain details and isolates the usage of hardware components for mobile applications and upper platform layers.
+%   This isolation is performed by applying system-wide policies that coordinate the operation and interaction of the whole set of sensors according to dynamic changes in their workload and global status of the mobile platform (like battery level).
+%   The hardware-software approach is aware of the hardware components of the mobile platform, and is able to define DPM mechanisms for turning sensors on and off, and adapt their configuration parameters, as proposed in~\cite{Ra2012,Zhuang2010}.
+%   \item The \textbf{pure software approach} is aimed at modeling, identifying and even predicting details about context information and its dynamic changes from sensor data, in order to define smart mechanisms for power-aware adaptation of the hardware components usage, like the implementations by~\cite{Chon2014,Yurur2014,MaY2009}.
+%   Because of the fully context-awareness that this approach achieves, it is able to obtain high levels of flexibility for adaptive management of sensors, and put the context information detected from sensors data at service of the whole mobile platform.
+% \end{itemize}
 
 \input{table-approaches}
 
 It is important to highlight that although the presented taxonomy allows to classify the power-aware smartphone-based sensing techniques, the relevance of this problem makes that in practice many of the solutions combine different strategies pursuing an integral and better power management.
 This is a suggestion of the complexity of the problem itself and an evidence of the evolution and adoption of these complementary techniques.
 Furthermore, ideas proved to be working efficiently in software soon or later are implemented directly in hardware to boost efficiency even further. 
-
-% Despite the different approaches for achieving power-aware sensing may be applicable to any set of sensors, in practice they have been mainly employed for optimizing power consumption of location providers, like the GPS and Wi-Fi Positioning System (WPS), in continuous Location-based Services (LBS).
-% The reason behind this trend is twofold.
-% On one hand, the optimization of energy hungry hardware elements like the GPS and other radio interfaces (i.e., GPRS, Bluetooth, etc.), allows the different power-aware sensing techniques to prove their effectiveness under the most strident conditions in terms of energy consumption than those observed in applications that make use of lower power consumption sensors.
-% On the other hand, location information in smartphones is required by a wide variety of applications and therefore, the optimization of energy resources of the GPS sensor reading process (which is the core enabler of LBS) is required.
-% Nonetheless, it is noteworthy that the principles of some of the different proposed solutions can be tailored and implemented in other application niches employing different sensors.
 
 Table~\ref{tab:related-work} summarizes a set of works found in literature aimed at solving the power consumption issue in mobile sensing applications in the context of the presented taxonomy.
 As it can be noted, the most common strategy followed in the literature is the pure software approach, due to its flexibility and fine-tuning features, which will be described in next sections of this paper.
@@ -303,12 +288,6 @@ However, even inside this strategy the implementations are not homogeneous and t
 The second strategy performs the comparison in terms of battery life (e.g., time to drain) because, according to~\cite{Kim2014}, several physical characteristics of batteries impact on their discharging cycle.
 The most notorious aspect is that the actual available energy is reduced when the battery discharges, a behavior that is ignored in the energy consumption models included in most of the reviewed solutions.
 
-% The next sections of the document present a description of relevant aspects about the different approaches of the proposed taxonomy.
-% Important concepts about the pure hardware and hardware-software approaches have been already discussed in existing works~\cite{Priyantha2011,Ranganathan2010,Lorch1998,Benini2000}.
-% Hence, this survey includes a brief description about them, as well as the analysis of associated specializations found in state-of-art works.
-% Subsequently, a detailed analysis of the features offered by the pure software approach is presented.
-% This analysis includes its fundamental aspects, its advantages and possibilities when compared against other approaches, as well as the description of its flexibility for modeling and adapting to dynamic changes in context information, which makes it ideal for fitting the system behavior according to user profile.
-
 
 \subsection{Pure hardware approach}
 The fundamental idea behind the pure hardware approach is the selection of power-aware hardware elements for providing physical data to upper layers of the mobile platform, as well as the definition of mechanisms to adapt the hardware input parameters, like DVFS.
@@ -318,7 +297,6 @@ In this way, the hardware components obey a static behavior defined only through
 
 The set of works under this approach typically involve the design of specific hardware to exploit the aforementioned features.
 This design implies the isolation of the components associated with the measurement of physical signals inside a new unit with a dedicated low power processor (LPP).
-% This new hardware unit can obtain a substantial reduction in the energy consumption since it is energy aware by design and typically does not imply a modification in the logic of mobile applications.
 Since the mobile OS isolates the access to these hardware components, mobile applications remain agnostic about the new hardware unit and can consume its power-aware sensing services without modifying their inner logic.
 The basic behavior of this unit requires sensors to report their readings to the embedded LPP, which is capable of executing light preprocessing operations like noise filtering.
 While the hardware unit performs the reading and filtering stages, the rest of the smartphone hardware platform is able to reach its sleep mode, producing power savings.
@@ -328,9 +306,9 @@ Depending on the ability to process data and discover contextual information aut
 \input{table-hw-approach}
 
 The \emph{\textbf{ad-hoc data acquisition}} variant is restricted to serve the different mobile application requests for raw sensor data, discarding the analysis and extraction of higher level information.
-For instance, \emph{LittleRock}, proposed by Priyantha \emph{et al.}, in~\cite{Priyantha2011}, defines a specific unit with embedded sensors powered directly from battery, allowing the main circuitry of the smartphone to reach the sleep mode while performing sensor readings.
-Once a special event defined by a mobile application is detected in data coming from sensors, \emph{LittleRock} is able to wake up the phone for further processing.
-\emph{LittleRock} is faster than the phone itself to collect a single sample of data from sensors, due to the complexity of the software stack that smartphone's main processor has to handle.
+% For instance, \emph{LittleRock}, proposed by Priyantha \emph{et al.}, in~\cite{Priyantha2011}, defines a specific unit with embedded sensors powered directly from battery, allowing the main circuitry of the smartphone to reach the sleep mode while performing sensor readings.
+% Once a special event defined by a mobile application is detected in data coming from sensors, \emph{LittleRock} is able to wake up the phone for further processing.
+% \emph{LittleRock} is faster than the phone itself to collect a single sample of data from sensors, due to the complexity of the software stack that smartphone's main processor has to handle.
 
 Besides the raw data delivery, the \emph{\textbf{co-processing}} variant adds support to hardware layers for light data processing and detection of higher level information, producing context-awareness at hardware level with low power consumption.
 In this sense, the sensing facilities of the hardware platform are transformed into smart sensors~\cite{Gervais-Ducouret2011}.
@@ -338,10 +316,10 @@ The embedded LPP of the sensing unit must be powerful enough to perform such ana
 
 Smartphone manufacturers have begun to integrate into the device's hardware full suites of sensing capabilities.
 For instance, Apple has implemented a platform re-design of the \emph{iPhone} smartphone, which starting at \emph{5s} version features an isolated sensing unit able to process sensor data and deliver fitness information like the amount of steps and distance covered by user, as well as the type of activity performed, namely, stationary, walking, running, automotive, cycling, and unknown~\cite{Apple2015}.
-In addition to this hardware platform update, the Software Development Kit (SDK) of iPhone exposes this functionality through a software Application Programming Interface (API) denominated the \emph{CoreMotion Framework} that enables mobile applications to request and consume the fitness information.
-A similar co-processing mechanism is implemented by Choudhury \emph{et al.}, in the \emph{Mobile Sensing Platform} (\emph{MSP})~\cite{Choudhury2008} which employs ad-hoc components for building a custom mobile sensing platform with a LPP able to perform light classification tasks for identifying user activity.
+% In addition to this hardware platform update, the Software Development Kit (SDK) of iPhone exposes this functionality through a software Application Programming Interface (API) denominated the \emph{CoreMotion Framework} that enables mobile applications to request and consume the fitness information.
+% A similar co-processing mechanism is implemented by Choudhury \emph{et al.}, in the \emph{Mobile Sensing Platform} (\emph{MSP})~\cite{Choudhury2008} which employs ad-hoc components for building a custom mobile sensing platform with a LPP able to perform light classification tasks for identifying user activity.
 
-A common aspect taken into account in the design of pure hardware approach solutions is the power consumption - usage generality trade-off that emerges when hardware designers are unable to foresee the needs of any future mobile application and implement power-aware mechanisms to support them directly in the circuits.
+Regardless of the variant, a common aspect taken into account in the design of pure hardware approach solutions is the power consumption - usage generality trade-off that emerges when hardware designers are unable to foresee the needs of any future mobile application and implement power-aware mechanisms to support them directly in the circuits.
 Because of this limitation, the effort of designers is focused on implementing general features that can be employed by many mobile sensing applications, instead of very specific features meaningful only for a few of them.
 
 \subsection{Hardware-software approach}
@@ -349,47 +327,112 @@ Because of this limitation, the effort of designers is focused on implementing g
 The hardware-software approach is aimed at defining system-wide policies for deciding when to turn sensors on and off, or when to switch to a different power mode of a given hardware component.
 In this level, the hardware-software approach is aware of the existence of different sensors and coordinates the basic operations and interactions between them in a DPM fashion, being able to abstract fine grained parameters into a coarser grained set, isolating the hardware usage for mobile applications and elements in upper platform layers.
 Unlike the pure hardware approach, the hardware-software approach offers a basic understanding of global activities being performed by the mobile device, and also an implicit observance of dynamic changes in the workload of hardware components for deciding when to adapt hardware operation.
-Because of the coupled interaction with hardware components of the platform, hardware-software approach solutions are produced as HAL's of the mobile OS, as previously illustrated in Figure~\ref{fig:distribution-approaches}, or low level middlewares that build an interface that abstract the access to sensors and isolates their complex management mechanisms.
+Because of the coupled interaction with hardware components of the platform, hardware-software approach solutions are produced as HAL's of the mobile OS or low level middlewares that build an interface that abstracts the access to sensors and isolates their complex management mechanisms.
 Table~\ref{tab:works-hardware-software-approach} presents a few instances of works that follow this approach this approach.
 
+% An example of the hardware-software approach is the inclusion of software mechanisms that leverage a dedicated LPP for accessing and manipulating sensors data.
+% The software mechanisms allow to build the basic global status of the mobile platform, which is employed for manipulating the hardware through the control points exposed by sensors.
+% Since the LPP can be powered independently of smartphone's main circuitry, it can execute tasks while the rest of the mobile platform can reach the idle state, producing potential energy savings.
+% The work presented by Ra \emph{et al.}~\cite{Ra2012}, leverages the presence of such LPP's in the latest smartphones, putting their computing facilities at service of mobile applications through a layered API. 
+% Any processor with a small wake-up transition delay could be suitable to be used as a LPP, and will achieve the highest power savings when executing the most frequent and lightest computations, like sensor sampling requests and simple filtering.
 
-An example of the hardware-software approach is the inclusion of software mechanisms that leverage a dedicated LPP for accessing and manipulating sensors data.
-The software mechanisms allow to build the basic global status of the mobile platform, which is employed for manipulating the hardware through the control points exposed by sensors.
-Since the LPP can be powered independently of smartphone's main circuitry, it can execute tasks while the rest of the mobile platform can reach the idle state, producing potential energy savings.
-The work presented by Ra \emph{et al.}, in~\cite{Ra2012} leverages the presence of such LPP's in the latest smartphones, putting their computing facilities at service of mobile applications through a layered API. 
-Any processor with a small wake-up transition delay could be suitable to be used as a LPP, and will achieve the highest power savings when executing the most frequent and lightest computations, like sensor sampling requests and simple filtering.
-
-
-Zhuang \emph{et al.}, presented in~\cite{Zhuang2010} a hardware-software approach middleware for LBS's execution based on the next four key design principles: 
-\begin{listahorizontal}
-  \item \emph{Sensor Substitution}: It allows on-the-fly substitution of current location provider with another with lower energy consumption and an accuracy level enough for the mobile application requirements,
-  \item \emph{Sensor Suppression}: Avoids usage of any location provider by leveraging data from energy cheaper sensors, like the accelerometer, for revealing when user is static,
-  \item \emph{Sensor Piggybacking}: It allows to serve location updates to simultaneous LBS's, and
-  \item \emph{Sensor Adaptation}: It reacts to low battery levels to adapt system-wide sensing parameters like time and distance.
-\end{listahorizontal}
-For identifying places where it is possible to substitute a location provider, it relies on a novel concept referred to as the \emph{M-Area} which defines a geographical zone along with information about the available location providers on it.
-The size of these areas involves a trade-off between the sensor substitution events and the storage space needed to save their information.
+% Zhuang \emph{et al.}, presented in~\cite{Zhuang2010} a hardware-software approach middleware for LBS's execution based on the next four key design principles: 
+% \begin{listahorizontal}
+%   \item \emph{Sensor Substitution}: It allows on-the-fly substitution of current location provider with another with lower energy consumption and an accuracy level enough for the mobile application requirements,
+%   \item \emph{Sensor Suppression}: Avoids usage of any location provider by leveraging data from energy cheaper sensors, like the accelerometer, for revealing when user is static,
+%   \item \emph{Sensor Piggybacking}: It allows to serve location updates to simultaneous LBS's, and
+%   \item \emph{Sensor Adaptation}: It reacts to low battery levels to adapt system-wide sensing parameters like time and distance.
+% \end{listahorizontal}
+% For identifying places where it is possible to substitute a location provider, it relies on a novel concept referred to as the \emph{M-Area} which defines a geographical zone along with information about the available location providers on it.
+% The size of these areas involves a trade-off between the sensor substitution events and the storage space needed to save their information.
 
 \subsection{Pure software approach}
 Thanks to the context information obtained from sensor data, the pure software approach can bring activity awareness to the mobile platform and make informed decisions for fully dynamic power-aware sensors management as illustrated in Figure~\ref{fig:distribution-approaches}, where the pure software approach is at the top of the hierarchy.
 Typically, pure software approach solutions are powered up by a set of classifiers fed with sensors data that individually identify basic aspects or produce abstractions about user's activity.
-By combining the outcome obtained by these classifiers, it is possible to build an enriched inference of the high level activity performed by the user, for example mobility patterns from location data, human activity from sounds detection, and human activity from inertial sensors data.
 Such user activity aspects are the fundamental elements for defining sensor management policies.
 In this way, the pure software approach is able to make the mobile platform aware about user activity and even adapting accordingly to changes on its profile.
+In power-aware computing terms, the pure software approach can be understood as \emph{spending power to save power}~\cite{Ranganathan2010}.
+In this sense, there is an unavoidable amount of energy that is spent while performing computational processes for preprocessing, classifying and discovering context information from sensor data; however, substantial benefits might be also obtained~\cite{Yurur2014c}.
+Firstly, this approach achieves reduction in power consumption by means of understanding user activity.
+Secondly, the information inferred from sensors data allows mobile devices to improve their awareness about high level user activities.
 
 Solutions following this approach can only observe the details of the hardware platform exposed by the hardware access or lower layers of the mobile OS.
 A practical interpretation can be expressed as follows: these lower layers know how to turn circuits on and off, but are unable to define when; whereas the higher software layers are flexible and can dynamically adapt to changes in user context, knowing when adapt the sensors operation, but delegating how to do it to the lower layers.
-Typically, pure software approach solutions are implemented through a layered middleware with classification and machine learning modules embedded on it.
-Figure~\ref{fig:middleware-software-approach} shows a generic structure for pure software approach middlewares, where the different stages of mobile phone sensing described in Section~\ref{sec:Intro} can be observed.
+Typically, pure software approach solutions are implemented through a layered middleware with classification and machine learning modules embedded on it, as depicted in Figure~\ref{fig:middleware-software-approach}.
 This middleware is placed between running mobile applications and the sensing and communication layers of the mobile platform, abstracting its sensing and communication facilities~\cite{Yurur2014}.
-Figure~\ref{fig:middleware-software-approach} is also helpful to identify that the outcome of classification and machine learning stage can be distributed to mobile sensing applications as well as being employed as feedback information for defining policies for sensors management.
-In this regard, the feedback information allows to build the closed loop described in the stages of mobile sensing applications, shown in Figure~\ref{fig:stages-of-power-aware-mobile-sensing}, which permits the mobile platform to react to changes detected in context by configuring and adapting sensors usage according to such changes, mobile application requirements, and mobile platform constraints.
+
 \begin{figure}
   \centering
   \includegraphics[width=0.5\columnwidth]{generic-middleware-architecture}
   \caption{A generic structure of a middleware following a pure software approach defines explicit modules for selecting and configuring sensor access, and classification and machine learning stages.}
   \label{fig:middleware-software-approach}
 \end{figure}
+
+
+
+Table~\ref{tab:works-software-approach} shows a set of works following the pure software approach.
+With the aim of providing a detailed analysis of relevant aspects of this approach, the rest of this section is structured as follows.
+In first term, the categories or variants of this approach are enumerated and described.
+Next, relevant characteristics found in these solutions are described.
+Finally, a framework for their decomposition and analysis is presented.
+BRIEFLY WORK ON IT!
+
+\subsubsection{Categories of the pure software approach}
+\label{sub:software-categories}
+Depending on the type of decision made for modifying hardware access, two variants of the software approach can be identified, namely the \emph{Sensors usage adaptation} and \emph{Sensor replacement}.
+
+\input{table-sw-approach}
+
+\paragraph{Sensors usage adaptation}
+It is based on the analysis of historical data in a time window for detecting patterns or events in the user behavior.
+Once a pattern is detected it can be employed in the next three paths for adapting sensors usage and reduce power consumption:
+\begin{itemize}
+  \item \emph{\textbf{Duty cycling (DC)}}:  The frequency for accessing sensors is reduced, introducing sleep periods in hardware, and hence achieving power savings.
+  However, this also produces the accuracy - power consumption trade-off, since the continuous data acquisition is interrupted and mobile applications would work with such data gaps.
+  \item \emph{\textbf{Next value inference (VI)}}: Obtains an inference of the next value to be delivered by sensors, avoiding an actual access to them, and hence reducing power consumption; however, this introduces uncertainty to the system which may be not acceptable for certain applications.
+  Typically, the inference is produced by probabilistic measures focused on low level dependencies observed in short-time windows of raw sensor data.
+  \item \emph{\textbf{Recycling existing data (RD)}}: Identifies common circumstances or events in high level context information that happened previously, reusing data from such events.
+  In practice, this is feasible since people describe a consistent behavior, which can be identified by looking at patterns in their activities in long time windows~\cite{Chon2011,Paek2011}.
+  Since actual access to sensors is avoided, it may also introduce uncertainty to the system if the probability of accurately identifying the event is low.
+\end{itemize}
+
+\paragraph{Sensor replacement}
+It permits a replacement of the sensor currently employed for collecting data with another one that consumes less power and has immediate data availability.
+Replacing a sensor may involve the definition of a mapping function between the data type of the selected sensor and the replaced one.
+Such mapping function is needed when the output of sensors is not compatible; for instance, accelerometer data can used for inferring distance, but only after proper processing (integrating for speed and position).
+Depending on whether such mapping is needed, two specializations can be found:
+\begin{itemize}
+  \item \emph{\textbf{Directly related replacement (DR):}} The sensor is replaced with a lower power consumer one that delivers the same data type and guarantees the application's accuracy requirements, without the need of a mapping procedure.
+  \item \emph{\textbf{Context related replacement (CR):}} The type of the data returned by the selected sensor is not as expected by the application, implying a mandatory procedure for translating it to the requested data type.
+\end{itemize}
+
+A noteworthy aspect about pure software approach solutions is that typically once their power efficiency is proved in tests and real life implementations, they might be implemented in the hardware or lower layers of the mobile OS.
+For instance, modern inertial sensor devices incorporate an internal buffer that allows data queuing until it is full or the phone is woken up; also, recent GPS receivers are able to implement directly in hardware \emph{geo-fencing} features~\cite{Torroja2013}, allowing to wake up the smartphone when it enters in the geo-fenced area.
+Both functionalities were initially available in the Android platform via software but now are supported at hardware level~\cite{Android2013,Developers2014}.
+Also, lower layers of newer versions of Android allow the \emph{piggy-backing} of close in time GPS requests, reusing the same GPS fix (a location point obtained through the GPS infrastructure) for concurrent mobile applications~\cite{Zhuang2010}. 
+This transference of platform functionalities from software to hardware is always subject to the aforementioned trade-off between the generality of features and power saving benefits: a very generic mechanism can be suitable for any mobile application but will not obtain the largest power savings; on the other hand, the best power savings are obtained by the most specific and tuned solutions that may result useless for the rest of mobile application scenarios.
+
+\subsubsection{Relevant characteristic of the software approach - Analysis of power-aware solutions under the pure software approach}
+The openness and flexibility of the software stack of mobile devices allows to implement a wide variety of strategies and mechanisms that can dynamically adapt to changes detected in context information.
+In addition to such diversity of strategies, there is also heterogeneity in the scenarios (like LBS, HAR, crowd sensing) and objectives pursued by the different pure software solutions, which hinders their review and makes it hard to produce a definitive framework for their analysis.
+As an example of the aforementioned heterogeneity, the reader can consider works that duty cycle sensors usage.
+In some proposed solutions, the context information employed in the policies for adapting duty cycle is simple, even raw data with simple heuristics; while on the other hand, some solutions build and process a more complex model of context information before performing a decision with more robust classifiers.
+In this way, we identify that the granularity (or the level) of context information represents the pivotal feature on which the analysis and description of works can be performed.
+
+The granularity of context information can be mostly characterized by the combination of the next elements: 
+\begin{listahorizontal}
+  \item the data type of the input directed to classifiers,
+  \item the classifier itself, and
+  \item the length of the time window employed to sense data.
+\end{listahorizontal}
+Recall that although solutions can follow unconstrained combinations over these elements for inferring context information, at the end the mechanisms for adapting sensors operation will incur into one or more variants of the pure software approach, described in Section~\ref{sub:software-categories}.
+Also, it is worth noting that among the different features described by solutions, we have identified the following attributes as helpful to analyze and understand core features of their design and operation.
+First, solutions can incorporate mechanisms for online learning (OL) from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
+Also, works can follow and optimization orientation (OO) approach in order to formalize, for instance, a sensor usage adaptation (replacement) mechanism and guarantee a given target in terms of minimum energy consumed and/or the error in activity tracking.
+Finally, the solutions might employ an enriched version of the context information, known as user state (US) for allowing the device to become fully activity-aware and ease its adaptation over the sensing dimension.
+% Siento que una debilidad que aun tenemos es la "definición" de US, lo cual sin duda tenemos que especificar en el planteamiento de la solución. Aquí sin embargo está débil. Y recordemos también que lo que intentamos aquí es que el US está relacionado a movilidad, dada la crítica de uno de los revisores
+
+Thus, with the granularity of context information insight and the aforementioned attributes in mind, we present the analysis and discussion of the pure software approach works listed in Table~\ref{tab:works-software-approach}, highlighting their strengths and improvements, as well as their impact to establish a trend or new opportunities for research.
 
 \bibliographystyle{plain}
 \bibliography{../../../resources/references/bibliography}

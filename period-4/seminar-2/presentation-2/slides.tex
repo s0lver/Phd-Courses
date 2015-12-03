@@ -42,7 +42,9 @@
 \setmainfont[]{Cardo} % sets the roman font
 %\setsansfont[]{Alegreya} % sets the sans font % Vallkorn, Alegreya
 \setsansfont[]{PT Sans} % sets the sans font
+%\setsansfont[]{Segoe UI} % sets the sans font
 \setmonofont[]{Consolas} % sets the monospace font
+
 \setbeamertemplate{navigation symbols}{}
     \expandafter\def\expandafter\insertshorttitle\expandafter{%
       \insertshorttitle\hfill%
@@ -51,8 +53,8 @@
 \usetheme{Szeged}
 \usecolortheme{spruce}
 
-\title[Smart usage of context information for the analysis, design and generation of power-aware polices for mobile sensing apps]{ Smart usage of context information for the analysis, design and generation of power-aware polices for mobile sensing apps}
-\author[Rafael Perez Torres]{Presented by: Rafael Perez Torres\\[0.5cm] Thesis advisors:\\PhD Cesar Torres Huitzil\\PhD Hiram Galeana Zapien}
+\title[Smart usage of context information for the analysis, design and generation of power-aware polices for mobile sensing apps]{Smart usage of context information for the analysis, design and generation of power-aware polices for mobile sensing apps}
+\author[Rafael Pérez Torres]{Presented by: Rafael Pérez Torres\\[0.5cm] Thesis advisors:\\Dr. César Torres Huitzil\\Hiram Galeana Zapién, PhD}
 \institute{LTI Cinvestav Tamaulipas}
 %\date{\today}
 \date{}
@@ -84,10 +86,9 @@
 \begin{itemize}
   \item The popularity of mobile devices is a result of advances in their computation, \textbf{sensing}, and communication dimensions~\cite{Islam2014}.
   \begin{itemize}
-    \item Smartphone's sensing facilities improve interaction with user, turning them into \emph{omni-sensors} able to \emph{know} about its surrounding environment.
-    \item Mobile devices have become \emph{context-aware}, gaining understanding about user's activity and environment.
+    \item The sensing facilities improve interaction with user, turning them into \emph{omni-sensors} able to \emph{know} about its surrounding environment.
+    \item Smartphones have become \emph{context-aware}, gaining understanding about user's activity and environment.
   \end{itemize}
-  
   \item However, battery is not evolving at the same pace than the advances in other smartphone's characteristics~\cite{Kjaergaard2012}, growing only 5-10\% each year~\cite{Ma2012,Evarts2015}.
   \begin{itemize}
     \item The energy constraint becomes more critical when continuous access to sensors is needed, which is the core requirement of \textbf{mobile sensing applications}. 
@@ -114,7 +115,7 @@ Intelligent policies produced through context information built from sensors dat
 {
 \small
 \begin{itemize}
-  \item An intelligent policy is a special rule that defines how sensors should be selected and configured to reduce the energy consumption and achieve the requirements of a mobile sensing app.
+  \item An intelligent policy is a special rule that defines how sensors should be selected and configured to reduce energy consumption and achieve the mobile sensing app's requirements.
   It is intelligent in terms of self-adaptness to changes detected in context information.
   \item This research work is aimed at employing GPS and inertial sensors data (accelerometer) for inferring context information in terms of mobility patterns.
   This context information will then be exploited to adapt sensors' operation and produce power savings.
@@ -156,7 +157,7 @@ Given the set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, 
   \text{PolicyGeneration}( \mathcal{P}, a, c ) \longrightarrow{} \mathcal{S}_{new}, \mathcal{S}_{new_{conf}}
 \end{equation}
 
-The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{adaptative duty cycle} of associated sensor.
+The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{adaptive duty cycle} of associated sensor.
 \end{tcolorbox}
 \end{frame}
 
@@ -173,8 +174,6 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{adaptative
 \begin{tcolorbox}[title=Main objective,colframe=PineGreen]
 To reduce energy consumption in the mobile sensing apps, which perform continuous sensor readings, through self-adapting power-aware policies generated from context information obtained from sensors data.
 \end{tcolorbox}
-
-\pause
 
 \begin{tcolorbox}[title=Particular objectives,colframe=PineGreen]
 \small
@@ -216,24 +215,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \section[State-of-art]{State of art related techniques}
 \subsection{State of art}
 
-% \begin{frame}\frametitle{The smartphone as a three-dimensional device}
-% \begin{figure}[tb]
-%   \centering
-%   \includegraphics[width=0.75\textwidth]{../../../resources/images/vectors/smartphone-dimensions}
-%   \caption{The smartphone as a three-dimensional device}
-%   \label{fig:smartphone-three-dimensional}
-% \end{figure}
-% \end{frame}
-
-
 \begin{frame}\frametitle{Taxonomy of state of art solutions}
-
-% \begin{figure}[tb]
-%   \centering
-%   \includegraphics[scale=0.4]{../../../resources/images/vectors/smartphone-dimensions}
-%   \caption{The smartphone as a three-dimensional device}
-%   \label{fig:smartphone-three-dimensional}
-% \end{figure}
 
 \begin{figure}[tb]
   \centering
@@ -257,24 +239,12 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \begin{tcolorbox}[title=Distinctive characteristics of pure software solutions,colframe=PineGreen]
 \small
 \begin{itemize}
-  \item \textbf{Optimization oriented (OO)}: Works can follow an optimization orientation focused on minimizing energy consumption and/or the error in activity tracking.
-  \item \textbf{Online learning (OL)}: Solutions can incorporate mechanisms for online learning (OL) from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
-  \item \textbf{User state oriented (US)}: Solutions can employ an enriched version of the context information, known as user state (US) for allowing the device to become fully activity-aware and ease its adaptation over the sensing dimension.
+  \item \textbf{Optimization oriented (OO)}: Optimization orientation focused on minimizing energy consumption and/or the error in activity tracking.
+  \item \textbf{Online learning (OL)}: Online learning from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
+  \item \textbf{User state oriented (US)}: Modeling of an enriched version of the context information, user state (US), for achieving full activity-awareness and ease the adaptation over the sensing dimension.
 \end{itemize}
 \end{tcolorbox}
 \end{frame}
-
-% \begin{frame}[t]\frametitle{Framework for analyzing pure software solutions}
-% \begin{tcolorbox}[title=Framework for analyzing pure software solutions,colframe=PineGreen]
-% \small
-% Granularity of context information
-% \begin{itemize}
-%   \item Input data type
-%   \item Classifier or machine learning technique
-%   \item Length of time window
-% \end{itemize}
-% \end{tcolorbox}
-% \end{frame}
 
 
 \begin{frame}[t]\frametitle{Framework for analyzing pure software solutions}
@@ -296,33 +266,6 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \caption{Decomposition of our solution}
   \label{fig:dual-taxonomy-ours}
   \end{figure}
-% At the end we can describe that:
-% \begin{itemize}
-  % \item In the ML block, we are going to produce an enhanced-expanded spatial-time model by:
-  % \begin{itemize}
-  %   \item Classifying accelerometer data in user activity.
-  %   \item Obtaining context information from other sources:
-  %   \begin{itemize}
-  %     \item Fingerprinting, battery status.
-  %   \end{itemize}
-  %   \item Obtaining speed from GPS
-  %   \item Obtaining location from GPS and WPS
-  % \end{itemize}
-  % \item In the policy block, we will try to adapt the sensing dimension spliting the problem into:
-  % \begin{itemize}
-  %   \item Learning and detection of stay points (Already covered)
-  %   \item Learning and detection (tracking) of trajectories.
-  % \end{itemize}
-  % \item In the HW adaptation bloc, we will use several variants of the PS approach.
-  % For instance, we will do:
-  % \begin{itemize}
-  %   \item Sensor replacement, Context related (battery) and Direct related (WPS).
-  %   \item Adapt accordingly to what is learned from user through Duty Cycling (DC) and Recycling existing Data (RD).
-  %   Maybe we will use Next Value Inference (VI) in the policy, when we adapt under uncertainty.
-  %   For instance, we are 80\% sure that user is running, we will proceed with caution adapting duty cycle with fine granularity, this is negotiable.
-  % \end{itemize}
-  % \item At the end, we are trying to maintain sensors within a range that allows to perform the tracking but considering the trade-off.
-% \end{itemize}
 \end{frame}
 
 \begin{frame}[t]\frametitle{Proposed solution}
@@ -337,8 +280,8 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \begin{frame}[t]\frametitle{The model of information learned in proposed solution}
 \small
 \begin{itemize}
-  \item The overall problem can be splitted into learning and detection of stay points, and the trajectory tracking.
-\item This information can be abstracted and learned into an expanded-spatial time model. 
+  \item The overall problem can be divided into learning and detection of stay points, and the trajectory tracking.
+\item The information can be represented through an expanded-spatial time model. 
 \end{itemize}
 
 \begin{figure}[tb]
@@ -363,44 +306,42 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \subsection{Important results}
 \label{sub:important_results}
 \begin{frame}[t]\frametitle{First steps towards expanded spatial-time model: a proof of concept}
-
-\begin{itemize}
-  \item A first step towards the acquisition of the expanded spatial-time model, locally at the mobile device, has been performed.
-  \item This involved a proof-of-concept experimentation aimed at calculating stay points completely on-device.
-  \item For this purpose, an event-oriented methodology was followed, which is a trend for \textbf{proactive} long-term applications focused on learning patterns from user activity.
-  \item Such methodology involved adapting classic stay points algorithms~\cite{Montoliu2010,Zheng2011} for \emph{online} operation while reducing memory footprint.
-  \item In this way, the learning of context information that can be employed for adapting sensory operations has been shown possible.  
-\end{itemize}
-\end{frame}
-
-\begin{frame}[t]\frametitle{On-device stay points detection platform}
-    
-\begin{figure}[tb]
+\small
+\begin{columns}
+  \begin{column}{5cm}
+    \begin{itemize}
+    % \item A first step towards the acquisition of the expanded spatial-time model, locally at the mobile device, has been performed.
+    \item A proof-of-concept experimentation for studying the feasibility of on-device learning the spatial-time model has been conducted.
+    \item An \textbf{event-oriented} methodology was followed.
+    %, which is a trend for \textbf{proactive} long-term applications focused on learning patterns from user activity.
+    \item The methodology involved the adaptation of classic stay points algorithms~\cite{Montoliu2010,Zheng2011} for \emph{online} operation, while reducing memory footprint.
+      % \item The learning of context information that can be employed for adapting sensory operations has been shown possible.  
+  \end{itemize}
+  \end{column}
+  \begin{column}{7cm}
+  \begin{figure}[tb]
+  \scriptsize
   \centering
-  \includegraphics[scale=0.5]{../../../resources/images/vectors/policy-creator-methodology}
+  \includegraphics[width=\columnwidth]{../../../resources/images/vectors/policy-creator-methodology}
   \caption{Logical workflow of the platform for on-device stay points detection}
   \label{fig:logical-workflow}
 \end{figure}
-
+  \end{column}
+\end{columns}
 \end{frame}
+
 
 \begin{frame}[t]\frametitle{Results of early experimentation}
 \small
 \begin{itemize}
-  \item The first experiment is aimed at ensuring the calculation of stay points locally at the smartphone (Samsung Galaxy Note II, Quadcore 1.6 GHz processor, 16 GB RAM, 3,100 mAh battery).
-  \item Both versions of the algorithm for stay points detection, original (buffered) and sigma, have been employed.  
-  \item Policies implemented:
-  \begin{itemize}
-  \item Periodic GPS sampling: 1, 3, and 5 minutes.
-  \item FSM doubling policy. (Doubling if no movement detected within a 50m range).
-  \item FSM linear policy.
-  \end{itemize}
-  \item The parameters for running the stay point detection algorithms for all tests were set at 10 minutes for $\theta_{tmin}$, 1 hour for $\theta_{tmax}$ and 150 m for $\theta_{d}$.
+  \item The first experiment is aimed at ensuring the calculation of stay points locally at the smartphone~\footnote{Samsung Galaxy Note II, quadcore 1.6 GHz processor, 16 GB RAM, 3,100 mAh battery}.
+  \item \emph{Spending power to save power} (process GPS data for learning mobility patterns and use this information for sensory adaptation) can be possible.
+  %\item The parameters for running the stay point detection algorithms for all tests were set at 10 minutes for $\theta_{tmin}$, 1 hour for $\theta_{tmax}$ and 150 m for $\theta_{d}$.
 \end{itemize}
 \begin{table}[t]
 \small{}
 \centering
-\resizebox{0.9\textwidth}{!}{%
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}ccccccc@{}}
 \toprule
 \textbf{\begin{tabular}[c]{@{}c@{}}GPS reading\\ period\end{tabular}} & \textbf{Algorithm} & \textbf{\begin{tabular}[c]{@{}c@{}}Stay points\\ detected\end{tabular}} & \textbf{Average fixes} & \textbf{Maximum fixes} & \textbf{GPS accesses} & \textbf{Running time (hours)} \\ \midrule
@@ -433,20 +374,18 @@ Linear 1-3-5-9-12-15 &  Sigma Montoliou & 35 & 21 & 84 & 888 & 144.85 \\
 \subsection{Publications}
 \begin{frame}[t]\frametitle{Scientific products}
 \begin{itemize}
-  \item As a product of the study and analysis of related solutions, we have prepared a survey\footnote{\tiny \emph{Power management techniques in smartphone-based mobile sensing: a survey}, first review round, Pervasive and mobile computing (Elsevier)} covering:
+  \item As a product of the analysis of related solutions, we have prepared a survey\footnote{\tiny \emph{Power management techniques in smartphone-based mobile sensing: a survey}, first review round, Pervasive and mobile computing (Elsevier)} covering:
   \begin{itemize}
-    \item The characteristics of smartphone-based sensing.
-    \item The power-awareness in smartphone-based sensing and related areas.
-    \item A taxonomy of the different solutions aimed at energy efficiency in smartphone-based sensing.
-    \item A framework for dissecting and studying the characteristics of these solutions.
-    \item The different tendencies and open challenges of the field.
+    \item Smartphone-based sensing's characteristics.
+    \item The power-awareness challenge in smartphone-based sensing.
+    \item A taxonomy of the solutions for energy efficiency in smartphone-based sensing.
+    \item The tendencies and open challenges of the field.
   \end{itemize}
-  \item The aforementioned experimentation is also under expansion and improvement for preparing an article focused on:
+  \item The aforementioned experimentation is work in progress for preparing an article focused on:
   \begin{itemize}
-    \item On-device learning of mobility information following an event-oriented perspective.
-    \item The employment of such information for adapting the sensing dimension of smartphone looking for energy efficiency.
+    \item On-device learning of mobility information with an event-oriented perspective.
+    \item The usage of this information for a power efficient adaptation of the sensing dimension.
     \item Setting the base for further modules and strategies for boosting the learning of mobility patterns.
-    \item All of these targetted at building the main blocks of our solution.
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -537,7 +476,7 @@ Linear 1-3-5-9-12-15 &  Sigma Montoliou & 35 & 21 & 84 & 888 & 144.85 \\
           & \cellcolor[gray]{0.3} & & \\
 
           \rowcolor{colorB}
-          10 & \multicolumn{1}{p{\longitudCelda}:}{Implementation of algorithms (including proper adaptions towards running on a mobile platform) for evaluation} &
+          10 & \multicolumn{1}{p{\longitudCelda}:}{Implementation of algorithms (including proper adaptations towards running on a mobile platform) for evaluation} &
           & & & 
           & \cellcolor[gray]{0.3} & \cellcolor[gray]{0.3} & \\
 
@@ -778,32 +717,23 @@ Linear 1-3-5-9-12-15 &  Sigma Montoliou & 35 & 21 & 84 & 888 & 144.85 \\
   \label{tbl-schedule-4}
   \end{table}
 
-  * Survey was out of original schedule, however, it brings added value to our work and also act as a scientific booster for improving and achieving our solution.
+  * Survey was out of original schedule, however, it brings added value to our work and also acts as a scientific booster for improving and achieving our solution.
 \end{frame}
 
 
 \section{Conclusions}
 \subsection{Conclusions}
 \begin{frame}\frametitle{Conclusions}
-\small
-In this talk the latest advances in our thesis work have been presented.
-Specifically:
+
 \begin{itemize}
-  \item We have presented a brief analysis of the problem aimed to be solved by this thesis work.
-  \item We have covered a summary of related state of art solutions, as suggested by commitee.
-  For this particular point, we have presented:
+  \item A brief analysis of the problem addressed by this thesis work has been presented.
+  \item A summary of related state of art solutions, as suggested by committee, has been covered:
   \begin{itemize}
-    \item A taxonomy for categorization of the solutions, seen from the perspective of sensors adaptation.
-    \item A new framework for decomposing and studying different internal aspects of solutions. 
+    \item A taxonomy for categorizing of the solutions.
+    \item A new framework for decomposing and studying them. 
   \end{itemize}
-  \item We have introduced the general approach of our solution, which is based on a expanded spatial-time model of user mobility for identifying and learning mobility patterns (OL, US).
-  \item The policies considered by this solution:
-  \begin{itemize}
-    \item Are context-aware oriented.
-    \item Identify and learn mobility patterns.
-    \item Adapt sensory operations with fine granularity through the different variants of the pure software approach.
-  \end{itemize}
-  \item We have also presented an experimental step that ensures the on-device identification of such expanded models and the implementation of basic policies for accessing to sensors. 
+  \item The general approach of our solution, which is based on an expanded spatial-time model for identifying and learning user mobility, has been introduced.
+  \item An experimental step that shows the feasibility of performing the on-device building of such expanded models has been also presented. 
 \end{itemize}
 \end{frame}
 
@@ -821,9 +751,8 @@ Thank You\\ for your attention!
 
 \subsection{References}
 \bibliographystyle{plain}
-% \bibliographystyle{unsrtnat}
-% \tiny
-\bibliography{../../../resources/references/library}
+
+\bibliography{../../../resources/references/bibliography}
 
 \begin{frame}[t]\frametitle{Montoliou's algorithm for stay points detection~\cite{Montoliu2010}}
 \begin{center}
