@@ -14,16 +14,14 @@
 \usepackage{url}
 \usepackage{pseudocode}
 \usepackage{ltablex}
-\usepackage{booktabs}
 \usepackage{rotating}
 \usepackage{cite}
+
 
 \RequirePackage{hyperref}
 \RequirePackage{algorithm}
 \usepackage{algorithmic}
-\usepackage{latexsym, amssymb}
 \usepackage{fancybox}
-\usepackage{rotating}
 \usepackage{pdflscape} 
 \usepackage{multirow}
 \usepackage{textcomp}
@@ -48,15 +46,15 @@
 \adscripcion{Cinvestav Tamaulipas. Parque Científico y Tecnológico TecnoTam -- Km. 5.5 Carretera Cd. Victoria-Soto La Marina. C.P. 87130 Cd. Victoria, Tamps. }
 \city {Cd. Victoria, Tamaulipas, Mexico.}
 %\date{December, 2010}
-\techreportnumber{07}
+\techreportnumber{0}
 \publishedmonth{December} %mes de la publicación
 \publishedday{16th} %día de la publicación
 \publishedyear{2015} %año de la publicación
 \keywords{mobile sensing apps, energy consumption, context information, policy, smartphone}
 \correspondingauthor{Rafael Pérez Torres $<$rperez@tamps.cinvestav.mx$>$, César Torres Huitzil $<$ctorres@tamps.cinvestav.mx$>$ and Hiram Galeana Zapién $<$hgaleana@tamps.cinvestav.mx$>$}
 \grants{}
-\dateofsubmission{December 5th, 2014}
-\tobecited{Rafael Pérez Torres, César Torres Huitzil, Hiram Galeana Zapién. Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps. CINVESTAV Tamaulipas. 2014 Nov. 36 pp. Technical Report No. LTI-TR-2014-07}
+\dateofsubmission{December 16th, 2015}
+\tobecited{Rafael Pérez Torres, César Torres Huitzil, Hiram Galeana Zapién. Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps. CINVESTAV Tamaulipas. 2014 Nov. 36 pp. (No Technical Report No. assigned)}
 \placeanddateofpublication{Ciudad Victoria, Tamaulipas, MEXICO.}
 
 \abstract{
@@ -74,17 +72,15 @@ In summary, the different efforts during the first year have been focused on pro
 \section{Introduction}
 \label{sec:introduction}
 This technical report describes the progress and advances developed for the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps} during the first year of the doctoral program.
-
 In summary, the different efforts during the first year have been focused on producing a solid state of the art revision, as well as on defining the core elements that will power up the methodology for solving the main problem.
 
-In order to ease the comprehension for the reader, this report has been structured as a self-contained document, briefly addressing the scientific context of the research, describing the hypothesis, problem statement and objectives.
-This technical report is structured as follows.
-Section~\ref{sub:research-context} presents a brief review of the context of the research, recalling the characteristics of smartphone-based sensing applications and the problematic arised by the energy consumption when continuous access to sensors is needed.
+In order to ease the comprehension for the reader, this report has been structured as a self-contained document, including a summary of the scientific context of the research that describes the hypothesis, problem statement and objectives in Section~\ref{sub:research-context}.
+Such summary also recalls the characteristics of smartphone-based sensing applications and the problematic aroused by the energy consumption when continuous access to sensors is needed.
 Section~\ref{sec:state-of-art} is prepared as for describing the study performed on state-of-art techniques, covering a taxonomy of existing solutions, as well as a framework for their analysis.
-Section C is aimed at describing the advances produced on our proposed solution, including the insights for achieving learning from user and a general overview of the mechanisms for achieving sensor usage adaptations.
-Section D present the future work and specific activities for achieving the planned solution.
-Section E summarizes the scientific products prepared as a result of the first year of work.
-Finally, Section F present the conclusions of this report.
+Section~\ref{sec:methodology} is aimed at describing the advances produced on our proposed solution, including the insights for achieving learning from user and a general overview of the mechanisms for achieving sensor usage adaptations.
+Section~\ref{sec:preliminary-experimentation} presents the preliminary experimentation for ensuring the learning of mobility patterns in the mobile device.
+Section~\ref{sec:future-work} describes the future work for achieving the planned solution.
+Finally, Section~\ref{sec:conclusions} present the conclusions of this report.
 
 
 
@@ -102,7 +98,7 @@ Finally, Section F present the conclusions of this report.
 % *************************************
 \section{Research description}
 \label{sub:research-context}
-\emph{This section is aimed at giving an overall description of the context of the research, in order to ease the comprehension of the reader and producing a self-conteined document.}
+\emph{This section is aimed at easing the comprehension of the document for the reader, giving an overall description of the context of the research, including problem statement, hypothesis, objectives, and contributions.}
 
 
 The popularity of smartphones is a remarkable instance of the adoption of technology by society.
@@ -151,7 +147,7 @@ Although modern smartphones feature increasing computing power, memory and longe
 This growing rate is not at the same pace than the advances in hardware and software components of mobile platforms, which in every new generation of mobile devices impose an ever growing energy demand.
 
 At the same time, it is important to note that since their initial conception, mobile platforms described a layered architecture with a clear focus on managing the heavy interaction with user.
-because of this, the support for background running processes and for exploiting the power management capabilities existing at hardware level of sensors was discarded, leaving out the power-efficiency of the sensing dimension~\cite{Priyantha2011}.
+Because of this, the support for background running processes and for exploiting the power management capabilities existing at hardware level of sensors was discarded, leaving out the power-efficiency of the sensing dimension~\cite{Priyantha2011}.
 As a consequence, efficient implementations of power-aware mechanisms that do not jeopardize the accuracy requirements of mobile sensing applications still remain an open challenge, which is augmented by the computational and power constraints of mobile devices, as well as the long-term and near real-time requirements of these applications.
 
 
@@ -213,7 +209,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \label{sub:contributions}
 
 \begin{itemize}
-  \item A mechanism for detecting mobility patterns from the data read by sensors of mobile devices (especifically GPS and accelerometer).
+  \item A mechanism for detecting mobility patterns from the data read by sensors of mobile devices (specifically GPS and accelerometer).
   \item A mechanism for generating policies for accessing sensors.
   Such mechanism employs application requirements (energy and precision hints), level of mobile device constraints, and user's context information (using the pattern detected by previous mechanism).
   The produced policies will allow to perform a smarter usage of smartphone's sensing infrastructure in continuous sensor readings, reducing the energy consumption.
@@ -246,14 +242,14 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \label{fig:taxonomy-approaches}
 \end{figure*}
 
-\emph{Power-aware sensing} refers to a set of techniques and methodologies aimed at continuously monitoring sensor data over long periods of time under the computing, storage, and power constraints of typical mobile devices.
+\emph{Power-aware sensing} refers to the set of techniques aimed at continuously monitoring sensor data over long periods of time under the computing, storage, and power constraints of typical mobile devices.
 Roughly speaking, the power-aware sensing is mostly enclosed into the sensor reading stage of mobile sensing applications, abstracting the complexity of sensors management, and delivering collected data while considering the power constraints of these devices. 
-It is important to remark that this goal is frequently achieved by executing the rest of the stages internally, in order to identify context information that is useful for feedback purposes and a smarter usage of sensors.
+It is important to remark that such goal is frequently achieved by executing the rest of the stages internally, in order to identify context information useful for feedback purposes and a smarter usage of sensors.
 
-A revision of relevant works in literature reveals three complementary approaches at different level of abstraction of the smartphone device: pure hardware, hardware-software, and pure software approaches.
-Figure~\ref{fig:taxonomy-approaches} presents a taxonomy of solutions for power-aware smartphone sensing, with the pure hardware, hardware-software and pure software approaches as the main classes, briefly described in the next paragraphs.
-It has been identified that the support for these policies at system level of a mobile platform facilitates the analysis, control, and cross-layer coordination and information sharing for reducing the power consumption, which is the reason why power-aware sensing mechanisms should be supported throughout all layers of the mobile platform~\cite{Ranganathan2010}.
-Figure~\ref{fig:distribution-approaches} illustrates the distribution of the different approaches across the layers of a mobile platform, highlighting the increasing support in the higher layers for reacting accordingly to the dynamics of context information through more complex and robust machine learning mechanisms.
+% A revision of relevant works in literature reveals three complementary approaches at different level of abstraction of the smartphone device: pure hardware, hardware-software, and pure software approaches.
+Figure~\ref{fig:taxonomy-approaches} presents a taxonomy of solutions found in literature for power-aware smartphone-based sensing, with the pure hardware, hardware-software and pure software approaches as the main classes.
+%It has been identified that the support for these policies at system level of a mobile platform facilitates the analysis, control, and cross-layer coordination and information sharing for reducing the power consumption, which is the reason why power-aware sensing mechanisms should be supported throughout all layers of the mobile platform~\cite{Ranganathan2010}.
+The distribution of each of these approaches across the layers of a mobile platform is depicted in Figure~\ref{fig:distribution-approaches}, highlighting the increasing support in the higher layers for reacting accordingly to the dynamics of context information through more complex and robust machine learning mechanisms.
 % The distinctive characteristics of the different approaches are as follows:
 \begin{figure}[t]
   \centering
@@ -271,22 +267,21 @@ Figure~\ref{fig:distribution-approaches} illustrates the distribution of the dif
 %   \item The \textbf{pure software approach} is aimed at modeling, identifying and even predicting details about context information and its dynamic changes from sensor data, in order to define smart mechanisms for power-aware adaptation of the hardware components usage, like the implementations by~\cite{Chon2014,Yurur2014,MaY2009}.
 %   Because of the fully context-awareness that this approach achieves, it is able to obtain high levels of flexibility for adaptive management of sensors, and put the context information detected from sensors data at service of the whole mobile platform.
 % \end{itemize}
-
+It is important to recall that although the presented taxonomy allows to classify the power-aware smartphone-based sensing techniques, the relevance of this problem makes that in practice many of the solutions combine different strategies pursuing an integral and better power management.
+% This is a suggestion of the complexity of the problem itself and an evidence of the evolution and adoption of these complementary techniques.
+% Furthermore, ideas proved to be working efficiently in software soon or later are implemented directly in hardware to boost efficiency even further. 
 \input{table-approaches}
-
-It is important to highlight that although the presented taxonomy allows to classify the power-aware smartphone-based sensing techniques, the relevance of this problem makes that in practice many of the solutions combine different strategies pursuing an integral and better power management.
-This is a suggestion of the complexity of the problem itself and an evidence of the evolution and adoption of these complementary techniques.
-Furthermore, ideas proved to be working efficiently in software soon or later are implemented directly in hardware to boost efficiency even further. 
-
 Table~\ref{tab:related-work} summarizes a set of works found in literature aimed at solving the power consumption issue in mobile sensing applications in the context of the presented taxonomy.
-As it can be noted, the most common strategy followed in the literature is the pure software approach, due to its flexibility and fine-tuning features, which will be described in next sections of this paper.
-Because of the heterogeneity of target features, main purpose, and mobile platforms where the mechanisms proposed in each work were implemented, it is not straightforward to perform a fair comparison among them~\cite{Vallina-Rodriguez2013,Neely2008}.
-For example, the solutions may target a different set of sensors or the techniques for analyzing context information produce outputs with different semantic meaning.
-Also there is no a clear consensus for measuring the energy benefits of proposed solutions; in this regard two main strategies have been followed.
-The first and most common strategy is to perform a comparison in terms of mW between energy consumed by a solution and the mobile platform or a similar approach. 
-However, even inside this strategy the implementations are not homogeneous and the proposed solutions employ different methods for measuring energy consumption in mobile devices, namely highly-invasive, moderately-invasive, and non-invasive techniques, as described in~\cite{Abreu2012}.
-The second strategy performs the comparison in terms of battery life (e.g., time to drain) because, according to~\cite{Kim2014}, several physical characteristics of batteries impact on their discharging cycle.
-The most notorious aspect is that the actual available energy is reduced when the battery discharges, a behavior that is ignored in the energy consumption models included in most of the reviewed solutions.
+As it can be noted, the most common strategy followed in the literature is the pure software approach, due to its flexibility and fine-tuning capabilities.
+Also, because of the heterogeneity of target features, main purpose, mechanisms for measuring power savings, and mobile platforms where the mechanisms proposed in each work were implemented, it is not straightforward to perform a fair comparison among them~\cite{Vallina-Rodriguez2013,Neely2008}.
+The different approaches of this taxonomy are described in the following sections.
+% For example, the solutions may target a different set of sensors or the techniques for analyzing context information produce outputs with different semantic meaning.
+% Also there is no a clear consensus for measuring the energy benefits of proposed solutions; in this regard two main strategies have been followed.
+% The first and most common strategy is to perform a comparison in terms of mW between energy consumed by a solution and the mobile platform or a similar approach. 
+% However, even inside this strategy the implementations are not homogeneous and the proposed solutions employ different methods for measuring energy consumption in mobile devices, namely highly-invasive, moderately-invasive, and non-invasive techniques, as described in~\cite{Abreu2012}.
+% The second strategy performs the comparison in terms of battery life (e.g., time to drain) because, according to~\cite{Kim2014}, several physical characteristics of batteries impact on their discharging cycle.
+% The most notorious aspect is that the actual available energy is reduced when the battery discharges, a behavior that is ignored in the energy consumption models included in most of the reviewed solutions.
+
 
 
 \subsection{Pure hardware approach}
@@ -313,7 +308,6 @@ The \emph{\textbf{ad-hoc data acquisition}} variant is restricted to serve the d
 Besides the raw data delivery, the \emph{\textbf{co-processing}} variant adds support to hardware layers for light data processing and detection of higher level information, producing context-awareness at hardware level with low power consumption.
 In this sense, the sensing facilities of the hardware platform are transformed into smart sensors~\cite{Gervais-Ducouret2011}.
 The embedded LPP of the sensing unit must be powerful enough to perform such analysis.
-
 Smartphone manufacturers have begun to integrate into the device's hardware full suites of sensing capabilities.
 For instance, Apple has implemented a platform re-design of the \emph{iPhone} smartphone, which starting at \emph{5s} version features an isolated sensing unit able to process sensor data and deliver fitness information like the amount of steps and distance covered by user, as well as the type of activity performed, namely, stationary, walking, running, automotive, cycling, and unknown~\cite{Apple2015}.
 % In addition to this hardware platform update, the Software Development Kit (SDK) of iPhone exposes this functionality through a software Application Programming Interface (API) denominated the \emph{CoreMotion Framework} that enables mobile applications to request and consume the fitness information.
@@ -323,12 +317,13 @@ Regardless of the variant, a common aspect taken into account in the design of p
 Because of this limitation, the effort of designers is focused on implementing general features that can be employed by many mobile sensing applications, instead of very specific features meaningful only for a few of them.
 
 \subsection{Hardware-software approach}
-\input{table-hw-sw-approach}
+
 The hardware-software approach is aimed at defining system-wide policies for deciding when to turn sensors on and off, or when to switch to a different power mode of a given hardware component.
 In this level, the hardware-software approach is aware of the existence of different sensors and coordinates the basic operations and interactions between them in a DPM fashion, being able to abstract fine grained parameters into a coarser grained set, isolating the hardware usage for mobile applications and elements in upper platform layers.
 Unlike the pure hardware approach, the hardware-software approach offers a basic understanding of global activities being performed by the mobile device, and also an implicit observance of dynamic changes in the workload of hardware components for deciding when to adapt hardware operation.
 Because of the coupled interaction with hardware components of the platform, hardware-software approach solutions are produced as HAL's of the mobile OS or low level middlewares that build an interface that abstracts the access to sensors and isolates their complex management mechanisms.
-Table~\ref{tab:works-hardware-software-approach} presents a few instances of works that follow this approach this approach.
+Table~\ref{tab:works-hardware-software-approach} presents a few instances of works that follow this approach.
+\input{table-hw-sw-approach}
 
 % An example of the hardware-software approach is the inclusion of software mechanisms that leverage a dedicated LPP for accessing and manipulating sensors data.
 % The software mechanisms allow to build the basic global status of the mobile platform, which is employed for manipulating the hardware through the control points exposed by sensors.
@@ -350,14 +345,11 @@ Table~\ref{tab:works-hardware-software-approach} presents a few instances of wor
 Thanks to the context information obtained from sensor data, the pure software approach can bring activity awareness to the mobile platform and make informed decisions for fully dynamic power-aware sensors management as illustrated in Figure~\ref{fig:distribution-approaches}, where the pure software approach is at the top of the hierarchy.
 Typically, pure software approach solutions are powered up by a set of classifiers fed with sensors data that individually identify basic aspects or produce abstractions about user's activity.
 Such user activity aspects are the fundamental elements for defining sensor management policies.
-In this way, the pure software approach is able to make the mobile platform aware about user activity and even adapting accordingly to changes on its profile.
+% In this way, the pure software approach is able to make the mobile platform aware about user activity and even adapting accordingly to changes on its profile.
 In power-aware computing terms, the pure software approach can be understood as \emph{spending power to save power}~\cite{Ranganathan2010}.
-In this sense, there is an unavoidable amount of energy that is spent while performing computational processes for preprocessing, classifying and discovering context information from sensor data; however, substantial benefits might be also obtained~\cite{Yurur2014c}.
-Firstly, this approach achieves reduction in power consumption by means of understanding user activity.
-Secondly, the information inferred from sensors data allows mobile devices to improve their awareness about high level user activities.
-
-Solutions following this approach can only observe the details of the hardware platform exposed by the hardware access or lower layers of the mobile OS.
-A practical interpretation can be expressed as follows: these lower layers know how to turn circuits on and off, but are unable to define when; whereas the higher software layers are flexible and can dynamically adapt to changes in user context, knowing when adapt the sensors operation, but delegating how to do it to the lower layers.
+In this sense, there is an unavoidable amount of energy that is spent while performing computational processes for preprocessing, classifying and discovering context information from sensor data; however, the acquisition of such context information is valuable as for improving the awareness of the smartphone about high level user activities~\cite{Yurur2014c}.
+% Solutions following this approach can only observe the details of the hardware platform exposed by the hardware access or lower layers of the mobile OS.
+% A practical interpretation can be expressed as follows: these lower layers know how to turn circuits on and off, but are unable to define when; whereas the higher software layers are flexible and can dynamically adapt to changes in user context, knowing when adapt the sensors operation, but delegating how to do it to the lower layers.
 Typically, pure software approach solutions are implemented through a layered middleware with classification and machine learning modules embedded on it, as depicted in Figure~\ref{fig:middleware-software-approach}.
 This middleware is placed between running mobile applications and the sensing and communication layers of the mobile platform, abstracting its sensing and communication facilities~\cite{Yurur2014}.
 
@@ -368,14 +360,9 @@ This middleware is placed between running mobile applications and the sensing an
   \label{fig:middleware-software-approach}
 \end{figure}
 
+The different variants found in the pure software approach are described in the next section.
 
 
-Table~\ref{tab:works-software-approach} shows a set of works following the pure software approach.
-With the aim of providing a detailed analysis of relevant aspects of this approach, the rest of this section is structured as follows.
-In first term, the categories or variants of this approach are enumerated and described.
-Next, relevant characteristics found in these solutions are described.
-Finally, a framework for their decomposition and analysis is presented.
-BRIEFLY WORK ON IT!
 
 \subsubsection{Categories of the pure software approach}
 \label{sub:software-categories}
@@ -412,10 +399,13 @@ Both functionalities were initially available in the Android platform via softwa
 Also, lower layers of newer versions of Android allow the \emph{piggy-backing} of close in time GPS requests, reusing the same GPS fix (a location point obtained through the GPS infrastructure) for concurrent mobile applications~\cite{Zhuang2010}. 
 This transference of platform functionalities from software to hardware is always subject to the aforementioned trade-off between the generality of features and power saving benefits: a very generic mechanism can be suitable for any mobile application but will not obtain the largest power savings; on the other hand, the best power savings are obtained by the most specific and tuned solutions that may result useless for the rest of mobile application scenarios.
 
-\subsubsection{Relevant characteristic of the software approach - Analysis of power-aware solutions under the pure software approach}
+Table~\ref{tab:works-software-approach} shows a set of works following the pure software approach.
+For the sake of brevity, the next section focuses on describing a set of important features found in these works and a framework for studying them, rather than presenting a comprehensive review of each work.
+
+\subsubsection{Relevant characteristic of the software approach}
 The openness and flexibility of the software stack of mobile devices allows to implement a wide variety of strategies and mechanisms that can dynamically adapt to changes detected in context information.
 In addition to such diversity of strategies, there is also heterogeneity in the scenarios (like LBS, HAR, crowd sensing) and objectives pursued by the different pure software solutions, which hinders their review and makes it hard to produce a definitive framework for their analysis.
-As an example of the aforementioned heterogeneity, the reader can consider works that duty cycle sensors usage.
+As an example of this heterogeneity, the reader can consider works that duty cycle sensors usage.
 In some proposed solutions, the context information employed in the policies for adapting duty cycle is simple, even raw data with simple heuristics; while on the other hand, some solutions build and process a more complex model of context information before performing a decision with more robust classifiers.
 In this way, we identify that the granularity (or the level) of context information represents the pivotal feature on which the analysis and description of works can be performed.
 
@@ -426,13 +416,240 @@ The granularity of context information can be mostly characterized by the combin
   \item the length of the time window employed to sense data.
 \end{listahorizontal}
 Recall that although solutions can follow unconstrained combinations over these elements for inferring context information, at the end the mechanisms for adapting sensors operation will incur into one or more variants of the pure software approach, described in Section~\ref{sub:software-categories}.
-Also, it is worth noting that among the different features described by solutions, we have identified the following attributes as helpful to analyze and understand core features of their design and operation.
+Also, it is worth noting that among the different features described by solutions, the following attributes are helpful to analyze and understand core features of their design and operation.
 First, solutions can incorporate mechanisms for online learning (OL) from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
 Also, works can follow and optimization orientation (OO) approach in order to formalize, for instance, a sensor usage adaptation (replacement) mechanism and guarantee a given target in terms of minimum energy consumed and/or the error in activity tracking.
 Finally, the solutions might employ an enriched version of the context information, known as user state (US) for allowing the device to become fully activity-aware and ease its adaptation over the sensing dimension.
 % Siento que una debilidad que aun tenemos es la "definición" de US, lo cual sin duda tenemos que especificar en el planteamiento de la solución. Aquí sin embargo está débil. Y recordemos también que lo que intentamos aquí es que el US está relacionado a movilidad, dada la crítica de uno de los revisores
 
-Thus, with the granularity of context information insight and the aforementioned attributes in mind, we present the analysis and discussion of the pure software approach works listed in Table~\ref{tab:works-software-approach}, highlighting their strengths and improvements, as well as their impact to establish a trend or new opportunities for research.
+With the previous elements in mind, a framework aimed at studying the different modules of software solutions can be developed.
+Figure~\ref{fig:framework-pure-software-solutions} presents an overview of the components of such framework.
+In the \emph{Machine Learning for Context-Awareness} module, the solutions implement classifiers or mechanisms that allow them to gain understanding of context information.
+These classifiers can act over short time windows of sensors data, analyzing what the user is doing at the current time interval.
+Also, the length of such time window can be longer, involving a learning of context information that help to produce more robust inferences about user activity.
+At the end, regardless of the length of the time window and the complexity of the information learned, this module directs the context information to the \emph{Policy generator} module.
+
+The \emph{Policy generator} module is focused on processing the incoming context information (and other parameters like accuracy and energy requirements) for producing a better selection and configuration of sensors that derive in energy savings.
+Again, the internal mechanism can be simple or complex, following probabilistic and even classic optimization paradigms.
+The outcome of this module materialized as one or more of the pure software variants shown in Figure~\ref{fig:distribution-approaches}.
+
+
+Finally, the \emph{Hardware adaptation} module receives the configuration specified by the \emph{Policy generator} and applies it to the sensing infrastructure of the smartphone in order to produce power savings.
+
+Then, the different software solutions produced in literature can be decomposed and observe at their differences employing this framework.
+As a final comment, recall that the flexibility of the software platform allow solutions to implement any combination of techniques in each module according to their particular objectives and scenarios.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{dual-taxonomy-clean}
+  \caption{Framework for analyzing and studying the building components of pure software solutions.}
+  \label{fig:framework-pure-software-solutions}
+\end{figure}
+
+
+
+
+
+
+
+
+
+
+% *************************************
+% *************************************
+% ***** 3. Advances in methodology ****
+% *************************************
+% *************************************
+\section{Advances in methodology}
+\label{sec:methodology}
+\emph{This section presents a summary of the advances produced in the methodology aimed at solving the problem of interest of this thesis work.}
+
+After reviewing the different solutions proposed in literature, it is possible to define a clear perspective for solving the main problem of this research, including the underlying model of the mobility information learned from user, as well as the strategies for adapting the sensing operation.
+In order to clarify the scope of this research, it is important to state that a pure software approach will be followed, given its flexibility for detecting and adapting to changes detected from context information.
+
+\subsection{Overall view of the proposed solution}
+
+The first relevant aspect to consider is that the overall problem can be decomposed into two main challenges.
+In one hand, it is needed to learn and identify the different points of interest in user mobility.
+On the other hand, it is also critical to perform the tracking of user while moving between these points.
+In this way, the continuous location tracking leverages on the points of interest as \emph{anchor points} representing the origin and destination of each user trajectory.
+Every time the user enters into a place of interest, the GPS-based tracking can be stopped and employ additional sensors and strategies for ensuring that user remains at such place while reducing power consumption.
+When user leaves the place, the location tracking can be restarted but also observing at the learned information for predicting the next possible place and employ this information for improving access the access to location providers.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{dual-taxonomy-ours}
+  \caption{Decomposition of our solution.}
+  \label{fig:decomposition-our-solution}
+\end{figure}
+
+Figure~\ref{fig:decomposition-our-solution} shows the different characteristics of the proposed solution employing the framework described in previous section.
+As can be seen, the sources of context information to be employed are the accelerometer, GPS and WPS location providers.
+However, also the battery status and wireless fingerprinting will be used for aiding the arrival to points of interest as follows.
+Wireless fingerprinting can represent the signature of a place through the strength of the signal of available access points; the smartphone continuously keep a list of such network devices that when compared with existing signatures can detect whether the smartphone is at a previous known location.
+In the case of battery status, it is noteworthy that users tend to charge his/her smartphone in particular places like home and work, which allows to avoid unnecessary GPS readings.
+
+In the \emph{Machine Learning for Context-Awareness} module, Artificial Neural Networks (ANN) and Decision Trees (DT) will be employed to analyze short time windows of sensors data for detecting user activity.
+Hidden Markov Models (HMM) will be used for understanding the transitions between frequent stay points in user mobility.
+The detection of stay points will be performed employing adaptations of classic GPS trajectory analysis algorithms, like~\cite{Montoliu2010}.
+It is important to mention, than the user mobility is not to be modeled through classic HMM, but instead employing a custom expanded spatial-time model, as depicted in Figure~\ref{fig:expanded-spatial-time model}.
+This spatial-time model not only keep context information about places in pure location aspects (i.e., latitude and longitude) but also in terms of time context, like arrival, departure, and average stay time.
+Also, this spatial-time model enriches the information available for the transitions between places, including aspects like the described motion (i.e., way of transportation) for a fine grain tuning of sensing operations.
+Also, note in Figure~\ref{fig:decomposition-our-solution} the existence of particular models for each day of the week, given the differences in the mobility patterns described by people in weekdays and weekends.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[scale=0.85]{mobility-graph}
+  \caption{Expanded spatial-time model as the building block of learned information in the proposed solution.}
+  \label{fig:expanded-spatial-time model}
+\end{figure}
+
+Finally, in the \emph{Policy generation} module, the probability of transition between learned places will play a critical role for determining a more adequate set of sensors and sensing configuration that derives in energy savings and the fulfillment of accuracy requirements of the mobile app.
+Each of the variants existing in the pure software approach will be implemented, recalling the options for replacing the GPS through wireless fingerprinting and the status of the battery.
+In practice, the proposed solution looks for defining upper and lower thresholds in the sampling frequency of sensors, keeping their operation inside such intervals and making the proper adaptations with the aid of context-aware policies.
+
+
+\subsection{Architecture of the proposed solution}
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{solution-general-overview}
+  \caption{Architecture of the proposed solution.}
+  \label{fig:solution-architecture}
+\end{figure}
+
+The different elements depicted in previous section are integrated in the architecture shown in Figure~\ref{fig:solution-architecture}.
+Note that there are several classification modules, one per sensor, which will obtain hints or aspects about the status of user.
+The outcome of these modules is directed to the \emph{Context inference} block, where it is integrated for inferring the current situation of the user (User state, US).
+Such current state is delivered to the \emph{Policy generator} block and to the \emph{Machine Learning} block.
+
+The \emph{Machine Learning} block uses the information received from the \emph{Context inference} block for building and enhancing the spatial-time model of user mobility, learning his-her mobility patterns.
+Such task is done, by using HMM augmented with time dimension information as described in previous section.
+This block also delivers the learned information to the \emph{Policy generator} module.
+
+The \emph{Policy generator} is in charge of defining the next set of sensors and their associated configuration for keeping the tracking of user within the accuracy interval specified by the running mobile app.
+This block employs current information obtained from sensors (current US) and the historical information maintained in the system (expanded spatial-time model), in order to improve the management of sensors.
+The battery level is also of special interest for this block in order to ensure the reduction in the energy consumption.
+Sensing operation is adapted also depending in the battery level, producing a lower sampling frequency when the battery is low.
+
+All this architecture is providing location updates to mobile apps in a power-aware manner.
+Running mobile apps have to specify the accuracy requirements to the architecture by interacting with the \emph{power-aware location manager} interface, which will inform of this requirement to the \emph{Policy generator} block.
+At the end, the running mobile app is agnostic about all the processes running in the background for collecting and analyzing context and location data, receiving the location updates transparently.
+Also, the mobile app can receive the outcome produced in each layer of the architecture for specific tasks and further processing.
+
+
+\section{Preliminary experimentation}
+\label{sec:preliminary-experimentation}
+\emph{This section presents a description of the preliminary experimentation performed for validating the possibility of learning mobility patterns solely in the mobile device.}
+
+
+An important advance developed during the current period is an experimentation focused on ensuring that the learning of the spatial time model is factible in the mobile device.
+Particularly, an on-device detection of points of interest (also referred as stay points) was pursued through the design of an event-oriented middleware, whose architecture is shown in Figure~\ref{fig:on-device-stay-point-detection-architecture}.
+This middleware has been implemented for the Android platform, which allows the access to smartphone's sensors in an asynchronous manner.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[scale=0.75]{architecture-for-gps-policies}
+  \caption{Architecture for on-device detection of points of interest.}
+  \label{fig:on-device-stay-point-detection-architecture}
+\end{figure}
+
+
+As such, the middleware permits mobile applications to register for stay points notifications by employing a callback mechanism, and autonomously manages the access to GPS receiver, stopping the collection of data and turning it of when needed.
+The overall operation of our architecture can be summarized as follows.
+First, the running LBS communicates to a background running service for requesting the user location tracking and stay points detection.
+Then, the background service instructs a policy manager for starting the collection of data. 
+After receiving each GPS fix, it is delivered to the running LBS as well as to the stay point detection module for further processing.
+
+More specifically, the components of the architecture perform the following activities.
+First, the policy manager module is in charge of two main tasks.
+In one hand, it dispatches the initial request from the background service for collecting GPS data and also manages the scheduling of next GPS readings through sensor access policies.
+On the other hand, it registers the scheduled readings as alarms (through the \verb|ALARM_MANAGER| service) in the Android software stack in order to obtain an actual adaptive sensing.
+Such alarm manager strategy is needed since the design of the Android platform implements aggressive power-saving restrictions in order to extend the battery life.
+For our particular task it becomes relevant that an Android-enabled mobile device might reach its sleep power mode and would disable further scheduled readings.
+This is where the alarms become helpful, since they represent a mechanism for re-activating the mobile device from sleep mode and trigger the execution of needed tasks.
+However, mobile device still can reach sleep mode while collecting and processing GPS data.
+The Android platform provides a special token denominated partial \verb|WakeLock| that, when acquired, forces the CPU and low-level hardware components to be activated (except for the screen, which is kept turned off), allowing our middleware to
+\begin{listahorizontal}
+  \item trigger a GPS update,
+  \item process the data for scheduling a new GPS update with the aid of a reading policy, and
+  \item release the \verb|WakeLock| for allowing the device to reach its sleep mode again.
+\end{listahorizontal}
+
+The hardware's listeners and administrator layers are developed for controlling the registration - unregistration with hardware facilities of the smartphone, agnostic about the rest of activities performed by the mobile platform.
+
+%With the aid of this middleware, the running LBS only needs to instruct the background service for starting GPS readings, and then receive such updates, as well as the stay points detected on-line.
+%It is important to recall that, unlike this proposal, classical methodologies for calculating stay points requested that the stay point detection module is at an external server, where the GPS trajectory is analyzed offline, identifying the stay points which are transmitted back to the mobile device, incurring on additional energy consumption for transmitting data, as well as transmission fees if mobile data networks are employed.
+
+The preliminary experimentation consisted on developing a sample LBS mobile app hosted by the previously described middleware.
+Such LBS would solicit GPS updates and the calculation of stay points through the middleware.
+Several executions of the experiment were conducted, running variations of the algorithm for detection of points of interest and employing the following reading policies.
+\begin{itemize}
+  \item Periodic GPS sampling: 1 minute, 3 minutes, and 5 minutes.
+  \item FSM doubling policy. Starting with 1 minute reading period, the policy doubled the schedule time if no movement within a threshold of 50 meters was detected. In case of movement detection, the policy decreased the reading period to 1 minute.
+  The upper reading period was set at 16 minutes.
+  \item FSM linear policy. Similar to doubling policy but in this case, each of the states were prefixed at 1, 3, 6, 9, and 12 minutes following the same decision based on the detection of movement.
+\end{itemize}
+ 
+The parameters for running the stay point detection algorithms in all of our experiments were set at 10 minutes for $\theta_{tmin}$, 1 hour for $\theta_{tmax}$ and 150 m for $\theta_{d}$.
+Table~\ref{tbl:experiment-1} summarizes the results obtained by these executions.
+
+\begin{table}[t]
+\small{}
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}ccccccc@{}}
+\toprule
+\textbf{\begin{tabular}[c]{@{}c@{}}GPS reading\\ period\end{tabular}} & \textbf{Algorithm} & \textbf{\begin{tabular}[c]{@{}c@{}}Stay points\\ detected\end{tabular}} & \textbf{Average fixes} & \textbf{Maximum fixes} & \textbf{GPS accesses} & \textbf{Running time (hours)} \\ \midrule
+
+1 minute &  Sigma Montoliou     & 27 & 70 & 652 & 2251 & 43.68 \\
+1 minute &  Buffered Montoliou  & 26 & 79 & 685 & 2334 & 43.92 \\
+\cmidrule{1-7}
+
+3 minutes & Sigma Montoliou     & 47 & 27 & 248 & 1361 & 71.84 \\
+3 minutes & Buffered Montoliou  & 28 & 41 & 248 & 1241 & 64.96 \\
+\cmidrule{1-7}
+
+5 minutes & Sigma Montoliou     & 43 & 25 & 154 & 1119 & 95.88 \\
+5 minutes & Buffered Montoliou  & 45 & 21 & 154 & 1021 & 87.78 \\
+\cmidrule{1-7}
+
+Doubling 1-2-4-8-16 & Sigma Montoliou   & 59 & 17 & 80 & 1223 & 189.69 \\
+Linear 1-3-5-9-12-15 &  Sigma Montoliou & 35 & 21 & 84 & 888 & 144.85 \\
+
+\bottomrule
+\end{tabular}
+}
+\caption{Results of the preliminary experimentation}
+\label{tbl:experiment-1}
+\end{table}
+In all of these results, the smartphone was able to calculate stay points without being affected due to the memory and computing requirements for executing such tasks.
+Therefore, it was identified the possibility of performing the discovery of points of interest locally at the mobile device without generating a considerable computation overhead.
+
+
+\section{Future work}
+\label{sec:future-work}
+There are several specific and immediate activities to be performed given the status of the research.
+First, the presented experimentation is to be augmented for ensuring the possibility of learning the spatial-time model in the mobile device.
+For instance, further experimentation is needed for implementing more policies and observe the variations in energy savings, as well as for reusing the produced trajectories for accuracy comparisons.
+Also, a comparison between a running LBS employing the middleware and another LBS sending GPS fixes to an external computer for calculation of stay points will be developed.
+This will help to depict the magnitude of energy consumption improvements that on-device processing might achieve when compared against computation offloading techniques.
+It is worth mentioning that after its improvement, this experimentation is to be reported in a scientific article.
+
+Another future task is the detection of context information employing other sources of data besides GPS receiver, namely the accelerometer, battery status, and wireless fingerprinting.
+For instance, the analysis of accelerometer data will allow to detect user motion with fine granularity, in terms of the activity being performed (walking, running, and moving at vehicle).
+The battery status will allow to detect user idleness, since people tend to charge their mobile devices at specific places and times.
+Finally, wireless fingerprinting will permit to identify previous locations for disabling updates coming from location providers and then reduce energy consumption.
+In this way, by leveraging on such context information, it is possible to create more complex policies that help to reduce power consumption when tracking user location.
+
+\section{Conclusions}
+\label{sec:conclusions}
+This technical report presents the advances produced during the last year of the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}.
+
+In particular, the most of advances are related to the production of a solid state-of-art analysis, which was prepared as a review journal article.
+Also, a brief summary of the current status of the methodology was presented, highlighting its components and interaction.
+One of the most important aspects of this methodology is that it is focused in two main challenges, the learning of places of interest and the tracking of user location when moving between such places.
+Additionally, a preliminary experimentation showing the possibility of learning mobility patterns solely in the mobile device was described.
+Finally, a description of the immediate future work to be developed in this research was also presented.
 
 \bibliographystyle{plain}
 \bibliography{../../../resources/references/bibliography}
