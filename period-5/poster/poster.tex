@@ -1,0 +1,85 @@
+%!TEX program = lualatex
+\documentclass[25pt]{tikzposter}
+\usetheme{Envelope}
+\usebackgroundstyle{Rays}
+%\usepackage{emoji}
+%\usepackage[unicode]{hyperref}
+\usepackage[math]{kurier}
+\geometry{paperwidth=100cm, paperheight=130cm}
+\makeatletter
+\setlength{\TP@visibletextwidth}{\textwidth-2\TP@innermargin}
+\setlength{\TP@visibletextheight}{\textheight-2\TP@innermargin}
+\makeatother
+
+\title{\parbox{\linewidth}{\centering Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps}}
+\author{Rafael Pérez Torres, Dr. César Torres Huitzil, Hiram Galeana Zapién Phd}
+\institute{LTI Cinvestav Tamaulipas}
+\titlegraphic{\includegraphics[scale=0.8]{./images/cinvestav-logo-no-text-white}}
+
+\makeatletter
+\renewcommand\TP@maketitle{%
+   \centering
+   \begin{minipage}[b]{0.7\linewidth}
+   % \begin{minipage}[b]{0.8\linewidth}
+        \centering
+        \color{titlefgcolor}
+        {\bfseries \Huge \sc \@title \par}
+        \vspace*{1em}
+        {\huge \@author \par}
+        \vspace*{1em}
+        {\LARGE \@institute}
+    \end{minipage}%
+    \tikz[remember picture,overlay]\node[scale=0.8,anchor=east,xshift=-45cm,yshift=6cm,inner sep=0pt] {%
+    % \tikz[remember picture,overlay]\node[scale=0.8,anchor=east,xshift=-0.56\linewidth,yshift=3.9cm,inner sep=0pt] {%
+       \@titlegraphic
+    };
+}
+\makeatother
+
+\begin{document}
+\maketitle
+\block{Resumen}{
+\begin{itemize}
+	\item La popularidad de los smartphones se debe a sus capacidades en constante incremento de cómputo, comunicaciones y posibilidad de monitorear el entorno a través de sensores.
+	\item En particular, el uso de los sensores embebidos y la información extraíble a partir de sus datos permite mejorar la interacción con el usuario y ser conscientes del contexto.
+	\item Por ejemplo, los servicios basados en ubicación permiten adaptar el comportamiento del dispositivo de acuerdo a su ubicación, física y semántica.
+	\item No obstante, el uso de los sensores ocasiona un elevado consumo de energía, recurso escaso en este tipo de plataformas.
+	\item Nuestra propuesta es utilizar la información del contexto obtenida de los sensores para alimentar políticas que realicen un uso adaptativo de los proveedores de ubicación del smartphone.
+\end{itemize}
+}
+% \note[targetoffsetx=-.05\textwidth,targetoffsety=0.1cm,innersep=.4cm,angle=-45,connection]{Tobi}
+
+\block{Problema}{
+	\begin{enumerate}
+		\item Utilizar datos de los sensores para identificar y \textbf{aprender} la actividad del usuario así como su ubicación.
+		\item Utilizar la información aprendida para mejorar el uso de los proveedores de ubicación (GPS) del dispositivo, considerando el compromiso entre \emph{precisión - uso de energía}.
+	\end{enumerate}
+}
+
+\block{Solución}{
+Figura general aquí
+}
+
+\begin{columns}
+\column{.333}
+\block{Event-Driven Systems}{
+
+}
+
+\column{.333}
+\block{Physics' perspective of motion}{
+	
+}
+
+\column{.333}
+\block{Cognitive Dynamic Systems}{
+	
+}
+
+\end{columns}
+
+\block{Resultados preliminares}{
+	Tobi
+}
+
+\end{document}
