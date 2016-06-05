@@ -1,7 +1,9 @@
 %!TEX program = lualatex
 \documentclass[25pt]{tikzposter}
 \usetheme{Envelope}
+%\usetheme{Simple}
 \usebackgroundstyle{Rays}
+\usenotestyle{VerticalShading}
 %\usepackage{emoji}
 %\usepackage[unicode]{hyperref}
 \usepackage[math]{kurier}
@@ -39,47 +41,82 @@
 \begin{document}
 \maketitle
 \block{Resumen}{
+\Large
+Realizar el seguimiento del usuario utilizando proveedores de ubicación, como el GPS, conlleva a un alto consumo de energía en el smartphone, recurso escaso y competido dispositivos moviles.
+La presente investigación se enfoca en extraer información contextual proveniente de los sensores para aprender acerca de los patrones de movilidad del usuario y utilizar dicha información para hacer el seguimiento del usuario de forma consciente de la energía.
+}
+
+\begin{columns}
+\column{0.6}
+\block{Antecedentes}{
+\Large
 \begin{itemize}
-	\item La popularidad de los smartphones se debe a sus capacidades en constante incremento de cómputo, comunicaciones y posibilidad de monitorear el entorno a través de sensores.
-	\item En particular, el uso de los sensores embebidos y la información extraíble a partir de sus datos permite mejorar la interacción con el usuario y ser conscientes del contexto.
-	\item Por ejemplo, los servicios basados en ubicación permiten adaptar el comportamiento del dispositivo de acuerdo a su ubicación, física y semántica.
-	\item No obstante, el uso de los sensores ocasiona un elevado consumo de energía, recurso escaso en este tipo de plataformas.
-	\item Nuestra propuesta es utilizar la información del contexto obtenida de los sensores para alimentar políticas que realicen un uso adaptativo de los proveedores de ubicación del smartphone.
+  \item La popularidad de los smartphones se debe a sus capacidades en constante incremento de cómputo, comunicaciones y posibilidad de monitorear el entorno a través de sensores.
+  \item En particular, el uso de los sensores embebidos y la información extraíble a partir de sus datos permite mejorar la interacción con el usuario y ser conscientes del contexto.
+  \item Por ejemplo, los servicios basados en ubicación permiten adaptar el comportamiento del dispositivo de acuerdo a su ubicación, física y semántica.
+  \item No obstante, el uso de los sensores ocasiona un elevado consumo de energía, recurso escaso en este tipo de plataformas.
+  \item Nuestra propuesta es utilizar la información del contexto obtenida de los sensores para alimentar políticas que realicen un uso adaptativo de los proveedores de ubicación del smartphone.
 \end{itemize}
 }
-% \note[targetoffsetx=-.05\textwidth,targetoffsety=0.1cm,innersep=.4cm,angle=-45,connection]{Tobi}
 
+\column{0.39}
 \block{Problema}{
+  \Large
 	\begin{enumerate}
 		\item Utilizar datos de los sensores para identificar y \textbf{aprender} la actividad del usuario así como su ubicación.
 		\item Utilizar la información aprendida para mejorar el uso de los proveedores de ubicación (GPS) del dispositivo, considerando el compromiso entre \emph{precisión - uso de energía}.
 	\end{enumerate}
 }
-
-\block{Solución}{
-Figura general aquí
+\note[targetoffsetx=9cm,angle=320,radius=3.5cm,rotate=6,targetoffsety=-7cm]{
+\begin{tikzfigure}
+\includegraphics[width=0.04\textwidth]{images/thinking-face.pdf}
+\end{tikzfigure}
 }
+
+\end{columns}
 
 \begin{columns}
-\column{.333}
-\block{Event-Driven Systems}{
+\column{0.5}
+  \block{Sistemas dirigidos por eventos (Event-Driven Systems)}{
+  \begin{tikzfigure}[Componentes de un sistema dirigido por eventos]
+  \includegraphics[width=0.3\textwidth]{images/event-driven-system.pdf}
+  \end{tikzfigure} 
+  }
 
-}
+  \block{Movimiento desde la perspectiva de la física}{
+  \begin{tikzfigure}[Componentes de un sistema dirigido por eventos]
+  %\includegraphics[width=0.25\textwidth]{images/physics-perspective-of-motion}
+  Figura o mapa de stay points | Gráfica velocidad vs tiempo (valores estables = stay point))
+  \end{tikzfigure}
+  }
 
-\column{.333}
-\block{Physics' perspective of motion}{
-	
-}
+  \block{Sistemas dinámicos cognitivos}{
+  \begin{tikzfigure}[Sistemas dinámicos cognitivos]
+  \includegraphics[width=0.25\textwidth]{images/cognitive-dynamic-systems.pdf}
+  \end{tikzfigure}  
+  }
 
-\column{.333}
-\block{Cognitive Dynamic Systems}{
-	
+\column{0.5}
+  \block{Solución Propuesta}{
+    \begin{tikzfigure}[Arquitectura de la solución propuesta]
+    \includegraphics[width=0.4\textwidth]{images/solution-general-overview.pdf}
+    \end{tikzfigure}
+
+    \begin{tikzfigure}[Modelo espacio-temporal expandido de la solución propuesta]
+    \includegraphics[width=0.3\textwidth]{images/zoom-spatial-time-model.pdf}
+    \end{tikzfigure}
 }
 
 \end{columns}
 
 \block{Resultados preliminares}{
-	Tobi
+\Large
+\begin{itemize}
+  \item Posibilidad de detectar puntos de interés en el smartphone validada
+  \item Detección de actividad del usuario en base al acelerómetro verificada
+\end{itemize}
+  %\innerblock{H}{C}
+  %\coloredbox{Contnt} 
 }
 
 \end{document}
