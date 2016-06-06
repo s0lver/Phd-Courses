@@ -1,11 +1,8 @@
 %!TEX program = lualatex
 \documentclass[25pt]{tikzposter}
 \usetheme{Envelope}
-%\usetheme{Simple}
 \usebackgroundstyle{Rays}
 \usenotestyle{VerticalShading}
-%\usepackage{emoji}
-%\usepackage[unicode]{hyperref}
 \usepackage[math]{kurier}
 \geometry{paperwidth=100cm, paperheight=130cm}
 \makeatletter
@@ -42,8 +39,10 @@
 \maketitle
 \block{Resumen}{
 \Large
-Realizar el seguimiento del usuario utilizando proveedores de ubicación, como el GPS, conlleva a un alto consumo de energía en el smartphone, recurso escaso y competido dispositivos moviles.
-La presente investigación se enfoca en extraer información contextual proveniente de los sensores para aprender acerca de los patrones de movilidad del usuario y utilizar dicha información para hacer el seguimiento del usuario de forma consciente de la energía.
+Por definición, los servicios móviles basados en localización ejecutados por smartphones requieren actualizaciones constantes de ubicación para adaptar su funcionamiento.
+Sin embargo, realizar el seguimiento del usuario mediante proveedores de ubicación clásicos, como el GPS, representa un alto consumo de energía, la cual es un recurso escaso y competido en este tipo de platformas.
+La presente investigación tiene como objetivo realizar el seguimiento del usuario a partir de información contextual que es extraída de datos provenientes de los sensores.
+Esta información permite al dispositivo aprender sobre los patrones de movilidad del usuario y apoyarse en este conocimiento para realizar un uso adaptativo de los proveedores de ubicación y así conseguir el seguimiento del usuario de forma consciente de la energía.
 }
 
 \begin{columns}
@@ -59,7 +58,7 @@ La presente investigación se enfoca en extraer información contextual provenie
 \end{itemize}
 }
 
-\column{0.39}
+\column{0.4}
 \block{Problema}{
   \Large
 	\begin{enumerate}
@@ -67,11 +66,12 @@ La presente investigación se enfoca en extraer información contextual provenie
 		\item Utilizar la información aprendida para mejorar el uso de los proveedores de ubicación (GPS) del dispositivo, considerando el compromiso entre \emph{precisión - uso de energía}.
 	\end{enumerate}
 }
-\note[targetoffsetx=9cm,angle=320,radius=3.5cm,rotate=6,targetoffsety=-7cm]{
-\begin{tikzfigure}
-\includegraphics[width=0.04\textwidth]{images/thinking-face.pdf}
-\end{tikzfigure}
-}
+
+% \note[targetoffsetx=9cm,angle=320,radius=3.5cm,rotate=6,targetoffsety=-7cm]{
+% \begin{tikzfigure}
+% \includegraphics[width=0.04\textwidth]{images/thinking-face.pdf}
+% \end{tikzfigure}
+% }
 
 \end{columns}
 
@@ -84,39 +84,61 @@ La presente investigación se enfoca en extraer información contextual provenie
   }
 
   \block{Movimiento desde la perspectiva de la física}{
-  \begin{tikzfigure}[Componentes de un sistema dirigido por eventos]
-  %\includegraphics[width=0.25\textwidth]{images/physics-perspective-of-motion}
-  Figura o mapa de stay points | Gráfica velocidad vs tiempo (valores estables = stay point))
+  \begin{tikzfigure}[Variaciones de la velocidad de acuerdo a los patrones de movilidad]
+  \includegraphics[width=0.25\textwidth]{images/physics-perspective-of-motion}
   \end{tikzfigure}
   }
 
   \block{Sistemas dinámicos cognitivos}{
-  \begin{tikzfigure}[Sistemas dinámicos cognitivos]
-  \includegraphics[width=0.25\textwidth]{images/cognitive-dynamic-systems.pdf}
+  \begin{tikzfigure}[Estructura de un sistema cognitivo dinámico]
+  \includegraphics[width=0.2\textwidth]{images/cognitive-dynamic-systems.pdf}
   \end{tikzfigure}  
   }
 
 \column{0.5}
   \block{Solución Propuesta}{
     \begin{tikzfigure}[Arquitectura de la solución propuesta]
-    \includegraphics[width=0.4\textwidth]{images/solution-general-overview.pdf}
+    \includegraphics[width=0.32\textwidth]{images/solution-general-overview.pdf}
     \end{tikzfigure}
 
     \begin{tikzfigure}[Modelo espacio-temporal expandido de la solución propuesta]
-    \includegraphics[width=0.3\textwidth]{images/zoom-spatial-time-model.pdf}
+    \includegraphics[width=0.24\textwidth]{images/zoom-spatial-time-model.pdf}
     \end{tikzfigure}
 }
 
 \end{columns}
 
 \block{Resultados preliminares}{
-\Large
-\begin{itemize}
-  \item Posibilidad de detectar puntos de interés en el smartphone validada
-  \item Detección de actividad del usuario en base al acelerómetro verificada
-\end{itemize}
-  %\innerblock{H}{C}
-  %\coloredbox{Contnt} 
+ % \begin{multicols*}{3}
+    
+ %    \begin{tikzfigure}[Stay points obtenidos de forma autónoma por el smartphone]
+ %    \includegraphics[width=0.21\textwidth]{images/map}
+ %    \includegraphics[width=0.21\textwidth]{images/map-three-dimensional}
+ %    \includegraphics[width=0.21\textwidth]{images/plot-har.pdf}
+ %    \end{tikzfigure}
+ %  \end{multicols*}
+\begin{center}
+\begin{minipage}{0.64\linewidth}
+  \centering
+  %\begin{multicols*}{2}
+    
+    \begin{tikzfigure}[Stay points obtenidos de forma autónoma por el smartphone]
+    \includegraphics[width=0.38\textwidth]{images/map}
+    \includegraphics[width=0.38\textwidth]{images/map-three-dimensional}
+    \end{tikzfigure}
+  %\end{multicols*}
+\end{minipage}\hfill
+\begin{minipage}{0.33\linewidth}
+  \centering
+  \begin{tikzfigure}[Módulo HAR capaz de detectar la actividad física del usuario]
+    \includegraphics[width=0.99\textwidth]{images/plot-har.pdf}
+\end{tikzfigure}
+\end{minipage}
+\end{center}
+
+
+
+
 }
 
 \end{document}
