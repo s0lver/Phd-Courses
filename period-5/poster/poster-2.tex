@@ -38,54 +38,65 @@
 \maketitle
 \block{Resumen}{
 	\Large
-	Por definición, los servicios móviles basados en localización ejecutados por smartphones requieren actualizaciones constantes de ubicación para adaptar su funcionamiento.
+	Los servicios móviles basados en localización ejecutados por smartphones requieren actualizaciones constantes de ubicación para adaptar su funcionamiento.
 	Sin embargo, realizar el seguimiento del usuario mediante proveedores de ubicación clásicos, como el GPS, representa un alto consumo de energía, la cual es un recurso escaso y competido en este tipo de platformas.
-	La presente investigación tiene como objetivo realizar el seguimiento del usuario a partir de información contextual que es extraída de datos provenientes de los sensores.
-	Esta información permite al dispositivo aprender sobre los patrones de movilidad del usuario y apoyarse en este conocimiento para realizar un uso adaptativo de los proveedores de ubicación y así conseguir el seguimiento del usuario de forma consciente de la energía.
+	La presente investigación tiene como objetivo reducir el consumo de energía al realizar el seguimiento del usuario, a partir de información contextual que es extraída de datos provenientes de los sensores.
+	Dicha información permite al dispositivo aprender sobre los patrones de movilidad del usuario y apoyarse en este conocimiento para realizar un uso adaptativo de los proveedores de ubicación.
 }
 
 \begin{columns}
-	\column{0.75}
+	\column{0.5}
 	\block{Antecedentes}{
-		\Large
+		% \Large
 		\begin{itemize}
-		  \item La popularidad de los smartphones es impulsada por sus capacidades en constante incremento de cómputo, comunicaciones y posibilidad de monitorear el entorno a través de sensores.
-		  \item En particular, el uso de los sensores embebidos y la información extraíble a partir de sus datos permite mejorar la interacción con el usuario y ser conscientes del contexto.
-		  \item Por ejemplo, los servicios basados en ubicación permiten adaptar el comportamiento del dispositivo de acuerdo a su ubicación, física y semántica.
-		  \item No obstante, el uso de indiscriminado de los sensores y el procesamiento de sus datos ocasiona un elevado consumo de energía, recurso escaso en este tipo de plataformas.
-		  \item Nuestra propuesta es utilizar una arquitectura dirigida por eventos en la que se emplee información contextual obtenida de los sensores para alimentar políticas que realicen un uso adaptativo de los proveedores de ubicación del smartphone.
+		  \item La energía es un recurso limitado en plataformas móviles, como el smartphone.
+		  \item Por ello, el sensado constante (o indiscriminado) no resulta óptimo, descargando rápidamente la batería.
+		  \item Es posible explorar estrategias alternativas para realizar el monitoreo continuo del usuario, atendiendo al compromiso energía-precisión.
+		  \item Tal es el caso del uso de información contextual, la cual permite caracterizar la situación del usuario y emplearla para adaptar de forma dinámica el acceso al GPS.
 		\end{itemize}
 	}
 
-	\column{0.25}
+	\column{0.5}
 	\block{Problema}{
-		\Large
+		% \Large
 		\begin{enumerate}
-			\item Utilizar datos de los sensores para identificar y \textbf{aprender} acerca de la actividad del usuario así como su ubicación $\rightarrow$ patrones de movilidad.
-			\item Utilizar la información aprendida para mejorar el uso de los proveedores de ubicación (GPS) del dispositivo, considerando el compromiso entre \emph{precisión - consumo de energía}.
+			\item Utilizar datos de los sensores para identificar y aprender acerca de la actividad del usuario así como su ubicación $\rightarrow$ \textbf{identificar y aprender patrones de movilidad}.
+			\item Utilizar la información aprendida para mejorar el uso de los proveedores de ubicación (GPS) del dispositivo, considerando el compromiso entre \emph{precisión - consumo de energía}. $\rightarrow$ \textbf{Producir políticas conscientes de la energía}.
 		\end{enumerate}
 	}
 \end{columns}
 
 \begin{columns}
 \column{0.5}
-\block{Sistemas dirigidos por eventos (Event-Driven Systems)}{
+\block{Fundamentos de la solución propuesta}{
 	\begin{tikzfigure}[Componentes de un sistema dirigido por eventos]
 		\includegraphics[width=0.32\textwidth]{images/event-driven-system.pdf}
 	\end{tikzfigure} 
-}
-
-\block{Movimiento desde la perspectiva de la física}{
 	\begin{tikzfigure}[Variaciones de la velocidad de acuerdo a los patrones de movilidad]
 		\includegraphics[width=0.27\textwidth]{images/physics-perspective-of-motion}
 	\end{tikzfigure}
-}
-
-\block{Sistemas cognitivos dinámicos}{
 	\begin{tikzfigure}[Estructura de un sistema cognitivo dinámico]
 		\includegraphics[width=0.21\textwidth]{images/cognitive-dynamic-systems.pdf}
 	\end{tikzfigure}  
 }
+
+% \block{Sistemas dirigidos por eventos (Event-Driven Systems)}{
+% 	\begin{tikzfigure}[Componentes de un sistema dirigido por eventos]
+% 		\includegraphics[width=0.32\textwidth]{images/event-driven-system.pdf}
+% 	\end{tikzfigure} 
+% }
+
+% \block{Movimiento desde la perspectiva de la física}{
+% 	\begin{tikzfigure}[Variaciones de la velocidad de acuerdo a los patrones de movilidad]
+% 		\includegraphics[width=0.27\textwidth]{images/physics-perspective-of-motion}
+% 	\end{tikzfigure}
+% }
+
+% \block{Sistemas cognitivos dinámicos}{
+% 	\begin{tikzfigure}[Estructura de un sistema cognitivo dinámico]
+% 		\includegraphics[width=0.21\textwidth]{images/cognitive-dynamic-systems.pdf}
+% 	\end{tikzfigure}  
+% }
 
 \column{0.5}
 \block{Solución Propuesta}{
