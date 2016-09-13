@@ -52,19 +52,20 @@
   
   
   %final page
-  \defbeamertemplate{final page}{text}[1]{%
+  \defbeamertemplate{final page}{text}[2]{%
     \begin{minipage}[c][\textheight][c]{\textwidth}
       \centering
       \vfill
       \begin{beamercolorbox}[wd=\textwidth,center,sep=2\baselineskip]{frametitle}
           #1
       \end{beamercolorbox}
+      #2
       \vfill
       {\inserttitlegraphic}\vspace*{\baselineskip}
     \end{minipage}
   }
-  \newcommand{\finalpage}[1]{%
-    \setbeamertemplate{final page}[text]{#1}
+  \newcommand{\finalpage}[2]{%
+    \setbeamertemplate{final page}[text]{#1}{#2}
     \usebeamertemplate{final page}
   }
   
