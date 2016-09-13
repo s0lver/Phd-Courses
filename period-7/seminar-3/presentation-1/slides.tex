@@ -107,7 +107,7 @@ series=\bfseries}
 ] % optional - is placed in the bottom of the sidebar on every slide
 {% is placed on the bottom of the title page
   Dr. César Torres Huitzil\\
-  Hiram Galeana Zapién, PhD\\
+  Dr. Hiram Galeana Zapién\\
 
   LTI Cinvestav
   
@@ -148,7 +148,7 @@ series=\bfseries}
   \end{itemize}
   \item<3-> However, battery is not evolving at the same pace than the advances in other smartphone's characteristics~\cite{Kjaergaard2012}, growing only 5-10\% each year~\cite{Ma2012,Evarts2015}.
   \begin{itemize}
-    \item The energy constraint becomes critical when continuous access to sensors is needed, which a the core requirement of \textbf{mobile sensing applications}. 
+    \item The energy constraint becomes critical when continuous access to sensors is needed, which is a core requirement of \textbf{mobile sensing applications}. 
   \end{itemize}
 \end{itemize}
 \end{frame}
@@ -192,11 +192,11 @@ Given a set $V = \left\{v_{1}, v_{2}, \dotsc, v_{n}\right\}$ of data values read
   \text{PatternIdentifier}( V ) \longrightarrow{} p_{S} \in \text{\textbf{Patterns}}
 \end{equation}
 
-Where $\text{\textbf{Patterns}}$ is a set of patterns that represent an interesting state in user mobility, specifically the set \scriptsize{\texttt{ \{no movement, walking, running, vehicle transportation, arriving stay point, leaving stay point\} }}.
+Where $\text{\textbf{Patterns}}$ is a set of patterns that represent a user's mobility context situation, specifically the set \scriptsize{\texttt{ \{no movement, walking, running, vehicle transportation, arriving stay point, leaving stay point\} }}.
 \pause
 \begin{figure}[tb]
   \centering
-  \includegraphics[scale=0.5]{vectors/mobility-patterns-implications}
+  \includegraphics[scale=0.55]{vectors/mobility-patterns-implications}
   \caption{Context information related to mobility patterns}
   \label{fig:mobility-patterns-implications}
 \end{figure}
@@ -212,7 +212,7 @@ Given the set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, 
   \text{PolicyGeneration}( \mathcal{P}, a, c ) \longrightarrow{} \mathcal{S}_{new}, \mathcal{S}_{new_{conf}}
 \end{equation}
 
-The $\mathcal{S}_{new_{conf}}$ configuration is referred as the \emph{adaptive duty cycle} of associated sensors.
+The $\mathcal{S}_{new_{conf}}$ configuration is referred to as the \emph{adaptive duty cycle} of associated sensors.
 \end{alertblock}
 \end{frame}
 
@@ -235,9 +235,9 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \begin{itemize}
   \item To identify mobility patterns from context information obtained from an inertial sensor (accelerometer) and location providers (GPS).
   \pause
-  \item To generate policies for a self-adapting sensors' usage (GPS) from identified mobility patterns, accuracy and energy requirements of mobile application, and status of mobile device's constraints. 
+  \item To generate an accurate representation of mobility patterns, which in conjunction with accuracy mobile app requirements and mobile device constraints, allows to generate power-aware GPS sensing policies.
   \pause
-  \item To ease the development of mobile sensing applications that require user location tracking, i.e., LBS, isolating the complexity of sensors' access and the associated efficient energy management.
+  \item To reduce energy consumption in location-based mobile sensing apps through a middleware that implements policies fed with mobility patterns learned from sensors data.
 \end{itemize}
 \end{exampleblock}
 \end{frame}
@@ -269,7 +269,6 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \label{fig:taxonomy}
 \end{figure}
 \end{frame}
-
 
 
 \section{Methodology}
@@ -438,38 +437,38 @@ D   & Thesis writing                                                            
 
 
 
-\begin{frame}{Schedule (Option B)}
-\begin{table}
-\small
-\centering
-\resizebox{0.98\textwidth}{!}{%
-\begin{tabular}{clcccccccccccc}
-   &                                                                               & 2014 & \multicolumn{3}{c}{\small{2015}} & \multicolumn{3}{c}{\small{2016}} & \multicolumn{3}{c}{\small{2017}} & \multicolumn{2}{c}{\small{2018}} \\
-   \cline{3-14}
-\multicolumn{2}{l}{\scriptsize{Work: \markdone~Done, \markonprogress~In progress, \markoff~To be done}} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd}\\
-   \toprule
-\multicolumn{2}{c}{\textsc{Methodology steps}}                                                               &  &  &  &  &  &  &  &  &  &  &  & \\
-1   & \makecell[l]{Familiarization with state-of-art power-aware \\sensing related techniques}               & \markdone  & \markdone  & \markdone &  &  &  &  &  &  &  &  & \vspace{0.25em}\\
-2   & \makecell[l]{Formal definition and selection of mobility \\patterns to be identified}                  &  &  & \markdone & \markdone & \markdone &  &  &  &  &  &  & \vspace{0.25em}\\
-3   & \makecell[l]{Research on pattern recognition algorithms \\focused on mobility patterns identification} &  &  &  & \markdone & \markdone & \markdone &  &  &  &  &  & \vspace{0.25em}\\
-4   & \makecell[l]{Design of the Pattern Identification Element (PIE)}                                       &  &  &  & \markdone & \markdone & \markdone & \markonprogress &  &  &  &  &  \vspace{0.25em}\\
-5   & \makecell[l]{Research on (and proposition of) adaptive \\policies for energy efficient usage of sensors} &  &  &  &  &  &  & \markonprogress & \markonprogress &  &  &  & \vspace{0.25em}\\
-6   & \makecell[l]{Design of the Policy Generation Element (PGE)}                                            &  &  &  &  &  &  &  &  & \markonprogress &  &  &  \vspace{0.25em}\\
-7   & \makecell[l]{Development of a middleware implementing \\the PIE and PGE for the Android platform}            &  &  &  &  &  &  &  &  & \markonprogress &  &  &  \vspace{0.25em}\\
-8   & \makecell[l]{Experimentation in terms of accuracy and \\energy efficiency}                                  &  &  &  &  &  &  &  &  &  & \markoff & \markoff & \vspace{1em} \\
+% \begin{frame}{Schedule (Option B)}
+% \begin{table}
+% \small
+% \centering
+% \resizebox{0.98\textwidth}{!}{%
+% \begin{tabular}{clcccccccccccc}
+%    &                                                                               & 2014 & \multicolumn{3}{c}{\small{2015}} & \multicolumn{3}{c}{\small{2016}} & \multicolumn{3}{c}{\small{2017}} & \multicolumn{2}{c}{\small{2018}} \\
+%    \cline{3-14}
+% \multicolumn{2}{l}{\scriptsize{Work: \markdone~Done, \markonprogress~In progress, \markoff~To be done}} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd} & \scriptsize{3rd} & \scriptsize{1st} & \scriptsize{2nd}\\
+%    \toprule
+% \multicolumn{2}{c}{\textsc{Methodology steps}}                                                               &  &  &  &  &  &  &  &  &  &  &  & \\
+% 1   & \makecell[l]{Familiarization with state-of-art power-aware \\sensing related techniques}               & \markdone  & \markdone  & \markdone &  &  &  &  &  &  &  &  & \vspace{0.25em}\\
+% 2   & \makecell[l]{Formal definition and selection of mobility \\patterns to be identified}                  &  &  & \markdone & \markdone & \markdone &  &  &  &  &  &  & \vspace{0.25em}\\
+% 3   & \makecell[l]{Research on pattern recognition algorithms \\focused on mobility patterns identification} &  &  &  & \markdone & \markdone & \markdone &  &  &  &  &  & \vspace{0.25em}\\
+% 4   & \makecell[l]{Design of the Pattern Identification Element (PIE)}                                       &  &  &  & \markdone & \markdone & \markdone & \markonprogress &  &  &  &  &  \vspace{0.25em}\\
+% 5   & \makecell[l]{Research on (and proposition of) adaptive \\policies for energy efficient usage of sensors} &  &  &  &  &  &  & \markonprogress & \markonprogress &  &  &  & \vspace{0.25em}\\
+% 6   & \makecell[l]{Design of the Policy Generation Element (PGE)}                                            &  &  &  &  &  &  &  &  & \markonprogress &  &  &  \vspace{0.25em}\\
+% 7   & \makecell[l]{Development of a middleware implementing \\the PIE and PGE for the Android platform}            &  &  &  &  &  &  &  &  & \markonprogress &  &  &  \vspace{0.25em}\\
+% 8   & \makecell[l]{Experimentation in terms of accuracy and \\energy efficiency}                                  &  &  &  &  &  &  &  &  &  & \markoff & \markoff & \vspace{1em} \\
 
-\multicolumn{2}{c}{\textsc{Required tasks}}                                        &  &  &  &  &  &  &  &  &  &  &  & \\
-A   & Related courses                                                              & \markdone  & \markdone  & \markdone &  &  &  &  &  &  &  &  & \vspace{0.2em} \\
-B   & Research articles submission                                                 &  &  &  & \markdone &  & \markdone &  &  &  &  & \markoff & \vspace{0.25em} \\
-C   & Predoctoral exam preparation                                                 &  &  &  &  &  &  &  &  & \markoff &  &  & \vspace{0.2em} \\
-D   & Thesis writing                                                               & \markdone  &  &  & \markdone &  &  & \markonprogress &  &  & \markoff & \markoff & \markoff \\
-\bottomrule
-\end{tabular}%
-}
-\caption{Schedule of methodology activities}
-\label{tbl:schedule-required-activities-summarized}
-\end{table}
-\end{frame}
+% \multicolumn{2}{c}{\textsc{Required tasks}}                                        &  &  &  &  &  &  &  &  &  &  &  & \\
+% A   & Related courses                                                              & \markdone  & \markdone  & \markdone &  &  &  &  &  &  &  &  & \vspace{0.2em} \\
+% B   & Research articles submission                                                 &  &  &  & \markdone &  & \markdone &  &  &  &  & \markoff & \vspace{0.25em} \\
+% C   & Predoctoral exam preparation                                                 &  &  &  &  &  &  &  &  & \markoff &  &  & \vspace{0.2em} \\
+% D   & Thesis writing                                                               & \markdone  &  &  & \markdone &  &  & \markonprogress &  &  & \markoff & \markoff & \markoff \\
+% \bottomrule
+% \end{tabular}%
+% }
+% \caption{Schedule of methodology activities}
+% \label{tbl:schedule-required-activities-summarized}
+% \end{table}
+% \end{frame}
 
 {\aauwavesbg
 \begin{frame}[plain,noframenumbering]
