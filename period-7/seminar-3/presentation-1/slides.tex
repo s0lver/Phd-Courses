@@ -1,5 +1,5 @@
 %!TEX program = lualatex
-\documentclass[10pt,xcolor={dvipsnames},handout]{beamer}
+\documentclass[10pt,xcolor={dvipsnames}]{beamer}
 \usetheme[
 %%% options passed to the outer theme
     progressstyle=movCircCnt,   %either fixedCircCnt, movCircCnt, or corner
@@ -145,7 +145,7 @@ series=\bfseries}
   \item<1-> The popularity of mobile devices is a result of advances in their computation, \textbf{sensing}, and communication dimensions~\cite{Islam2014}.
   \begin{itemize}
     \item<1-> The sensing facilities improve interaction with user, turning them into \emph{omni-sensors} able to \emph{know} about its surrounding environment.
-    \item<2-> Smartphones have become \emph{context-aware}, gaining understanding about user's activity and environment.
+    \item<2-> Smartphones have become \emph{context-aware} devices, gaining understanding about user's activity and environment.
   \end{itemize}
   \item<3-> However, battery is not evolving at the same pace than the advances in other smartphone's characteristics~\cite{Kjaergaard2012}, growing only 5-10\% each year~\cite{Ma2012,Evarts2015}.
   \begin{itemize}
@@ -176,7 +176,7 @@ Intelligent policies produced through context information built from sensors dat
 \pause
 \begin{itemize}
   \item An intelligent policy is a special rule that defines how sensors should be selected and configured to reduce energy consumption and achieve the mobile sensing app's requirements.
-  It is intelligent in terms of self-adaptness to changes detected in context information.
+  It is intelligent in terms of self-adaptness to changes detected in context information across time.
   \pause
   \item This research work is aimed at employing GPS and inertial sensors data (accelerometer) for inferring context information in terms of mobility patterns.
   This context information will then be exploited to adapt sensors' operation and produce power savings.
@@ -247,7 +247,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \begin{itemize}
   \item<+-> A mechanism for detecting mobility patterns from the data read by sensors of mobile devices (GPS and accelerometer).
   \item<+-> A mechanism for generating policies for accessing sensors.
-  The produced policies will allow to perform an intelligent usage of smartphone's sensing infrastructure in continuous sensor readings, reducing the energy consumption.
+  The produced policies will allow to perform an intelligent usage of smartphone's sensing facilities in continuous sensor sampling, reducing the energy consumption.
   \item<+-> A middleware implementing the previous power-aware mechanisms for easing the development of location based services.
 \end{itemize}
 \end{frame}
@@ -261,7 +261,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{figure}
 \end{frame}
 
-\section{Previous work}
+\section{Related work}
 \begin{frame}{Related work}{Previous work}
 \begin{figure}
   \centering
@@ -339,7 +339,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{frame}
 
 \section{Schedule}
-\begin{frame}{Schedule (Option A)}
+\begin{frame}{Schedule}
 \begin{table}[]
 \centering
 \resizebox{0.95\textwidth}{!}{%
@@ -376,7 +376,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{table}
 \end{frame}
 
-\begin{frame}{Schedule (Option A)}
+\begin{frame}{Schedule}
 \begin{table}[]
 \centering
 \resizebox{0.95\textwidth}{!}{%
@@ -413,7 +413,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{table}
 \end{frame}
 
-\begin{frame}{Schedule (Option A)}
+\begin{frame}{Schedule}
 \begin{table}
 \centering
 \resizebox{\textwidth}{!}{%
@@ -470,6 +470,17 @@ D   & Thesis writing                                                            
 % \label{tbl:schedule-required-activities-summarized}
 % \end{table}
 % \end{frame}
+
+\section{Conclusions}
+\begin{frame}{Conclusions}{}
+As conclusions, in the current talk it has been provided:
+\begin{itemize}
+  \item<+->  The antecedents and motivation of the current research.
+  \item<+-> A methodology based on the usage of context information for reducing energy consumption in location-based mobile apps.
+  \item<+-> The main blocks of a middleware with an event-driven design and Cognitive Dynamic Systems fundamentals.
+  \item<+-> The detailed work plan for addressing each of the methodology steps, including performed and pending activities.
+\end{itemize}
+\end{frame}
 
 {\aauwavesbg
 \begin{frame}[plain,noframenumbering]
