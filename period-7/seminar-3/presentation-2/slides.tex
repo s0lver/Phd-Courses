@@ -332,7 +332,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 
 \begin{exampleblock}{Cognitive Dynamic System features}
 \begin{itemize}
-    \item Perception-action cycle (Observe and react to modify environment or system operation).
+    \item Perception-action cycle (Observe and react for modifying environment or system operation).
     \pause
     \item Memory (Learn from perception and action).
     \pause
@@ -374,7 +374,7 @@ Several experiments have been carried out during the development of system solut
 Such experiments include:
 \begin{itemize}
   \item Exploring the feasibility of on-device mobility analysis.
-  \item Validating energy saving of on-device approach vs MCC oriented approach.
+  \item Validating energy saving of on-device approach vs. MCC oriented approach.
   \item Validating the cognitive capabilities of the platform and exploring their potential energy savings.
   \begin{itemize}
     \item Using policies based on fixed sampling periods, aimed at different mobility modes \texttt{\small onTrajectory, onStayPoint}.
@@ -433,7 +433,7 @@ Such experiments include:
 \end{frame}
 
 
-\begin{frame}{Experimental results}{Energy performance (solution vs MCC oriented approach)}
+\begin{frame}{Experimental results}{Energy performance (solution vs. MCC oriented approach)}
 {
 \small{}
 \begin{itemize}
@@ -471,11 +471,11 @@ Such experiments include:
 \end{table}
 \end{frame}
 
-\begin{frame}{Experimental results}{Energy performance (solution vs MCC oriented approach)}
+\begin{frame}{Experimental results}{Energy performance (solution vs. MCC oriented approach)}
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{vectors/plot-energy-performance-r2}
-  \caption{Energy performance comparison of on-device vs MCC oriented sample apps using different GPS sampling periods. Battery lifetime increase in factors within the range 1.26\textbf{x} to 1.52\textbf{x}.}
+  \caption{Energy performance comparison of on-device vs. MCC oriented sample apps using different GPS sampling periods. Battery lifetime increase in factors within the range 1.26\textbf{x} to 1.52\textbf{x}.}
   \label{fig:plot-energy-performance}
 \end{figure}
 \end{frame}
@@ -535,7 +535,7 @@ Total trajectories                & 28       &                                 &
   \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{vectors/energy-performance-early-integral-test}
-  \caption{Energy performance of fixed sampling period vs simple sampling policies. Battery lifetime increase of 1.41\textbf{x} (42.8 hours)}
+  \caption{Energy performance of fixed sampling period vs. simple sampling policies. Battery lifetime increase of 1.41\textbf{x} (42.8 hours)}
   \label{fig:energy-performance-early-integral-test}
 \end{figure}
 \end{frame}
@@ -973,7 +973,7 @@ Journal articles published along the development of thesis work:
 \end{table}
 {
 \scriptsize{}
-Experiment 2, factors of energy gainings:
+Experiment 2, factors of energy gains:
 \begin{itemize}
   \item 30 seconds gains  1.442162452
   \item 60 seconds gains  1.521175776
@@ -985,4 +985,44 @@ Experiment 2, factors of energy gainings:
 }
 \end{frame}
 
+
+\begin{frame}{Preliminary results}{Early adaptive sampling implementation}
+\small{}
+\begin{itemize}
+  \item Cognitive capabilities of the platform and early experimentation for ensuring power saving capabilities have also been performed.
+\end{itemize}
+
+\begin{table}[]
+\centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\multicolumn{2}{c}{\textbf{Space information}} & \multicolumn{2}{c}{\textbf{Time information}}      \\ \midrule
+Total fixes                 & 6,652            & Total time             & 6275.15 minutes           \\
+Fixes inside stay points    & 6380 (95.9\%)    & Total stay points time & 5995.08 minutes (95.53\%) \\
+Fixes on trajectory         & 272 (4.1\%)      & Total trajectory time  & 280 minutes (4.47\%)      \\
+Detected stay points        & 6                &                        &                           \\
+Total trajectories          & 26               &                        &                           \\ \bottomrule
+\end{tabular}%
+}
+\caption{Space and time summary of mobility information}
+\end{table}
+
+\begin{table}[]
+\centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{tabular}{@{}rlrrrr@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{\#}} & \multicolumn{1}{c}{\textbf{Semantic}} & \multicolumn{1}{c}{\textbf{Visit count}} & \multicolumn{1}{c}{\textbf{Stay time (minutes)}} & \multicolumn{1}{c}{\textbf{Absolute weight}} & \multicolumn{1}{c}{\textbf{Relative weight}} \\ \midrule
+1 & Park & 3 & 252 & 4.02\% & 4.20\% \\
+2 & Home & 8 & 3,825 & 60.97\% & 63.82\% \\
+3 & Cinvestav & 4 & 1,549 & 24.69\% & 25.85\% \\
+4 & Fast food & 4 & 72 & 1.15\% & 1.21\% \\
+5 & Bob's home & 7 & 220 & 3.50\% & 3.67\% \\
+6 & Coffee shop & 1 & 75 & 1.20\% & 1.25\% \\ \bottomrule
+\end{tabular}%
+}
+\caption{Stay points weight and visits information}
+\end{table}
+\end{frame}
 \end{document}
