@@ -488,22 +488,22 @@ Such experiments include:
 
 \begin{table}[]
 \centering
-\resizebox{0.8\textwidth}{!}{%
-\begin{tabular}{@{}llll@{}}
+\resizebox{0.84\textwidth}{!}{%
+\begin{tabular}{@{}lrlr@{}}
 \toprule
-\multicolumn{2}{c}{\textbf{Space information}} & \multicolumn{2}{c}{\textbf{Time information}}      \\ \midrule
-Total fixes                 & 6,652            & Total time             & 6275.15 minutes           \\
-Fixes inside stay points    & 6380 (95.9\%)    & Total stay points time & 5995.08 minutes (95.53\%) \\
-Fixes on trajectory         & 272 (4.1\%)      & Total trajectory time  & 280 minutes (4.47\%)      \\
-Detected stay points        & 6                &                        &                           \\
-Total trajectories          & 26               &                        &                           \\ \bottomrule
+\multicolumn{2}{c}{\textbf{Space information}} & \multicolumn{2}{c}{\textbf{Time information}}                \\ \midrule
+Total fixes                       & 4,719    & Total time (minutes)            & 8,848.56                     \\
+Fixes inside stay points (94.3\%) &  4,451   & Total stay points time (96.4\%) & 8,526.45                     \\
+Fixes on trajectory (5.7\%)       & 268      & Total trajectory time  (3.6\%)  & 322.11                       \\
+Detected stay points              & 6        & Semantic time duration          & Tuesday night - Monday night \\
+Total trajectories                & 28       &                                 & (approximately 6 days)       \\ \bottomrule
 \end{tabular}%
 }
 \caption{Space and time summary of mobility information}
 \end{table}
 
 \begin{itemize}
-  \item The employment of stay time information could be employed for reducing sensors sampling.
+  \item The employment of stay time information could be employed for reducing sensors sampling:
 \end{itemize}
 
 \begin{table}[]
@@ -512,15 +512,15 @@ Total trajectories          & 26               &                        &       
 \begin{tabular}{@{}rlrrrr@{}}
 \toprule
 \multicolumn{1}{c}{\textbf{\#}} & \multicolumn{1}{c}{\textbf{Semantic}} & \multicolumn{1}{c}{\textbf{Visit count}} & \multicolumn{1}{c}{\textbf{Stay time (minutes)}} & \multicolumn{1}{c}{\textbf{Absolute weight}} & \multicolumn{1}{c}{\textbf{Relative weight}} \\ \midrule
-1 & Park & 3 & 252 & 4.02\% & 4.20\% \\
-2 & Home & 8 & 3,825 & 60.97\% & 63.82\% \\
-3 & Cinvestav & 4 & 1,549 & 24.69\% & 25.85\% \\
-4 & Fast food & 4 & 72 & 1.15\% & 1.21\% \\
-5 & Bob's home & 7 & 220 & 3.50\% & 3.67\% \\
-6 & Coffee shop & 1 & 75 & 1.20\% & 1.25\% \\ \bottomrule
+1 & Park & 3 & 254 & 2.88\% & 2.99\% \\
+2 & Home & 8 & 5,767 & 65.18\% & 67.64\% \\
+3 & Cinvestav & 5 & 2,090 & 23.62\% & 24.51\% \\
+4 & Fast food & 6 & 78 & 0.89\% & 0.92\% \\
+5 & Bob's home & 6 & 260 & 2.94\% & 3.05\% \\
+6 & Coffee shop & 1 & 75 & 0.85\% & 0.89\% \\ \bottomrule
 \end{tabular}%
 }
-\caption{Stay points weight and visits information}
+\caption{Stay points weights and visits information}
 \end{table}
 \end{frame}
 
@@ -562,7 +562,7 @@ Total trajectories          & 26               &                        &       
 \section{Future work}
 \begin{frame}{Future work}{Specific activities}
 {
-Next are tasks to be performed in short-term towards defining policies to be implemented by the system solution.
+Several tasks have to be completed in short-term for defining policies towards adaptive sampling.
 \begin{itemize}
   \item Build a software library for exploring - interpreting the mobility information collected by platform.
   \item Test platform under mobility cases for identifying mismatches in mobility information.
