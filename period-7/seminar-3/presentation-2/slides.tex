@@ -1,5 +1,5 @@
 %!TEX program=lualatex
-\documentclass[9pt,xcolor={dvipsnames},handout]{beamer}
+\documentclass[8pt,xcolor={dvipsnames},handout]{beamer}
 \usetheme[
 %%% options passed to the outer theme
     progressstyle=movCircCnt,   %either fixedCircCnt, movCircCnt, or corner
@@ -89,7 +89,7 @@
 \title[Smart usage of context information for the analysis, design and generation of power-aware policies for MSA's]{Smart usage of context information for the analysis, design and generation of power-aware policies for mobile sensing apps}
          
 \date{Doctoral seminar 2016}
-\author{
+\author[ITL Cinvestav-Tamaulipas]{
   Rafael Pérez Torres
 }
 
@@ -129,8 +129,8 @@
 \end{frame}
 %%%%%%%%%%%%%%%%
 
-\section{Background}
-\begin{frame}{Background}{Motivation}
+\section{Research background}
+\begin{frame}{Research background}{Motivation}
 \begin{itemize}
   \item<1-> The popularity of mobile devices is a result of advances in their computation, \textbf{sensing}, and communication dimensions~\cite{Islam2014}.
   \begin{itemize}
@@ -146,7 +146,7 @@
 \end{frame}
 
 \section{Problem statement}
-\begin{frame}{Problem definition}{Overall problem identification}
+\begin{frame}{Research background}{Overall problem identification}
 \begin{exampleblock}{Overall issue}
 Conceptually, the main problem pursued by this research work is to design a location provider aware of the energy limitations of the mobile device.
 Nonetheless, as the location is a reflection of the mobility patterns described by people, a set of more specific problems could be addressed.
@@ -181,17 +181,17 @@ Additionally, the sensor $\mathcal{S}$ for fine-grain information is \texttt{acc
 
 \begin{frame}{Problem definition}{Problem statement}
 \begin{alertblock}{Problem 2: Policy generation}
-Given the set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, \ldots, p_{S_n} \}$ in data from sensors $\mathcal{S} = \{ S_1,S_2,\ldots, S_n \}$, accuracy required $a$, and physical constraints status $c$ of a mobile device, find a policy that select the proper set of sensors $\mathcal{S}_{new}$ and its associated configuration $\mathcal{S}_{new_{conf}}$  while meeting application requirements.
+Given a set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, \ldots, p_{S_n} \}$ in historical sensors data, accuracy requirements of mobile app $a$, and physical constraints status $c$ of the mobile device, define a policy that selects the proper set of sensors $\mathcal{S}_{new}$ and its associated configuration $\mathcal{S}_{new_{conf}}$  while meeting application requirements and reducing energy consumption.
 
-\begin{equation}
-  \text{PolicyGeneration}( \mathcal{P}, a, c ) \longrightarrow{} \mathcal{S}_{new}, \mathcal{S}_{new_{conf}}
-\end{equation}
+$$
+  \text{PolicyGeneration}( \mathcal{P}, a, c ) \longrightarrow{} \mathcal{S}_{\text{new}}, \mathcal{S}_{\text{new}_{\text{conf}}}
+$$
 
-The $\mathcal{S}_{new_{conf}}$ configuration is referred to as the \emph{adaptive duty cycle} of associated sensors.
+The $\mathcal{S}_{\text{new}_{\text{conf}}}$ configuration is referred as the \emph{adaptive duty cycle} of associated sensor.
 \end{alertblock}
 \end{frame}
 
-\begin{frame}{Problem definition}{Interaction between problems}
+\begin{frame}{Interaction between problems}
 \begin{figure}[tb]
   \centering
   \includegraphics[width=\textwidth]{../../../resources/images/vectors/problems-incorporation}
@@ -200,14 +200,14 @@ The $\mathcal{S}_{new_{conf}}$ configuration is referred to as the \emph{adaptiv
 \end{figure}
 \end{frame}
 
-\begin{frame}{Problem definition}{Hypothesis}
+\begin{frame}{Hypothesis}
 \begin{exampleblock}{Hypothesis}
 Dynamic policies driven by events detected in user mobility could reduce energy consumption of the mobile device when performing continuous location tracking.
 User mobility could be expressed by means of a spatial-time model learned from short and long time windows of context information extracted from GPS and accelerometer sensors data.
 \end{exampleblock}
 %\pause
 {
-\small
+% \small
 \pause
 \begin{itemize}
   \item An intelligent policy is a special rule that defines how sensors should be selected and configured to reduce energy consumption and achieve the mobile sensing app's requirements.
@@ -219,7 +219,7 @@ User mobility could be expressed by means of a spatial-time model learned from s
 }
 \end{frame}
 
-\begin{frame}{Problem definition}{Objectives}
+\begin{frame}{Objectives}
 \begin{exampleblock}{Main objective}
 To reduce energy consumption in the mobile sensing apps, which perform continuous sensor readings, through self-adapting power-aware policies generated from context information obtained from sensors data.
 \end{exampleblock}
@@ -237,17 +237,20 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{exampleblock}
 \end{frame}
 
-\begin{frame}{Problem definition}{Expected contributions}
+\begin{frame}{Expected contributions}
+\begin{exampleblock}{Contributions}
 \begin{itemize}
   \item<+-> A mechanism for detecting mobility patterns from the data read by sensors of mobile devices (GPS and accelerometer).
   \item<+-> A mechanism for generating policies for accessing sensors.
   The produced policies will allow to perform an intelligent usage of smartphone's sensing facilities in continuous sensor sampling, reducing the energy consumption.
   \item<+-> A middleware implementing the previous power-aware mechanisms for easing the development of location based services.
 \end{itemize}
+\end{exampleblock}
 \end{frame}
 
 \section{Methodology}
-\begin{frame}{Methodology}{Methodology steps}
+\begin{frame}{Methodology}
+\begin{exampleblock}{Methodology steps}
 \begin{enumerate}
   \item \textbf{Familiarization with state-of-art power-aware sensing related techniques}
   \item \textbf{Formal definition and selection of mobility patterns to be identified}
@@ -258,6 +261,7 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \item Development of a middleware involving the PIE and PGE for the Android platform
   \item Experimentation in terms of accuracy and energy efficiency
 \end{enumerate}
+\end{exampleblock}
 \end{frame}
 
 \section{Related work}
@@ -270,83 +274,6 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{figure}
 \end{frame}
 
-\begin{frame}{Related work}{Pure hardware approach}
-\begin{exampleblock}{Pure hardware approach}
-\begin{itemize}
-  \item The fundamental idea is the selection of power-aware hardware elements for providing physical data to upper layers, as well as the definition of mechanisms to adapt the hardware input parameters, like DVFS\footnote{DVFS, Dynamic Voltage and Frequency Scaling}.
-  \item Such mechanisms define control points for manipulating hardware (also known as power modes~\cite{Ranganathan2010,Lorch1998,Benini2000}).
-  \item The hardware components obey a static behavior defined by power modes, whose control points are exported to upper layers of the mobile platform.
-\end{itemize}
-\end{exampleblock}
-
-\begin{exampleblock}{Variants}
-\begin{itemize}
-  \item Ad-hoc data acquisition
-  \item Co-processing
-\end{itemize}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}{Related work}{Hardware-software approach}
-\begin{exampleblock}{Hardware-software approach}
-\begin{itemize}
-  \item It is aimed at defining system-wide policies for deciding when to turn sensors on and off, or when to switch hardware components to a different power mode.
-  \item It abstracts fine-grain operation parameters into a coarse-grain set, easing the hardware usage for upper platform layers.
-  \item It is also able to detect changes in the workload of hardware components.
-  \item Because of the coupled interaction with hardware, solutions are produced as HAL's, or low-level hardware middlewares.
-\end{itemize}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}{Related work}{Pure software approach}
-\begin{exampleblock}{Pure software approach}
-\begin{itemize}
-  \item \emph{Spending power to save power}~\cite{Ranganathan2010}.
-  \item It employs context information obtained from sensor data, for achieving activity awareness and making informed decisions towards dynamic power-aware sensors management.
-  \item The lower layers know how to turn circuits on and off, but are unable to define when; whereas higher software layers can dynamically adapt to changes in user context, delegating how to do it to the lower layers.
-  \item Typically, pure software approach solutions are implemented through a layered middleware with the classification and machine learning modules embedded on it.
-\end{itemize}
-\end{exampleblock}
-\end{frame}
-
-\begin{frame}{Related work}{Pure software approach}
-\begin{multicols}{2}
-\begin{exampleblock}{Variants}
-\begin{itemize}
-  \item Sensors usage adaptation
-    \begin{itemize}
-      \item Duty cycling
-      \item Next value inference
-      \item Recycling existing data
-    \end{itemize}
-  \item Sensors replacement
-  \begin{itemize}
-    \item Directly related
-    \item Context related
-  \end{itemize}
-\end{itemize}
-\end{exampleblock}
-
-\newpage
-{\small Generic pure software approach middleware}
-  {
-  \centering
-  \includegraphics[width=1.2\columnwidth]{vectors/generic-middleware-architecture-v2}
-  }
-\end{multicols}
-\end{frame}
-
-
-\begin{frame}{Related work}{Characteristics of pure software approach solutions}
-\begin{exampleblock}{Distinctive characteristics of pure software approach solutions}
-\begin{itemize}
-  \item \textbf{Optimization oriented (OO)}: Optimization orientation focused on minimizing energy consumption and/or the error in activity tracking.
-  \item \textbf{Online learning (OL)}: Online learning from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
-  \item \textbf{User state oriented (US)}: Modeling of an enriched version of the context information, user state (US), for achieving full activity-awareness and ease the adaptation over the sensing dimension.
-\end{itemize}
-\end{exampleblock}
-\end{frame}
-
 \section{Solution}
 \begin{frame}{Proposed solution}{Problem's scenario}
 \begin{figure}
@@ -354,41 +281,6 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
   \includegraphics[width=\textwidth]{vectors/scenario}
   \caption{Basic problem's scenario}
   \label{fig:scenario}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Proposed solution}{Characteristics}
-\begin{itemize}
-  \item Pure software approach, implementing all of its variations.
-  \pause
-  \item Online learning and user state oriented.
-  \pause
-  \item Event-driven oriented, completely on device.
-  \begin{itemize}
-    \item Top level mobility states-events: \texttt{on trajectory}, \texttt{on stay point}.
-    \pause
-    \item Low level mobility states-events: \texttt{transportation mode changed}, \texttt{arriving to stay point}, \texttt{leaving stay point}.
-    \pause
-  \end{itemize}
-  \item Inspired on Cognitive Dynamic Systems~\cite{Haykin2006}, including 
-  \begin{itemize}
-    \item Perception-action cycle.
-    \pause
-    \item Memory.
-    \pause
-    \item Attention.
-    \pause
-    \item Intelligence.
-  \end{itemize}
-\end{itemize}
-\end{frame}
-
-\begin{frame}{Proposed solution}{Overview}
-\begin{figure}
-  \centering
-  \includegraphics[width=\textwidth]{vectors/solution-general-overview}
-  \caption{The layers of proposed solution}
-  \label{fig:solution}
 \end{figure}
 \end{frame}
 
@@ -404,29 +296,99 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \pause
 \begin{figure}
   \centering
-  \includegraphics[width=0.55\textwidth]{vectors/zoom-expanded-spatial-time-model}
+  \includegraphics[width=0.6\textwidth]{vectors/zoom-expanded-spatial-time-model}
   \caption{Information modeled by the expanded spatial-time model}
   \label{fig:information-modeled-spatial-time-model}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Proposed solution}{Fundamental characteristics}
+\small{}
+\begin{itemize}
+  \item Pure software approach, implementing all of its variants.
+  \pause
+  \item Event-driven oriented, fully on-device.
+\end{itemize}
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{vectors/event-driven-system}
+  \caption{Event driven system components}
+  \label{fig:event-driven-system-components}
+\end{figure}
+
+\begin{itemize}
+    \item Top level mobility states-events: \texttt{\small on trajectory, on stay point}.
+    \pause
+    \item Low level mobility states-events: \texttt{\small transportation mode changed, arriving to stay point, leaving stay point}.
+    \pause
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Proposed solution}{Fundamental characteristics}
+\begin{itemize}
+  \item Inspired on Cognitive Dynamic Systems~\cite{Haykin2006}.
+  \item Time plays a key role.
+\end{itemize}
+
+\begin{exampleblock}{Cognitive Dynamic System features}
+\begin{itemize}
+    \item Perception-action cycle (Observe and react to modify environment or system operation).
+    \pause
+    \item Memory (Learn from perception and action).
+    \pause
+    \item Attention (Adapt resource allocating-management in a goal oriented scenario).
+    \pause
+    \item Intelligence (Adapt system operation across time).
+  \end{itemize}
+\end{exampleblock}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{vectors/cds-generic}
+  \caption{A generic Cognitive Dynamic System}
+  \label{fig:cds-generic}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Proposed solution}{Overview}
+\begin{figure}
+  \centering
+  \includegraphics[width=\textwidth]{vectors/solution-general-overview}
+  \caption{The layers of proposed solution}
+  \label{fig:solution}
 \end{figure}
 \end{frame}
 
 \begin{frame}{Proposed solution}{Event-driven implementation}
 \begin{figure}
   \centering
-  \includegraphics[width=1\textwidth]{vectors/smartness-components-v4}
+  \includegraphics[width=1\textwidth]{vectors/smartness-components-v4-for-slides}
   \caption{Cognitive components of platform and their interaction}
   \label{fig:cognitive-components}
 \end{figure}
 \end{frame}
 
-\section{Preliminary results}
-\begin{frame}{Preliminary results}{Feasibility of on-device mobility analysis}
+\section{Experimental results}
+\begin{frame}{Experimental results}
+Several experiments have been carried out during the development of system solution.
+Such experiments include:
+\begin{itemize}
+  \item Exploring the feasibility of on-device mobility analysis.
+  \item Validating energy saving of on-device approach vs MCC oriented approach.
+  \item Validating the cognitive capabilities of the platform and exploring their potential energy savings.
+  \begin{itemize}
+    \item Using policies based on fixed sampling periods, aimed at different mobility modes \texttt{\small onTrajectory, onStayPoint}.
+  \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Experimental results}{Feasibility of on-device mobility analysis}
 % \begin{exampleblock}{Feasibility of on-device mobility analysis}
 {
   \small{}
 \begin{itemize}
-  \item Several experiments were carried out for exploring the feasibility of performing on-device mobility analysis.
-  \item Feasibility is understood as the ability for executing the middleware in the mobile device~\footnote{\scriptsize Google Nexus 6, 2.7 GHz quad-core processor, 3 GB RAM, 3220 mAh battery, Android 6.} under different stress levels without a premature finalization caused by CPU and memory consumption usage issues.
+  \item Feasibility is understood as the ability for executing the middleware in the mobile device\footnote{\scriptsize Google Nexus 6, 2.7 GHz quad-core processor, 3 GB RAM, 3220 mAh battery, Android 6.} under different stress levels without a premature finalization caused by CPU and memory consumption usage issues.
 \end{itemize}
 }
 % \end{exampleblock}
@@ -461,10 +423,17 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{tabular}%
 }
 \end{table}
+
+{
+  \small{}
+\begin{itemize}
+  \item Execution was performed free of memory and computing (timing) issues.
+\end{itemize}
+}
 \end{frame}
 
 
-\begin{frame}{Preliminary results}{Energy performance (solution vs MCC oriented approach)}
+\begin{frame}{Experimental results}{Energy performance (solution vs MCC oriented approach)}
 {
 \small{}
 \begin{itemize}
@@ -502,51 +471,113 @@ To reduce energy consumption in the mobile sensing apps, which perform continuou
 \end{table}
 \end{frame}
 
-\begin{frame}{Preliminary results}{Energy performance (solution vs MCC oriented approach)}
+\begin{frame}{Experimental results}{Energy performance (solution vs MCC oriented approach)}
 \begin{figure}
   \centering
   \includegraphics[width=\columnwidth]{vectors/plot-energy-performance-r2}
-  \caption{Energy performance comparison of on-device vs MCC oriented sample apps using different GPS sampling periods.}
+  \caption{Energy performance comparison of on-device vs MCC oriented sample apps using different GPS sampling periods. Battery lifetime increase in factors within the range 1.26\textbf{x} to 1.52\textbf{x}.}
   \label{fig:plot-energy-performance}
 \end{figure}
 \end{frame}
 
 \begin{frame}{Preliminary results}{Early adaptive sampling implementation}
-Recall the cognitive components are implementing and reacting to changes in mobility.
-Such changes are detected and learned by the platform.
-Although reaction is expressed as in simple policies, the platform now could implement something else.
-\end{frame}
-
-
-
-\section{Publications}
-\begin{frame}{Publications}{}
-Two journal articles have been published along the development of thesis work:
+\small{}
 \begin{itemize}
-  \item Pérez-Torres, R., Torres-Huitzil, C., \& Galeana-Zapién, H. (2016). Power management techniques in smartphone-based mobility sensing systems: A survey. \emph{Pervasive and Mobile Computing}, 1-21. https://doi.org/10/bds7 \cite{Perez-Torres2016}
-
-  \item Pérez-Torres, R., Torres-Huitzil, C., \& Galeana-Zapién, H. (2016). Full On-Device Stay Points Detection in Smartphones for Location-Based Mobile Applications. \emph{Sensors}, 16(10), 1693. https://doi.org/10/brst \cite{Perez-Torres2016b} 
+  \item Cognitive capabilities of the platform and early experimentation for ensuring power saving capabilities have also been performed.
 \end{itemize}
+
+\begin{table}[]
+\centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+\multicolumn{2}{c}{\textbf{Space information}} & \multicolumn{2}{c}{\textbf{Time information}}      \\ \midrule
+Total fixes                 & 6,652            & Total time             & 6275.15 minutes           \\
+Fixes inside stay points    & 6380 (95.9\%)    & Total stay points time & 5995.08 minutes (95.53\%) \\
+Fixes on trajectory         & 272 (4.1\%)      & Total trajectory time  & 280 minutes (4.47\%)      \\
+Detected stay points        & 6                &                        &                           \\
+Total trajectories          & 26               &                        &                           \\ \bottomrule
+\end{tabular}%
+}
+\caption{Space and time summary of mobility information}
+\end{table}
+
+\begin{itemize}
+  \item The employment of stay time information could be employed for reducing sensors sampling.
+\end{itemize}
+
+\begin{table}[]
+\centering
+\resizebox{0.8\textwidth}{!}{%
+\begin{tabular}{@{}rlrrrr@{}}
+\toprule
+\multicolumn{1}{c}{\textbf{\#}} & \multicolumn{1}{c}{\textbf{Semantic}} & \multicolumn{1}{c}{\textbf{Visit count}} & \multicolumn{1}{c}{\textbf{Stay time (minutes)}} & \multicolumn{1}{c}{\textbf{Absolute weight}} & \multicolumn{1}{c}{\textbf{Relative weight}} \\ \midrule
+1 & Park & 3 & 252 & 4.02\% & 4.20\% \\
+2 & Home & 8 & 3,825 & 60.97\% & 63.82\% \\
+3 & Cinvestav & 4 & 1,549 & 24.69\% & 25.85\% \\
+4 & Fast food & 4 & 72 & 1.15\% & 1.21\% \\
+5 & Bob's home & 7 & 220 & 3.50\% & 3.67\% \\
+6 & Coffee shop & 1 & 75 & 1.20\% & 1.25\% \\ \bottomrule
+\end{tabular}%
+}
+\caption{Stay points weight and visits information}
+\end{table}
 \end{frame}
 
+\begin{frame}{Preliminary results}{Early adaptive sampling implementation}
+\small{}
+\begin{itemize}
+  \item A simple sampling policy created from two fixed sampling periods was implemented.
+  \item The sampling periods are switched depending on changes in user mobility.
+  \item Such simple sampling policy scheme allowed to reduce energy consumption.
+\end{itemize}
+
+  \begin{figure}
+  \centering
+  \includegraphics[width=\columnwidth]{vectors/energy-performance-early-integral-test}
+  \caption{Energy performance of fixed sampling period vs simple sampling policies. Battery lifetime increase of 1.41\textbf{x} (42.8 hours)}
+  \label{fig:energy-performance-early-integral-test}
+\end{figure}
+\end{frame}
+
+
+
+% \section{Publications}
+% \begin{frame}{Publications}{}
+% Two journal articles have been published along the development of thesis work:
+% \begin{itemize}
+%   \item Pérez-Torres, R., Torres-Huitzil, C., \& Galeana-Zapién, H. (2016). Power management techniques in smartphone-based mobility sensing systems: A survey. \emph{Pervasive and Mobile Computing}, 1-21. https://doi.org/10/bds7 \cite{Perez-Torres2016}
+%   \begin{itemize}
+%     \item It analysis state of art solutions aimed at performing power-aware sensing. 
+%     \item It proposes the taxonomy of power-aware sensing solutions previously described.
+%   \end{itemize}
+
+%   \item Pérez-Torres, R., Torres-Huitzil, C., \& Galeana-Zapién, H. (2016). Full On-Device Stay Points Detection in Smartphones for Location-Based Mobile Applications. \emph{Sensors}, 16(10), 1693. https://doi.org/10/brst \cite{Perez-Torres2016b} 
+%   \begin{itemize}
+%     \item It describes the experimentation performed for ensuring the feasibility of on-device mobility analysis and the energy savings when compared against an MCC oriented approach.
+%   \end{itemize}
+% \end{itemize}
+% \end{frame}
+
+\section{Future work}
 \begin{frame}{Future work}{Specific activities}
 {
-\small{}
 Next are tasks to be performed in short-term towards defining policies to be implemented by the system solution.
 \begin{itemize}
-  \item Preliminary integral experimentation for studying mobility information generated by cognitive components.
-  \item Selection of mobility cases on which platform will be tested.
-  \item Prepare and launch experiments using those scenarios, towards detecting anomalies not observed by the platform.
-  \item Definition of policies - behaviors that allow platform to identify and react to such cases accordingly.
   \item Build a software library for exploring - interpreting the mobility information collected by platform.
-  \item Evaluate, by experimentation, the policies defined for addressing the issues on mobility cases.
-  \item Selection of policies with the best time-spatial accuracy metrics.
+  \item Test platform under mobility cases for identifying mismatches in mobility information.
+  \item Produce sampling policies for mobility tracking and mismatches handling (logarithmic, exponential, doubling).
+  % \item Preliminary integral experimentation for studying mobility information generated by cognitive components.
+  % \item Selection of mobility cases on which platform will be tested.
+  % \item Prepare and launch experiments using those scenarios, towards detecting anomalies not observed by the platform.
+  % \item Definition of policies - behaviors that allow platform to identify and react to such cases accordingly.
+  \item Evaluate the energy consumption and spatial-time accuracy of defined policies.
+  % \item Selection of policies with the best time-spatial accuracy metrics.
 \end{itemize}
 }
 \end{frame}
 
 
-\section{Future work}
 \begin{frame}{Detailed schedule}
 \begin{table}[]
 \centering
@@ -646,10 +677,29 @@ D   & Thesis writing                                                            
 
 \section{Conclusions}
 \begin{frame}{Conclusions}{}
-As conclusions, the current talk has been provided:
+As conclusions, the current talk has provided:
 \begin{itemize}
-  \item lualatex
+  \item The refinement of background and scientific context of this research work.
+  \item The improvements of the cognitive and event-driven proposed solution.
+  \item Experimental results that validate the feasibility of on-device mobility analysis, and draw the path for incorporating true adaptive sampling, which is directed by cognitive-oriented mobility data processing.
 \end{itemize}
+
+{
+\vspace{2cm}
+\small{}
+Journal articles published along the development of thesis work:
+\begin{itemize}
+  \item Pérez-Torres, R., Torres-Huitzil, C., \& Galeana-Zapién, H. (2016). Power management techniques in smartphone-based mobility sensing systems: A survey. \emph{Pervasive and Mobile Computing}, 1-21. https://doi.org/10/bds7 \cite{Perez-Torres2016}
+  % \begin{itemize}
+  %   \item It analysis state of art solutions aimed at performing power-aware sensing. 
+  %   \item It proposes the taxonomy of power-aware sensing solutions previously described.
+  % \end{itemize}
+
+  \item Pérez-Torres, R., Torres-Huitzil, C., \& Galeana-Zapién, H. (2016). Full On-Device Stay Points Detection in Smartphones for Location-Based Mobile Applications. \emph{Sensors}, 16(10), 1693. https://doi.org/10/brst \cite{Perez-Torres2016b} 
+  % \begin{itemize}
+  %   \item It describes the experimentation performed for ensuring the feasibility of on-device mobility analysis and the energy savings when compared against an MCC oriented approach.
+  % \end{itemize}
+\end{itemize}}
 \end{frame}
 
 {\aauwavesbg
@@ -672,6 +722,82 @@ As conclusions, the current talk has been provided:
 }
 \end{frame}
 
+\begin{frame}{Related work}{Pure hardware approach}
+\begin{exampleblock}{Pure hardware approach}
+\begin{itemize}
+  \item The fundamental idea is the selection of power-aware hardware elements for providing physical data to upper layers, as well as the definition of mechanisms to adapt the hardware input parameters, like DVFS\footnote{DVFS, Dynamic Voltage and Frequency Scaling}.
+  \item Such mechanisms define control points for manipulating hardware (also known as power modes~\cite{Ranganathan2010,Lorch1998,Benini2000}).
+  \item The hardware components obey a static behavior defined by power modes, whose control points are exported to upper layers of the mobile platform.
+\end{itemize}
+\end{exampleblock}
+
+\begin{exampleblock}{Variants}
+\begin{itemize}
+  \item Ad-hoc data acquisition
+  \item Co-processing
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Related work}{Hardware-software approach}
+\begin{exampleblock}{Hardware-software approach}
+\begin{itemize}
+  \item It is aimed at defining system-wide policies for deciding when to turn sensors on and off, or when to switch hardware components to a different power mode.
+  \item It abstracts fine-grain operation parameters into a coarse-grain set, easing the hardware usage for upper platform layers.
+  \item It is also able to detect changes in the workload of hardware components.
+  \item Because of the coupled interaction with hardware, solutions are produced as HAL's, or low-level hardware middlewares.
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Related work}{Pure software approach}
+\begin{exampleblock}{Pure software approach}
+\begin{itemize}
+  \item \emph{Spending power to save power}~\cite{Ranganathan2010}.
+  \item It employs context information obtained from sensor data, for achieving activity awareness and making informed decisions towards dynamic power-aware sensors management.
+  \item The lower layers know how to turn circuits on and off, but are unable to define when; whereas higher software layers can dynamically adapt to changes in user context, delegating how to do it to the lower layers.
+  \item Typically, pure software approach solutions are implemented through a layered middleware with the classification and machine learning modules embedded on it.
+\end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\begin{frame}{Related work}{Pure software approach}
+\begin{multicols}{2}
+\begin{exampleblock}{Variants}
+\begin{itemize}
+  \item Sensors usage adaptation
+    \begin{itemize}
+      \item Duty cycling
+      \item Next value inference
+      \item Recycling existing data
+    \end{itemize}
+  \item Sensors replacement
+  \begin{itemize}
+    \item Directly related
+    \item Context related
+  \end{itemize}
+\end{itemize}
+\end{exampleblock}
+
+\newpage
+{\small Generic pure software approach middleware}
+  {
+  \centering
+  \includegraphics[width=1.2\columnwidth]{vectors/generic-middleware-architecture-v2}
+  }
+\end{multicols}
+\end{frame}
+
+
+\begin{frame}{Related work}{Characteristics of pure software approach solutions}
+\begin{exampleblock}{Distinctive characteristics of pure software approach solutions}
+\begin{itemize}
+  \item \textbf{Optimization oriented (OO)}: Optimization orientation focused on minimizing energy consumption and/or the error in activity tracking.
+  \item \textbf{Online learning (OL)}: Online learning from context information, enabling predictive features thanks to observance over long-time windows of sensory data.
+  \item \textbf{User state oriented (US)}: Modeling of an enriched version of the context information, user state (US), for achieving full activity-awareness and ease the adaptation over the sensing dimension.
+\end{itemize}
+\end{exampleblock}
+\end{frame}
 
 \begin{frame}[t]\frametitle{State-of-art solutions}
 \begin{table}
@@ -845,6 +971,18 @@ As conclusions, the current talk has been provided:
 {\scriptsize $\dagger$ Due to battery depletion, $^\ddagger$ Actual SP miss}
 
 \end{table}
+{
+\scriptsize{}
+Experiment 2, factors of energy gainings:
+\begin{itemize}
+  \item 30 seconds gains  1.442162452
+  \item 60 seconds gains  1.521175776
+  \item 90 seconds gains  1.46152413
+  \item 120 seconds gains 1.264046265
+  \item 150 seconds gains 1.290736703
+  \item Min 1.264046265 Max 1.521175776
+\end{itemize}
+}
 \end{frame}
 
 \end{document}
