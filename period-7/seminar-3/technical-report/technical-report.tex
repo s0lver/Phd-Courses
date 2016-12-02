@@ -1,6 +1,7 @@
 \documentclass[ENG,PhD]{cinvestav}
 
 %%%%%%%%% PACKAGES
+\usepackage[utf8]{inputenc}
 \usepackage{color}
 \usepackage{latexsym, amssymb}
 \usepackage{xcolor}
@@ -8,7 +9,6 @@
 \usepackage{epsfig}
 \usepackage{ucs}
 \usepackage{lettrine}
-\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
 \usepackage{epstopdf}
 \usepackage{url}
@@ -61,6 +61,7 @@
 This technical report describes the progress and advances developed for the thesis work titled \emph{Smart Usage of Context Information for the Analysis, Design, and Generation of Power-Aware Policies for Mobile Sensing Apps} during the second year of the doctoral program.
 
 In summary, the different efforts during the second year have been focused on producing a solid methodology, powered up by Cognitive Dynamic Systems and Event-Driven Systems concepts, for solving the problems pursued by this research.
+A set of experiments have been also performed, validating core aspects of the proposed solution.
 }
 
 \begin{document}
@@ -84,7 +85,7 @@ This document presents the summary of advances performed during the last year wo
 As an attempt to provide a self-contained document and to ease the comprehension of its content, the research fundamental aspects of the work are also provided.
 More specifically, the rest of this Technical Report is structured as follows.
 Section~\ref{sec:research-fundamentals} describes the research fundamentals, covering aspects like problem statement, hypothesis, objectives, and contributions.
-Section~\ref{sec:theoretical-framework} provides a summary of the refined description of core conceptual elements employed in this research.
+Section~\ref{sec:theoretical-framework} provides the theoretical framework, including core conceptual elements employed in this research.
 Next, Section~\ref{sec:solution} provides a comprehensive description of the solution proposed for addressing the research problem.
 The experimental results are presented in Section~\ref{sec:experimental-results}, while future work is described in Section~\ref{sec:future-work}.
 Finally, conclusions of this report are provided in Section~\ref{sec:conclusions}.
@@ -117,24 +118,23 @@ Even worse, such growth rate is out of pace with respect to energy demands impos
 
 % from survey and tr-seminar-2
 At the same time, it is important to note that since their initial conception, mobile platforms described a layered architecture with a clear focus on managing the heavy interaction with user.
-As a result, the support for background running processes and for exploiting the existing power management capabilities at hardware level of sensors was discarded, leaving out the power-efficiency of the sensing dimension~\cite{Priyantha2011}.
+As a result, the support for background running processes and for exploiting the power management capabilities of hardware was discarded, leaving out the power-efficiency of the sensing dimension~\cite{Priyantha2011}.
+As a consequence, efficient implementations of power-aware mechanisms that do not jeopardize the accuracy requirements of mobile sensing applications still remain an open challenge, which is augmented by the computational and power constraints of mobile devices, and the long-term and near real-time requirements of these applications.
 
-As a consequence, efficient implementations of power-aware mechanisms that do not jeopardize the accuracy requirements of mobile sensing applications still remain an open challenge, which is augmented by the computational and power constraints of mobile devices, as well as the long-term and near real-time requirements of these applications.
-
-The GPS receiver is, besides the screen display, one of the most energy hungry components of a smartphone~\cite{Perez-Torres2016} and it is the core component of most of Location-Based Services (LBS) applications\footnote{although other location providers could be employed by services without a high accuracy requirement}.
-An LBS depends completely on the location information of the mobile device for conducting its core logic, and its location-awareness attribute allows it to adapt its behavior according to location changes.
+The GPS receiver is, besides the screen display, one of the most energy hungry components of a smartphone~\cite{Perez-Torres2016} and it is the core component of most of Location-Based Services (LBS) applications\footnote{although other mechanisms could be employed by services without a high accuracy requirement, like cellular cell tower and wireless networks location providers}.
+Thus, the core logic of LBS completely depend on the location-awareness of the mobile device for adapting its behavior according to location changes.
 Therefore, it becomes a crucial aspect for these systems to conduct a proper management of GPS receiver towards achieving a reasonable use of the energy resources, which is limited on mobile platforms.
-However, reducing the sampling frequency poses an additional challenge, known as the \emph{energy consumption} vs \emph{accuracy} tradeoff, on which an attempt for reducing energy usage leads to a degradation of the accuracy of collected data.
+However, reducing the sampling frequency poses an additional challenge, known as the \emph{energy consumption} vs. \emph{accuracy} tradeoff, on which an attempt for reducing energy usage leads to a degradation of the accuracy of collected data.
 
 The research work reported on this document aims to reduce the energy consumption of LBS inspired by the insight of Cognitive Dynamic Systems~\cite{Haykin2006}.
 On these systems, which are described later on, there is a memory component that aids the decision making process (in our case, the adaptation of sensors operation) by involving information learned from the environment over short and long windows of time.
-Thus, the memory acts as a relevant factor that could be able to break the \emph{energy consumption} vs \emph{accuracy} tradeoff, allowing to reduce energy consumption without necessarily affecting the accuracy.
-The fundamentals of the research are described in the following sections.
+Thus, the memory acts as a relevant factor that could break the \emph{energy consumption} vs. \emph{accuracy} tradeoff, allowing to reduce energy consumption without necessarily affecting the accuracy.
+% The characteristics of the presented research are described in the following sections.
 
 
 \subsection{Problem statement}
 Conceptually, the final goal of this research is to design a location provider aware of the energy limitations of the mobile device.
-Nonetheless, as the location is a reflection of the mobility patterns described by people, a set of more specific problems addressed by this research work are:
+Nonetheless, as the location is a reflection of the mobility patterns described by people, a set of more specific problems that could be addressed are:
 \begin{itemize}
   \item First, the identification of the user mobility pattern from sensors data, and
   \item Second, the usage of such mobility information for adapting the sensory operations.
@@ -147,9 +147,9 @@ This research work considers two main types of mobility patterns, according to t
 \begin{itemize}
   \item \textbf{Fine-grain mobility patterns}: They refer to motion related to human activity, for instance, walking and running.
   Fine-grain mobility information refers to movement detected by the device, where the device itself is the frame of reference.
-  The accelerometer sensor acts as this reference frame, where positive or negative changes in acceleration are detected by the device itself.
+  The accelerometer sensor acts as this reference frame, where positive or negative changes in acceleration are observed by the mobile device.
 
-  In particular, this research consider the fine-grain mobility patterns in the set Patterns  $ = \{ \text{static, walking, running, vehicle} \}$, as they represent a hint for inferring current user speed without involving as much energy consumption as the GPS receiver~\cite{Abdesslem2009}.
+  In particular, this research considers the fine-grain mobility patterns in the set Patterns  $ = \{ \text{static, walking, running, vehicle} \}$, as they represent a hint for inferring current user speed without involving as much energy consumption as the GPS receiver~\cite{Abdesslem2009}.
   Quantitatively, these patterns could be defined according to typical speeds described by user when moving:
   \begin{itemize}
     \item \textbf{Static}: [0 - 1] m/s.
@@ -160,11 +160,11 @@ This research work considers two main types of mobility patterns, according to t
 
   \item \textbf{Coarse-grain mobility patterns}: They refer to motion at large scale (place level), related to distance traversed by user.
   Coarse-grain mobility information can be detected by the mobile device in accordance with an absolute, and external, frame of reference.
-  The GPS receiver can detect the global position of the device by means of a coordinate that reflect its location in latitude, longitude, and altitude values.
+  The GPS receiver can detect the global position of the device by means of location coordinates composed by latitude, longitude, and altitude values.
   Nevertheless, a coarse-grain mobility pattern with a higher level of semantic meaning is the idea of a stay point and the arrival and departure of user to and from them, respectively.
   The stay points, formally described in following sections, are derived from the stream of location updates and represent places the user holds an interest with.
 
-  Qualitatively, the detection of arrival and departure events of a stay point provide relevant information for reducing the access to GPS receiver, as it could be disabled when user is inside a stay point.
+  Qualitatively, the detection of arrival and departure events of a stay point provides relevant information for reducing the access to GPS receiver, as it could be disabled when user is inside a stay point.
 \end{itemize}
 
 Having defined the previous elements, the problem of identification of mobility patterns is stated as follows:
@@ -179,8 +179,8 @@ Additionally, the sensor $\mathcal{S}$ for fine-grain information is \verb|accel
 
 \subsubsection{Generation of policies for adapting sensory operations}
 The second problem addresses how to use the detected mobility information towards adapting sensory operations while considering an accuracy requirement and the current status of smartphone constraints (i.e., the battery level).
-
 Formally, this problem is stated as follows:
+
 \begin{displayquote}
 Given a set of detected mobility patterns $\mathcal{P} = \{ p_{S_1}, p_{S_2}, \ldots, p_{S_n} \}$ in historical sensors data, accuracy requirements of mobile app $a$, and physical constraints status $c$ of the mobile device, design a policy that selects the proper set of sensors $\mathcal{S}_{new}$ and its associated configuration $\mathcal{S}_{new_{conf}}$  while meeting application requirements and reducing energy consumption.
 $$
@@ -214,7 +214,7 @@ Similarly, the particular objectives are:
 \begin{itemize}
   \item To identify mobility patterns from context information obtained from an inertial sensor (accelerometer) and location providers (GPS).
   \item To generate policies for a self-adapting sensors' usage from identified mobility patterns, accuracy and energy requirements of mobile application, and status of mobile device's constraints.  OR
-  \item \item To generate an accurate representation of mobility patterns, which in conjunction with accuracy mobile app requirements and mobile device constraints, allows to create power-aware GPS sensing policies.
+  \item To generate an accurate representation of mobility patterns, which in conjunction with accuracy mobile app requirements and mobile device constraints, allows to create power-aware GPS sensing policies.
   \item To ease the development of mobile sensing applications that require user location tracking, i.e., LBS, isolating the complexity of sensors' access and the associated efficient energy management.
 \end{itemize}
 
@@ -234,7 +234,7 @@ The overall research work pursued in this thesis is divided in the following met
 \begin{enumerate}
   \item \textbf{Familiarization with state-of-art power-aware sensing related techniques.}
   A review of state-of-art power-aware related techniques has been performed.
-  Relevant concepts, alternative insights and future trend have been identified from this state-of-art revision.
+  Relevant concepts, alternative insights and future trends have been identified from this state-of-art revision.
   
   \item \textbf{Formal definition and selection of mobility patterns to be identified.}
   After a study of the different mobility attributes described by user, the previously defined fine-grain and coarse-grain mobility patterns have been selected as the user mobility characteristics to be identified and exploited.
@@ -242,7 +242,7 @@ The overall research work pursued in this thesis is divided in the following met
   \item \textbf{Research on pattern recognition algorithms focused on mobility patterns identification.}
   From literature, it has been selected a strategy for identified user activity from accelerometer data through a HAR module (Human Activity Recognition) powered by a Naive Bayes classifier.
   Similarly, an event-driven variant of a trajectory analysis algorithm for stay points detection has been developed and tested.
-  Finally, a Geofencing mechanism, which employs the stay points produced by the previous algorithm, has been also proposed and tested for identifying the arrival and departure event to and from such places.
+  Finally, a Geofencing mechanism, which employs the stay points produced by the previous algorithm, has been also proposed and tested for identifying the arrival and departure events to and from such places.
   
   \item \textbf{Design of the Pattern Identification Element (PIE).}
   A global-integrator module has been built for detecting the fine and coarse-grain mobility patterns from sensors data, as well as for supporting the storage of the events arisen from those notifications in a memory component.
@@ -255,12 +255,12 @@ The overall research work pursued in this thesis is divided in the following met
 
   \item \textbf{Design of the Policy Generation Element (PGE).}
   All of the findings on the policies generated in previous points have to be included in a logic component able to exploit them when user is describing actual motion.
-  The module must be also consider the mobile app's accuracy requirement and the level of mobile device's constraints (battery level).
+  The module must also consider the mobile app's accuracy requirement and the level of mobile device's constraints (battery level).
   
 
   \item \textbf{Development of a middleware involving the PIE and PGE for the Android platform.}
   Both modules, PIE and PGE, have to be implemented as a middleware for a mobile platform (in this case Android).
-  Although it could be considered as a technical tasks, there are several pitfalls for the implementation of such software unit, as the management of different power states of mobile device and other Android aggressive power saving has to be overridden in order to achieve a successful implementation.
+  Although they could be considered as technical tasks, there are several pitfalls for the implementation of such software unit, as the management of different power states of mobile device and other Android aggressive power saving mechanisms have to be addressed or overridden.
 
   \item \textbf{Experimentation in terms of accuracy and energy efficiency.}
   The experimentation consists on the evaluation of the performance of proposed system solution in terms of energy consumption and location tracking accuracy, both at the spatial and time dimensions.
@@ -287,7 +287,7 @@ There is reported in the literature a rich body of research for designing power-
 Nonetheless, the proposed system solution distinguishes among existing ones because of the inspiration on Cognitive Dynamic Systems and other valuable elements for going beyond a typical machine learning scheme and achieve a power-aware location tracking mechanism.
 The benefits of relying on a dynamic system, besides the power savings, also include an increase of the awareness of mobile device about activities performed by user, bringing cognitive attributes to the smartphone~\cite{Campbell2012}.
 
-The fundamental pillars this research work is based on are described in following sections.
+The fundamental pillars of this research work are described in following sections.
 
 \subsection{Physics' perspective of motion}
 One of the fundamental concepts for the research are the points of interest (POI) or \textbf{stay points} which enable the platform to identify the most common places the user visits.
@@ -319,11 +319,11 @@ The \emph{at} and \emph{dt} components are obtained from the timestamps of the $
 \mathbf{x}.lon = \frac{ \sum_{i=m}^{n}p_{i}.Lngt }{ |\mathbf{P}| }\label{eq:centroid-longitude}
 \end{equation}
 
-The stay points then represent anchor points in the mobility of user, and once obtained (including the average arrival and departure times), could represent a highly valuable information for disabling or at least reducing the sampling frequency of GPS on such frequent places.
+The stay points then represent anchor points in the mobility of user, and once obtained (including the average arrival and departure times), could represent a highly valuable information for disabling or at least reducing the sampling frequency of GPS when user is inside them.
 
-Similarly, the fine-grain activity information derived from sensors (in this case accelerometer) represent an important hint for inferring the speed described by user when moving between stay points, without causing a high energy consumption as in the case of GPS receiver.
+Similarly, the fine-grain activity information derived from sensors (in this case accelerometer) represents an important hint for inferring the speed described by user when moving between stay points, without causing a high energy consumption as in the case of GPS receiver.
 
-From the speed point of view, stay points represent those intervals on which the speed is 0 (m/s), while the commuting between stay points is described by such intervals on which speed is greater than 0 (m/s). 
+From the speed point of view, stay points represent those intervals on which the speed is near to 0 m/s, while the commuting between stay points is described by such intervals on which speed is greater than 0 m/s. 
 As a consequence, increments and decrements on acceleration values could then represent the departures and arrivals from and to stay points, respectively, as depicted in Figure~\ref{fig:physics-perspective-of-motion}.
 
 \begin{figure}
@@ -335,7 +335,7 @@ As a consequence, increments and decrements on acceleration values could then re
 
 
 \subsection{Event-driven systems}
-Event-driven systems are those systems that rely on information detected from outside (environment) and that react according to changes on such information are best described following an event-oriented perspective.
+Event-driven systems are those systems that rely on information detected from outside (environment) and that react according to changes on such information.
 An event is an occurrence within a particular system or domain; it is something that has happened, or is contemplated as having happened in that domain~\cite{Etzion2011}.
 
 The top-level architecture of an event-driven system mainly consists of three logical layers: 
@@ -343,8 +343,7 @@ The top-level architecture of an event-driven system mainly consists of three lo
   \item \emph{event sources},
   \item \emph{event processing}, and
   \item \emph{event handling}
-\end{listahorizontal}
-, as shown in Figure~\ref{fig:event-based-system-architecture}.
+\end{listahorizontal}, as shown in Figure~\ref{fig:event-based-system-architecture}, which is focused on the stay points detection process.
 The events have to be processed immediately when they occur, requiring a continuous background execution so that a significant situation could be detected promptly.
 
 \begin{figure}
@@ -358,7 +357,7 @@ Under the event-oriented viewpoint, an \emph{event source} is a system component
 % As such, the GPS receiver is considered this event source, which is continuously producing a stream of location update events.
 The next fundamental component is an \emph{event processing} engine that incrementally processes the stream of incoming events and produces more complex events or actions with a valuable semantic meaning.
 %Here, the algorithm for stay points detection is uninterruptedly running in the background, processing the stream of location updates, and serving to concurrent applications, even during the stand-by modus.
-Finally, an \emph{event handling} component employs the processed event and reacts accordingly by triggering a specific-domain action.
+Finally, an \emph{event handling} component employs the processed events and reacts accordingly by triggering a specific-domain action.
 
 
 \subsection{Cognitive Dynamic Systems}
@@ -411,7 +410,7 @@ As a CDS is composed by a perceptor and an actuator, memory can be classified as
 Thus the memory also acts as a concentrator component that maintains a snapshot of current state of system components, and allows the information feedback with the perceptor and actuator blocks.
 
 \subsubsection*{Perceptual memory}
-Perceptual memory refers to the experiential knowledge gained by the perceptor through a process of learning from the environment, such that the contents of the memory continually change with time in accordance with changes in the environment. % --> OUR PIPELINES OR CLASSIFIERS
+Perceptual memory refers to the experiential knowledge gained by the perceptor through a process of learning from the environment, such that the contents of the memory continually change with time in accordance to changes in the environment. % --> OUR PIPELINES OR CLASSIFIERS
 As a result, perceptual memory defines an internal library with elements that represent items of knowledge about the environment.
 % Perceptual memory is also coupled to an evironmental scene analyzer, involving:
 % \begin{itemize}
@@ -432,7 +431,7 @@ The executive memory also has a library with elements that define items of knowl
 The insight of memory is implied in the proposed hypothesis, as the usage of the learned mobility information is a key component for adapting sensory operations, and because there are different time intervals on which memory ought to be structured and processed.
 
 \subsubsection*{Attention}
-The purpose of attention is to allocate selectively the available computational resources to realize the execution of a goal-directed action.
+The purpose of attention is to allocate selectively the available computational resources to execute a goal-directed action.
 Attention is a mechanism that protects, both the perceptual-processing power of the perceptor and the decision-making power of the actuator, from the information-overload problem by prioritizing how the computational resources are allocated.
 
 For the scope of this research, attention is achieved when the operation of sensors (i.e., resources) is adapted according to changes in mobility, with the final goal of performing user location tracking while reducing energy consumption.
@@ -485,7 +484,7 @@ Therefore, the overall solution is aimed at performing the following tasks:
 For this last point, the inference process means that the departure time could be inferred from historical data (for instance, the average of stay point's leaving times).
 On the other hand, the detection process refers to employing actual sensors data for a prompt identification of the event.
 
-As a result of these tasks, the system solution is able to identify the next mobility modes:
+As a requirement for these tasks, the system solution has to identify the next mobility modes:
 \begin{itemize}
   \item \texttt{onStayPoint} mode: Refers to when user is inside a stay point.
   \item \texttt{onTrajectory} mode: Refers to when user is moving between stay points.
@@ -549,12 +548,12 @@ The perception components of CDS are mapped into the following system solution c
   \item Mobile device's constraints status (battery level).
 \end{itemize}
 
-\paragraph{Hardware sensor listeners}
+\paragraph*{Hardware sensor listeners}
 The raw sensory data supplied by sensors (GPS and accelerometer) represents the raw material perceived by the smartphone from the environment.
 Function callbacks are registered by the system solution in order to receive a message notification when sensors data has been collected.
 Requests for sensors data are performed by the \texttt{Sensor(s) selection and configuration} block.
 
-\paragraph{Pipelines for raw data classification}
+\paragraph*{Pipelines for raw data classification}
 Hardly ever the incoming raw sensory data can be employed as is by further decision making components of a mobility analysis system.
 There are two pipelines aimed at classifying GPS location and accelerometer data. 
 
@@ -567,13 +566,13 @@ The raw data received by the pipeline is obtained through duty cycling of accele
 
 Both pipelines generate a notification when any of the aforementioned mobility events (coarse and fine-grain) is detected.
 
-\paragraph{Mobile application's requirements}
+\paragraph*{Mobile application's requirements}
 The requirements of mobile application also represent relevant information that could impact on the behavior of system solution.
 At the moment, the accuracy of the location tracking is the only requirement that the platform is designed to perceive.
 The value of the accuracy parameter is discrete; a high accuracy requirement indicates that platform has to override many of its internal mechanisms for incrementing the sampling frequency of sensors.
 A low accuracy requirement allows the platform to operate using all of its internal components and mechanisms, in particular the usage of memory information, producing higher power savings.
 
-\paragraph{Device's constraints status} 
+\paragraph*{Device's constraints status} 
 Finally, the status of mobile device's constraints is a highly important factor that also impacts on the behavior of the system solution.
 Once a notification of low battery level scenario is received, the platform perceives this as another notification and could reduce the access to sensors in order to make the most of the battery.
 Such behavior could be overridden by the mobile application if energy is not a constraint and high accuracy is desirable.
@@ -583,11 +582,11 @@ The system solution's memory components learn information about user mobility pa
 The information learned is exploited for detecting when user arrives and/or leaves a stay point, so that the sensors usage could be adapted.
 The working memory is composed by a 2-layer block that is fed with the outcome of the pipeline components.
 
-\paragraph{Context inference module (short interval memory)}
+\paragraph*{Context inference module (short interval memory)}
 The first layer of memory is directly fed by the event notifications coming from mobility pipelines.
 As such, it contains at any given moment the most recent user's mobility information, acting as a short interval memory that interprets what user is doing at the current moment.
 
-\paragraph{Expanded spatial-time model (long interval memory)}
+\paragraph*{Expanded spatial-time model (long interval memory)}
 It receives the context inference performed by the short interval memory, and builds a model of mobility composed by these inferences over a long time window.
 The expanded spatial-time model then allows to identify a variety of mobility patterns information such as, the most important stay points in user mobility, the average commuting time between stay points, as well as a Hidden Markov Model (HMM) that explores the transition probabilities between stay points.
 
@@ -595,7 +594,7 @@ The expanded spatial-time model then allows to identify a variety of mobility pa
 All of the information acquired by the perception and memory components is delivered as event notifications to the intelligence components, which in turn adapt sensory operations according to such changes.
 Recalling that the global objective of the system solution is to perform the location tracking of user, subject to the accuracy requirement and the battery level, the intelligence components handle the incoming high level information for producing a sensor management adaptation that reacts to mobility changes across time.
 
-\paragraph{Events miner}
+\paragraph*{Events miner}
 The \texttt{Events miner} component explores the mobility learned and stored in both layers of memory for collecting meaningful information that could aid the adaptation of sensors operation.
 As the \texttt{Event miner} can focus on specific memory information (rather than on the whole memory) it is said to exhibit attention capabilities and, in conjunction with memory layers, it acts as a pipeline dedicated to the retrieval and processing of memory information.
 Among the information that could be extracted by the \texttt{Event miner} is:
@@ -607,7 +606,7 @@ Among the information that could be extracted by the \texttt{Event miner} is:
 \end{itemize}
 Depending on current mobility-context situation, this information could provide a valuable hint for adapting sensory operations.
 
-\paragraph{Policy generator}
+\paragraph*{Policy generator}
 The \texttt{Policy generator} is the holistic component that reunites all of the perception and memory information (which is explored by the \texttt{Events miner}) in order to make a decision for adapting sensory operations.
 The time is a critical component in the operation of the \texttt{Policy generator}, as its outcome is dynamically adapted to changes in user mobility across time.
 
@@ -646,7 +645,7 @@ Next sections focus on the description of the memory and cognitive tasks execute
 As described in Section~\ref{sec:theoretical-framework}, a Cognitive Dynamic Systems holds different types of memory across its components.
 Their usage and implementation in the system solution are described as follows.
 
-\paragraph{Perceptual memory} 
+\paragraph*{Perceptual memory} 
 The perceptual memory is employed in the \textbf{Perception} block, as it allows to associate or map incoming sensors stimuli to observations made in the past.
 In this way, the platform can actually observe what is happening in the environment, in this case the mobility described by user, and generate a message notification when an interesting event is discovered.
 
@@ -662,7 +661,7 @@ For instance, a single location update is not enough for determining an arrival 
 In this case, several location fixes observed recently and time information could aid the Geofencing mechanism for detecting arrivals accurately.
 
 
-\paragraph{Working memory}
+\paragraph*{Working memory}
 The working memory in the system solution is mainly represented by the expanded spatial-time model.
 On such model, the information learned from sensory data collected in a long time window interval is analyzed and stored.
 The time window length is within the granularity of a week, distinguishing between weekdays (Monday to Friday) and weekends (Saturday and Sunday).
@@ -680,7 +679,7 @@ As it has been mentioned, the \texttt{Events miner} has the ability to explore t
 Finally, one relevant aspect of the working memory in the proposed platform, is that the incorporation of incoming mobility event notifications, performed by the \texttt{Memory mediator} component, is followed by a mismatch identification process, on which the discrepancies between currently observed data and the learned information are detected and notified to the \texttt{Cortex} component.
 This allows the platform to react to situations that are likely to represent changes in user mobility.
 
-\paragraph{Executive memory}
+\paragraph*{Executive memory}
 As it will be described later on in further sections, the \texttt{Sampling decision maker} is the element that actually instructs which sensors and how they should be configured for conducting the next perception -- action cycle.
 
 This final command is influenced by decisions and historical information generated in previous perception -- action cycles, denoted as the $Z^{-1},Z^{-2},\ldots,Z^{-n}$ buffer in Figure~\ref{fig:smartness-components}.
@@ -693,7 +692,6 @@ Nonetheless, the intelligence attribute has been only described from the perspec
 
 The core-engine of the system solution is depicted by the \texttt{Cognitive control} meta-block of Figure~\ref{fig:smartness-components}.
 Such meta-block is represented by the \texttt{Policy generator} component in Figure~\ref{fig:overall-architecture-of-proposed-system}, but in this description a zoom-in of the component is given, highlighting how it is implemented and the different tasks that internal modules have to accomplish.
-
 As the holistic component of the system solution, the \texttt{Cognitive control} meta-block manages information coming from perception and memory components, and it holds the most important role of the platform for adapting attention focus in terms of how sensory operations must be performed.
 
 The specific event-driven operation of the \texttt{Cognitive control} meta-block is as follows.
@@ -759,10 +757,11 @@ Different workarounds were needed depending on the version of the Android mobile
 
 Several experiments have been carried out at different stages of the proposed system solution, each of them with specific purpose.
 The first and second experiments, described later on in this section, were performed using the proposed platform implementing only basic aspects of the perception-action cycle, disregarding the usage of any adaptive sampling policy.
-In the case of the third experiment, the platform incoporates a basic sampling decision maker that selects a different policy depending on whether user is inside a stay point or describing motion during a trajectory.
+In the case of the third experiment, the platform incoporates a basic sampling decision maker that follows a policy for selecting a different sampling period depending on whether user is inside a stay point or describing motion during a trajectory.
 
 For all of the experiments, the smartphones employed were two Google Nexus 6 units, featuring a 2.7 GHz quad-core processor, 3 GB RAM, and a new 3220 mAh battery, running Android 6 (Marshmallow).
 Each round of the experiments involved the carrying of the two smartphones by a campus student, together with a Qstarz BT-Q1000eX GPS logger (acting as a ground-truth GPS data collector) with a sampling frequency of 1 Hz.
+Similarly, for all of the experiments, the parameters for stay point detection algorithm were 500m for the size of geographical area and 45 minutes for minimum time size.
 Further details and results of experiments are presented in next sections.
 
 
@@ -899,7 +898,7 @@ Nonetheless, as the experimentation's results show, there is room for producing 
 %Such adaptive duty cycling scheme could be based on context data coming from different sensors as well as from information extracted by machine learning techniques that would allow to make predictions about user mobility.
 
 \subsection{Evaluation of integral middleware solution} 
-Thr purpose of this experiment was to perform an initial integral test of the whole functionality of the platform, involving the perception-action cycle (the \texttt{StayPoint detector} and \texttt{Geofencing} modules), the attention capabilities, the memory learning (short and long time intervals), as well as the decision making for adapting sensors sampling.
+The purpose of this experiment was to perform an initial integral test of the whole functionality of the platform, involving the perception-action cycle (the \texttt{StayPoint detector} and \texttt{Geofencing} modules), the attention capabilities, the memory learning (short and long time intervals), as well as the decision making for adapting sensors sampling.
 An additional motivation for this trial was the collection of mobility data for designing sampling policies that could perform an accurate learning of stay points, and a reliable identification of visits to them.
 
 Depending on the current mobility state described by user, the \texttt{Sampling decision maker} selects a different duty cycle scheme for accessing GPS receiver and accelerometer.
@@ -984,11 +983,10 @@ Similarly, a more efficient sampling scheme could be employed in the \texttt{onT
 % :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 % :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 \section{Future work}\label{sec:future-work}
-As described in the Section~\ref{sec:experimental-results} describing the preliminary experimentation, the feasibility of the running the proposed system solution in a constrained mobile device, and the energy improvements over a MCC oriented solution have been demonstrated.
+As described in previous section, the feasibility of the running the proposed system solution in a constrained mobile device, and the energy improvements over a MCC oriented solution have been demonstrated by specific experimentations.
 The third experiment allowed to start the collection and analysis of mobility information using all of the components of the proposed solution.
 Such experiment also tested a simple decision maker for adapting sampling frequency that reduced the energy consumption when compared against a fixed sampling.
 However, more work is needed for improving policies generation according to what the platform is able to perceive from the environment, and its analysis against learned information.
-
 In particular, the following tasks are required:
 \begin{itemize}
   \item Continue the data collection using the platform for further analysis.
@@ -1027,7 +1025,7 @@ In particular, the following aspects were described:
   These results signals the path for the future work to be performed during the next year of the research.
 \end{itemize}
 
-\bibliographystyle{plain}
+\bibliographystyle{ieeetran}
 \bibliography{../../../resources/references/library}
 \end{document}
 

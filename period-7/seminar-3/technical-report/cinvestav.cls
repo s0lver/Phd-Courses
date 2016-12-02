@@ -15,7 +15,6 @@
 \renewcommand{\familydefault}{\sfdefault}
 %\bibfont{\sfdefault}
 
-
 \newcommand{\thesisen}[1]
    {\def\@thesisnameen{thesis}
     \def\@Thesisnameen{Thesis}
