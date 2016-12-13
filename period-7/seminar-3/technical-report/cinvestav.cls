@@ -33,7 +33,7 @@
 \RequirePackage[usenames,dvipsnames]{xcolor}
 \RequirePackage{fancyhdr}
 %\RequirePackage{hyperref}
-\RequirePackage{algorithm}
+%\RequirePackage{algorithm}
 
 % Properly clear the global variables and commands
 % (is is more a convention to prevent confusion with
