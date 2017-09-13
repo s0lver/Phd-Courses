@@ -1,0 +1,100 @@
+%!TEX program = lualatex
+\documentclass[8pt,compress,xcolor={table,dvipsnames}]{beamer}
+
+\usepackage{polyglossia}
+\setmainlanguage{english}
+
+\usetheme{hsrm}
+\setbeameroption{show notes}
+\usepackage{helvet}
+\usepackage{tabularx,ragged2e}
+\usepackage{booktabs}
+% \usepackage{dtklogos}
+\usepackage{tikz}
+\usetikzlibrary{mindmap,backgrounds}
+\usepackage{arydshln}
+\usepackage{chngpage}
+\usepackage{natbib}
+\usepackage{multicol}
+\usepackage[caption=false]{subfig}
+\usepackage[absolute,overlay]{textpos}
+
+\definecolor{colorAzulBienBonito}{RGB}{0,200,255}
+\newcommand{\markdone}{\textcolor{PineGreen}{$\bullet$}}
+\newcommand{\markonprogress}{\textcolor{colorAzulBienBonito}{$\bullet$}}
+\newcommand{\markoff}{\textcolor{PineGreen}{$\circ$}}
+
+%\usepackage[natbib=true, bibstyle=authoryear, citestyle=authoryear-comp, backend=bibtex]{biblatex}
+\setbeamersize{text margin left=5mm,text margin right=5mm}
+\graphicspath{ {../../../resources/images/}}
+
+\title{Smart usage of context information for the analysis, design, and generation of power-aware policies for mobile sensing apps}
+
+\subtitle{Doctoral seminar}
+
+\author{Rafael Pérez Torres}
+
+\institute{Center for Research and Advanced Studies of the National Polytechnic Institute\\LTI {\Medium Cinvestav}}
+
+\date{September 2017}
+
+\begin{document}
+
+\maketitle
+
+\begin{frame}{Structure}{}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\input{sections/introduction}
+
+\input{sections/problem-statement}
+
+\input{sections/objectives}
+
+\input{sections/methodology}
+
+
+
+\section{Solution}
+\subsection{Solution's overview}
+{
+\begin{frame}[plain]
+  \begin{textblock*}{8.5cm}(4.3cm,8.3cm)
+  \small
+  \textbf{Architecture of proposed system solution. The global perception-action cycle, the different memory types, and the internal feedback loops are observed.}
+  \end{textblock*}
+
+  \begin{textblock*}{1cm}(12cm,9.3cm)
+  \scriptsize
+  \insertframenumber~/~\inserttotalframenumber
+  \end{textblock*}
+
+  \centering
+  \includegraphics[width=0.98\textwidth]{vectors/inspired-cds-solution-for-slides}
+  %\captionof{figure}{Architecture of proposed system solution. The global perception-action cycle and the internal loops are observed.}
+\end{frame}}
+
+
+
+
+% \bibliographystyle{unsrtnat}
+% \begin{frame}{References}
+% \frame[allowframebreaks]{ 
+% 		\bibliography{../../../resources/references/library}
+% }
+% \end{frame}
+
+\begin{frame}[allowframebreaks,noframenumbering]
+        \frametitle{References}
+%\bibliographystyle{plain}
+{
+\tiny{}
+\bibliographystyle{unsrt}
+\bibliography{../../../resources/references/library}
+}
+\end{frame}
+
+\input{sections/additional-slides}
+
+\end{document}

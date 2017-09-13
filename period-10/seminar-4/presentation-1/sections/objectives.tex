@@ -1,0 +1,32 @@
+\section{Objectives}
+\subsection{Objectives}
+\begin{frame}{Objectives}
+\small
+\begin{block}{\small \textbf{Main objective}}
+\begin{itemize}
+  \item To reduce the energy consumption of mobile sensing apps, which perform continuous sensor sampling, through self-adapting power-aware policies generated from context information obtained from sensors data.
+\end{itemize}
+\end{block}
+
+\begin{block}{\small \textbf{Particular objectives}}
+\begin{itemize}
+  \item To detect mobility patterns from context information obtained from an inertial sensor (accelerometer) and location provider (GPS).
+  \item To generate an accurate representation of detected patterns for summarizing user mobility.
+  \item To dynamically adapt GPS sampling rate by means of a cognitive controller that employs the learned mobility representation and accuracy requirements for implementing power-aware sampling policies.
+  \item To ease the development of mobile sensing applications that require user location tracking, i.e., LBSs and MBSs, isolating the complexity of sensors access and the associated efficient energy management.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\subsection{Contributions}
+\begin{frame}{Contributions}
+\small
+\begin{block}{\small \textbf{Contributions}}
+\begin{itemize}
+  \item An on-device mobility patterns detector that works with streams of raw data collected by smartphone's sensors (GPS and accelerometer).
+  \item An on-device mobility analyzer that incrementally builds a model of user mobility from the detected mobility patterns.
+  \item A cognitive controller inspired on CDSs that, based on the mobility information learned, dynamically adapts GPS sampling rate through power-aware policies. 
+  \item A middleware with the previous modules embedded for easing the development of LBSs and MBSs for the Android mobile platform.
+\end{itemize}
+\end{block}
+\end{frame}

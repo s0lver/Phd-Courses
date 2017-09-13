@@ -1,0 +1,85 @@
+\section{Methodology}
+\subsection{Methodology}
+\begin{frame}{Methodology}
+\small
+\begin{block}{\small \textbf{Steps}}
+\begin{enumerate}
+  \item Revision of state of the art power-aware sensing techniques.
+  \item Formal definition and selection of mobility patterns to be identified.
+  \item Research on algorithms for detecting mobility patterns.
+  \item Design of the \emph{Mobility Events Detector}.
+  \item Design of adaptive policies for energy efficient usage of sensors.
+  \item Design of the Cognitive Controller.
+  \item Development of a middleware involving the \emph{Mobility Events Detector} and the Cognitive Controller for the Android platform.
+  \item Experimentation in terms of spatial-time accuracy and energy efficiency.
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\subsection{Schedule}
+\begin{frame}{Methodology}
+\small
+
+\begin{table}
+%\cellcolor[gray]{0.3}
+\definecolor{colorA}{gray}{0.85}
+\definecolor{colorB}{gray}{0.95}
+\definecolor{colorStep}{gray}{1}
+\definecolor{colorCell}{gray}{0.3}
+% \definecolor{colorCell}{HTML}{00D2CB}
+\renewcommand{\arraystretch}{1.2}
+\centering
+\resizebox{\textwidth}{!}{%
+
+%\fontfamily{phv}\fontsize{7.3}{9}\selectfont
+\begin{tabular}{lllllllllllllll}
+   &                                                                                                                             & \multicolumn{5}{c}{2017}                                                                                                                  & \multicolumn{8}{c}{2018}                                                                                                                                                                                                      \\
+   \toprule
+\# & \multicolumn{1}{c}{Activity}                                                                                                & \multicolumn{1}{c}{\scriptsize{Aug}}   & \multicolumn{1}{c}{\scriptsize{Sep}}   & \multicolumn{1}{c}{\scriptsize{Oct}}   & \multicolumn{1}{c}{\scriptsize{Nov}}   & \multicolumn{1}{c}{\scriptsize{Dec}}   & \multicolumn{1}{c}{\scriptsize{Jan}}   & \multicolumn{1}{c}{\scriptsize{Feb}}   & \multicolumn{1}{c}{\scriptsize{Mar}}   & \multicolumn{1}{c}{\scriptsize{Apr}}   & \multicolumn{1}{c}{\scriptsize{May}}   & \multicolumn{1}{c}{\scriptsize{Jun}}   & \multicolumn{1}{c}{\scriptsize{Jul}}   & \multicolumn{1}{c}{\scriptsize{Aug}}   \\
+\midrule
+\rowcolor{colorStep}
+\multicolumn{2}{c}{\textsc{I Integration of components}}                                                                               &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+\rowcolor{colorA}
+1  & Incorporation of the HAR module in the CC                                                                                   & \markdone & \markdone &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+%\cmidrule[0.25pt]{1-15}
+\rowcolor{colorB}
+2  & \begin{tabular}[c]{@{}l@{}}Incorporation of the accuracy requirement in\\ the CC\end{tabular}                               &                           & \markdone & \markdone &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           \\ 
+%\cmidrule[0.75pt]{1-15}
+\multicolumn{2}{c}{\rule{0pt}{4ex}\textsc{II On-device implementation}}                                                                &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+\rowcolor{colorA}
+3  & \rule{0pt}{2ex}Implementation of sigmoid-driven sampling                                                                                     &                           &                           &                           & \markdone &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+%\cmidrule[0.25pt]{1-15}
+\rowcolor{colorB}
+4  & \begin{tabular}[c]{@{}l@{}}Watchdog mechanisms for Geofencing and\\ Sampling Decision Maker modules\end{tabular}            &                           &                           &                           & \markdone &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+%\cmidrule[0.25pt]{1-15}
+\rowcolor{colorA}
+5  & \begin{tabular}[c]{@{}l@{}}Refinement of the list of candidate stay points\\ employed by the Geofencing module\end{tabular} &                           &                           &                           & \markdone & \markdone &                           &                           &                           &                           &                           &                           &                           &                           \\
+
+\multicolumn{2}{c}{\rule{0pt}{4ex}\textsc{III Experimentation}}                                                                &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+\rowcolor{colorB}
+6  & \begin{tabular}[c]{@{}l@{}}Experiments with larger\\and heterogeneous mobility\end{tabular}                     &                           &                           &                           &                           &                           & \markdone & \markdone & \markdone &                           &                           &                           &                           &                           \\
+
+\rowcolor{colorA}
+7  & Completion of evaluation framework                                                                                          &                           &                           &                           &                           & \markdone & \markdone & \markdone &                           &                           &                           &                           &                           &                           \\
+
+\rowcolor{colorB}
+8  & Comparison with other solutions                                                                                             &                           &                           &                           &                           &                           &                           &                           &                           & \markdone & \markdone &                           &                           &                           \\
+
+
+
+\multicolumn{2}{c}{\rule{0pt}{4ex}\textsc{IV Research work activities}}                                                                                     &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           \\
+
+\rowcolor{colorA}
+9  & \rule{0pt}{2ex}Thesis writing-review                                                                                                       &                           &                           &                           &                           &                           &                           &                           & \markdone & \markdone & \markdone & \markdone & \markdone &                           \\
+
+\rowcolor{colorB}
+10 & Thesis defense                                                                                                              &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           &                           & \markdone \\
+\bottomrule
+\end{tabular}
+
+}
+\caption{Schedule of research work pending activities for the last year of the doctoral program.}
+\label{tab:schedule}
+\end{table}
+
+\end{frame}

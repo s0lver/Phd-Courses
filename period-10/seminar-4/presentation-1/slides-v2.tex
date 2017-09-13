@@ -1,0 +1,108 @@
+%!TEX program=pdflatex
+\documentclass[8pt,xcolor={dvipsnames,table,xcdraw},handout]{beamer} % option aspectratio=169 for wide screen
+\usetheme[
+%%% options passed to the outer theme
+    progressstyle=movCircCnt,   %either fixedCircCnt, movCircCnt, or corner
+    rotationcw,          % change the rotation direction from counter-clockwise to clockwise
+%    shownavsym          % show the navigation symbols
+  ]{AAUsimple}
+  
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{epigraph}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage[ruled]{algorithm2e}
+\usepackage{caption}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{hyperref}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+
+\setbeamerfont{caption}{size=\scriptsize}
+% colored hyperlinks
+\newcommand{\chref}[2]{%
+  \href{#1}{{\usebeamercolor[bg]{AAUsimple}#2}}%
+}
+\definecolor{colorAzulBienBonito}{RGB}{0,200,255}
+\newcommand{\markdone}{\textcolor{PineGreen}{$\bullet$}}
+\newcommand{\markonprogress}{\textcolor{colorAzulBienBonito}{$\bullet$}}
+\newcommand{\markoff}{\textcolor{PineGreen}{$\circ$}}
+
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{PTSans}
+% \usepackage{array}
+% \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\title[Smart usage of context information for the analysis, design and generation of power-aware policies for MSAs]{Smart usage of context information for the analysis, design and generation of power-aware policies for mobile sensing apps}
+         
+\author[ITL Cinvestav-Tamaulipas]{Rafael Pérez Torres}
+
+\institute[
+  ITL Information Technology Laboratory\\
+  Cinvestav\\
+  Tamaulipas
+] 
+{Dr. César Torres Huitzil\\Dr. Hiram Galeana Zapién\\LTI Cinvestav}
+
+\date{Doctoral seminar, 2017}
+
+% specify a logo on the titlepage (you can specify additional logos an include them in institute command below
+\pgfdeclareimage[height=1.5cm]{titlepagelogo}{cinvestav-logo/cinvestav-art-logo} % placed on the title page
+\titlegraphic{\pgfuseimage{titlepagelogo}}
+
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+\graphicspath{ {../../../resources/images/} }
+
+\begin{document}
+% the titlepage
+{\aauwavesbg%
+\begin{frame}[plain,noframenumbering] % the plain option removes the header from the title page
+  \titlepage
+\end{frame}}
+
+\begin{frame}{Structure}{}
+  \tableofcontents[hideallsubsections]
+\end{frame}
+
+\input{sections/introduction}
+
+\input{sections/problem-statement}
+
+\input{sections/objectives}
+
+\input{sections/methodology}
+
+\input{sections/solution}
+
+% {\aauwavesbg
+% \begin{frame}[plain]
+%   \finalpage{
+%     Thank you for your attention!
+%   }
+%   % { \tiny
+%   %   \epigraph{\tiny We make our world significant by the courage of our questions and by the depth of our answers.}{\tiny \textit{Carl Sagan}}
+%   % }
+% \end{frame}}
+
+\begin{frame}[allowframebreaks,noframenumbering]
+        \frametitle{References}
+%\bibliographystyle{plain}
+{
+\tiny{}
+\bibliographystyle{unsrt}
+\bibliography{../../../resources/references/library}
+}
+\end{frame}
+
+\input{sections/additional-slides}
+
+\end{document}

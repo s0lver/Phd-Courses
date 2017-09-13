@@ -1,0 +1,41 @@
+\section{Problem statement}
+\subsection{Problems definition}
+\begin{frame}{Problem statement}
+\small
+\begin{itemize}
+  \item The understanding of mobility is possible at different spatial-temporal scales:
+\end{itemize}
+
+\begin{exampleblock}{\small \textbf{Fine-grain mobility patterns identification}}
+ \begin{itemize}
+    \item They refer to the transportation mode employed by user when moving between stay points.
+    \item Given a set of values $\mathcal{V} = \left \{ v_{acc~1},v_{acc~2},\ldots,v_{acc~n} \right \}$ obtained from accelerometer in the time interval $[t_1,t_2]$, identify fine-grain mobility information:
+\begin{equation*}
+  \text{\textbf{FineGrainMobilityIdentifier}}(\mathcal{V}) \rightarrow p_S \in \{ \text{static, walking, biking, vehicle} \}
+\end{equation*}
+with each $v_{acc~i} \in \mathcal{V}$ composed as $\langle acc_x,acc_y,acc_z,t \rangle$.
+  \end{itemize} 
+\end{exampleblock}
+
+\begin{exampleblock}{\small \textbf{Coarse-grain mobility patterns identification}}
+ \begin{itemize}
+   \item They refer to motion at a large spatial scale related to user visiting stay points.
+   \item \sloppy Given a set of values $\mathcal{V} = \left \{ v_{gps~1},v_{gps~2},\ldots,v_{gps~n} \right \}$ obtained from GPS location provider in time interval $[t_1,t_2]$, identify coarse-grain mobility information:
+\begin{equation*}
+    \text{\textbf{CoarseGrainMobilityIdentifier}}(\mathcal{V}) \rightarrow p_S \in \{ \text{new stay point, arrival, departure} \}
+\end{equation*}
+with each $v_{gps~i} \in \mathcal{V}$ composed associated $\langle lat, lon, t \rangle$.
+ \end{itemize}
+\end{exampleblock}
+\end{frame}
+
+\subsection{Hypothesis}
+\begin{frame}{Hypothesis}
+\small
+\begin{block}{\small \textbf{Hypothesis}}
+\renewcommand{\baselinestretch}{1.4}
+\begin{itemize}
+  \item The energy consumption of continuous and extended location tracking could be reduced by means of a cognitive dynamic system that learns an expanded spatial-time model from mobility events detected from sensors data and that employs such model in a cognitive controller for dynamically adapting GPS sampling rate through sampling policies tailored to current mobility state.
+\end{itemize}
+\end{block}
+\end{frame}
