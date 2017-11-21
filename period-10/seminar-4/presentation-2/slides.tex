@@ -1,0 +1,119 @@
+%!TEX program=pdflatex
+\documentclass[8pt,xcolor={dvipsnames,table,xcdraw},handout]{beamer} % option aspectratio=169 for wide screen
+\usetheme[
+%%% options passed to the outer theme
+    progressstyle=movCircCnt,   %either fixedCircCnt, movCircCnt, or corner
+    rotationcw,          % change the rotation direction from counter-clockwise to clockwise
+%    shownavsym          % show the navigation symbols
+  ]{AAUsimple}
+  
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{epigraph}
+\usepackage{amsmath}
+\usepackage{stmaryrd}
+\usepackage[ruled]{algorithm2e}
+\usepackage{caption}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{hyperref}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+
+\setbeamerfont{caption}{size=\scriptsize}
+% colored hyperlinks
+\newcommand{\chref}[2]{%
+  \href{#1}{{\usebeamercolor[bg]{AAUsimple}#2}}%
+}
+\definecolor{colorAzulBienBonito}{RGB}{0,200,255}
+\newcommand{\markdone}{\textcolor{PineGreen}{$\bullet$}}
+\newcommand{\markonprogress}{\textcolor{colorAzulBienBonito}{$\bullet$}}
+\newcommand{\markoff}{\textcolor{PineGreen}{$\circ$}}
+
+\usepackage{booktabs}
+\usepackage{makecell}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{PTSans}
+%\usepackage[sfdefault,condensed]{roboto}
+% \usepackage[sfdefault,condensed]{cabin} % This requires the font a little bit larger
+\usepackage[sfdefault,condensed]{roboto}
+
+% \usepackage{array}
+% \newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+% \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+\title[Smart usage of context information for the analysis, design and generation of power-aware policies for MSAs]{Smart usage of context information for the analysis, design and generation of power-aware policies for mobile sensing apps}
+         
+\author[Cinvestav-Tamaulipas]{Rafael Pérez Torres}
+
+\institute[
+  ITL Information Technology Laboratory\\
+  Cinvestav\\
+  Tamaulipas
+] 
+{Dr. César Torres Huitzil\\Dr. Hiram Galeana Zapién}
+
+\date{Doctoral seminar, 2017}
+
+% specify a logo on the titlepage (you can specify additional logos an include them in institute command below
+\pgfdeclareimage[height=1.5cm]{titlepagelogo}{cinvestav-logo/cinvestav-art-logo} % placed on the title page
+\titlegraphic{\pgfuseimage{titlepagelogo}}
+
+\setbeamersize{text margin left=5mm,text margin right=5mm} 
+\graphicspath{ {images/} }
+
+\begin{document}
+% the titlepage
+{\aauwavesbg%
+\begin{frame}[plain,noframenumbering] % the plain option removes the header from the title page
+  \titlepage
+\end{frame}}
+
+\begin{frame}{Agenda}{}
+  \tableofcontents[hideallsubsections]
+  %\tableofcontents
+\end{frame}
+
+% \input{sections/introduction}
+
+% \input{sections/soa}
+
+% \input{sections/theoretical-framework}
+
+% TODO: The solution section has to be updated with the new design that the controller has received.
+% TODO: Also, the previous content has to be reduced as there are only 30 minutes. In total, I expect to have at most 30 slides, no more.
+% For instance, the HAR module features has to be updated !
+\input{sections/solution}
+
+%\input{sections/implementation}
+
+%\input{sections/experiments}
+
+%\input{sections/future-work}
+
+{\aauwavesbg
+\begin{frame}[plain,noframenumbering]
+  \finalpage{
+    Thank you for your attention!
+  }
+  { \tiny
+    \epigraph{\tiny Consider again that dot [Earth]. That's here. That's home. That's us.}{\tiny \textit{Carl Sagan}}
+  }
+\end{frame}}
+
+% \input{sections/additional-slides}
+
+\begin{frame}[allowframebreaks,noframenumbering]
+        \frametitle{References}
+%\bibliographystyle{plain}
+{
+\tiny{}
+\bibliographystyle{unsrt}
+\bibliography{library}
+}
+\end{frame}
+\end{document}
