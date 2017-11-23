@@ -26,7 +26,7 @@
 \end{figure}
 
 \begin{block}{\small \textbf{Mobility Events Detector}} 
-Aime at identifying:
+Aimed at identifying:
 \begin{itemize}
     \item Coarse-grain mobility events.
     \item Fine-grain mobility events.
@@ -36,37 +36,46 @@ Aime at identifying:
 
 \begin{frame}{Perception components}{Mobility Events Detector: \emph{Stay Points Detector} module}
 \small
+\vspace{-0.3cm}
 \begin{columns}
 \begin{column}[T]{0.5\textwidth}
 \begin{block}{\small \emph{\textbf{Stay Points Detector}} module}
-\begin{itemize}
-    \item Focused on detecting stay points in user mobility.
-    \item Event driven design, it incrementally processes each low-level mobility event (raw GPS data).
-\end{itemize}
-\begin{figure}
+% \begin{itemize}
+%     \item Focused on detecting stay points in user mobility.
+%     \item Event driven design, it incrementally processes each low-level mobility event (raw GPS data).
+% \end{itemize}
+{
   \centering
-  \includegraphics[width=0.9\textwidth]{vectors/zhen-algorithm-behavior}
-  \caption{A conceptual representation of the stay points detection algorithm behavior.}
-\end{figure}
+  \includegraphics[width=0.75\textwidth]{vectors/zhen-algorithm-behavior}
+  \captionof{figure}{A conceptual representation of the stay points detection algorithm behavior.}
+}
 \end{block}
 \end{column}
 
 \begin{column}[T]{0.5\textwidth}
 \begin{block}{\small \emph{\textbf{Geofencing}} module}
-\begin{itemize}
-    \item Window-based approach with voting system.
-    \item Requires an $SPS_{candidate}$ list of stay points.
-    \item Incrementally analyzes GPS fixes for detecting coarse- grain mobility events under a $gf_{distance}$ threshold:
-\end{itemize}
+% \begin{itemize}
+%     \item Window-based approach with voting system.
+%     \item Requires an $SPS_{candidate}$ list of stay points.
+%     \item Incrementally analyzes GPS fixes for detecting coarse- grain mobility events under a $gf_{distance}$ threshold:
+% \end{itemize}
 
-\begin{figure}
+{
   \centering
-  \includegraphics[width=0.75\textwidth]{vectors/geofencing-window-based-snapshot-for-slides}
-  \caption{A conceptual representation of the window-based geofencing operation.}
-\end{figure}
+  \includegraphics[width=0.65\textwidth]{vectors/geofencing-window-based-snapshot-for-slides}
+  \captionof{figure}{A conceptual representation of the window-based geofencing operation.}
+}
 \end{block}
 \end{column}
 \end{columns}
+
+\begin{block}{\small \emph{\textbf{HAR}} module}
+{
+  \centering
+  \includegraphics[width=0.6\textwidth]{vectors/har-patterns-for-slides-v2}
+  \captionof{figure}{Distribution of mean and standard deviation features employed by the NaïveBayes classifier of the HAR module.}
+}
+\end{block}
 
 
 \end{frame}
@@ -105,22 +114,22 @@ Aime at identifying:
 % \end{figure}
 % \end{frame}
 
-\begin{frame}{Perception components}{Mobility Events Detector: \emph{HAR} module}
-\small
-\begin{block}{\small \emph{\textbf{HAR}} module}
-\begin{itemize}
-    \item Window-based approach.
-    \item Detects transportation mode from accelerometer data.
-    \item Underlying NaïveBayes classifier.
-\end{itemize}
-\end{block}
+% \begin{frame}{Perception components}{Mobility Events Detector: \emph{HAR} module}
+% \small
+% \begin{block}{\small \emph{\textbf{HAR}} module}
+% \begin{itemize}
+%     \item Window-based approach.
+%     \item Detects transportation mode from accelerometer data.
+%     \item Underlying NaïveBayes classifier.
+% \end{itemize}
+% \end{block}
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.9\textwidth]{vectors/har-patterns-for-slides-v2}
-  \caption{Distribution of mean and standard deviation features employed by the NaïveBayes classifier of the HAR module.}
-\end{figure}
-\end{frame}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.9\textwidth]{vectors/har-patterns-for-slides-v2}
+%   \caption{Distribution of mean and standard deviation features employed by the NaïveBayes classifier of the HAR module.}
+% \end{figure}
+% \end{frame}
 
 % \subsection{Layered perceptual memory}
 \begin{frame}{Layered perceptual memory}{Short and long-term memory information}
@@ -220,81 +229,120 @@ Aime at identifying:
 \begin{figure}
   \centering
   \includegraphics[width=0.65\textwidth]{vectors/cognitive-controller-architecture}
-  \caption{A cognitive controller generic architecture}
+  \caption{A cognitive controller generic architecture.}
 \end{figure}
 
 \end{frame}
 
 \begin{frame}{Cognitive controller}{Policies tailored for user mobility}
 \small
+\vspace{-0.3cm}
 \begin{block}{\small \textbf{Stay point mode}}
-  \begin{itemize}
-      \item A sampling based on the sigmoid function $sig(x) = \frac{1}{1+e^{-\alpha x}}$ as a model for the mobility phase transitions.
-      \item Higher sampling rate on arrival and departure, when the user is more likely to move, and slower at the middle of a visit.
-      \item Central part is assisted by motion detection from the \emph{HAR} module.
-  \end{itemize}
-\end{block}
-
 \begin{columns}
 \begin{column}{0.45\textwidth}
-\begin{figure}
+{
   \centering
-  \includegraphics[width=0.99\linewidth]{vectors/sigmoid-segmentation-for-slides}
-  \caption{Approximation of the sigmoid through straight segments.}
-\end{figure}
+  \includegraphics[width=0.75\linewidth]{vectors/sigmoid-segmentation-for-slides}
+  \captionof{figure}{Approximation of the sigmoid through straight segments.}
+}
 \end{column}
 
 \begin{column}{0.55\textwidth}
-\begin{figure}
+{
   \centering
-  \includegraphics[width=0.99\linewidth]{vectors/sigmoid-driven-sampling-policy-for-slides}
-  \caption{A snapshot of the process for producing a sigmoid sampling.}
-\end{figure}
+  \includegraphics[width=0.80\linewidth]{vectors/sigmoid-driven-sampling-policy-for-slides}
+  \captionof{figure}{A snapshot of the process for producing a sigmoid sampling.}
+}
 \end{column}
 \end{columns}
-\end{frame}
-
-\begin{frame}{Cognitive controller}{Policies tailored for user mobility}
-\small 
-\begin{block}{\small \textbf{Trajectory mode}}
-\begin{itemize}
-    \item The spatiotemporal characterization of people's motion during trajectory is complex: it is hard to produce a single spatiotemporal model for summarizing how all people move.
-    \item No special modeling of motion during a trajectory is performed other than the user moves within a speed range.
-    \item A hint of such speed is provided by the HAR module from the detected transportation mode.
-    \item The speed tendency over a window of identified transportation modes is employed for adjusting GPS sampling.
-\end{itemize}
 \end{block}
 
-\begin{figure}
+\begin{block}{\small \textbf{Trajectory mode}}
+{
   \centering
-  \includegraphics[width=0.7\linewidth]{vectors/trajectory-sampling.pdf}
-  \caption{GPS sampling adaptation based on the speed tendency of detected transportation modes.}
-\end{figure}
+  \includegraphics[width=0.7\linewidth]{vectors/trajectory-sampling}
+  \captionof{figure}{GPS sampling adaptation based on the speed tendency of detected transportation modes.}
+}
+\end{block}
+
+% \begin{block}{\small \textbf{Stay point mode}}
+%   \begin{itemize}
+%       \item A sampling based on the sigmoid function $sig(x) = \frac{1}{1+e^{-\alpha x}}$ as a model for the mobility phase transitions.
+%       \item Higher sampling rate on arrival and departure, when the user is more likely to move, and slower at the middle of a visit.
+%       \item Central part is assisted by motion detection from the \emph{HAR} module.
+%   \end{itemize}
+% \end{block}
+
+% \begin{columns}
+% \begin{column}{0.45\textwidth}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.99\linewidth]{vectors/sigmoid-segmentation-for-slides}
+%   \caption{Approximation of the sigmoid through straight segments.}
+% \end{figure}
+% \end{column}
+
+% \begin{column}{0.55\textwidth}
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.99\linewidth]{vectors/sigmoid-driven-sampling-policy-for-slides}
+%   \caption{A snapshot of the process for producing a sigmoid sampling.}
+% \end{figure}
+% \end{column}
+% \end{columns}
 \end{frame}
+
+% \begin{frame}{Cognitive controller}{Policies tailored for user mobility}
+% \small 
+% \begin{block}{\small \textbf{Trajectory mode}}
+% \begin{itemize}
+%     \item The spatiotemporal characterization of people's motion during trajectory is complex: it is hard to produce a single spatiotemporal model for summarizing how all people move.
+%     \item No special modeling of motion during a trajectory is performed other than the user moves within a speed range.
+%     \item A hint of such speed is provided by the HAR module from the detected transportation mode.
+%     \item The speed tendency over a window of identified transportation modes is employed for adjusting GPS sampling.
+% \end{itemize}
+% \end{block}
+
+% \begin{figure}
+%   \centering
+%   \includegraphics[width=0.7\linewidth]{vectors/trajectory-sampling.pdf}
+%   \caption{GPS sampling adaptation based on the speed tendency of detected transportation modes.}
+% \end{figure}
+% \end{frame}
 
 \begin{frame}{Cognitive controller}{\emph{Sampling Decision Maker} module}
 \small
+\vspace{-0.3cm}
 \begin{block}{\small \textbf{Sampling Decision Maker module}}
   \begin{itemize}
       \item It filters from the \emph{pool of exploration-exploitation policies} those apt for the mobility state detected by PRM.
-      \item It implements one policy, employing the spatial-time estimation provided by the PRM.
+      % \item It implements one policy, employing the spatial-time estimation provided by the PRM.
       \item It updates its \emph{Executive Memory} with the selected cognitive action for feedback in further executions.
   \end{itemize}
 \end{block}
 
-\begin{block}{\small \textbf{Reaction for mobility events}}
-\begin{itemize}
-  \item Reaction for arrival event:
-  \begin{itemize}
-  \item The sampling rate is reduced by following a sigmoid-based sampling.
-  \end{itemize}
-
-  \item Reaction for departure event:
-  \begin{itemize}
-    \item The sampling rate is increased by implementing a target sampling $T_{target}$.
-  \end{itemize}
-\end{itemize}
+\begin{block}{\small \textbf{Implementation of cognitive action}}
+{
+  \centering
+  \includegraphics[width=0.67\linewidth]{vectors/brooks-inspired-controller}
+  \captionof{figure}{The subsumption architecture of the controller and the reactions to different coarse grain mobility events.}
+}
 \end{block}
+
+% \begin{block}{\small \textbf{Reaction for mobility events}}
+% \begin{itemize}
+%   \item Reaction for arrival event:
+%   \begin{itemize}
+%   \item The sampling rate is reduced by following a sigmoid-based sampling.
+%   \end{itemize}
+
+%   \item Reaction for departure event:
+%   \begin{itemize}
+%     \item The sampling rate is increased by implementing a GPS sampling rate assisted by the speed tendency of detected transportation modes.
+%   \end{itemize}
+% \end{itemize}
+% \end{block}
+
 % {
 %  \scriptsize 
 % \begin{enumerate}
@@ -323,37 +371,37 @@ Aime at identifying:
 \end{frame}
 
 
-\begin{frame}{Cognitive controller}{Mobility mismatches}
-\small
-\begin{block}{\small \textbf{Mismatches}}
-  \begin{itemize}
-    \item A mismatch represents a discrepancy between observed and learned mobility information.
-    \item In general, the system increases the sampling rate for recovering the accuracy lost.
-  \end{itemize}
-\end{block}
+% \begin{frame}{Cognitive controller}{Mobility mismatches}
+% \small
+% \begin{block}{\small \textbf{Mismatches}}
+%   \begin{itemize}
+%     \item A mismatch represents a discrepancy between observed and learned mobility information.
+%     \item In general, the system increases the sampling rate for recovering the accuracy lost.
+%   \end{itemize}
+% \end{block}
 
-\begin{block}{\small \textbf{Reaction for mobility mismatches}}
-\begin{itemize}
-  \item Reaction for early arrival:
-  \begin{itemize}
-    \item The sampling rate is reduced by following a sigmoid-based sampling.
-  \end{itemize}
+% \begin{block}{\small \textbf{Reaction for mobility mismatches}}
+% \begin{itemize}
+%   \item Reaction for early arrival:
+%   \begin{itemize}
+%     \item The sampling rate is reduced by following a sigmoid-based sampling.
+%   \end{itemize}
 
-  \item Reaction for early departure:
-  \begin{itemize}
-    \item The fastest sampling rate is selected for recovering accuracy and improving system perception.
-  \end{itemize}
+%   \item Reaction for early departure:
+%   \begin{itemize}
+%     \item The fastest sampling rate is selected for recovering accuracy and improving system perception.
+%   \end{itemize}
 
-  \item Reaction for late arrival:
-  \begin{itemize}
-    \item The fast sampling rate must be maintained as long as the user is still in trajectory.
-  \end{itemize}
+%   \item Reaction for late arrival:
+%   \begin{itemize}
+%     \item The fast sampling rate must be maintained as long as the user is still in trajectory.
+%   \end{itemize}
 
-  \item Reaction for late departure:
-  \begin{itemize}
-    \item A \emph{conservative sampling} rate is implemented for detecting the eventual departure.
-  \end{itemize}
+%   \item Reaction for late departure:
+%   \begin{itemize}
+%     \item A \emph{conservative sampling} rate is implemented for detecting the eventual departure.
+%   \end{itemize}
 
-\end{itemize}
-\end{block}
-\end{frame}
+% \end{itemize}
+% \end{block}
+% \end{frame}

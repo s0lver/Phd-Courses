@@ -1,6 +1,6 @@
 %!TEX root = ../slides.tex
 \section{Preliminary results}
-\begin{frame}{Preliminary experimentation}{Materials and methods}
+\begin{frame}{Experimentation}{Materials and methods}
 \small
 \begin{block}{\small \textbf{Attributes evaluated}}
   \begin{itemize}
@@ -27,7 +27,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{Preliminary experimentation}{Materials and methods}
+\begin{frame}{Experimentation}{Materials and methods}
 \small 
 \vspace{-0.5cm}
 \begin{columns}
@@ -149,7 +149,7 @@ Workshop 2: 0.11\%\\
 
 
 % \subsection{Stay Points Detector spatial-time accuracy}
-\begin{frame}{Preliminary experimentation}{\emph{Stay Points Detector} module spatial-time accuracy}
+\begin{frame}{Experimentation}{\emph{Stay Points Detector} module spatial-time accuracy}
 \small
 
 \begin{columns}
@@ -191,10 +191,10 @@ Workshop 2: 0.11\%\\
 \begin{block}{\small \textbf{Results}}
 \begin{columns}
 \begin{column}{0.65\textwidth}
-\begin{figure}
+{
   \centering
-  \includegraphics[width=0.99\textwidth]{vectors/experiments/exp-1/exp-1-centroid-distance}
-\end{figure}
+  \includegraphics[width=0.95\textwidth]{vectors/experiments/exp-1/exp-1-centroid-distance}
+}
 \end{column}
 \begin{column}{0.3\textwidth}
 \captionof{figure}{The impact of different sampling periods on the centroid distance of identified stay points in each trajectory. A maximum centroid distance of $22.52~m$ is identified when employing the 180 seconds sampling period.}
@@ -204,96 +204,28 @@ Workshop 2: 0.11\%\\
 \end{block}
 \end{frame}
 
-\begin{frame}{Preliminary experimentation}{\emph{Stay Points Detector} module spatial-time accuracy: Results}
-\vspace{-0.5cm}
-\begin{table}
-\centering
-\renewcommand{\arraystretch}{0.8}
-\resizebox{0.72\textwidth}{!}{%
-\begin{tabular}{@{}lrrrrrr@{}}
-\toprule
-\multicolumn{1}{c}{\textbf{Trajectory}} & 
-\multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Sampling period\\(seconds)\end{tabular}}} & 
-\multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Live stay\\ points identified\end{tabular}}} & 
-\multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Average centroid\\ distance (meters)\end{tabular}}} & 
-% \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Average diameter\\ distance (meters)\end{tabular}}} & 
-% \multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Average ST\\ difference (seconds)\end{tabular}}} & 
-\multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Average arrival\\ latency (seconds)\end{tabular}}} & 
-\multicolumn{1}{c}{\textbf{\begin{tabular}[c]{@{}c@{}}Average departure\\ latency(seconds)\end{tabular}}} \\ 
-\midrule
-\multirow{6}{*}{Trajectory 1} 
- & 30 & 12 of 12 & 1.50 &   2.67 & 24.92 \\
- & 60 & 12 of 12 & 3.43 &   \textcolor{red}{\textbf{\emph{-12.33}}} & 17.42 \\
- & 90 & 12 of 12 & 4.04 &   15.17 & 32.42 \\
- & 120 & 12 of 12 & 6.66 &  \textcolor{red}{\textbf{\emph{-7.33}}} & 52.42 \\
- & 150 & 12 of 12 & 9.00 &  25.17 & 79.92 \\
- & 180 & 12 of 12 & 10.88 & 22.67 & 77.42 \\
- \cmidrule(l){1-6}
 
-\multirow{6}{*}{Trajectory 2} 
- & 30 & 16 of 16 & 1.59 & 7.38 & 13.62 \\
- & 60 & 16 of 16 & 4.72 & 20.50 & 34.25 \\
- & 90 & 16 of 16 & 4.42 & 37.38 & 26.75 \\
- & 120 & 16 of 16 & 12.51 & 16.75 & 83.00 \\
- & 150 & 16 of 16 & 15.04 & \textcolor{red}{\textbf{\emph{-0.12}}} & 96.12 \\
- & 180 & 16 of 16 & 15.58 & 65.50 & 71.75 \\
- \cmidrule(l){1-6}
-
-\multirow{6}{*}{Trajectory 3} 
- & 30 & 19 of 19 & 3.39 &  2.26 & 12.16 \\
- & 60 & 19 of 19 & 3.96 &  11.74 & 12.16 \\
- & 90 & 19 of 19 & 8.05 &  40.16 & 29.53 \\
- & 120 & 19 of 19 & 11.16  & 37.00 & 56.37 \\
- & 150 & 19 of 19 & 18.06  & 48.05 & 59.53 \\
- & 180 & 19 of 19 & \textcolor{green}{\textbf{22.52}} & 87.53 & 81.63 \\
- \cmidrule(l){1-6}
-
-\multirow{6}{*}{Trajectory 4} 
- & 30 & 13 of 13 & 0.49 &  16.15 & 2.46 \\
- & 60 & 13 of 13 & 1.05 &  41.54 & 34.77 \\
- & 90 & 13 of 13 & 2.41 &  32.31 & 55.54 \\
- & 120 & 13 of 13 & 4.00 & 32.31 & 71.69 \\
- & 150 & 13 of 13 & 4.78 & 41.54 & 50.92 \\
- & 180 & 13 of 13 & 5.19 & 73.85 & 62.46 \\
- \cmidrule(l){1-6}
-
-\multirow{6}{*}{Trajectory 5} 
- & 30 & 18 of 18 & 1.49 & 0.17 & 13.61 \\
- & 60 & 18 of 18 & 2.31 & 13.50 & 21.94 \\
- & 90 & 18 of 18 & 5.12 & \textcolor{red}{\textbf{\emph{-3.17}}} & 23.61 \\
- & 120 & 18 of 18 & 14.46 & 10.17 & \textcolor{red}{\textbf{\emph{-44.72}}} \\
- & 150 & 18 of 18 & 13.58 & 30.17 & \textcolor{red}{\textbf{\emph{-39.72}}} \\
- & 180 & 18 of 18 & 14.39 & 26.83 & \textcolor{red}{\textbf{\emph{-71.39}}} \\
- \cmidrule(l){1-6}
-
-\multirow{6}{*}{Trajectory 6} 
- & 30 & 75 of 75 & 1.89 & 2.89 & 6.89 \\
- & 60 & \textcolor{blue}{\textbf{76 of 75}} & 3.54 & 8.49 & 24.89 \\
- & 90 & \textcolor{blue}{\textbf{76 of 75}} & 4.67  & 7.29 & 59.69 \\
- & 120 & \textcolor{blue}{\textbf{76 of 75}} & 6.71 & 29.29 & 77.69 \\
- & 150 & 75 of 75 & 9.33 & 42.89 & 113.29 \\
- & 180 & \textcolor{blue}{\textbf{76 of 75}} & 10.29 & 51.69 & 108.89 \\
- \bottomrule 
-\end{tabular}
-}
-\caption{Spatial-time differences in detected stay points per sampling period (ST=stay time). The negative values in the ST difference and the arrival and departure latencies are caused by the combined effect of user mobility and sparse sampling rate on the \emph{StreamedZhen} algorithm, which generates stay points in subtly different coordinates with different time information.}
-\end{table}
-\end{frame}
 
 
 % \subsection{Geofencing accuracy}
-\begin{frame}{Preliminary experiments}{\emph{Geofencing} module spatial-time accuracy: Description}
+\begin{frame}{Experimentation}{\emph{Geofencing} module spatial-time accuracy: Description}
 \small 
+\vspace{-0.4cm}
+\begin{columns}
+\begin{column}[T]{0.55\textwidth}
+
 \begin{block}{\small \textbf{Description}}
 \begin{itemize}
-  \item This experiment evaluates the spatial-time accuracy of the visits information detected by the \emph{Geofencing} module under different GPS sampling rates, in terms of missed visits, and arrival and departure distance-latency.
+  \item This experiment evaluates the spatial-time accuracy of the \emph{Geofencing} module under different GPS sampling rates, in terms of missed visits, and arrival and departure latency.
 \end{itemize}
 \end{block}
 
+\end{column}
+\begin{column}[T]{0.45\textwidth}
 \begin{table}
 \centering
 \renewcommand{\arraystretch}{0.8}
-\resizebox{0.6\textwidth}{!}{%
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lll}
 \toprule
 \multirow{2}{*}{\textbf{Geofencing}} & \textbf{Radio distance} ($gf_{distance}$): & $250~m$ \\
@@ -314,29 +246,22 @@ Workshop 2: 0.11\%\\
 \caption{Input parameters for the spatial-time accuracy of Geofencing module experiment.}
 \label{tab:exp-2-input-parameters}
 \end{table}
-\end{frame}
+\end{column}
+\end{columns}
 
-\begin{frame}{Preliminary experiments}{\emph{Geofencing} module spatial-time accuracy: Results}
+
 \vspace{-0.5cm}
-\begin{figure}
+\begin{block}{\small \textbf{Results}}
+{
   \centering
   \includegraphics[width=0.78\textwidth]{vectors/experiments/exp-2/exp-2-visits-for-slides}
-  \caption{Visits missed by the \emph{Geofencing} module for each combination of sampling period and window size values. The largest amount is obtained for the \emph{Trajectory 6}, given its length (more than 30 days). Nevertheless, they do not account for a considerable time in overall trajectories.}
-\end{figure}
+  \captionof{figure}{Visits missed by the \emph{Geofencing} module for each combination of sampling period and window size values. The largest amount is obtained for the \emph{Trajectory 6}, given its length (more than 30 days). Nevertheless, they do not account for a considerable time in overall trajectories.}
+  \par
+}
+\end{block}
 \end{frame}
 
-\begin{frame}{Preliminary experiments}{\emph{Geofencing} module spatial-time accuracy: Results}
-\vspace{-0.5cm}
-\begin{figure}
-  \centering
-  \includegraphics[width=0.75\textwidth]{vectors/experiments/exp-2/exp-2-latencies-for-slides}
-  \caption{Arrival (left) and departure (right) latencies obtained by the Geofencing  module for each combination of sampling period and window length values. There is a tendency on the results as the shortest window’s sizes produce the shortest arrival latency values.}
-\end{figure}
-\end{frame}
-
-
-% \subsection{Reaction to STM mobility mismatches}
-\begin{frame}{Preliminary experiments}{Reaction to STM mobility mismatches: Description}
+\begin{frame}{Experimentation}{Reaction to STM mobility mismatches: Description}
 \begin{block}{\small \textbf{Description}}
 { 
 \small
@@ -386,28 +311,27 @@ Workshop 2: 0.11\%\\
 \end{frame}
 
 
-\begin{frame}{Preliminary experiments}{Reaction to STM mobility mismatches: Results}
+\begin{frame}{Experimentation}{Reaction to STM mobility mismatches: Results}
 \begin{figure}
   \centering
-  %\includegraphics[width=\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-delay-for-slides}
-  \makebox[\textwidth][c]{\includegraphics[width=1.05\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-delay-for-slides}}%
-  \caption{The evolution of the timespan between the expected and actual departures detected by the system across the different time increments applied to the STM. Similar tendencies are observed, highlighting that the sigmoid sampling allows to identify that user is leaving the stay points before expected.}
-  \label{fig:exp-3-departure-delay}
+  \makebox[\textwidth][c]{\includegraphics[width=1.05\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-delay-and-latency}}%
+  \caption{On the left, the evolution of the timespan between the expected and actual departures detected by the system when the STM is injured with additional time. Similar tendencies are observed, highlighting that the sigmoid sampling allows to identify that user is leaving the stay points before expected. 
+  \\ On the right, the variation of the latency values of departures detection. The observed values are under the theoretical 360 seconds maximum peak}
 \end{figure}
 \end{frame}
 
-\begin{frame}{Preliminary experiments}{Reaction to STM mobility mismatches: Results}
-\begin{figure}
-  \centering
-  %\includegraphics[width=\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-latency-for-slides}
-  \makebox[\textwidth][c]{\includegraphics[width=1.05\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-latency-for-slides}}%
-  \caption{The variation of the latency values of departures detection when the STM is injured with additional time. The observed values are under the theoretical 360 seconds maximum peak.}
-  \label{fig:exp-3-departure-latency}
-\end{figure}
-\end{frame}
+% \begin{frame}{Preliminary experiments}{Reaction to STM mobility mismatches: Results}
+% \begin{figure}
+%   \centering
+%   %\includegraphics[width=\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-latency-for-slides}
+%   \makebox[\textwidth][c]{\includegraphics[width=1.05\textwidth]{vectors/experiments/exp-3/exp-3-b-departure-latency-for-slides}}%
+%   \caption{The variation of the latency values of departures detection when the STM is injured with additional time. The observed values are under the theoretical 360 seconds maximum peak.}
+%   \label{fig:exp-3-departure-latency}
+% \end{figure}
+% \end{frame}
 
 % \subsection{Holistic evaluation}
-\begin{frame}{Preliminary experiments}{Holistic evaluation: Description}
+\begin{frame}{Experimentation}{Holistic evaluation: Description}
 \begin{block}{\small \textbf{Description}}
 { 
 \small
@@ -460,7 +384,7 @@ Workshop 2: 0.11\%\\
 \end{frame}
 
 
-\begin{frame}{Preliminary experiments}{Holistic evaluation: Results}
+\begin{frame}{Experimentation}{Holistic evaluation: Results}
 \small 
 \vspace{-0.5cm}
 {
@@ -496,47 +420,8 @@ Workshop 2: 0.11\%\\
 \end{frame}
 
 
-\begin{frame}{Preliminary experiments}{Holistic evaluation: Results}
-\small 
-\vspace{-0.5cm}
-{
-  \centering
-  \includegraphics[width=0.7\textwidth]{vectors/experiments/exp-4/exp-4-sigmoid-header-top-row}
-  \par 
-}
 
-
-\begin{columns}
-\begin{column}[T]{0.5\textwidth}
-
-\begin{block}{\small \textbf{Arrival distance difference}}
-{
-  \centering
-  \includegraphics[width=\textwidth]{vectors/experiments/exp-4/exp-4-arrival-distance-for-slides-v2}
-  \captionof{figure}{Arrival distance difference detected by the system throughout the different experimental trials. The values are shorter than for departure distance due to the decreasing speed that user describes when arriving to a stay point.}
-  \par
-}
-\end{block}
-\end{column}
-
-\begin{column}[T]{0.5\textwidth}
-\begin{block}{\small \textbf{Departure distance difference}}
-{
-  \centering
-  \includegraphics[width=\textwidth]{vectors/experiments/exp-4/exp-4-departure-distance-for-slides-v2}
-  \captionof{figure}{Departure distance difference detected by the system throughout the different experimental trials. The larger distance differences are caused by the high speed with which user leaves the stay points (mostly using a vehicle as transportation mode).}
-  \par
-}
-\end{block}
-
-\end{column}
-\end{columns}
-
-\end{frame}
-
-
-
-\begin{frame}{Preliminary experiments}{Holistic evaluation: Results}
+\begin{frame}{Experimentation}{Holistic evaluation: Results}
 \small
 \vspace{-0.5cm}
 {
@@ -572,50 +457,6 @@ Workshop 2: 0.11\%\\
 \end{columns}
 \end{frame}
 
-% \subsection{Feasibility of on-device stay points detection}
-\begin{frame}{Preliminary experiments}{Energy saving expectations of on-device stay points detection}
-\small
-% \vspace{-0.5cm}
-\begin{columns}
-\begin{column}{0.55\textwidth}
-\begin{block}{\small \textbf{Description}}
-\begin{itemize}
-  \item This experiment explored whether a smartphone could detect stay points by itself, and the energy savings of such implementation with respect of typical Mobile Cloud Computing (MCC) based solutions.
-  % \item Typical solutions implement a Mobile Cloud Computing (MCC) approach on which the smartphone only collects and offloads the processing to external servers.
-\end{itemize}
-\end{block}
-\end{column}
-
-\begin{column}{0.4\textwidth}
-\begin{table}
-\centering
-\renewcommand{\arraystretch}{0.8}
-\resizebox{0.95\textwidth}{!}{%
-\begin{tabular}{lll}
-\toprule
-\multirow{2}{*}{\textbf{Stay Points Detector}} & \textbf{Time threshold} ($\delta_{time}$): & $45~min$ \\
-\cmidrule[0.25pt]{2-3}
- & \textbf{Distance threshold} ($\delta_{distance}$): & $500~m$ \\
-
-\cmidrule[0.25pt]{1-3}
-\textbf{Sampling periods}: & \multicolumn{2}{l}{30, 60, 90, 120, 150 seconds} \\
-\bottomrule
-\end{tabular}
-}
-\caption{Input parameters for the energy saving expectations of on-device stay points detection experiment.}
-\label{tab:exp-energy-performance-input-parameters}
-\end{table}
-\end{column}
-\end{columns}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=\columnwidth]{vectors/local-poi-article/plot-energy-performance-r2-for-slides}
-  \caption{Energy performance comparison of on-device vs. MCC sample apps using different GPS sampling periods. Each of the on-device trials last longer than its corresponding remote implementation.}
-\end{figure}
-
-\end{frame}
-
 % \begin{frame}{Preliminary experiments}{Energy saving expectations of on-device stay points detection: Results}
 % \small
 % \begin{figure}
@@ -627,7 +468,7 @@ Workshop 2: 0.11\%\\
 % \end{frame}
 
 % \subsection{Energy consumption of fixed-sampling periods}
-\begin{frame}{Preliminary experiments}{Energy consumption of fixed-sampling periods: Description}
+\begin{frame}{Experimentation}{Energy consumption of fixed-sampling periods: Description}
 \small
 \begin{block}{\small \textbf{Description}}
 \begin{itemize}
@@ -676,7 +517,7 @@ Workshop 2: 0.11\%\\
 \end{table}
 \end{frame}
 
-\begin{frame}{Preliminary experiments}{Energy consumption of fixed-sampling periods: Results}
+\begin{frame}{Experimentation}{Energy consumption of fixed-sampling periods: Results}
 \vspace{-0.4cm}
 {
   \centering
@@ -686,7 +527,7 @@ Workshop 2: 0.11\%\\
 }
 \end{frame}
 
-\begin{frame}{Preliminary experiments}{Energy consumption of fixed-sampling periods: Results}
+\begin{frame}{Experimentation}{Energy consumption of fixed-sampling periods: Results}
 \begin{figure}
   \includegraphics[width=0.8\textwidth]{vectors/experiments/exp-6/exp-6-map-trj-4-adaptive-sampling-60-sp}
   \caption{The information autonomously learned by the STM during the trial corresponding to the 30 seconds in trajectory and 60 seconds in stay point sampling scheme. The height of cylinders corresponds with the stay time during each stay point visit.}
@@ -694,47 +535,54 @@ Workshop 2: 0.11\%\\
 \end{figure}
 \end{frame}
 
-\begin{frame}{Preliminary experiments}{Comparison with other solutions}
-\begin{table}[]
-\centering
+
+\begin{frame}{Experimentation}{Energy overhead of cognitive system: Description}
 \small
-\renewcommand{\arraystretch}{1.2}
-\begin{tabular}{@{}p{1cm}p{1.8cm}p{1.6cm}p{1.4cm}p{1cm}p{1cm}@{}}
+\begin{block}{\small \textbf{Description}}
+\begin{itemize}
+  \item This experiment evaluated the energy overhead of the proposed cognitive system.
+  \item A sample application was developed for collecting HAR + GPS data with a 30 seconds sampling rate.
+  \item One smartphone unit instructed the sampling rate without using any cognitive feature.
+  \item Another smartphone unit used the cognitive features with the exception of the cognitive controller.
+\end{itemize}
+\end{block}
+
+
+\begin{table}
+\centering
+\renewcommand{\arraystretch}{0.8}
+\resizebox{0.45\textwidth}{!}{%
+\begin{tabular}{@{}lll@{}}
 \toprule
-\textbf{Work} &
-\textbf{Purpose} &
-\textbf{Mobility type} &
-\textbf{Involved sensors} &
-\textbf{Trajectory tracking} &
-\textbf{Place learning} \\ 
-\midrule
+\multirow{2}{*}{\textbf{Stay Points Detector}} & \textbf{Time threshold} ($\delta_{time}$): & $45~min$ \\
+\cmidrule[0.25pt]{2-3}
+ & \textbf{Distance threshold} ($\delta_{distance}$): & $500~m$ \\
 
-\textbf{SenseLess} &
-Location tracking &
-Walking, static &
-Accelerometer, GPS &
-Yes &
-No \\
+\cmidrule[0.25pt]{1-3}
+\multirow{3}{*}{\textbf{Geofencing}} & \textbf{Radio distance} ($gf_{distance}$): & $250~m$ \\
+% \cmidrule[0.25pt]{2-3}
+% & \textbf{Pivot parameter} ($gf_{pv}$): & center \\
+ \cmidrule[0.25pt]{2-3}
+ & \textbf{Window size} ($gf_{ws}$): & 3 \\
 
-\cmidrule[0.25pt]{1-6}
-\textbf{SmartDC} &
-Place tracking &
-Not specified &
-Cellular id, Wi-Fi, GPS&
-No &
-Yes \\
+\cmidrule[0.25pt]{1-3}
+\multirow{2}{*}{\textbf{HAR module}} & \textbf{Individual window length}: & $5$ seconds \\
+\cmidrule[0.25pt]{2-3}
+ & \textbf{Meta-window size} ($HAR_{mws}$): & $5$ \\
 
-\cmidrule[0.25pt]{1-6}
-Proposed system &
-Location and place tracking &
-Static, walking, biking, vehicle &
-Accelerometer, GPS &
-Yes &
-Yes \\
-
+\cmidrule[0.25pt]{1-3}
+\textbf{Cognitive Controller} & Disabled & \\
 \bottomrule
 \end{tabular}%
-
-\caption{Features comparison of proposed system and representative existing solutions.}
+}
+\caption{Input parameters for the energy overhead measurement experiment (Geofencing and Stay Points Detector enabled only in one smartphone).}
+\label{tab:exp-7-input-parameters}
 \end{table}
+\end{frame}
+
+\begin{frame}{Experimentation}{Energy overhead of cognitive system: Results}
+\small
+\begin{block}{Results}
+Figure goes here
+\end{block}
 \end{frame}
