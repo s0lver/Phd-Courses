@@ -1,33 +1,6 @@
 %!TEX root = ../slides.tex
 \section{Preliminary results}
 \begin{frame}{Experimentation}{Materials and methods}
-\small
-\begin{block}{\small \textbf{Attributes evaluated}}
-  \begin{itemize}
-    \item Spatial-time accuracy.
-    \item Energy consumption.
-  \end{itemize}
-\end{block}
-
-\begin{block}{\small \textbf{Desktop version}}
-  \begin{itemize}
-    \item It features different modules of the proposed system (except from HAR module).
-    \item It allows the quick evaluation of system performance through different parameter combinations.
-    \item It includes a logic \emph{trajectory file} reader that simulates user motion.
-  \end{itemize}
-\end{block}
-
-\begin{block}{\small \textbf{On-device trials}}
-\begin{itemize}
-  \item Two Nexus 6 smartphone units.% powered by Android 7 (Nougat) (Qualcomm Snapdragon 805 chipset, Adreno 420 GPU unit, a Quad-core 2.7 GHz mobile processor, 3GB in RAM).
-  \item The smartphones were always carried together with the GPS logger device by a campus student.
-  \item No mobile apps other than the developed middleware were executed by the smartphones.
-  \item The smartphones were not employed for communication tasks (texting, calls).
-\end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}{Experimentation}{Materials and methods}
 \small 
 \vspace{-0.5cm}
 \begin{columns}
@@ -149,20 +122,17 @@ Workshop 2: 0.11\%\\
 
 
 % \subsection{Stay Points Detector spatial-time accuracy}
-\begin{frame}{Experimentation}{\emph{Stay Points Detector} module spatial-time accuracy}
+\begin{frame}{Experimentation}{Spatial-time accuracy of \emph{Stay Points Detector} and \emph{Geofencing} modules}
 \small
-
-\begin{columns}
-\begin{column}[T]{0.55\textwidth}
 
 \begin{block}{\small \textbf{Description}}
 \begin{itemize}
-  \item This experiment evaluates the spatial-time accuracy of the \emph{Stay Points Detector} module under different GPS sampling rates in terms of centroid distances and latencies.
+  \item Evaluation of the spatial-time accuracy of the \emph{Stay Points Detector} module: centroid distances and latencies.
+  \item Evaluation of the spatial-time accuracy of the \emph{Geofencing} module: missed visits, and latencies.
 \end{itemize}
-\end{block}
 
-\end{column}
-\begin{column}[T]{0.45\textwidth}
+\begin{columns}
+\begin{column}[T]{0.5\textwidth}
 \begin{table}
 \centering
 \renewcommand{\arraystretch}{0.6}
@@ -182,50 +152,14 @@ Workshop 2: 0.11\%\\
 \end{tabular}
 }
 \caption{Input parameters for the spatial-time accuracy of stay points experiment.}
-\label{tab:exp-1-input-parameters}
 \end{table}
 \end{column}
-\end{columns}
 
-\vspace{-0.5cm}
-\begin{block}{\small \textbf{Results}}
-\begin{columns}
-\begin{column}{0.65\textwidth}
-{
-  \centering
-  \includegraphics[width=0.95\textwidth]{vectors/experiments/exp-1/exp-1-centroid-distance}
-}
-\end{column}
-\begin{column}{0.3\textwidth}
-\captionof{figure}{The impact of different sampling periods on the centroid distance of identified stay points in each trajectory. A maximum centroid distance of $22.52~m$ is identified when employing the 180 seconds sampling period.}
-\end{column}
-\end{columns}
-
-\end{block}
-\end{frame}
-
-
-
-
-% \subsection{Geofencing accuracy}
-\begin{frame}{Experimentation}{\emph{Geofencing} module spatial-time accuracy: Description}
-\small 
-\vspace{-0.4cm}
-\begin{columns}
-\begin{column}[T]{0.55\textwidth}
-
-\begin{block}{\small \textbf{Description}}
-\begin{itemize}
-  \item This experiment evaluates the spatial-time accuracy of the \emph{Geofencing} module under different GPS sampling rates, in terms of missed visits, and arrival and departure latency.
-\end{itemize}
-\end{block}
-
-\end{column}
-\begin{column}[T]{0.45\textwidth}
+\begin{column}[T]{0.5\textwidth}
 \begin{table}
 \centering
-\renewcommand{\arraystretch}{0.8}
-\resizebox{\textwidth}{!}{%
+\renewcommand{\arraystretch}{0.6}
+\resizebox{0.8\textwidth}{!}{%
 \begin{tabular}{lll}
 \toprule
 \multirow{2}{*}{\textbf{Geofencing}} & \textbf{Radio distance} ($gf_{distance}$): & $250~m$ \\
@@ -239,27 +173,99 @@ Workshop 2: 0.11\%\\
 \textbf{Trajectories}: & \multicolumn{2}{l}{All ground truth trajectories.} \\
 
 \cmidrule[0.25pt]{1-3}
-\textbf{STM} & \multicolumn{2}{l}{Preloaded with corresponding ground truth stay points.} \\
+\textbf{STM} & \multicolumn{2}{l}{Preloaded with ground truth stay points.} \\
 \bottomrule
 \end{tabular}
 }
-\caption{Input parameters for the spatial-time accuracy of Geofencing module experiment.}
-\label{tab:exp-2-input-parameters}
+\caption{Input parameters for the spatial-time accuracy of \emph{Geofencing} experiment.}
 \end{table}
 \end{column}
 \end{columns}
-
-
-\vspace{-0.5cm}
-\begin{block}{\small \textbf{Results}}
-{
-  \centering
-  \includegraphics[width=0.78\textwidth]{vectors/experiments/exp-2/exp-2-visits-for-slides}
-  \captionof{figure}{Visits missed by the \emph{Geofencing} module for each combination of sampling period and window size values. The largest amount is obtained for the \emph{Trajectory 6}, given its length (more than 30 days). Nevertheless, they do not account for a considerable time in overall trajectories.}
-  \par
-}
 \end{block}
+
+\begin{block}{\small \textbf{Results}}
+\begin{itemize}
+  \item \emph{Stay Points Detector} and \emph{Geofencing} modules performed with spatial-time accuracy:
+\begin{itemize}
+  \item A maximum centroid distance of $22.52~m$ is identified when employing the 180 seconds sampling period.
+  \item The length of the visits missed by the \emph{Geofencing} module are under 90 seconds. Latencies are in function of the window size parameter value.
+\end{itemize}
+\end{itemize}
+\end{block}
+
+% \vspace{-0.5cm}
+% \begin{block}{\small \textbf{Results}}
+% \begin{columns}
+% \begin{column}{0.65\textwidth}
+% {
+%   \centering
+%   \includegraphics[width=0.95\textwidth]{vectors/experiments/exp-1/exp-1-centroid-distance}
+% }
+% \end{column}
+% \begin{column}{0.3\textwidth}
+% \captionof{figure}{The impact of different sampling periods on the centroid distance of identified stay points in each trajectory. A maximum centroid distance of $22.52~m$ is identified when employing the 180 seconds sampling period.}
+% \end{column}
+% \end{columns}
+
+% \end{block}
 \end{frame}
+
+
+
+
+% \subsection{Geofencing accuracy}
+% \begin{frame}{Experimentation}{\emph{Geofencing} module spatial-time accuracy: Description}
+% \small 
+% \vspace{-0.4cm}
+% \begin{columns}
+% \begin{column}[T]{0.55\textwidth}
+
+% \begin{block}{\small \textbf{Description}}
+% \begin{itemize}
+%   \item This experiment evaluates the spatial-time accuracy of the \emph{Geofencing} module under different GPS sampling rates, in terms of missed visits, and arrival and departure latency.
+% \end{itemize}
+% \end{block}
+
+% \end{column}
+% \begin{column}[T]{0.45\textwidth}
+% \begin{table}
+% \centering
+% \renewcommand{\arraystretch}{0.8}
+% \resizebox{\textwidth}{!}{%
+% \begin{tabular}{lll}
+% \toprule
+% \multirow{2}{*}{\textbf{Geofencing}} & \textbf{Radio distance} ($gf_{distance}$): & $250~m$ \\
+% \cmidrule[0.25pt]{2-3}
+%  & \textbf{Window size} ($gf_{ws}$): & 3, 5, 7 \\
+
+% \cmidrule[0.25pt]{1-3}
+% \textbf{Sampling periods}: & \multicolumn{2}{l}{30, 60, 90, 120, 150, 180 seconds.} \\
+
+% \cmidrule[0.25pt]{1-3}
+% \textbf{Trajectories}: & \multicolumn{2}{l}{All ground truth trajectories.} \\
+
+% \cmidrule[0.25pt]{1-3}
+% \textbf{STM} & \multicolumn{2}{l}{Preloaded with corresponding ground truth stay points.} \\
+% \bottomrule
+% \end{tabular}
+% }
+% \caption{Input parameters for the spatial-time accuracy of Geofencing module experiment.}
+% \label{tab:exp-2-input-parameters}
+% \end{table}
+% \end{column}
+% \end{columns}
+
+
+% \vspace{-0.5cm}
+% \begin{block}{\small \textbf{Results}}
+% {
+%   \centering
+%   \includegraphics[width=0.78\textwidth]{vectors/experiments/exp-2/exp-2-visits-for-slides}
+%   \captionof{figure}{Visits missed by the \emph{Geofencing} module for each combination of sampling period and window size values. The largest amount is obtained for the \emph{Trajectory 6}, given its length (more than 30 days). Nevertheless, they do not account for a considerable time in overall trajectories.}
+%   \par
+% }
+% \end{block}
+% \end{frame}
 
 \begin{frame}{Experimentation}{Reaction to STM mobility mismatches: Description}
 \begin{block}{\small \textbf{Description}}
@@ -437,7 +443,7 @@ Workshop 2: 0.11\%\\
 {
   \centering
   \includegraphics[width=\textwidth]{vectors/experiments/exp-4/exp-4-on-trajectory-distance-for-slides-v2}
-  \captionof{figure}{The average distance of equivalent trajectory segments during experimental trials. The values are enclosed within $2.5~m$ and $8.5~m$, with the 30 seconds sampling obtaining the lowest values in each trial.}
+  \captionof{figure}{The average distance of equivalent trajectory segments during experimental trials. The values are enclosed within $2.5~m$ and $8.5~m$, with the 30 seconds sampling obtaining the lowest value in each trial.}
   \par
 }
 \end{block}
@@ -483,7 +489,7 @@ Workshop 2: 0.11\%\\
 \begin{table}
 \centering
 \renewcommand{\arraystretch}{0.8}
-\resizebox{0.8\textwidth}{!}{%
+\resizebox{0.7\textwidth}{!}{%
 \begin{tabular}{@{}lll@{}}
 \toprule
 \multirow{2}{*}{\textbf{Stay Points Detector}} & \textbf{Time threshold} ($\delta_{time}$): & $45~min$ \\
@@ -513,7 +519,6 @@ Workshop 2: 0.11\%\\
 \end{tabular}%
 }
 \caption{Input parameters for the energy consumption of fixed-sampling periods experiment.}
-\label{tab:exp-6-input-parameters}
 \end{table}
 \end{frame}
 
@@ -536,22 +541,26 @@ Workshop 2: 0.11\%\\
 \end{frame}
 
 
-\begin{frame}{Experimentation}{Energy overhead of cognitive system: Description}
+\begin{frame}{Experimentation}{Energy overhead of cognitive system}
 \small
+\vspace{-0.5cm}
+\begin{columns}
+\begin{column}[T]{0.55\textwidth}
 \begin{block}{\small \textbf{Description}}
 \begin{itemize}
-  \item This experiment evaluated the energy overhead of the proposed cognitive system.
+  \item Evaluation of the energy overhead of the proposed CDS.
   \item A sample application was developed for collecting HAR + GPS data with a 30 seconds sampling rate.
   \item One smartphone unit instructed the sampling rate without using any cognitive feature.
   \item Another smartphone unit used the cognitive features with the exception of the cognitive controller.
 \end{itemize}
 \end{block}
+\end{column}
 
-
+\begin{column}[T]{0.45\textwidth}
 \begin{table}
 \centering
 \renewcommand{\arraystretch}{0.8}
-\resizebox{0.45\textwidth}{!}{%
+\resizebox{0.95\textwidth}{!}{%
 \begin{tabular}{@{}lll@{}}
 \toprule
 \multirow{2}{*}{\textbf{Stay Points Detector}} & \textbf{Time threshold} ($\delta_{time}$): & $45~min$ \\
@@ -575,17 +584,58 @@ Workshop 2: 0.11\%\\
 \bottomrule
 \end{tabular}%
 }
-\caption{Input parameters for the energy overhead measurement experiment (Geofencing and Stay Points Detector enabled only in one smartphone).}
-\label{tab:exp-7-input-parameters}
+\caption{Input parameters for the energy overhead measurement experiment (\emph{Geofencing} and \emph{Stay Points Detector} enabled only in one smartphone).}
 \end{table}
+\end{column}
+\end{columns}
+
+\vspace{-0.3cm}
+\begin{block}{\small \textbf{Results}}
+{
+  \centering
+  \includegraphics[width=0.7\textwidth]{vectors/experiments/energy-overhead}
+  \captionof{figure}{Energy overhead of the cognitive system. The running time difference is about 14 hours.}
+  \par
+}
+\end{block}
+
+% \begin{table}
+% \centering
+% \renewcommand{\arraystretch}{0.8}
+% \resizebox{0.45\textwidth}{!}{%
+% \begin{tabular}{@{}lll@{}}
+% \toprule
+% \multirow{2}{*}{\textbf{Stay Points Detector}} & \textbf{Time threshold} ($\delta_{time}$): & $45~min$ \\
+% \cmidrule[0.25pt]{2-3}
+%  & \textbf{Distance threshold} ($\delta_{distance}$): & $500~m$ \\
+
+% \cmidrule[0.25pt]{1-3}
+% \multirow{3}{*}{\textbf{Geofencing}} & \textbf{Radio distance} ($gf_{distance}$): & $250~m$ \\
+% % \cmidrule[0.25pt]{2-3}
+% % & \textbf{Pivot parameter} ($gf_{pv}$): & center \\
+%  \cmidrule[0.25pt]{2-3}
+%  & \textbf{Window size} ($gf_{ws}$): & 3 \\
+
+% \cmidrule[0.25pt]{1-3}
+% \multirow{2}{*}{\textbf{HAR module}} & \textbf{Individual window length}: & $5$ seconds \\
+% \cmidrule[0.25pt]{2-3}
+%  & \textbf{Meta-window size} ($HAR_{mws}$): & $5$ \\
+
+% \cmidrule[0.25pt]{1-3}
+% \textbf{Cognitive Controller} & Disabled & \\
+% \bottomrule
+% \end{tabular}%
+% }
+% \caption{Input parameters for the energy overhead measurement experiment (Geofencing and Stay Points Detector enabled only in one smartphone).}
+% \end{table}
 \end{frame}
 
-\begin{frame}{Experimentation}{Energy overhead of cognitive system: Results}
-\small
-\begin{block}{Results}
-\begin{figure}
-  \includegraphics[width=\textwidth]{vectors/experiments/energy-overhead}
-  \caption{Energy overhead of the cognitive system. The running time difference is about 14 hours.}
-\end{figure}
-\end{block}
-\end{frame}
+% \begin{frame}{Experimentation}{Energy overhead of cognitive system: Results}
+% \small
+% \begin{block}{Results}
+% \begin{figure}
+%   \includegraphics[width=\textwidth]{vectors/experiments/energy-overhead}
+%   \caption{Energy overhead of the cognitive system. The running time difference is about 14 hours.}
+% \end{figure}
+% \end{block}
+% \end{frame}
